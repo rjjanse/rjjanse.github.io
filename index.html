@@ -18,13 +18,23 @@
     <!-- Styling -->
     <style>
       .navbar {
+        overflow-x: hidden;           /* Disable horizontal scroll */
         background-color: "#001D3D";
-        color = "#000000";
+        color: "#000000";
+        height: 100%;                 /* Full-height of page */
+        width: 160px;                 /* Set the width of the sidebar */
+        position: fixed;              /* Fixed Sidebar (stay in place on scroll) */
+        z-index: 1;                   /* Stay on top */
+        top: 0;                       /* Stay at the top */
+        left: 0;                      
+        padding-top: 20px;            /* Add some space between top and text */
       }
       
       .main {
         background-color: "#000000";
-        color = "#FFFFFF";
+        color: "#FFFFFF";
+        margin-left: 160px;
+        padding: 0px 10px;            /* Add some space between bar and text */
       }
     </style>
     
