@@ -1,99 +1,111 @@
 <!DOCTYPE html>
 <html>
-  <!-- 
-    Palette:
-    - Rich black fogra 29: #000814
-    - Oxford blue: #001D3D
-    - Prussian blue: #003566
-    - Uranian blue: #C2E1FF
-    - Mikado yellow: #FFC300
-    - Gold web golden: #FFD60A
-  -->
-  
-  <!-- Head -->
-  <head>
-    <!-- Define meta characteristics of website -->
-    <meta charset = "UTF-8">
-    <title> Roemer J. Janse </title>
-    
-    <!-- Styling -->
-    <style>
-      /* Sidebar aesthetics */
-      .navbar {
-        overflow-x: hidden;           /* Disable horizontal scroll */
-        background-color: #001D3D;
-        color: #000000;
-        height: 100%;                 /* Full-height of page */
-        width: 160px;                 /* Set the width of the sidebar */
-        position: fixed;              /* Fixed Sidebar (stay in place on scroll) */
-        z-index: 1;                   /* Stay on top */
-        top: 0;                       /* Stay at the top */
-        left: 0;                      
-        padding-top: 20px;            /* Add some space between top and text */
-      }
-      
-      /* Sidebar menu links */
-      .navbar a {
-        padding: 6px 8px 6px 16px;
-        text-decoration: none;
-        font-size: 25px;
-        color: #FFD60A;
-        display: block;
-      }
+    <!-- 
+      Palette:
+      - Rich black fogra 29: #000814
+      - Oxford blue: #001D3D
+      - Prussian blue: #003566
+      - Uranian blue: #C2E1FF
+      - Mikado yellow: #FFC300
+      - Gold web golden: #FFD60A
+    -->
 
-      /* Change colour of navigation links when hovering */
-      .navbar a:hover {
-        color: #FFC300;
-      }
-      
-      /* Social link list icons */
-      li#github {
-        list-style-image: url("https://github.com/rjjanse/rjjanse.github.io/blob/main/GitHub-Mark-Light-64px.png");
-      } 
-      
-      /* Body aesthetics */
-      body {
-        font-family: "Monaco", "Courier New", monospace;
-        background-color: #C2E1FF;
-        color: #000000;
-      }
-      
-      /* Main div aesthetics */
-      .main {
-        margin-left: 160px;
-        padding: 0px 10px;            /* Add some space between bar and text */
-      }
-    </style>
-    
-  </head>
+    <!-- Head -->
+    <head>
+        <!-- Define meta characteristics of website -->
+        <meta charset = "UTF-8">
+        <title> Roemer J. Janse </title>
+
+        <!-- Styling -->
+        <style>
+            /* Navigation sidebar */
+            .navbar {
+                overflow-x: hidden;           /* Disable horizontal scroll */
+                background-color: #001D3D;
+                height: 100%;                 /* Full-height of page */
+                width: 160px;                 /* Set the width of the sidebar */
+                position: fixed;              /* Fixed Sidebar (stay in place on scroll) */
+                z-index: 1;                   /* Stay on top */
+                top: 0;                       /* Stay at the top */
+                left: 60px;                      
+                padding-top: 20px;            /* Add some space between top and text */
+            }
+        
+            /* Navigation sidebar menu links */
+            .navbar a {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 15px;
+                color: #FFD60A;
+                display: block;
+            }
+
+            /* Change colour of navigation links when hovering */
+            .navbar a:hover {
+                color: #FFC300;
+            }
+
+            /* Social links sidebar */
+            .socbar {
+                overflow-x: hidden;
+                background-color: #000814;
+                height: 100%;
+                width: 60px;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                padding-top: 20px;
+            }
+
+            /* Social link list */
+            li#github {
+                list-style-image: url("https://github.com/rjjanse/rjjanse.github.io/blob/main/GitHub-Mark-Light-64px.png");
+                width: 30px
+            }
+        
+            /* Body aesthetics */
+            body {
+                font-family: "Monaco", "Courier New", monospace;
+                background-color: #C2E1FF;
+                color: #000000;
+            }
+        
+            /* Main div aesthetics */
+            .main {
+                margin-left: 220px;
+                padding: 0px 10px;            /* Add some space between bar and text */
+            }
+        </style>
+    </head>
   
-  <!-- Body -->
-  <body>
-  
-    <!-- Sidebar -->
-    <div class = "navbar">
-      <!-- Site navigation -->
-      <a href = "#"> Home </a>
-      <a href = "#"> Publications </a>
-      <a href = "#"> CV </a>
-      
-      <!-- Social links -->
-      <ul class = "social-links">
-        <li id = "github"> <a target = "_blank" href = "https://github.com/rjjanse"> </a> </li>
-        <li id = "pubmed"> <a target = "_blank" href = "https://pubmed.ncbi.nlm.nih.gov/?term=%22Janse+RJ%22%5BAUTHOR%5D&sort=date"> </a> </li>
-        <li id = "scholar"> <a target = "_blank" href = "https://scholar.google.com/citations?user=NUUHRvgAAAAJ&hl=nl"> </a> </li>
-      </ul>
-    </div>
-      
-    <!-- Main website -->
-    <div class = "main">
-      <h1> Placeholder title </h1>
-      <p> Lorem ipsum </p>
-    </div>
-    
-  <!-- Finish -->
-  </body>
+    <!-- Body -->
+    <body>
+        <!-- Social link sidebar -->
+        <div class = "socbar">            
+            <!-- Social links -->
+            <ul class = "social-links">
+                <!-- Github -->
+                <li id = "github"> <a target = "_blank" href = "https://github.com/rjjanse"> </a> </li>
+                <li id = "pubmed"> <a target = "_blank" href = "https://pubmed.ncbi.nlm.nih.gov/?term=%22Janse+RJ%22%5BAUTHOR%5D&sort=date"> </a> </li>
+                <li id = "scholar"> <a target = "_blank" href = "https://scholar.google.com/citations?user=NUUHRvgAAAAJ&hl=nl"> </a> </li>
+            </ul>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class = "navbar">
+            <!-- Site navigation -->
+            <a href = "#"> Home </a>
+            <a href = "#"> Publications </a>
+            <a href = "#"> CV </a>
+        </div>
+
+        <!-- Main website -->
+        <div class = "main">
+            <h1> Placeholder title </h1>
+            <p> Lorem ipsum </p>
+        </div>
+
+    <!-- Finish -->
+    </body>
 </html>
-    
-    
- 
