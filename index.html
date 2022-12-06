@@ -18,6 +18,16 @@
 
         <!-- Styling -->
         <style>
+            /* Colour sidestrip for decoration */
+            #colstrip {
+                background-color: #FFC300;
+                height: 100%;
+                width: 2px;
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+
             /* Navigation sidebar */
             .navbar {
                 overflow-x: hidden;           /* Disable horizontal scroll */
@@ -27,7 +37,7 @@
                 position: fixed;              /* Fixed Sidebar (stay in place on scroll) */
                 z-index: 1;                   /* Stay on top */
                 top: 0;                       /* Stay at the top */
-                left: 60px;                      
+                left: 62px;                      
                 padding-top: 20px;            /* Add some space between top and text */
             }
         
@@ -55,7 +65,7 @@
                 position: fixed;
                 z-index: 1;
                 top: 0;
-                left: 0;
+                left: 2px;
                 padding-top: 5px;
                 padding-left: 15px;
             }
@@ -85,12 +95,24 @@
 
             /* Home div styling */
             #home {
+                width: 100%;
                 height: 100vh;
                 position: relative;
                 background-image: url("https://github.com/rjjanse/rjjanse.github.io/blob/main/landing.jpeg?raw=true");
                 background-repeat: no-repeat;
                 background-size: cover;
                 padding: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Home text box */
+            #hometext {
+                background-color: #C2E1FF;
+                padding: 15px;
+                border: 2px solid #001D3D;
+                opacity: 0.75
             }
 
         </style>
@@ -98,34 +120,43 @@
   
     <!-- Body -->
     <body>
+        <!-- Colour strip -->
+        <div id = "colstrip"> </div>
+
         <!-- Social link sidebar -->
         <div class = "socbar">            
             <!-- Social links -->
             <!-- Github -->
             <p> 
                 <a target = "_blank" href = "https://github.com/rjjanse"> 
-                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/github.png?raw=true", alt = "github icon", width = "30px"> </a>
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/github.png?raw=true" alt = "github icon" width = "30px"> </a>
                     <br style = "line-height:5px">
             </p>
 
             <!-- PubMed -->
             <p>
                 <a target = "_blank" href = "https://pubmed.ncbi.nlm.nih.gov/?term=%22Janse+RJ%22%5BAUTHOR%5D&sort=date"> 
-                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/pubmed.png?raw=true", alt = "pubmed icon", width = "30px"> </a>
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/pubmed.png?raw=true" alt = "pubmed icon" width = "30px"> </a>
                     <br style = "line-height:5px">
             </p>
 
             <!-- Google Scholar -->
             <p>
                 <a target = "_blank" href = "https://scholar.google.com/citations?user=NUUHRvgAAAAJ&hl=en"> 
-                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/scholar.png?raw=true", alt = "scholar icon", width = "30px"> </a> 
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/scholar.png?raw=true" alt = "scholar icon" width = "30px"> </a> 
                     <br style = "line-height:5px">
             </p>
 
             <!-- ORCID -->
             <p>
                 <a target = "_blank" href = "https://orcid.org/0000-0003-0059-872X"> 
-                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/orcid.png?raw=true", alt = "scholar icon", width = "30px"> </a>
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/orcid.png?raw=true" alt = "orcid icon" width = "30px"> </a>
+            </p>
+
+            <!-- Open Science Framework -->
+            <p>
+                <a target = "_blank" href = "https://osf.io/fwzdu">
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/osf.png?raw=true" alt = "osf icon" width = "30px"> </a>
             </p>
         </div>
         
@@ -142,46 +173,8 @@
         <div class = "main">
             <!-- Section home -->
             <div id = "home">
-                <h1> Home </h1>
-
-                <p> 
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero id faucibus nisl 
-                    tincidunt eget nullam non. Et pharetra pharetra massa massa ultricies mi quis. Ultricies tristique nulla aliquet enim. A pellentesque sit amet 
-                    porttitor eget dolor morbi non arcu. Cras tincidunt lobortis feugiat vivamus at. Senectus et netus et malesuada fames. Tristique senectus et netus 
-                    et malesuada fames ac. Nulla at volutpat diam ut venenatis tellus in metus vulputate. Quam vulputate dignissim suspendisse in est. Mi in nulla 
-                    posuere sollicitudin aliquam ultrices sagittis. Donec pretium vulputate sapien nec. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus 
-                    at augue. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse. Lectus arcu bibendum at varius vel pharetra. Sit amet aliquam id diam 
-                    maecenas. <br> <br>
-
-                    Nam libero justo laoreet sit amet cursus sit amet dictum. Arcu odio ut sem nulla pharetra diam sit amet. Pellentesque adipiscing commodo elit at 
-                    imperdiet dui accumsan. Neque volutpat ac tincidunt vitae semper quis lectus. Lobortis scelerisque fermentum dui faucibus in ornare quam viverra 
-                    orci. Pellentesque pulvinar pellentesque habitant morbi. Aliquam vestibulum morbi blandit cursus risus at ultrices. Sapien eget mi proin sed libero 
-                    enim sed faucibus turpis. Diam donec adipiscing tristique risus nec feugiat in fermentum. Platea dictumst vestibulum rhoncus est pellentesque elit 
-                    ullamcorper dignissim cras. Ullamcorper sit amet risus nullam eget felis eget nunc. Sociis natoque penatibus et magnis dis parturient. Amet tellus 
-                    cras adipiscing enim eu turpis egestas. Mauris a diam maecenas sed. Diam volutpat commodo sed egestas egestas fringilla phasellus. Tincidunt tortor 
-                    aliquam nulla facilisi cras fermentum odio eu. Odio tempor orci dapibus ultrices. Mi eget mauris pharetra et. Non pulvinar neque laoreet suspendisse 
-                    interdum. <br> <br>
-
-                    Feugiat in fermentum posuere urna. Pellentesque id nibh tortor id aliquet lectus. Lectus mauris ultrices eros in cursus turpis massa. Sed viverra 
-                    tellus in hac habitasse platea. Aliquam malesuada bibendum arcu vitae. At volutpat diam ut venenatis tellus in metus vulputate. Suspendisse faucibus 
-                    interdum posuere lorem ipsum dolor sit amet. Faucibus a pellentesque sit amet. Lacus vel facilisis volutpat est velit egestas dui id ornare. Aliquet 
-                    nec ullamcorper sit amet risus nullam. Erat imperdiet sed euismod nisi porta lorem mollis aliquam. Tempor orci dapibus ultrices in iaculis nunc sed. 
-                    Sem viverra aliquet eget sit amet tellus cras adipiscing. Risus nullam eget felis eget nunc lobortis mattis aliquam. Malesuada fames ac turpis 
-                    egestas maecenas pharetra. Lacus luctus accumsan tortor posuere. Vel eros donec ac odio. Suscipit tellus mauris a diam maecenas sed enim ut sem. 
-                    Amet dictum sit amet justo donec enim diam vulputate ut. <br> <br>
-
-                    Ac auctor augue mauris augue neque gravida in fermentum. Et netus et malesuada fames ac turpis. Etiam tempor orci eu lobortis. Vehicula ipsum a arcu 
-                    cursus vitae congue mauris rhoncus aenean. Habitant morbi tristique senectus et netus. Etiam dignissim diam quis enim lobortis scelerisque. A cras 
-                    semper auctor neque vitae. Amet mauris commodo quis imperdiet. Dictumst quisque sagittis purus sit amet volutpat consequat. Sed risus ultricies 
-                    tristique nulla aliquet enim. A cras semper auctor neque vitae tempus. <br> <br>
-
-                    Sed id semper risus in hendrerit gravida rutrum quisque non. In ornare quam viverra orci sagittis. Sed cras ornare arcu dui vivamus arcu felis 
-                    bibendum. Libero enim sed faucibus turpis. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Vestibulum morbi blandit cursus risus at. 
-                    Pretium aenean pharetra magna ac. In metus vulputate eu scelerisque felis imperdiet proin fermentum. Leo in vitae turpis massa sed elementum tempus 
-                    egestas sed. Libero volutpat sed cras ornare arcu dui vivamus. Tristique senectus et netus et malesuada fames ac. Egestas tellus rutrum tellus 
-                    pellentesque eu tincidunt tortor aliquam nulla. Est placerat in egestas erat imperdiet. Pulvinar pellentesque habitant morbi tristique senectus et 
-                    netus et malesuada. Eget magna fermentum iaculis eu non diam. Mi eget mauris pharetra et ultrices neque ornare aenean. Cras pulvinar mattis nunc 
-                    sed blandit libero.
+                <p>
+                    <h1 id = "hometext"> Hi!</h1>
                 </p>
             </div>
             
