@@ -81,6 +81,8 @@
                 background-color: #C2E1FF;
                 color: #000814;
                 margin: 0px;
+                max-width: 100%;
+                overflow-x: hidden;
             }
 
             /* Remove margin from header */
@@ -94,11 +96,10 @@
             }
 
             /* Home div styling */
-            #home {
-                width: 100%;
+            .home {
+                width: auto;
                 height: 100vh;
                 position: relative;
-                background-image: url("https://github.com/rjjanse/rjjanse.github.io/blob/main/landing.jpeg?raw=true");
                 background-repeat: no-repeat;
                 background-size: cover;
                 padding: 10px;
@@ -112,7 +113,8 @@
                 background-color: #C2E1FF;
                 padding: 15px;
                 border: 2px solid #001D3D;
-                opacity: 0.75
+                opacity: 0.75;
+                text-align: center;
             }
 
         </style>
@@ -172,9 +174,10 @@
         <!-- Main website -->
         <div class = "main">
             <!-- Section home -->
-            <div id = "home">
-                <p>
-                    <h1 id = "hometext"> Hi!</h1>
+            <div class = "home">
+                <p id = "hometext"> 
+                    <b style="font-size: 40px;"> Hi! My name is Roemer J. Janse </b> <br>
+                    <i> I'm a PhD candidate in clinical epidemiology and BSc in medicine </i> <br>
                 </p>
             </div>
             
@@ -307,6 +310,17 @@
                 </p>
             </div>
         </div>
+    
+    <!-- Javascript -->
+    <!-- Changing background -->
+    <script type="text/javascript">
+
+        var images = ["https://github.com/rjjanse/rjjanse.github.io/blob/main/landing1.jpeg?raw=true", "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing2.jpeg?raw=true", 
+                        "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing3.jpeg?raw=true", "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing4.jpeg?raw=true",
+                        "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing5.jpeg?raw=true", "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing6.jpeg?raw=true"];
+        document.getElementsByClassName('home')[0].style.backgroundImage = 'url(' + images[Math.floor(Math.random() * images.length)] + ')';
+      
+      </script>
 
     <!-- Finish -->
     </body>
