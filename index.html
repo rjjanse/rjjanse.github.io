@@ -108,12 +108,20 @@
                 align-items: center;
             }
 
+            /* Remaining body div styling */
+            .section {
+                width: auto;
+                height: 100vh;
+                position: relative;
+                padding: 20px;
+            }
+
             /* Home text box */
             #hometext {
                 background-color: #C2E1FF;
                 padding: 15px;
-                border: 2px solid #001D3D;
-                opacity: 0.75;
+                border: 2px solid #FFD60A;
+                outline: 3px solid #001D3D;
                 text-align: center;
             }
 
@@ -143,58 +151,58 @@
             <!-- Github -->
             <p> 
                 <a target = "_blank" href = "https://github.com/rjjanse"> 
-                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/github.png?raw=true" alt = "github icon" width = "30px"> </a>
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/github.png?raw=true" alt = "github icon" width = "30px"> </a>
                     <br style = "line-height:5px">
             </p>
 
             <!-- PubMed -->
             <p>
                 <a target = "_blank" href = "https://pubmed.ncbi.nlm.nih.gov/?term=%22Janse+RJ%22%5BAUTHOR%5D&sort=date"> 
-                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/pubmed.png?raw=true" alt = "pubmed icon" width = "30px"> </a>
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/pubmed.png?raw=true" alt = "pubmed icon" width = "30px"> </a>
                     <br style = "line-height:5px">
             </p>
 
             <!-- Google Scholar -->
             <p>
                 <a target = "_blank" href = "https://scholar.google.com/citations?user=NUUHRvgAAAAJ&hl=en"> 
-                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/scholar.png?raw=true" alt = "scholar icon" width = "30px"> </a> 
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/scholar.png?raw=true" alt = "scholar icon" width = "30px"> </a> 
                     <br style = "line-height:5px">
             </p>
 
             <!-- ORCID -->
             <p>
                 <a target = "_blank" href = "https://orcid.org/0000-0003-0059-872X"> 
-                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/orcid.png?raw=true" alt = "orcid icon" width = "30px"> </a>
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/orcid.png?raw=true" alt = "orcid icon" width = "30px"> </a>
                     <br style = "line-height:5px">
             </p>
 
             <!-- Open Science Framework -->
             <p>
                 <a target = "_blank" href = "https://osf.io/fwzdu">
-                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/osf.png?raw=true" alt = "osf icon" width = "30px"> </a>
+                    <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/osf.png?raw=true" alt = "osf icon" width = "30px"> </a>
             </p>
         </div>
         
         <!-- Sidebar -->
         <div class = "navbar">
             <!-- Site navigation -->
-            <a href = "#"> Home </a>
-            <a href = "#"> About me </a>
-            <a href = "#"> Publications </a>
-            <a href = "#"> CV </a>
+            <a href = "#home"> Home </a>
+            <a href = "#about-me"> About me </a>
+            <a href = "#publications"> Publications </a>
+            <a href = "#cv"> CV </a>
         </div>
 
         <!-- Main website -->
         <div class = "main">
             <!-- Section home -->
-            <div class = "home">
+            <div class = "home" id = "home">
                 <p id = "hometext"> 
-                    <b style="font-size: 40px;"> Hi! My name is Roemer J. Janse </b> <br>
-                    <i> I'm a PhD candidate in clinical epidemiology and BSc in medicine </i> <br>
+                    <b style = "font-size: 40px;"> Roemer J. Janse </b> <br>
+                    <i style = "font-size: 30px;"> PhD candidate in clinical epidemiology </i> <br>
                 </p>
             </div>
             
-            <div>
+            <div class = "section" id = "about-me">
                 <h1> About me </h1>
 
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero id faucibus nisl 
@@ -237,7 +245,7 @@
                 </p>
             </div>
 
-            <div>
+            <div class = "section" id = "publications">
                 <h1> Publications </h1>
 
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero id faucibus nisl 
@@ -280,7 +288,7 @@
                 </p>
             </div>
 
-            <div>
+            <div class = "section" id = "cv">
                 <h1> Curriculum Vitae </h1>
 
                 <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero id faucibus nisl 
@@ -330,7 +338,7 @@
     <script type="text/javascript">
 
         var images = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-        document.getElementsByClassName("home")[0].style.backgroundImage = "url(https://github.com/rjjanse/rjjanse.github.io/blob/main/landing" + images[Math.floor(Math.random() * images.length)] + ".jpeg?raw=true)";
+        document.getElementsByClassName("home")[0].style.backgroundImage = "url(https://github.com/rjjanse/rjjanse.github.io/blob/main/images/landing" + images[Math.floor(Math.random() * images.length)] + ".jpeg?raw=true)";
       
       </script>
 
