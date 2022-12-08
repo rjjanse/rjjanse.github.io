@@ -117,6 +117,18 @@
                 text-align: center;
             }
 
+            /* Hide scrollbar. Code from: https://stackoverflow.com/questions/43186015/css-hide-scroll-bar-but-have-element-scrollable */
+            /* Hide scrollbar for Chrome, Safari and Opera */
+            ::-webkit-scrollbar {
+              display: none;
+            }
+
+            /* Hide scrollbar for IE, Edge and Firefox */
+            html {
+              -ms-overflow-style: none;  /* IE and Edge */
+              scrollbar-width: none;  /* Firefox */
+            }
+
         </style>
     </head>
   
@@ -153,6 +165,7 @@
             <p>
                 <a target = "_blank" href = "https://orcid.org/0000-0003-0059-872X"> 
                     <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/orcid.png?raw=true" alt = "orcid icon" width = "30px"> </a>
+                    <br style = "line-height:5px">
             </p>
 
             <!-- Open Science Framework -->
@@ -313,12 +326,11 @@
     
     <!-- Javascript -->
     <!-- Changing background -->
+    <!-- Code from: https://stackoverflow.com/questions/27027480/choosing-a-random-background-html-css -->
     <script type="text/javascript">
 
-        var images = ["https://github.com/rjjanse/rjjanse.github.io/blob/main/landing1.jpeg?raw=true", "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing2.jpeg?raw=true", 
-                        "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing3.jpeg?raw=true", "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing4.jpeg?raw=true",
-                        "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing5.jpeg?raw=true", "https://github.com/rjjanse/rjjanse.github.io/blob/main/landing6.jpeg?raw=true"];
-        document.getElementsByClassName('home')[0].style.backgroundImage = 'url(' + images[Math.floor(Math.random() * images.length)] + ')';
+        var images = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+        document.getElementsByClassName("home")[0].style.backgroundImage = "url(https://github.com/rjjanse/rjjanse.github.io/blob/main/landing" + images[Math.floor(Math.random() * images.length)] + ".jpeg?raw=true)";
       
       </script>
 
