@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html lang = "en">
 <html>
     <!-- 
       Palette:
@@ -111,9 +111,49 @@
             /* Remaining body div styling */
             .section {
                 width: auto;
-                height: 100vh;
+                min-height: 100vh;
+                height: auto;
                 position: relative;
                 padding: 20px;
+                display: block;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .section_text {
+                height: 80%;
+                font-size: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 20px;
+                text-align: justify;
+                text-justify: auto;
+            }
+            
+            /* CV section */
+            .cv-section {
+                height: 100%;
+                position: relative;
+                padding: 20px;
+                display: flex;
+                align-items: top;
+                justify-content: space-evenly;
+            }
+
+            div.cv-section div {
+               width: 100%; 
+            }
+
+            .cv-text {
+                font-size: 12px;
+                font-weight: bold;
+                vertical-align: top;
+            }
+
+            .cv-year {
+                vertical-align: top;
+                padding-right: 10px;
             }
 
             /* Home text box */
@@ -135,6 +175,29 @@
             html {
               -ms-overflow-style: none;  /* IE and Edge */
               scrollbar-width: none;  /* Firefox */
+            }
+
+            /* Separator */
+            .separator {
+                height: 8px;
+                background-color: #001D3D;
+                border-right: 2px solid #FFC300;
+            }
+
+            div.separator p {
+                padding-top: 5px;
+                padding-right: 5px;
+                font-size: 9px;
+                height: auto;
+                background-color: #001D3D;
+                color: #FFD60A;
+                text-align: right;
+            }
+
+            /* Headings */
+            h1 {
+                font-size: 40px;
+                text-align: center;
             }
 
         </style>
@@ -201,135 +264,202 @@
                     <i style = "font-size: 30px;"> PhD candidate in clinical epidemiology </i> <br>
                 </p>
             </div>
-            
+
+            <!-- Separator -->
+            <div class = "separator"> </div>
+
+            <!-- About me section -->
             <div class = "section" id = "about-me">
-                <h1> About me </h1>
+                <!-- Header -->
+                <div> <h1> About me </h1> </div>
 
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero id faucibus nisl 
-                    tincidunt eget nullam non. Et pharetra pharetra massa massa ultricies mi quis. Ultricies tristique nulla aliquet enim. A pellentesque sit amet 
-                    porttitor eget dolor morbi non arcu. Cras tincidunt lobortis feugiat vivamus at. Senectus et netus et malesuada fames. Tristique senectus et netus 
-                    et malesuada fames ac. Nulla at volutpat diam ut venenatis tellus in metus vulputate. Quam vulputate dignissim suspendisse in est. Mi in nulla 
-                    posuere sollicitudin aliquam ultrices sagittis. Donec pretium vulputate sapien nec. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus 
-                    at augue. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse. Lectus arcu bibendum at varius vel pharetra. Sit amet aliquam id diam 
-                    maecenas. <br> <br>
+                <!-- Text -->
+                <div class = "section_text">
+                    <div style = "padding-right: 30px; font-weight: bold;">  
+                        <p> Hej! I'm Roemer (['rumər]) and I am a PhD candidate at the Department of Clinical Epidemiology at the
+                            Leiden University Medical Center, the Netherlands. The main focus of my thesis is prediction modelling of patient-reported outcomes
+                            in kidney disease, although I also work on treatment trajectories, causal renal pharmacoepidemiology, and assessment in medical
+                            education. This highlights my three main academic interests: medicine, epidemiology, and education, which my background in medicine 
+                            gives me ample opportunity to pursue. Besides indulging in these interests, you are likely to find me playing tabletop games, videogames, 
+                            in a boulder hall, taking pictures, or talking too much about either the Lord of the Rings or trains.
+                    </p> 
+                    </div>
 
-                    Nam libero justo laoreet sit amet cursus sit amet dictum. Arcu odio ut sem nulla pharetra diam sit amet. Pellentesque adipiscing commodo elit at 
-                    imperdiet dui accumsan. Neque volutpat ac tincidunt vitae semper quis lectus. Lobortis scelerisque fermentum dui faucibus in ornare quam viverra 
-                    orci. Pellentesque pulvinar pellentesque habitant morbi. Aliquam vestibulum morbi blandit cursus risus at ultrices. Sapien eget mi proin sed libero 
-                    enim sed faucibus turpis. Diam donec adipiscing tristique risus nec feugiat in fermentum. Platea dictumst vestibulum rhoncus est pellentesque elit 
-                    ullamcorper dignissim cras. Ullamcorper sit amet risus nullam eget felis eget nunc. Sociis natoque penatibus et magnis dis parturient. Amet tellus 
-                    cras adipiscing enim eu turpis egestas. Mauris a diam maecenas sed. Diam volutpat commodo sed egestas egestas fringilla phasellus. Tincidunt tortor 
-                    aliquam nulla facilisi cras fermentum odio eu. Odio tempor orci dapibus ultrices. Mi eget mauris pharetra et. Non pulvinar neque laoreet suspendisse 
-                    interdum. <br> <br>
-
-                    Feugiat in fermentum posuere urna. Pellentesque id nibh tortor id aliquet lectus. Lectus mauris ultrices eros in cursus turpis massa. Sed viverra 
-                    tellus in hac habitasse platea. Aliquam malesuada bibendum arcu vitae. At volutpat diam ut venenatis tellus in metus vulputate. Suspendisse faucibus 
-                    interdum posuere lorem ipsum dolor sit amet. Faucibus a pellentesque sit amet. Lacus vel facilisis volutpat est velit egestas dui id ornare. Aliquet 
-                    nec ullamcorper sit amet risus nullam. Erat imperdiet sed euismod nisi porta lorem mollis aliquam. Tempor orci dapibus ultrices in iaculis nunc sed. 
-                    Sem viverra aliquet eget sit amet tellus cras adipiscing. Risus nullam eget felis eget nunc lobortis mattis aliquam. Malesuada fames ac turpis 
-                    egestas maecenas pharetra. Lacus luctus accumsan tortor posuere. Vel eros donec ac odio. Suscipit tellus mauris a diam maecenas sed enim ut sem. 
-                    Amet dictum sit amet justo donec enim diam vulputate ut. <br> <br>
-
-                    Ac auctor augue mauris augue neque gravida in fermentum. Et netus et malesuada fames ac turpis. Etiam tempor orci eu lobortis. Vehicula ipsum a arcu 
-                    cursus vitae congue mauris rhoncus aenean. Habitant morbi tristique senectus et netus. Etiam dignissim diam quis enim lobortis scelerisque. A cras 
-                    semper auctor neque vitae. Amet mauris commodo quis imperdiet. Dictumst quisque sagittis purus sit amet volutpat consequat. Sed risus ultricies 
-                    tristique nulla aliquet enim. A cras semper auctor neque vitae tempus. <br> <br>
-
-                    Sed id semper risus in hendrerit gravida rutrum quisque non. In ornare quam viverra orci sagittis. Sed cras ornare arcu dui vivamus arcu felis 
-                    bibendum. Libero enim sed faucibus turpis. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Vestibulum morbi blandit cursus risus at. 
-                    Pretium aenean pharetra magna ac. In metus vulputate eu scelerisque felis imperdiet proin fermentum. Leo in vitae turpis massa sed elementum tempus 
-                    egestas sed. Libero volutpat sed cras ornare arcu dui vivamus. Tristique senectus et netus et malesuada fames ac. Egestas tellus rutrum tellus 
-                    pellentesque eu tincidunt tortor aliquam nulla. Est placerat in egestas erat imperdiet. Pulvinar pellentesque habitant morbi tristique senectus et 
-                    netus et malesuada. Eget magna fermentum iaculis eu non diam. Mi eget mauris pharetra et ultrices neque ornare aenean. Cras pulvinar mattis nunc 
-                    sed blandit libero.
-                </p>
+                    <div>  
+                        <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/picture.jpg?raw=true" alt = "picture of Roemer"
+                        width = 250px style = "border: 1px solid #FFD60A; outline: 3px solid #001D3D;">
+                    </div>
+                </div>
             </div>
 
+            <!-- Separator -->
+            <div class = "separator"> </div>
+
+            <!-- Publications -->
             <div class = "section" id = "publications">
-                <h1> Publications </h1>
+                <div> <h1> Publications </h1></div>
 
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero id faucibus nisl 
-                    tincidunt eget nullam non. Et pharetra pharetra massa massa ultricies mi quis. Ultricies tristique nulla aliquet enim. A pellentesque sit amet 
-                    porttitor eget dolor morbi non arcu. Cras tincidunt lobortis feugiat vivamus at. Senectus et netus et malesuada fames. Tristique senectus et netus 
-                    et malesuada fames ac. Nulla at volutpat diam ut venenatis tellus in metus vulputate. Quam vulputate dignissim suspendisse in est. Mi in nulla 
-                    posuere sollicitudin aliquam ultrices sagittis. Donec pretium vulputate sapien nec. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus 
-                    at augue. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse. Lectus arcu bibendum at varius vel pharetra. Sit amet aliquam id diam 
-                    maecenas. <br> <br>
-
-                    Nam libero justo laoreet sit amet cursus sit amet dictum. Arcu odio ut sem nulla pharetra diam sit amet. Pellentesque adipiscing commodo elit at 
-                    imperdiet dui accumsan. Neque volutpat ac tincidunt vitae semper quis lectus. Lobortis scelerisque fermentum dui faucibus in ornare quam viverra 
-                    orci. Pellentesque pulvinar pellentesque habitant morbi. Aliquam vestibulum morbi blandit cursus risus at ultrices. Sapien eget mi proin sed libero 
-                    enim sed faucibus turpis. Diam donec adipiscing tristique risus nec feugiat in fermentum. Platea dictumst vestibulum rhoncus est pellentesque elit 
-                    ullamcorper dignissim cras. Ullamcorper sit amet risus nullam eget felis eget nunc. Sociis natoque penatibus et magnis dis parturient. Amet tellus 
-                    cras adipiscing enim eu turpis egestas. Mauris a diam maecenas sed. Diam volutpat commodo sed egestas egestas fringilla phasellus. Tincidunt tortor 
-                    aliquam nulla facilisi cras fermentum odio eu. Odio tempor orci dapibus ultrices. Mi eget mauris pharetra et. Non pulvinar neque laoreet suspendisse 
-                    interdum. <br> <br>
-
-                    Feugiat in fermentum posuere urna. Pellentesque id nibh tortor id aliquet lectus. Lectus mauris ultrices eros in cursus turpis massa. Sed viverra 
-                    tellus in hac habitasse platea. Aliquam malesuada bibendum arcu vitae. At volutpat diam ut venenatis tellus in metus vulputate. Suspendisse faucibus 
-                    interdum posuere lorem ipsum dolor sit amet. Faucibus a pellentesque sit amet. Lacus vel facilisis volutpat est velit egestas dui id ornare. Aliquet 
-                    nec ullamcorper sit amet risus nullam. Erat imperdiet sed euismod nisi porta lorem mollis aliquam. Tempor orci dapibus ultrices in iaculis nunc sed. 
-                    Sem viverra aliquet eget sit amet tellus cras adipiscing. Risus nullam eget felis eget nunc lobortis mattis aliquam. Malesuada fames ac turpis 
-                    egestas maecenas pharetra. Lacus luctus accumsan tortor posuere. Vel eros donec ac odio. Suscipit tellus mauris a diam maecenas sed enim ut sem. 
-                    Amet dictum sit amet justo donec enim diam vulputate ut. <br> <br>
-
-                    Ac auctor augue mauris augue neque gravida in fermentum. Et netus et malesuada fames ac turpis. Etiam tempor orci eu lobortis. Vehicula ipsum a arcu 
-                    cursus vitae congue mauris rhoncus aenean. Habitant morbi tristique senectus et netus. Etiam dignissim diam quis enim lobortis scelerisque. A cras 
-                    semper auctor neque vitae. Amet mauris commodo quis imperdiet. Dictumst quisque sagittis purus sit amet volutpat consequat. Sed risus ultricies 
-                    tristique nulla aliquet enim. A cras semper auctor neque vitae tempus. <br> <br>
-
-                    Sed id semper risus in hendrerit gravida rutrum quisque non. In ornare quam viverra orci sagittis. Sed cras ornare arcu dui vivamus arcu felis 
-                    bibendum. Libero enim sed faucibus turpis. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Vestibulum morbi blandit cursus risus at. 
-                    Pretium aenean pharetra magna ac. In metus vulputate eu scelerisque felis imperdiet proin fermentum. Leo in vitae turpis massa sed elementum tempus 
-                    egestas sed. Libero volutpat sed cras ornare arcu dui vivamus. Tristique senectus et netus et malesuada fames ac. Egestas tellus rutrum tellus 
-                    pellentesque eu tincidunt tortor aliquam nulla. Est placerat in egestas erat imperdiet. Pulvinar pellentesque habitant morbi tristique senectus et 
-                    netus et malesuada. Eget magna fermentum iaculis eu non diam. Mi eget mauris pharetra et ultrices neque ornare aenean. Cras pulvinar mattis nunc 
-                    sed blandit libero.
+                <p> 
                 </p>
             </div>
 
+            <!-- Separator -->
+            <div class = "separator"> </div>
+
+            <!-- cv -->
             <div class = "section" id = "cv">
-                <h1> Curriculum Vitae </h1>
+                <div> <h1> Curriculum Vitae </h1> </div>
 
-                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Libero id faucibus nisl 
-                    tincidunt eget nullam non. Et pharetra pharetra massa massa ultricies mi quis. Ultricies tristique nulla aliquet enim. A pellentesque sit amet 
-                    porttitor eget dolor morbi non arcu. Cras tincidunt lobortis feugiat vivamus at. Senectus et netus et malesuada fames. Tristique senectus et netus 
-                    et malesuada fames ac. Nulla at volutpat diam ut venenatis tellus in metus vulputate. Quam vulputate dignissim suspendisse in est. Mi in nulla 
-                    posuere sollicitudin aliquam ultrices sagittis. Donec pretium vulputate sapien nec. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus 
-                    at augue. Suspendisse sed nisi lacus sed viverra tellus in hac habitasse. Lectus arcu bibendum at varius vel pharetra. Sit amet aliquam id diam 
-                    maecenas. <br> <br>
+                <div class = "cv-section">
+                    <div>
+                        <!-- Education -->
+                        <div>
+                            <h2> Education </h2>
 
-                    Nam libero justo laoreet sit amet cursus sit amet dictum. Arcu odio ut sem nulla pharetra diam sit amet. Pellentesque adipiscing commodo elit at 
-                    imperdiet dui accumsan. Neque volutpat ac tincidunt vitae semper quis lectus. Lobortis scelerisque fermentum dui faucibus in ornare quam viverra 
-                    orci. Pellentesque pulvinar pellentesque habitant morbi. Aliquam vestibulum morbi blandit cursus risus at ultrices. Sapien eget mi proin sed libero 
-                    enim sed faucibus turpis. Diam donec adipiscing tristique risus nec feugiat in fermentum. Platea dictumst vestibulum rhoncus est pellentesque elit 
-                    ullamcorper dignissim cras. Ullamcorper sit amet risus nullam eget felis eget nunc. Sociis natoque penatibus et magnis dis parturient. Amet tellus 
-                    cras adipiscing enim eu turpis egestas. Mauris a diam maecenas sed. Diam volutpat commodo sed egestas egestas fringilla phasellus. Tincidunt tortor 
-                    aliquam nulla facilisi cras fermentum odio eu. Odio tempor orci dapibus ultrices. Mi eget mauris pharetra et. Non pulvinar neque laoreet suspendisse 
-                    interdum. <br> <br>
+                            <table class = "cv-text">
+                                <tbody>
+                                    <tr>
+                                        <td class = "cv-year"> 2022-Current </td>
+                                        <td> Doctorate (PhD), Medicine, LUMC <br>
+                                        PhD in clinical epidemiology </td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "cv-year"> 2021-2022 </td>
+                                        <td> Master of Science (MSc), Medicine, LUMC <br>
+                                        Master thesis at Karolinska Institutet, Sweden <br>
+                                        <i> Temporarily interrupted for PhD position </i> </td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "cv-year"> 2018-2021 </td>
+                                        <td> Honours College Medicine <br>
+                                        Clinical epidemiology and statistics courses <br>
+                                        Honours class: Argumentative and Rhetorical Strategies </td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "cv-year"> 2018-2021 </td>
+                                        <td> Bachelor of Science (BSc), Medicine, LUMC <br>
+                                        Half Minor: Medical Education </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-                    Feugiat in fermentum posuere urna. Pellentesque id nibh tortor id aliquet lectus. Lectus mauris ultrices eros in cursus turpis massa. Sed viverra 
-                    tellus in hac habitasse platea. Aliquam malesuada bibendum arcu vitae. At volutpat diam ut venenatis tellus in metus vulputate. Suspendisse faucibus 
-                    interdum posuere lorem ipsum dolor sit amet. Faucibus a pellentesque sit amet. Lacus vel facilisis volutpat est velit egestas dui id ornare. Aliquet 
-                    nec ullamcorper sit amet risus nullam. Erat imperdiet sed euismod nisi porta lorem mollis aliquam. Tempor orci dapibus ultrices in iaculis nunc sed. 
-                    Sem viverra aliquet eget sit amet tellus cras adipiscing. Risus nullam eget felis eget nunc lobortis mattis aliquam. Malesuada fames ac turpis 
-                    egestas maecenas pharetra. Lacus luctus accumsan tortor posuere. Vel eros donec ac odio. Suscipit tellus mauris a diam maecenas sed enim ut sem. 
-                    Amet dictum sit amet justo donec enim diam vulputate ut. <br> <br>
+                    <!-- Working experience -->
+                    <div>
+                        <h2> Experience </h2>
 
-                    Ac auctor augue mauris augue neque gravida in fermentum. Et netus et malesuada fames ac turpis. Etiam tempor orci eu lobortis. Vehicula ipsum a arcu 
-                    cursus vitae congue mauris rhoncus aenean. Habitant morbi tristique senectus et netus. Etiam dignissim diam quis enim lobortis scelerisque. A cras 
-                    semper auctor neque vitae. Amet mauris commodo quis imperdiet. Dictumst quisque sagittis purus sit amet volutpat consequat. Sed risus ultricies 
-                    tristique nulla aliquet enim. A cras semper auctor neque vitae tempus. <br> <br>
+                        <table class = "cv-text">
+                            <tbody>
+                                <tr>
+                                    <td class = "cv-year"> 2022-Current </td>
+                                    <td> PhD candidate Clinical Epidemiology, LUMC <br>
+                                        Department of Clinical Epidemiology <br>
+                                        Prediction of patient-relevant outcomes, treatment trajectories, causal renal pharmacoepidemiology, and medical education </td>
+                                </tr>
+                                <tr>
+                                    <td class = "cv-year"> 2022-Current </td>
+                                    <td> Affiliated PhD candidate, Karolinska Institutet <br>
+                                        Department of Medical Epidemiology and Biostatistics </td>
+                                </tr>
+                                <tr>
+                                    <td class = "cv-year"> 2021-2022 </td>
+                                    <td> Student researcher, Karolinska Institutet <br>
+                                        Department of Medical Epidemiology and Biostatistics <br>
+                                        Treatment trajectories and causal renal pharmacoepidemiology </td>
+                                </tr>
+                                <tr>
+                                    <td class = "cv-year"> 2020-2022 </td>
+                                    <td> Student researcher, LUMC <br>
+                                        Department of Clinical Epidemiology <br>
+                                        Causal renal pharmacoepidemiology and medical education </td>
+                                </tr>
+                                <tr>
+                                    <td class = "cv-year"> 2019-2022 </td>
+                                    <td> Student teaching assistant <br>
+                                        Department of Clinical Epidemiology, LUMC <br>
+                                        Course coordination and teaching </td>
+                                </tr>
+                                <tr>
+                                    <td class = "cv-year"> 2020-2021 </td>
+                                    <td> Student teaching assistant <br>
+                                        Honours College Medicine, LUMC <br>
+                                        Organization of lectures </td>
+                                </tr>
+                                <tr>
+                                    <td class = "cv-year"> 2019-2020</td>
+                                    <td> Student research assistant <br>
+                                        Department of Cardiology, LUMC <br>
+                                        Data collection and management </td>
+                                </tr>
+                            </tbody>
+                        </table>
 
-                    Sed id semper risus in hendrerit gravida rutrum quisque non. In ornare quam viverra orci sagittis. Sed cras ornare arcu dui vivamus arcu felis 
-                    bibendum. Libero enim sed faucibus turpis. Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Vestibulum morbi blandit cursus risus at. 
-                    Pretium aenean pharetra magna ac. In metus vulputate eu scelerisque felis imperdiet proin fermentum. Leo in vitae turpis massa sed elementum tempus 
-                    egestas sed. Libero volutpat sed cras ornare arcu dui vivamus. Tristique senectus et netus et malesuada fames ac. Egestas tellus rutrum tellus 
-                    pellentesque eu tincidunt tortor aliquam nulla. Est placerat in egestas erat imperdiet. Pulvinar pellentesque habitant morbi tristique senectus et 
-                    netus et malesuada. Eget magna fermentum iaculis eu non diam. Mi eget mauris pharetra et ultrices neque ornare aenean. Cras pulvinar mattis nunc 
-                    sed blandit libero.
-                </p>
+                    </div>
+
+                    <!-- Grants & conferences -->
+                    <div>
+                        <!-- Conferences -->
+                        <div>
+                            <h2> Conferences </h2>
+
+                            <table class = "cv-text">
+                                <tbody>
+                                    <tr>
+                                        <td class = "cv-year"> 2022 </td>
+                                        <td> 59<sup>th</sup> European Renal Association (ERA) congress, Paris <br>
+                                            Speaker, participant <br>
+                                            Free communications oral abstract: <i> Stopping versus continuing renin-angiotensin-system inhibitors after acute
+                                                kidney injury and adverse clinical outcomes: an observational study from routine care data. </i>
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "cv-year"> 2020 </td>
+                                        <td> Dutch Association for Medical Education (NVMO) congress, Virtual <br>
+                                            Moderator, participant </td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "cv-year"> 2020 </td>
+                                        <td> 57<sup>th</sup> ERA congress, Virtual <br>
+                                            Participant </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <!-- Grants -->
+                        <div>
+                            <h2> Grants & awards </h2> 
+
+                            <table class = "cv-text">
+                                <tbody>
+                                    <tr>
+                                        <td class = "cv-year"> 2022 </td>
+                                        <td> Leiden University Medical Center MD/PhD grant </td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "cv-year"> 2022 </td>
+                                        <td> European Renal Association (ERA) travel grant </td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "cv-year"> 2021 </td>
+                                        <td> Leiden University Fund: International Study Fund (LISF) grant </td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "cv-year"> 2021 </td>
+                                        <td> Minerva Scholarship Fund grant </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div class = "separator">
+            <p> Copyright © 2022 Roemer J. Janse </p>
         </div>
     
     <!-- Javascript -->
@@ -338,7 +468,8 @@
     <script type="text/javascript">
 
         var images = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-        document.getElementsByClassName("home")[0].style.backgroundImage = "url(https://github.com/rjjanse/rjjanse.github.io/blob/main/images/landing" + images[Math.floor(Math.random() * images.length)] + ".jpeg?raw=true)";
+        document.getElementsByClassName("home")[0].style.backgroundImage = "url(https://github.com/rjjanse/rjjanse.github.io/blob/main/images/landing" + 
+        images[Math.floor(Math.random() * images.length)] + ".jpeg?raw=true)";
       
       </script>
 
