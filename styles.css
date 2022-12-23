@@ -1,0 +1,430 @@
+/* Palette:
+      - Charcoal: #2F3E46                   : Dark background
+      - Dark Slate Gray: #354F52
+      - Hookers Green: #52796F
+      - Dark Sea Green: #84A98C
+      - Ash Gray: #CAD2C5                   : Light background
+      - Desert Sand: #EEC9AA                : Accent
+*/
+
+/*------------- Social links sidebar -------------*/
+/* Social links sidebar frame */
+.socbar {
+    overflow-x: hidden;
+    background-color: #2F3E46;
+    height: 100%;
+    width: 60px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding-top: 5px;
+    padding-left: 15px;
+    border-left: 2px solid #EEC9AA;
+}
+
+/* Social links hover effect */
+.socbar a:hover {
+    opacity: 0.5;
+    transition-duration: 0.4s;
+}
+
+/* Space between links */
+.link-break {
+    line-height: 5px;
+}
+
+/*------------- Navigation sidebar -------------*/
+/* Navigation sidebar frame */
+.navbar {
+    overflow-x: hidden;           /* Disable horizontal scroll */
+    background-color: #354F52;
+    height: 100%;                 /* Full-height of page */
+    width: 160px;                 /* Set the width of the sidebar */
+    position: fixed;              /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1;                   /* Stay on top */
+    top: 0;                       /* Stay at the top */
+    left: 60px;                      
+    padding-top: 20px;            /* Add some space between top and text */
+}
+
+/* Navigation sidebar menu links */
+.navbar a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #EEC9AA;
+    display: block;
+}
+
+/* Change weight of navigation links when hovering */
+.navbar a:hover {
+    font-weight: bold;
+}
+
+/*------------- General body styling -------------*/
+/* Body aesthetics */
+body {
+    font-family: "Monaco", "Courier New", monospace;
+    background-color: #CAD2C5;
+    color: #2F3E46;
+    margin: 0px;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Main div aesthetics */
+.main {
+    margin-left: 220px;
+}
+
+/* Headings */
+h1 {
+    margin: 0px;
+    font-size: 40px;
+    text-align: center;
+}
+
+/* Section frame */
+.section {
+    width: auto;
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    padding: 20px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Section text */
+.section_text {
+    height: 80%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    text-align: justify;
+    text-justify: auto;
+}
+
+/* Hide scrollbar. Code from: https://stackoverflow.com/questions/43186015/css-hide-scroll-bar-but-have-element-scrollable */
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+html {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Decorative separator strip */
+.separator {
+    height: 8px;
+    background-color: #354F52;
+    border-right: 2px solid #EEC9AA;
+}
+
+/* Decorative separator strip extension for copyright text */
+div.separator p {
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    font-size: 9px;
+    height: auto;
+    background-color: #354F52;
+    color: #EEC9AA;
+    text-align: right;
+}
+
+/* Images */
+.image{
+    border: 1px solid #EEC9AA; 
+    outline: 3px solid #354F52;
+}
+
+/*------------- Landing -------------*/
+/* Home div styling */
+.home {
+    width: auto;
+    height: 100vh;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Home text box */
+#hometext {
+    background-color: #CAD2C5;
+    padding: 15px;
+    border: 2px solid #EEC9AA;
+    outline: 3px solid #354F52;
+    text-align: center;
+}
+
+/* Name on landing */
+#name {
+    font-size: 40px;
+}
+
+/* Title on landing */
+#title {
+    font-size: 30px;
+}
+
+/*------------- About me -------------*/
+/* About-me text */
+#about-me-text {
+    padding-right: 30px; 
+    font-weight: bold;
+}
+
+/*------------- Publications -------------*/
+/* Framework for buttons */
+.buttons {
+    margin: 50px 25px 50px 25px;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+}
+
+/* Buttons */
+.button {
+    color: #EEC9AA;
+    border: 1px solid #EEC9AA;
+    outline: 3px solid #354F52;
+    background-color: #52796F;
+    padding: 5px 20px 5px 20px;
+    list-style: none;
+    display: inline;
+}
+
+/* Button hover */
+.button:hover {
+    font-weight: bold;
+    background-color: #354F52;
+    cursor: pointer;
+}
+
+/* Wrapper for publications */
+.publication-studies {
+    padding: 20px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Publication divs */
+.pub {
+    display: block;
+    width: 300px;
+    min-height: 112.5px;
+    background-color: #52796F;
+    margin-bottom: 0;
+}
+
+/* Images for publication */
+.pub a img {
+    border: 1px solid #EEC9AA;
+    outline: 3px solid #354F52;
+}
+
+/* Footer below images per publication */
+.image-footer {
+    margin-top: 0;
+    padding: 5px;
+    background-color: #354F52;
+    color: #CAD2C5;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.7em;
+    outline: 3px solid #354F52;
+}
+
+/* Effect when hovering over publication div */
+.pub:hover {
+    cursor: pointer;
+    opacity: 0.75;
+    transition-duration: 0.4s;
+}
+
+/* Modal box */
+.modal-wrapper {
+    display: none;
+    position: fixed;
+    z-index: 2;
+    padding-top: 30vh;
+    width: calc(100vw - 220px);
+    height: 100%;
+    overflow: auto;
+    top: 0;
+    left: 220px;
+    background-color: rgba(0, 53, 102, 0.25);
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fade;
+    animation-duration: 0.4s
+}
+
+/* Modal content */
+.modal-content {
+    position: relative;
+    background-color: #CAD2C5;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #EEC9AA;
+    outline: 3px solid #354F52;
+    width: 80%;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Modal header */
+.modal-header {
+    background-color: #354F52;
+    min-height: 25px;
+    color: #EEC9AA;
+    margin: 0;
+    border-bottom: 3px solid #354F52;
+}
+
+/* Modal header heading text */
+.modal-header h2 {
+    padding: 15px 20px 10px 20px;
+    margin: 0;
+}
+
+/* Modal subheader */
+.modal-subheader {
+    background-color: #52796F;
+    color: #CAD2C5;
+    font-weight: normal;
+    padding: 5px 20px 5px 20px;
+    font-size: 0.8em;
+}
+
+/* Modal main */
+.modal-main {
+    background-color: #CAD2C5;
+    color: #2F3E46;
+    font-weight: normal;
+    padding: 5px 20px 5px 20px;
+    margin: 0;
+}
+
+/* Modal footer */
+.modal-footer {
+    background-color: #354F52;
+    min-height: 15px;
+    color: #CAD2C5;
+    font-weight: normal;
+    padding: 10px 20px 10px 20px;
+    font-size: 0.8em;
+}
+
+/* Modal buttons wrapper */
+.modal-buttons {
+    float: right;
+}
+
+/* Modal buttons */
+.modal-buttons a {
+    background-color: #52796F;
+    border: 1px solid #CAD2C5;
+    color: #CAD2C5;
+    padding: 3px;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 10px;
+}
+
+/* Modal buttons hover effect */
+.modal-buttons a:hover {
+    font-weight: bolder;
+}
+
+/* Close button for modal */
+.close-button {
+    text-decoration: none;
+    float: right;
+    padding: 2px 10px 0px 0px;
+    margin: auto;
+    font-size: 35px;
+    font-weight: bold;
+    color: #EEC9AA;
+}
+
+/* Clicking close button */
+.close-button:hover, .close-button:focus {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Add moving animation for modal */
+@-webkit-keyframes animatetop {
+    from {top: -300px; opacity: 0} 
+    to {top: 0; opacity: 1}
+  }
+  
+@keyframes animatetop {
+  from {top: -300px; opacity:0}
+  to {top: 0; opacity: 1}
+}
+
+/* Add fading background animation for modal */
+@-webkit-keyframes fade {
+    from {background-color: rgba(0, 53, 102, 0)}
+    to {background-color: rgba(0, 53, 102, 0.25)}
+}
+
+@keyframes fade {
+    from {background-color: rgba(0, 53, 102, 0)}
+    to {background-color: rgba(0, 53, 102, 0.25)}
+}
+
+/*------------- CV -------------*/
+/* CV section frame */
+.cv-section {
+    height: 100%;
+    position: relative;
+    padding: 20px;
+    display: flex;
+    align-items: top;
+    justify-content: space-evenly;
+}
+
+/* CV column frame */
+div.cv-section div {
+   width: 100%; 
+}
+
+/* CV section text */
+.cv-text {
+    font-size: 12px;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+/* Styling for years in CV section */
+.cv-year {
+    vertical-align: top;
+    padding-right: 10px;
+}
+
+
+
+
+
+
+
+
+
