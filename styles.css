@@ -186,6 +186,7 @@ html {
 .buttons {
     margin: 50px 25px 50px 25px;
     display: flex;
+    flex-flow: row wrap;
     text-align: center;
     justify-content: space-around;
 }
@@ -193,10 +194,10 @@ html {
 /* Buttons */
 .button {
     color: #EDF2F4;
-    border: 1px solid #D17010;
-    outline: 3px solid #2A373C;
+    outline: 3px solid #101119;
     background-color: #2A373C;
     padding: 5px 20px 5px 20px;
+    margin: 10px;
     list-style: none;
     display: inline;
     font-weight: bold;
@@ -205,10 +206,10 @@ html {
 /* 'all' button */
 .button-all {
     color: #EDF2F4;
-    border: 1px solid #D17010;
-    outline: 3px solid #2A373C;
+    outline: 3px solid #101119;
     background-color: #2A373C;
     padding: 5px 20px 5px 20px;
+    margin: 10px;
     list-style: none;
     display: inline;
     font-weight: bold;
@@ -257,44 +258,45 @@ html {
 .pub {
     display: block;
     width: 300px;
-    min-height: 112.5px;
+    margin: 10px 20px 10px 20px;
     background-color: #2A373C;
-    margin: 20px;
-}
-
-/* Images for publication */
-.pub a img {
-    outline: 3px solid #2A373C;
+    color: #EDF2F4;
+    font-weight: bolder;
+    font-size: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    outline: 3px solid #101119;
 }
 
 /* Removing underlining from publication text */
-.pubbutton {
+.pubbutton, .pubbutton:focus {
     text-decoration: none;
-}
-
-/* Footer below images per publication */
-.image-footer {
-    margin-top: 0;
-    padding: 5px;
-    background-color: #2A373C;
     color: #EDF2F4;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    font-size: 0.7em;
-    outline: 3px solid #2A373C;
 }
 
-/* Remove pointer cursor when hovering on footer */
-.image-footer:hover {
-    cursor: default;
+/* Styling publication text */
+.pubbutton p {
+    padding: 10px;
+    margin: 0;
+    border: 1px solid #D17010;
 }
 
-/* Effect when hovering over publication div */
-.pub img:hover {
-    cursor: pointer;
-    opacity: 0.6;
+/* Effects when hovering over pubbutton */
+.pubbutton:hover p, .pubbutton:focus p, .pubbutton:active p {
+    background-color: #D17010;
+    color: #101119;
+    font-weight: bolder;
     transition-duration: 0.4s;
+}
+
+/* Footer below title for open access status */
+.access-status {
+    padding: 5px 0px 5px 0px;
+    background-color: #101119;
+    color: #EDF2F4;
+    width: 100%;
+    height: auto;
+    font-size: 0.7em;
 }
 
 /* Modal box */
