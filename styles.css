@@ -202,6 +202,18 @@ html {
     font-weight: bold;
 }
 
+/* 'all' button */
+.button-all {
+    color: #EDF2F4;
+    border: 1px solid #D17010;
+    outline: 3px solid #2A373C;
+    background-color: #2A373C;
+    padding: 5px 20px 5px 20px;
+    list-style: none;
+    display: inline;
+    font-weight: bold;
+}
+
 /* Button hover */
 .button:hover {
     opacity: 0.9;
@@ -209,15 +221,36 @@ html {
     cursor: pointer;
 }
 
+/* 'all' button hover */
+.button-all:hover {
+    opacity: 0.9;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/* Marking the active (clicked) button */
+.button[name=active] {
+    color: #2A373C;
+    background-color: #D17010;
+    transition-duration: 0.4s;
+}
+
+/* Marking the active (clicked) 'all' button */
+.button-all[name=active] {
+    color: #2A373C;
+    background-color: #D17010;
+    transition-duration: 0.4s;
+}
+
 /* Wrapper for publications */
 .publication-studies {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
     padding: 20px;
-    width: 100%;
+    width: calc(100vw - 310px);
     height: 100%;
     overflow-x: hidden;
+    justify-content: center;
 }
 
 /* Publication divs */
@@ -231,8 +264,12 @@ html {
 
 /* Images for publication */
 .pub a img {
-    border: 1px solid #D17010;
     outline: 3px solid #2A373C;
+}
+
+/* Removing underlining from publication text */
+.pubbutton {
+    text-decoration: none;
 }
 
 /* Footer below images per publication */
@@ -248,10 +285,15 @@ html {
     outline: 3px solid #2A373C;
 }
 
+/* Remove pointer cursor when hovering on footer */
+.image-footer:hover {
+    cursor: default;
+}
+
 /* Effect when hovering over publication div */
-.pub:hover {
+.pub img:hover {
     cursor: pointer;
-    opacity: 0.75;
+    opacity: 0.6;
     transition-duration: 0.4s;
 }
 
