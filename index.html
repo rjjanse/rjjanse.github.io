@@ -92,21 +92,140 @@
                 <!-- Header -->
                 <div> <h1> About me </h1> </div>
 
-                <!-- Text -->
-                <div class = "section_text">
-                    <div id = "about-me-text">  
-                        <p> Hej! I'm Roemer (['rumər]) and I am a PhD candidate at the Department of Clinical Epidemiology at the
+                <!-- Section content -->
+                <div class = "about-me-section">
+                    <!-- Skills -->
+                    <div class = "column">
+                        <h2> Skills </h2>
+
+                        <!-- Epidemiology -->
+                        <div class = "skill-section">
+                            <h3> Epidemiology </h3> 
+
+                            <ul>
+                                <li> Causal inference </li>
+                                <li> Pharmacoepidemiology </li>
+                                <li> Prediction modelling </li>
+                                <li> Big data analysis </li> 
+                            </ul>
+
+                        </div>
+
+                        <!-- Programming -->
+                        <div class = "skill-section">
+                            <h3> Programming </h3>
+
+                            <ul>
+                                <li> R (<i>proficient</i>)
+                                    <div class = "sparkbar"> 
+                                        <div class = "proficient"> </div>
+                                    </div>
+                                </li> 
+                                <li> HTML (<i>comfortable</i>)
+                                    <div class = "sparkbar"> 
+                                        <div class = "comfortable"> </div>
+                                    </div>
+                                </li> 
+                                <li> CSS (<i>comfortable</i>)
+                                    <div class = "sparkbar"> 
+                                        <div class = "comfortable"> </div>
+                                    </div>
+                                </li> 
+                                <li> Python (<i>familiar</i>)
+                                    <div class = "sparkbar"> 
+                                        <div class = "familiar"> </div>
+                                    </div>
+                                </li> 
+                                <li> JavaScript (<i>familiar</i>)
+                                    <div class = "sparkbar"> 
+                                        <div class = "familiar"> </div>
+                                    </div>
+                                </li> 
+                            </ul>
+                        </div>
+
+                        <!-- Languages -->
+                        <div class = "skill-section">
+                            <h3> Languages </h3>
+
+                            <ul>
+                                <li> Dutch (<i>native</i>)
+                                    <div class = "sparkbar"> 
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                    </div>
+                                </li> 
+                                <li> English (<i>C2</i>)
+                                    <div class = "sparkbar"> 
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                        <div class = "sparkbar-building-block"> </div>
+                                    </div>
+                                </li> 
+                                <li> Italian (<i>A1</i>)
+                                    <div class = "sparkbar"> 
+                                        <div class = "sparkbar-building-block"> </div>
+                                    </div>
+                                </li> 
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Biography -->
+                    <div class = "column"> 
+                        <h2> Biography </h2>
+
+                        <div id = "bio"> Hej! I'm Roemer (['rumər]) and I am a PhD candidate at the Department of Clinical Epidemiology at the
                             Leiden University Medical Center, the Netherlands. The main focus of my thesis is prediction modelling of patient-reported outcomes
                             in kidney disease, although I also work on treatment trajectories, causal renal pharmacoepidemiology, and assessment in medical
                             education. This highlights my three main academic interests: medicine, epidemiology, and education, which I have ample opportunity to
-                            pursue due to my background in medicine. Besides indulging in these interests, you are likely to find me making puzzles, playing 
-                            tabletop games, videogames, in a boulder hall, taking pictures, or talking too much about either the Lord of the Rings or trains.
-                    </p> 
+                            pursue due to my background in medicine. Moreover, I am a strong proponent of open science and aim for my work to be open and transparent. 
+                            Besides indulging in these interests, you are likely to find me making puzzles, playing tabletop games, videogames, in a boulder hall, 
+                            taking pictures, or talking too much about either the Lord of the Rings or trains. <br>
+                            &nbsp;
+                        </div>
+
+                        <div>
+                            <h3> Academic interests </h3>
+
+                            <ul class = "academic-interests">
+                                <li> Renal pharmacoepidemiology </li>
+                                <li> Prediction modelling techniques </li>
+                                <li> Patient-reported outcome measures </li> 
+                                <li> Treatment trajectories and chronic kidney disease </li>
+                                <li> Assessment in medical education </li>
+                                <li> Open science </li>
+                            </ul>
+                        </div>
                     </div>
 
-                    <div>  
-                        <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/picture.jpg?raw=true" alt = "picture of Roemer"
-                        width = 250px class = "image">
+                    <!-- Image + personal interests -->
+                    <div class = "column">
+                        <h3> &nbsp; </h3>
+                        
+                        <!-- Image -->
+                        <div>  <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/picture.jpg?raw=true" alt = "picture of Roemer"
+                            width = 250px class = "image"> 
+                        </div>    
+
+                        <!-- Personal interests -->
+                        <div>
+                            <h3> Personal interests </h3>
+
+                            <ul>
+                                <li> Bouldering </li>
+                                <li> Photography </li>
+                                <li> Reading </li>
+                                <li> Tabletop & video games </li> 
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -165,7 +284,6 @@
                                     <div class = "modal-buttons" >
                                         <a target = "_blank" href = "https://doi.org/10.1080/0142159X.2022.2158070" rel = "noopener"> Full-text </a>
                                         <a target = "_blank" href = "https://pubmed.ncbi.nlm.nih.gov/36534759/" rel = "noopener"> PubMed </a>
-                                        <a target = "_blank" class = "lies_img" href = "" rel = "noopener"> First author </a> 
                                     </div>
                                 </div>
                             </div>
@@ -216,6 +334,7 @@
                                     <div class = "modal-buttons" >
                                         <a target = "_blank" href = "https://doi.org/10.1002/ejhf.2620" rel = "noopener"> Full-text </a>
                                         <a target = "_blank" href = "https://pubmed.ncbi.nlm.nih.gov/35851740/" rel = "noopener"> PubMed </a>
+                                        <a target = "_blank" href = "https://github.com/rjjanse/janse-2022-ejhf" rel = "noopener"> Codes </a> 
                                     </div>
                                 </div>
                             </div>
@@ -266,6 +385,7 @@
                                     <div class = "modal-buttons" >
                                         <a target = "_blank" href = "https://doi.org/10.1093/ckj/sfac003" rel = "noopener"> Full-text </a>
                                         <a target = "_blank" href = "https://pubmed.ncbi.nlm.nih.gov/35664269/" rel = "noopener"> PubMed </a>
+                                        <a target = "_blank" href = "https://github.com/rjjanse/janse-2022-ckj" rel = "noopener"> Codes </a> 
                                     </div>
                                 </div>
                             </div>
@@ -357,6 +477,7 @@
                                     <div class = "modal-buttons" >
                                         <a target = "_blank" href = "https://doi.org/10.1093/ckj/sfab085" rel = "noopener"> Full-text </a>
                                         <a target = "_blank" href = "https://pubmed.ncbi.nlm.nih.gov/34754428/" rel = "noopener"> PubMed </a>
+                                        <a target = "_blank" href = "https://github.com/rjjanse/janse-2021-ckj" rel = "noopener"> Codes </a>
                                     </div>
                                 </div>
                             </div>
@@ -420,7 +541,7 @@
             <!-- Separator -->
             <div class = "separator"> </div>
 
-            <!-- cv -->
+            <!-- CV -->
             <div class = "section" id = "cv">
                 <div> <h1> Curriculum Vitae </h1> </div>
 

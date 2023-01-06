@@ -175,10 +175,90 @@ html {
 }
 
 /*------------- About me -------------*/
-/* About-me text */
-#about-me-text {
-    padding-right: 30px; 
+/* About me section content styling */
+.about-me-section {
+    display: flex;
+    position: relative;
+    margin: 20px;
+}
+
+/* Seperate columns within about me section content */
+.about-me-section .column {
+    margin: 20px;
     font-weight: bold;
+}
+
+/* Skill section styling */
+.skill-section {
+    list-style-type: square;
+    margin: 0;
+}
+
+/* Styling of list indicators */
+ul {
+    color: #101119;
+    margin-top: -15px;
+    margin-bottom: 5px;
+}
+
+/* Sparkbar */
+.sparkbar {
+    height: 0.5em;
+    width: 12vw;
+    background-color: #2A373C;
+    outline: 1px solid #2A373C;
+    padding: 0;
+    margin: 1px 2px 5px 2px;
+    display: flex;
+    position: relative;
+}
+
+/* Proficient sparkbar */
+.sparkbar .proficient {
+    margin: 0;
+    padding: 0;
+    height: 0.5em;
+    width: 12vw;
+    background-color: #D17010;
+}
+
+/* Comfortable sparkbar */
+.sparkbar .comfortable {
+    margin: 0;
+    padding: 0;
+    height: 0.5em;
+    width: 8vw;
+    background-color: #D17010;
+}
+
+/* Familiar sparkbar */
+.sparkbar .familiar {
+    margin: 0;
+    padding: 0;
+    height: 0.5em;
+    width: 2vw;
+    background-color: #D17010;
+}
+
+/* Sparkbar building blocks for languages */
+.sparkbar-building-block {
+    margin: 0;
+    padding: 0;
+    height: 0.5em;
+    width: 2vw;
+    background-color: #D17010;
+    outline: 1px solid #2A373C;
+}
+
+/* Academic interests list */
+.academic-interests {
+    display: inline-block;
+}
+
+/* Bio styling */
+#bio {
+    text-align: justify;
+    text-justify: auto;
 }
 
 /*------------- Publications -------------*/
@@ -266,6 +346,10 @@ html {
     text-align: center;
     text-decoration: none;
     outline: 3px solid #101119;
+    -webkit-animation-name: appear;
+    -webkit-animation-duration: 0.6s;
+    animation-name: appear;
+    animation-duration: 0.6s;
 }
 
 /* Removing underlining from publication text */
@@ -296,7 +380,7 @@ html {
     color: #EDF2F4;
     width: 100%;
     height: auto;
-    font-size: 0.7em;
+    font-size: 0.9em;
 }
 
 /* Modal box */
@@ -304,10 +388,10 @@ html {
     display: none;
     position: fixed;
     z-index: 2;
-    padding-top: 30vh;
+    padding-top: 25vh;
     width: calc(100vw - 220px);
     height: 100%;
-    max-height: 70vh;
+    max-height: 75vh;
     overflow: auto;
     top: 0;
     left: 220px;
@@ -416,11 +500,22 @@ html {
   cursor: pointer;
 }
 
+/* Add appearing animation for pub */
+@-webkit-keyframes appear {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
+@keyframes appear {
+    from {opacity: 0}
+    to {opacity: 1}
+}
+
 /* Add moving animation for modal */
 @-webkit-keyframes animatetop {
     from {top: -300px; opacity: 0} 
     to {top: 0; opacity: 1}
-  }
+}
   
 @keyframes animatetop {
   from {top: -300px; opacity:0}
@@ -439,6 +534,26 @@ html {
 }
 
 /*------------- CV -------------*/
+/* Wrapper for cv */
+.cv {
+    position: absolute;
+    display: flex;
+    margin: 5vh 6vw 5vh 4vw;
+    width: calc(90vw - 220px);
+    max-height: calc(90vh - 220px);
+    overflow-y: scroll;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* CV section frame */
 .cv-section {
     height: 100%;
@@ -466,12 +581,3 @@ div.cv-section div {
     vertical-align: top;
     padding-right: 10px;
 }
-
-
-
-
-
-
-
-
-
