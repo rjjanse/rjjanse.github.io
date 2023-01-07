@@ -136,8 +136,7 @@ html {
 }
 
 /* Images */
-.image{
-    border: 1px solid #D17010; 
+.image {
     outline: 3px solid #2A373C;
 }
 
@@ -199,6 +198,7 @@ ul {
     color: #101119;
     margin-top: -15px;
     margin-bottom: 5px;
+    list-style-type: square;
 }
 
 /* Sparkbar */
@@ -250,17 +250,22 @@ ul {
     outline: 1px solid #2A373C;
 }
 
-/* Academic interests list */
-.academic-interests {
-    display: inline-block;
-}
-
-/* Bio styling */
-#bio {
+/* Div with bio and image */
+.bio-image {
+    display: flex;
     text-align: justify;
     text-justify: auto;
 }
 
+/* Add padding to divs in bio image */
+.bio-image div {
+    padding-right: 20px;
+}
+
+.interests {
+    display: flex;
+}
+ 
 /*------------- Publications -------------*/
 /* Framework for buttons */
 .buttons {
