@@ -72,6 +72,11 @@ body {
     overflow-x: hidden;
 }
 
+/* Any image gets a border */
+img {
+    outline: 1px solid #101119;
+}
+
 /* Main div aesthetics */
 .main {
     margin-left: 220px;
@@ -262,10 +267,76 @@ ul {
     padding-right: 20px;
 }
 
+/* Academic and personal interesests div */
 .interests {
     display: flex;
 }
- 
+
+/* Add space between lists */
+.interests ul {
+    padding-right: 30px;
+}
+
+/* Personal interest buttons */
+.pi-button {
+    color: #101119;
+    text-decoration: underline;
+}
+
+/* Hovering over personal interest buttons */
+.pi-button:hover, .pi-button:focus {
+    color: #D17010;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/* Personal interest information boxes */
+.interest-box {
+    display: none;
+    margin-top: 50px;
+}
+
+/* Display for bouldering text and picture */
+.interest-text {
+    display: flex;
+}
+
+/* Close button for interest boxes */
+.close-interest-box {
+    float: right;
+    background-color: #2A373C;
+    outline: 1px solid #101119;
+    font-weight: bold;
+    color: #D17010;
+    padding: 1px 4px 1px 4px;
+}
+
+/* When hovering over closing button */
+.close-interest-box:hover, .close-interest-box:focus {
+    color: #101119;
+    background-color: #D17010;
+    cursor: pointer;
+    font-weight: bolder;
+    transition-duration: 0.4s;
+}
+
+/* Image gallery */
+.gallery {
+    display: flex;
+    flex-flow: row wrap;
+    text-decoration: none;
+}
+
+/* Add margin to image in puzzle gallery */
+.gallery img {
+    margin: 10px 10px 5px 0px;
+}
+
+/* Source for gallery images */
+.source {
+    font-size: 0.7em;
+}
+
 /*------------- Publications -------------*/
 /* Framework for buttons */
 .buttons {
