@@ -1,5 +1,5 @@
 // Get all buttons that open the interest box
-var btn = document.querySelectorAll(".pi-button");
+var btn_interest = document.querySelectorAll(".pi-button");
 
 // Get all interest boxes
 var box = document.querySelectorAll(".interest-box");
@@ -8,8 +8,8 @@ var box = document.querySelectorAll(".interest-box");
 var close = document.querySelectorAll(".close-interest-box");
 
 // For each button add event listener
-for (var i = 0; i < btn.length; i++) {
-    btn[i].addEventListener("click", (e) => {
+for (var i = 0; i < btn_interest.length; i++) {
+    btn_interest[i].addEventListener("click", (e) => {
         // Get href attribute of button
         var href = e.target.getAttribute("name");
 
