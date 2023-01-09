@@ -64,7 +64,7 @@
 /*------------- General body styling -------------*/
 /* Body aesthetics */
 body {
-    font-family: "Monaco", "Courier New", monospace;
+    font-family: "Arial", "Calibri", sans-serif;
     background-color: #EDF2F4;
     color: #101119;
     margin: 0px;
@@ -445,7 +445,6 @@ ul {
 .pubbutton:hover p, .pubbutton:focus p, .pubbutton:active p {
     background-color: #D17010;
     color: #101119;
-    font-weight: bolder;
     transition-duration: 0.4s;
 }
 
