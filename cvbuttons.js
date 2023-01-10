@@ -27,7 +27,7 @@ for(var i = 0; i < cv_buttons.length; i++) {
         }
 
         // Get category of clicked item
-        var cv_cat = e.target.getAttribute("href").replace("#", "");
+        var cv_cat = e.target.getAttribute("class").replace(" cv-button", "");
 
         // Set clicked button category div to visible
         document.getElementById(cv_cat).style.display = "block";
