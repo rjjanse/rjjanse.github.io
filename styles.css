@@ -294,11 +294,18 @@ ul {
 .interest-box {
     display: none;
     margin-top: 50px;
+    text-align: justify;
+    text-justify: auto;
 }
 
 /* Display for bouldering text and picture */
 .interest-text {
     display: flex;
+}
+
+/* Add padding to interest text paragraphs */
+.interest-text p {
+    padding-right: 20px;
 }
 
 /* Close button for interest boxes */
@@ -619,40 +626,65 @@ ul {
     overflow-y: scroll;
 }
 
-
-
-
-
-
-
-
-
-
-
-/* CV section frame */
+/* CV section */
 .cv-section {
-    height: 100%;
-    position: relative;
-    padding: 20px;
     display: flex;
-    align-items: top;
-    justify-content: space-evenly;
 }
 
-/* CV column frame */
-div.cv-section div {
-   width: 100%; 
+/* Column with CV buttons */
+.cv-buttons {
+    width: 200px;
+    margin: 10px;
 }
 
-/* CV section text */
-.cv-text {
-    font-size: 12px;
+/* Column with CV content */
+.cv-content {
+    margin-left: 20px;
+    display: none;
+}
+
+/* Styling for buttons */
+.cv-button {
+    color: #EDF2F4;
+    outline: 3px solid #101119;
+    background-color: #2A373C;
+    padding: 5px 20px 5px 20px;
+    margin: 15px 5px 15px 5px;
     font-weight: bold;
-    vertical-align: top;
+    line-height: 3em;
 }
 
-/* Styling for years in CV section */
+/* Button hover */
+.cv-button:hover {
+    opacity: 0.9;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+/* Style active button */
+.cv-button[name=active] {
+    color: #2A373C;
+    background-color: #D17010;
+    transition-duration: 0.4s;
+}
+
+/* Styling for items in CV */
+.cv-item {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+/* Styling for text in CV */
+.cv-text {
+    border-left: 2px solid #D17010;
+    margin: 0;
+    padding: 2px 2px 2px 10px;
+    width: calc(100vw - 700px);
+}
+
+/* Styling for years in CV */
 .cv-year {
-    vertical-align: top;
-    padding-right: 10px;
+    width: 150px;
+    margin: 0;
+    border-right: 3px solid #101119;
 }
