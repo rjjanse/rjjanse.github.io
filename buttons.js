@@ -8,7 +8,7 @@ var all = document.querySelectorAll(".button-all");
 var pubs = document.querySelectorAll(".pub");
 
 // Get groups
-var grps = ["ci", "pm", "tt", "md", "me"];
+var grps = ["ci", "pm", "ds", "md", "me"];
 
 // Loop for clicker event
 for(var i = 0; i < btn.length; i++) {
