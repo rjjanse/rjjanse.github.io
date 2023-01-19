@@ -699,12 +699,11 @@ ul {
     /*------------------- Social bar -------------------*/
     /* Social bar on top */
     .socbar {
-        height: 3%;
+        height: 6vh;
         width: 100vw;
         position: fixed;
         display: flex;
         z-index: 1;
-        margin: 0;
         padding: 0;
         top: 0;
         left: 0;
@@ -731,11 +730,11 @@ ul {
     /*------------------- Navigation bar -------------------*/
     /* Set navigation bar to top */
     .navbar {
-        height: 1%;
+        height: 2vh;
         width: 100vw;
         position: fixed;
         padding: 5px 0 5px 0;
-        top: 3%;
+        top: 6vh;
         left: 0px;
         display: flex;
         align-items: center;
@@ -769,7 +768,7 @@ ul {
     
     /* Change main div aesthetics */
     .main {
-        margin-top: 7%;
+        margin-top: 8vh;
         margin-left: 0;
     }
 
@@ -812,9 +811,35 @@ ul {
     /*------------- About me -------------*/
     /* About me section content styling */
     .about-me-section {
+        width: 100vw;
         display: block;
         position: relative;
-        margin: 20px;
+        margin: 20px 0 0 0;
+    }
+
+    /* Seperate columns within about me section content */
+    .about-me-section .column {
+        margin: 20px 0 0 0;
+        font-weight: bold;
+    }
+
+    /* Set skill section to flex */
+    .skills {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        width: 80vw;
+        overflow-y: scroll;
+        outline: 3px solid #101119;
+        border-bottom: 2px solid #D17010;
+    }
+
+    /* Skill section styling */
+    .skill-section {
+        list-style-type: square;
+        margin: 0;
+        padding-left: 10px;
+        min-width: 75vw;
     }
 
     /* Remove sparkbar */
@@ -827,6 +852,13 @@ ul {
         display: block;
         text-align: justify;
         text-justify: auto;
+        width: 90vw;
+        margin-bottom: 0;
+    }
+
+    /* Change margins of image */
+    .bio-image h3 {
+        display: none;
     }
 
     /* Interests to block display */
@@ -834,9 +866,24 @@ ul {
         display: block;
     }
 
+    /* Personal interest information boxes */
+    .interest-box {
+        display: none;
+        margin-top: 50px;
+        text-align: justify;
+        text-justify: auto;
+        width: 85vw;
+    }
 
 
 
+
+
+
+
+
+
+    
     /* CV section */
     .cv-section {
         display: block;
