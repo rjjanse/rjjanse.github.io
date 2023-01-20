@@ -778,7 +778,8 @@ ul {
         min-height: 100vh;
         height: auto;
         position: relative;
-        padding: 20px;
+        padding: 0;
+        margin: 0;
         display: block;
         justify-content: center;
         align-items: center;
@@ -801,7 +802,7 @@ ul {
     /* Home text box */
     #hometext {
         background-color: #EDF2F4;
-        margin: 15px 0 15px 0;
+        margin: 15px 20px 15px 20px;
         border: 2px solid #D17010;
         outline: 3px solid #2A373C;
         text-align: center;
@@ -819,7 +820,7 @@ ul {
 
     /* Seperate columns within about me section content */
     .about-me-section .column {
-        margin: 20px 0 0 0;
+        margin: 20px;
         font-weight: bold;
     }
 
@@ -828,7 +829,7 @@ ul {
         display: flex;
         margin: 0;
         padding: 0;
-        width: 80vw;
+        width: calc(100vw-40px);
         overflow-y: scroll;
         outline: 3px solid #101119;
         border-bottom: 2px solid #D17010;
@@ -839,7 +840,7 @@ ul {
         list-style-type: square;
         margin: 0;
         padding-left: 10px;
-        min-width: 75vw;
+        min-width: 60vw;
     }
 
     /* Remove sparkbar */
@@ -847,16 +848,26 @@ ul {
         display: none;
     }
 
+    /* Change width of bio image column */
+    .column {
+        width: calc(100vw-40px);
+    }
+
     /* Div with bio and image */
     .bio-image {
         display: block;
         text-align: justify;
         text-justify: auto;
-        width: 90vw;
+        width: calc(100vw-40px);
         margin-bottom: 0;
     }
 
-    /* Change margins of image */
+    /* Remove padding of divs in bio image */
+    .bio-image div {
+        padding-right: 0;
+    }
+
+    /* Hide empty header above image */
     .bio-image h3 {
         display: none;
     }
@@ -873,6 +884,65 @@ ul {
         text-align: justify;
         text-justify: auto;
         width: 85vw;
+    }
+
+    /*------------- Publications -------------*/
+    /* Framework for buttons */
+    .buttons {
+        margin: 20px;
+        display: flex;
+        flex-flow: row wrap;
+        text-align: center;
+        justify-content: space-evenly;
+    }
+
+    /* Wrapper for publications */
+    .publication-studies {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100vw;
+        overflow-x: hidden;
+        justify-content: center;
+    }
+
+    /* Publication divs */
+    .pub {
+        display: block;
+        width: 80vw;
+        margin: 10px 20px 10px 20px;
+        background-color: #2A373C;
+        color: #EDF2F4;
+        font-weight: bolder;
+        font-size: 0.8em;
+        text-align: center;
+        text-decoration: none;
+        outline: 3px solid #101119;
+        -webkit-animation-name: appear;
+        -webkit-animation-duration: 0.6s;
+        animation-name: appear;
+        animation-duration: 0.6s;
+    }
+
+    /* Modal box */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 2;
+        padding-top: 25vh;
+        width: 100vw;
+        height: 100%;
+        max-height: 100vh;
+        overflow: auto;
+        top: 0;
+        left: 0;
+        background-color: rgba(42, 55, 60, 0.40);
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 0.4s;
+        animation-name: fade;
+        animation-duration: 0.4s;
     }
 
 
