@@ -945,7 +945,8 @@ ul {
         z-index: 2;
         width: 100vw;
         height: 100vh;
-        overflow: auto;
+        max-height: 100vh;
+        overflow: none;
         margin: 0;
         padding: 0;
         top: 0;
@@ -976,7 +977,10 @@ ul {
     /* Modal header */
     .modal-header {
         background-color: #101119;
-        min-height: 25px;
+        min-height: 10vh;
+        height: 10vh;
+        font-size: 0.75em;
+        overflow: scroll;
         color: #D17010;
         margin: 0;
         border-bottom: 3px solid #2A373C;
@@ -984,7 +988,7 @@ ul {
 
     /* Modal header heading text */
     .modal-header h2 {
-        padding: 15px 20px 10px 20px;
+        padding: 2vh 20px 2vh 20px;
         margin: 0;
     }
 
@@ -993,8 +997,10 @@ ul {
         background-color: #2A373C;
         color: #EDF2F4;
         font-weight: normal;
-        padding: 5px 20px 5px 20px;
+        padding: 1vh 20px 1vh 20px;
         font-size: 0.8em;
+        height: 3vh;
+        overflow-y: scroll;
     }
 
     /* Modal main */
@@ -1002,16 +1008,18 @@ ul {
         background-color: #EDF2F4;
         color: #101119;
         font-weight: normal;
-        padding: 5px 20px 5px 20px;
+        padding: 1vh 20px 1vh 20px;
         margin: 0;
-        height: 100%;
+        height: 77vh;
+        max-height: 77vh;
         overflow-y: scroll;
     }
 
     /* Modal footer */
     .modal-footer {
         background-color: #2A373C;
-        min-height: 2.5em;
+        min-height: 4vh;
+        height: 4vh;
         color: #EDF2F4;
         font-weight: normal;
         padding: 10px 20px 10px 20px;
@@ -1040,18 +1048,57 @@ ul {
         font-weight: bolder;
     }
 
-
-
-
-
-
-
-
-
-    
+    /*------------- CV -------------*/
     /* CV section */
     .cv-section {
         display: block;
     }
+
+    /* Column with CV buttons */
+    .cv-buttons {
+        width: 100vw;
+        margin: 10px;
+        padding: 0;
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    /* Styling for buttons */
+    .cv-button {
+        color: #EDF2F4;
+        outline: 3px solid #101119;
+        background-color: #2A373C;
+        padding: 10px;
+        margin: 5px;
+        font-weight: bold;
+        line-height: 1em;
+    }
+
+
+    /* Styling for items in CV */
+    .cv-item {
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    /* Styling for text in CV */
+    .cv-text {
+        border-top: 2px solid #D17010;
+        border-left: none;
+        margin: 0;
+        padding: 2px 2px 2px 10px;
+        width: 80vw;
+    }
+
+    /* Styling for years in CV */
+    .cv-year {
+        font-weight: bold;
+        width: 80vw;
+        padding: 2px 2px 2px 10px;
+        margin: 0;
+        border-bottom: 3px solid #101119;
+        border-right: none;
+    }
+
 }
     
