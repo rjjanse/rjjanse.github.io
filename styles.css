@@ -775,7 +775,7 @@ ul {
     /* Section frame */
     .section {
         width: 100vw;
-        min-height: 100vh;
+        min-height: 92vh;
         height: auto;
         position: relative;
         padding: 0;
@@ -783,6 +783,13 @@ ul {
         display: block;
         justify-content: center;
         align-items: center;
+    }
+
+    /* Headings */
+    h1 {
+        margin: 5px 0 0 0;
+        font-size: 40px;
+        text-align: center;
     }
 
     /*------------------- Landing -------------------*/
@@ -886,6 +893,11 @@ ul {
         width: 85vw;
     }
 
+    /* Change margin of image in puzzle gallery */
+    .gallery img {
+        margin: 3px;
+    }
+
     /*------------- Publications -------------*/
     /* Framework for buttons */
     .buttons {
@@ -931,11 +943,11 @@ ul {
         display: none;
         position: fixed;
         z-index: 2;
-        padding-top: 25vh;
         width: 100vw;
-        height: 100%;
-        max-height: 100vh;
+        height: 100vh;
         overflow: auto;
+        margin: 0;
+        padding: 0;
         top: 0;
         left: 0;
         background-color: rgba(42, 55, 60, 0.40);
@@ -943,6 +955,89 @@ ul {
         -webkit-animation-duration: 0.4s;
         animation-name: fade;
         animation-duration: 0.4s;
+    }
+
+    /* Modal content */
+    .modal-content {
+        position: relative;
+        background-color: #EDF2F4;
+        margin: 0;
+        padding: 0;
+        border: 1px solid #D17010;
+        outline: 3px solid #2A373C;
+        width: 100vw;
+        height: 100vh;
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+    }
+
+    /* Modal header */
+    .modal-header {
+        background-color: #101119;
+        min-height: 25px;
+        color: #D17010;
+        margin: 0;
+        border-bottom: 3px solid #2A373C;
+    }
+
+    /* Modal header heading text */
+    .modal-header h2 {
+        padding: 15px 20px 10px 20px;
+        margin: 0;
+    }
+
+    /* Modal subheader */
+    .modal-subheader {
+        background-color: #2A373C;
+        color: #EDF2F4;
+        font-weight: normal;
+        padding: 5px 20px 5px 20px;
+        font-size: 0.8em;
+    }
+
+    /* Modal main */
+    .modal-main {
+        background-color: #EDF2F4;
+        color: #101119;
+        font-weight: normal;
+        padding: 5px 20px 5px 20px;
+        margin: 0;
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    /* Modal footer */
+    .modal-footer {
+        background-color: #2A373C;
+        min-height: 2.5em;
+        color: #EDF2F4;
+        font-weight: normal;
+        padding: 10px 20px 10px 20px;
+        font-size: 0.8em;
+    }
+
+    /* Modal buttons wrapper */
+    .modal-buttons {
+        float: right;
+        margin-top: 7px;
+    }
+
+    /* Modal buttons */
+    .modal-buttons a {
+        background-color: #2A373C;
+        border: 1px solid #EDF2F4;
+        color: #EDF2F4;
+        padding: 3px;
+        text-decoration: none;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    /* Modal buttons hover effect */
+    .modal-buttons a:hover {
+        font-weight: bolder;
     }
 
 
