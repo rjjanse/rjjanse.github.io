@@ -695,7 +695,7 @@ ul {
 }
 
 /* Styling for phone */
-@media screen and (max-width: 481px) {
+@media screen and (max-width: 1023px) {
     /*------------------- Social bar -------------------*/
     /* Social bar on top */
     .socbar {
@@ -719,6 +719,7 @@ ul {
         width: 7vw;
         margin-left: 2vw;
         margin-right: 2vw;
+        padding: 0;
     }
 
     /* Hover effect becomes click effect */
@@ -761,15 +762,15 @@ ul {
         font-family: "Arial", "Calibri", sans-serif;
         background-color: #EDF2F4;
         color: #101119;
-        margin: 0px;
+        margin: 0;
+        padding: 0;
         overflow-x: hidden;
         max-width: 100vw;
     }
     
     /* Change main div aesthetics */
     .main {
-        margin-top: 8vh;
-        margin-left: 0;
+        margin: 8vh 0 0 0;
     }
 
     /* Section frame */
@@ -796,10 +797,11 @@ ul {
     /* Home div styling */
     .home {
         width: 100vw;
-        height: 100vh;
+        height: 92vh;
         position: relative;
         background-repeat: no-repeat;
         background-size: cover;
+        margin: 0;
         padding: 0;
         display: flex;
         justify-content: center;
@@ -847,6 +849,7 @@ ul {
         list-style-type: square;
         margin: 0;
         padding-left: 10px;
+        padding-right: 0;
         min-width: 60vw;
     }
 
@@ -983,12 +986,13 @@ ul {
         overflow: scroll;
         color: #D17010;
         margin: 0;
+        padding: 0;
         border-bottom: 3px solid #2A373C;
     }
 
     /* Modal header heading text */
     .modal-header h2 {
-        padding: 2vh 20px 2vh 20px;
+        padding: 2vh 0 2vh 0;
         margin: 0;
     }
 
@@ -997,7 +1001,7 @@ ul {
         background-color: #2A373C;
         color: #EDF2F4;
         font-weight: normal;
-        padding: 1vh 20px 1vh 20px;
+        padding: 1vh 0 1vh 0;
         font-size: 0.8em;
         height: 3vh;
         overflow-y: scroll;
@@ -1008,7 +1012,7 @@ ul {
         background-color: #EDF2F4;
         color: #101119;
         font-weight: normal;
-        padding: 1vh 20px 1vh 20px;
+        padding: 1vh 0 1vh 0;
         margin: 0;
         height: 77vh;
         max-height: 77vh;
@@ -1022,7 +1026,7 @@ ul {
         height: 4vh;
         color: #EDF2F4;
         font-weight: normal;
-        padding: 10px 20px 10px 20px;
+        padding: 10px 0 10px 0;
         font-size: 0.8em;
     }
 
@@ -1052,6 +1056,8 @@ ul {
     /* CV section */
     .cv-section {
         display: block;
+        padding: 0;
+        margin: 0;
     }
 
     /* Column with CV buttons */
@@ -1079,6 +1085,7 @@ ul {
     .cv-item {
         display: block;
         margin-bottom: 30px;
+        padding: 0;
     }
 
     /* Styling for text in CV */
@@ -1086,7 +1093,7 @@ ul {
         border-top: 2px solid #D17010;
         border-left: none;
         margin: 0;
-        padding: 2px 2px 2px 10px;
+        padding: 2px 0 2px 0;
         width: 80vw;
     }
 
@@ -1094,11 +1101,10 @@ ul {
     .cv-year {
         font-weight: bold;
         width: 80vw;
-        padding: 2px 2px 2px 10px;
+        padding: 2px 0 2px 0;
         margin: 0;
         border-bottom: 3px solid #101119;
         border-right: none;
     }
-
 }
     
