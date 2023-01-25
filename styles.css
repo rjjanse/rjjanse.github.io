@@ -470,6 +470,30 @@ ul {
     font-size: 0.9em;
 }
 
+/* Add example header for first author papers */
+.first-author-example {
+    background-color: #D17010;
+    width: 6px;
+    height: 12px;
+    padding: 2px;
+}
+
+/* First author explanation text */
+.first-author-explanation {
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: -10px;
+}
+
+/* Add header for first author papers */
+.first-author {
+    background-color: #D17010;
+    float: left;
+    width: 6px;
+    height: 12px;
+    padding: 2px;
+}
+
 /* Modal box */
 .modal {
     display: none;
