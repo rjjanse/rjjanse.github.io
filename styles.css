@@ -700,7 +700,7 @@ ul {
 /* Wrapper for courses columns in CV */
 .cv-courses {
     left: 0;
-    margin: 0;
+    margin-left: 20px;
     padding: 0;
     display: flex;
 }
