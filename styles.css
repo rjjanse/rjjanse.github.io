@@ -699,15 +699,8 @@ ul {
 
 /* Wrapper for courses columns in CV */
 .cv-courses {
-    left: 0;
     margin-left: 20px;
-    padding: 0;
     display: flex;
-}
-
-/* Set width for course columns in CV */
-.cv-column {
-    width: calc(50vw - 720px)
 }
 
 /* Styling for items in CV */
