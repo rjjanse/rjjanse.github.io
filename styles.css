@@ -705,7 +705,8 @@ ul {
 
 /* Set width for columns in CV */
 .cv-column {
-    max-width:25vw;
+    max-width: 25vw;
+    margin-right: 30px;
 }
 
 /* Styling for items in CV */
