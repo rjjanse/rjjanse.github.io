@@ -700,8 +700,14 @@ ul {
 /* Wrapper for courses columns in CV */
 .cv-courses {
     left: 0;
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: space-between;
+}
+
+/* Set width for course columns in CV */
+.cv-column {
+    width: calc(50vw - 720px)
 }
 
 /* Styling for items in CV */
