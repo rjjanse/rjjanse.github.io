@@ -697,6 +697,18 @@ ul {
     transition-duration: 0.4s;
 }
 
+/* Wrapper for courses columns in CV */
+.cv-courses {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Column for courses in CV */
+.cv-column {
+    min-width: 30vw;
+}
+
+
 /* Styling for items in CV */
 .cv-item {
     display: flex;
