@@ -94,6 +94,11 @@ h1 {
     text-align: center;
 }
 
+/* Subheaders */
+h3 {
+    min-width: 300px;
+}
+
 /* Section frame */
 .section {
     width: auto;
@@ -189,10 +194,11 @@ html {
     display: flex;
     position: relative;
     margin: 20px;
+    font-weight: bold;
 }
 
 /* Seperate columns within about me section content */
-.about-me-section .column {
+.column {
     margin: 20px;
     font-weight: bold;
 }
@@ -752,9 +758,9 @@ ul {
 
     /* Change image size */
     .socbar img, .socbar p {
-        width: 7vw;
-        margin-left: 2vw;
-        margin-right: 2vw;
+        height: 4vh;
+        width: 4vh;
+        margin: 0 2vw 0 2vw;
         padding: 0;
     }
 
@@ -771,7 +777,7 @@ ul {
         width: 100vw;
         position: fixed;
         padding: 5px 0 5px 0;
-        top: 6vh;
+        top: 6.5vh;
         left: 0px;
         display: flex;
         align-items: center;
@@ -857,15 +863,10 @@ ul {
     /*------------- About me -------------*/
     /* About me section content styling */
     .about-me-section {
-        width: 100vw;
+        width: calc(100vw-20px);
         display: block;
         position: relative;
-        margin: 20px 0 0 0;
-    }
-
-    /* Seperate columns within about me section content */
-    .about-me-section .column {
-        margin: 20px;
+        margin: 0 10px 10px 10px;
         font-weight: bold;
     }
 
@@ -874,9 +875,8 @@ ul {
         display: flex;
         margin: 0;
         padding: 0;
-        width: calc(100vw-40px);
+        width: calc(100vw-20px);
         overflow-y: scroll;
-        outline: 3px solid #101119;
         border-bottom: 2px solid #D17010;
     }
 
@@ -884,9 +884,8 @@ ul {
     .skill-section {
         list-style-type: square;
         margin: 0;
-        padding-left: 10px;
+        padding-left: 15px;
         padding-right: 0;
-        min-width: 60vw;
     }
 
     /* Remove sparkbar */
@@ -897,6 +896,8 @@ ul {
     /* Change width of bio image column */
     .column {
         width: calc(100vw-40px);
+        margin: 0px 10px 0 10px;
+        font-weight: bold;
     }
 
     /* Div with bio and image */
@@ -904,6 +905,7 @@ ul {
         display: block;
         text-align: justify;
         text-justify: auto;
+        border-top: 3px solid #101119;
         width: calc(100vw-40px);
         margin-bottom: 0;
     }
@@ -963,6 +965,7 @@ ul {
     .pub {
         display: block;
         width: 80vw;
+        max-width: 300px;
         margin: 10px 20px 10px 20px;
         background-color: #2A373C;
         color: #EDF2F4;
@@ -1116,6 +1119,11 @@ ul {
         line-height: 1em;
     }
 
+    /* Wrapper for courses columns in CV to block display */
+    .cv-courses {
+        display: block;
+        position: relative;
+    }
 
     /* Styling for items in CV */
     .cv-item {
