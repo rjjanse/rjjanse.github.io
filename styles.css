@@ -706,7 +706,7 @@ ul {
 /* Wrapper for courses columns in CV */
 .cv-courses {
     display: flex;
-    position: absolute;
+    position: relative;
 }
 
 /* Set width for columns in CV */
