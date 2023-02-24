@@ -744,6 +744,7 @@ ul {
     .socbar {
         height: 6vh;
         width: 100vw;
+        margin-right: 0;
         position: fixed;
         display: flex;
         z-index: 1;
@@ -761,7 +762,7 @@ ul {
     .socbar img, .socbar p {
         height: 4vh;
         width: 4vh;
-        margin: 0 2vw 0 2vw;
+        margin: 0 0 0 2vw;
         padding: 0;
     }
 
@@ -1103,7 +1104,7 @@ ul {
     /* Column with CV buttons */
     .cv-buttons {
         width: 100vw;
-        margin: 10px;
+        margin: 10px 0 10px 0;
         padding: 0;
         display: flex;
         flex-flow: row wrap;
