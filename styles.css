@@ -922,6 +922,11 @@ ul {
         display: none;
     }
 
+    /* Limit image size */
+    .bio-image img {
+        width: 30vw;
+    }
+
     /* Interests to block display */
     .interests {
         display: block;
