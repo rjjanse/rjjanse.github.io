@@ -273,8 +273,25 @@ ul {
     text-justify: auto;
 }
 
-/* Make image in bio float */
-.bio-image img {
+/* Add button on top of picture to change picture */
+#bio-image-button {
+    position: absolute;
+    float: right;
+    text-align: center;
+    margin: 5px 115px 0 115px;
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 20px;
+}
+
+/* Effect upon hover */
+#bio-image-button:hover {
+    cursor: pointer;
+}
+
+/* Make image div in bio float */
+#bio-image {
     float: right;
     margin-left: 20px;
 }
@@ -923,8 +940,13 @@ ul {
     }
 
     /* Limit image size */
-    .bio-image img {
+    #bio-image-image {
         width: 30vw;
+    }
+
+    /* Change spacing of image button */
+    #bio-image-button {
+        margin: 5px calc(15vw - 10px) 0 calc(15vw - 10px);
     }
 
     /* Interests to block display */

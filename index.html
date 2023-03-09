@@ -232,8 +232,12 @@
                             <div>
                                 <h2> Biography </h2>
                                 
-                                <img src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/picture.jpg?raw=true" alt = "picture of Roemer"
-                                width = 250px class = "image"> 
+                                <div id = "bio-image"> 
+                                    <span id = "bio-image-button"> &#8635; </span>
+                                
+                                    <img id = "bio-image-image" src = "https://github.com/rjjanse/rjjanse.github.io/blob/main/images/picture.jpg?raw=true" alt = "picture of Roemer"
+                                        width = 250px class = "image"> 
+                                </div>
 
                                 <div> Hej! I'm Roemer (['rumər]) and I am a PhD candidate at the Department of Clinical Epidemiology at the
                                     Leiden University Medical Center, the Netherlands. The main focus of my thesis is prediction modelling of patient-reported outcomes
@@ -310,10 +314,12 @@
 
                                 <div class = "gallery"> 
                                     <a href = "https://www.ravensburger.us/products/jigsaw-puzzles/adult-puzzles/krypt-silver-15964/index.html" target = "_blank" rel = "noopener"> <img src = "https://cdn.ravensburger.de/images/produktseiten/1024/15964_1.jpg" alt = "Ravensburger Krypt silver" height = 200px></a>
-                                    <a href = "https://www.magiccatpublishing.co.uk/products/dragons-of-the-skies"target = "_blank" rel = "noopener"> <img src = "https://images.thalia.media/-/BF2000-2000/afebcf1c2bc049b7a8abd838daacf4fd/tomic-t-dragons-of-the-skies-1000-piece-puzzle.jpeg" alt = "Magic Cat Dragons of the Skies" height = 200px></a>
-                                    <a href = "https://www.cloudberries.co.uk/product/gradient-jigsaw-puzzle-500-pieces/" target = "_blank" rel = "noopener"> <img src = "https://www.cloudberries.co.uk/wp-content/uploads/2021/02/Gradient-full-puzzle-resized.jpg" alt = "Cloudberries gradient 500 pieces" height = 200px></a>
-                                    <a href = "https://www.jigsawpuzzle.co.uk/ravensburger-harry-potter-and-the-deathly-hallows-jigsaw-puzzle-1000-pieces.p85686.html" target = "_blank" rel = "noopener"> <img src = "https://data.jigsawpuzzle.co.uk/ravensburger.5/harry-potter-and-the-deathly-hallows-jigsaw-puzzle-1000-pieces.85686-1.fs.jpg" alt = "Ravensburger Harry Potter Deathly Hallows 1" height = 200px></a> 
+                                    <a href = "https://www.magiccatpublishing.co.uk/products/dragons-of-the-skies" target = "_blank" rel = "noopener"> <img src = "https://images.thalia.media/-/BF2000-2000/afebcf1c2bc049b7a8abd838daacf4fd/tomic-t-dragons-of-the-skies-1000-piece-puzzle.jpeg" alt = "Magic Cat Dragons of the Skies" height = 200px></a>
+                                    <a href = "https://www.cloudberries.co.uk/product/gradient-jigsaw-puzzle-500-pieces/" target = "_blank" rel = "noopener"> <img src = "https://www.casadelpuzzle.com/images/productos/puzzle-cloudberries-gradient-de-500-piezas-1-22044.jpeg" alt = "Cloudberries gradient 500 pieces" height = 200px></a>
+                                    <a href = "https://www.laurenceking.com/products/the-world-of-dracula" target = "_blank" rel = "noopener"> <img src = "https://cdn1.bookmanager.com/i/m?b=Iuvg02N8GGe4DYcvtN9jdQ&imgp=10001&cb=20230215" alt = "Laurence King The World of Dracula 1000 pieces" height = 200px></a> 
                                 </div>
+
+                                <span class = "source"> Click on picture for source </span>
                             </div>
 
                             <!-- Photography -->
@@ -339,7 +345,7 @@
                                     <a href = "https://www.goodreads.com/book/show/45046917-the-book-of-tea" target = "_blank" rel = "noopener"> <img src = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1581323654l/45046917._SY475_.jpg" alt = "Book cover The Book of Tea Kakuzo Okakura" height = 200px> </a>
                                 </div>
 
-                                <span class = "source"> Click on picture for image source </span>
+                                <span class = "source"> Click on picture for source </span>
                             </div>
 
                             <!-- Tabletop games -->
@@ -359,7 +365,7 @@
                                     <a href = "https://en.wikipedia.org/wiki/Tafl_games" target = "_blank" rel = "noopener"> <img src = "https://upload.wikimedia.org/wikipedia/commons/a/a3/Tablut9x9.png" alt = "Hnefatafl" height = 200px> </a>
                                 </div>
 
-                                <span class = "source"> Click on picture for image source </span>
+                                <span class = "source"> Click on picture for source </span>
                             </div>
 
                             <!-- Video games -->
@@ -381,7 +387,7 @@
                                     <a href = "https://www.igdb.com/games/assassins-creed-valhalla" target = "_blank" rel = "noopener"> <img src = "https://images.igdb.com/igdb/image/upload/t_cover_big/co2ed3.png" alt = "Assassin's Creed Valhalla" height = 200px> </a>
                                 </div>
 
-                                <span class = "source"> Click on picture for image source </span>
+                                <span class = "source"> Click on picture for source </span>
                             </div>
                         </div>
                     </div>
@@ -1171,11 +1177,12 @@
         </div>
     
     <!-- Javascript -->
-    <script src = "background.js"> </script> 
-    <script src = "modal.js"> </script>
-    <script src = "buttons.js"> </script>
-    <script src = "interestbox.js"> </script>
-    <script src = "cvbuttons.js"> </script>
+    <script src = "scripts/background.js"> </script> 
+    <script src = "scripts/modal.js"> </script>
+    <script src = "scripts/buttons.js"> </script>
+    <script src = "scripts/interestbox.js"> </script>
+    <script src = "scripts/cvbuttons.js"> </script>
+    <script src = "scripts/biobutton.js"> </script>
 
     <!-- Finish -->
     </body>
