@@ -669,6 +669,58 @@ ul {
     to {background-color: rgba(42, 55, 60, 0.40)}
 }
 
+/*------------- Other output ------------*/
+/* Other output body top */
+.oo-top {
+    display: flex;
+}
+
+/* Left column in body top */
+.oo-column-left {
+    width: 80%;
+    margin-left: 20px;
+    margin-right: 30px;
+}
+
+/* Other output item */
+.oo-item {
+    width: 100%;
+    margin-bottom: 40px;
+    text-justify: auto;
+    text-align: justify;
+}
+
+/* Right column in body top */
+.oo-column-right {
+    width: 20%;
+    margin-right: 20px;
+}
+
+/* Body bottom */
+.oo-bottom {
+    width: 100%;
+}
+
+/* GitHub activity title and image centering */
+.oo-bottom div {
+    display: flex;
+    justify-content: center;
+}
+
+/* GitHub activity */
+#gh-activity {
+    width: 100%;
+    max-width: 1500px;
+    outline: none;
+}
+
+/* Stackoverflow flair */
+#so-flair {
+    width: 100%;
+    aspect-ratio: 100 / 3,571428571429;
+    outline: none;
+}
+
 /*------------- CV -------------*/
 /* Wrapper for cv */
 .cv {
