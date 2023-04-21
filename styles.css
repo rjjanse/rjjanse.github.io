@@ -203,6 +203,50 @@ html {
     font-weight: bold;
 }
 
+/* Skills wrapper */
+.skills-wrapper {
+    width: 15vw;
+}
+
+/* Skills heading */
+.skills-heading {
+    outline: 3px solid #101119;
+    background-color: #2A373C;
+    color: #EDF2F4;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    line-height: 2em;
+}
+
+/* Skills heading effect on hover */
+.skills-heading:hover {
+    transition-duration: 0.4s;
+    background-color: #D17010;
+    color: #101119;
+    cursor: pointer;
+}
+
+/* Skills dropdown */
+.skills-dropdown {
+    overflow: hidden;
+    transition: all 1s ease-in-out;
+    line-height: 0;
+    font-size: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Active skills dropdown */
+.skills-dropdown[name="active"] {
+    line-height: 1.5;
+    font-size: 1em;
+    opacity: 1;
+    margin: 0 0 30px 0;
+    padding: 0;
+}
+
 /* Skill section styling */
 .skill-section {
     list-style-type: square;
