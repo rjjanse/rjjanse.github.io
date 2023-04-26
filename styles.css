@@ -927,7 +927,7 @@ html {
     /*------------------- Social bar -------------------*/
     /* Social bar on top */
     .socbar {
-        height: 6vh;
+        height: 8vw;
         width: 100vw;
         margin-right: 0;
         position: fixed;
@@ -945,9 +945,9 @@ html {
 
     /* Change image size */
     .socbar img, .socbar p {
-        height: 4vh;
-        width: 4vh;
-        margin: 0 0 0 2vw;
+        height: 5.5vw;
+        width: 5.5vw;
+        margin: 0 2vw 0 2vw;
         padding: 0;
     }
 
@@ -964,7 +964,7 @@ html {
         width: 100vw;
         position: fixed;
         padding: 5px 0 5px 0;
-        top: 6.5vh;
+        top: calc(8vw + 5px);
         left: 0px;
         display: flex;
         align-items: center;
@@ -974,7 +974,7 @@ html {
     /* Navigation sidebar menu links */
     .navbar a {
         text-decoration: none;
-        font-size: 1em;
+        font-size: 0.7em;
         color: #D17010;
         display: block;
         font-weight: bold;
@@ -1286,6 +1286,42 @@ html {
     /* Modal buttons hover effect */
     .modal-buttons a:hover {
         font-weight: bolder;
+    }
+
+    /*------------- Other output -------------*/
+    /* Other output top to block */
+    .oo-top {
+        display: block;
+        margin: 10px;
+    }
+
+    /* Let columns span whole width */
+    .oo-column-left {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Other output top to block */
+    .oo-column-right {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* GitHub activity size reduction */
+    #gh-activity {
+        width: 90%;
+        padding: 0 5% 0 5%;
+        max-width: 1500px;
+        outline: none;
+    }
+
+    /* Reduce Stack Exchange flair size */
+    #so-flair {
+        width: 40%;
+        aspect-ratio: 100 / 3,571428571429;
+        outline: none;
     }
 
     /*------------- CV -------------*/
