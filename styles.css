@@ -944,11 +944,17 @@ html {
     }
 
     /* Change image size */
-    .socbar img, .socbar p {
+    .socbar img {
         height: 5.5vw;
         width: 5.5vw;
         margin: 0 2vw 0 2vw;
-        padding: 0;
+        padding: 0.5vw 0;
+    }
+
+    /* Remove extra space from left of images */
+    .socbar p {
+        padding: 1vw 0 0 0;
+        margin: 0;
     }
 
     /* Hover effect becomes click effect */
@@ -1060,11 +1066,16 @@ html {
     /* Set skill section to flex */
     .skills {
         display: flex;
-        margin: 0;
+        justify-content: space-between;
         padding: 0;
-        width: calc(100vw-20px);
+        width: 90vw;
         overflow-y: scroll;
         border-bottom: 2px solid #D17010;
+    }
+
+    /* Skills wrapper width change */
+    .skills-wrapper {
+        width: 100%;
     }
 
     /* Skill section styling */
@@ -1073,10 +1084,21 @@ html {
         margin: 0;
         padding-left: 15px;
         padding-right: 0;
+        width: 100%
+    }
+
+    /* Skills heading margin change */
+    .skills-heading {
+        margin: 1vw;
     }
 
     /* Remove sparkbar */
     .sparkbar {
+        display: none;
+    }
+
+    /* Remove sparkbar when active */
+    .skills-dropdown[name="active"] .sparkbar {
         display: none;
     }
 
@@ -1199,14 +1221,16 @@ html {
 
     /* Modal content */
     .modal-content {
-        position: relative;
+        position: fixed;
+        top: 5vh;
+        left: 5vw;
         background-color: #EDF2F4;
         margin: 0;
         padding: 0;
         border: 1px solid #D17010;
         outline: 3px solid #2A373C;
-        width: 100vw;
-        height: 100vh;
+        width: 90vw;
+        max-height: 90vh;
         -webkit-animation-name: animatetop;
         -webkit-animation-duration: 0.4s;
         animation-name: animatetop;
@@ -1216,10 +1240,9 @@ html {
     /* Modal header */
     .modal-header {
         background-color: #101119;
-        min-height: 10vh;
-        height: 10vh;
-        font-size: 0.75em;
-        overflow: scroll;
+        max-height: 25vh;
+        font-size: 0.7em;
+        overflow-y: scroll;
         color: #D17010;
         margin: 0;
         padding: 0;
@@ -1228,8 +1251,8 @@ html {
 
     /* Modal header heading text */
     .modal-header h2 {
-        padding: 2vh 0 2vh 0;
-        margin: 0;
+        margin: 2vh 0 2vh 0;
+        padding: 0 1vh 0 1vh;
     }
 
     /* Modal subheader */
@@ -1237,9 +1260,9 @@ html {
         background-color: #2A373C;
         color: #EDF2F4;
         font-weight: normal;
-        padding: 1vh 0 1vh 0;
+        padding: 1vh 1vw;
         font-size: 0.8em;
-        height: 3vh;
+        max-height: 15vh;
         overflow-y: scroll;
     }
 
@@ -1248,21 +1271,28 @@ html {
         background-color: #EDF2F4;
         color: #101119;
         font-weight: normal;
-        padding: 1vh 0 1vh 0;
-        margin: 0;
-        height: 77vh;
-        max-height: 77vh;
+        margin: 2vw;
+        padding: 0;
+        height: 40vh;
         overflow-y: scroll;
+    }
+
+    /* Remove padding from modal main p */
+    .modal-main p {
+        margin: 0;
+        overflow-y: scroll;
+        height: 40vh;
     }
 
     /* Modal footer */
     .modal-footer {
         background-color: #2A373C;
-        min-height: 4vh;
-        height: 4vh;
+        min-height: 5vh;
+        max-height: 10vh;
+        overflow-y: scroll;
         color: #EDF2F4;
         font-weight: normal;
-        padding: 10px 0 10px 0;
+        padding: 10px;
         font-size: 0.8em;
     }
 
