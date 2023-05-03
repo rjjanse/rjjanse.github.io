@@ -256,6 +256,7 @@ html {
 .skills-dropdown h3 {
     margin: 0;
     padding: 0;
+    min-width: 0;
 }
 
 /* Heading when active */
