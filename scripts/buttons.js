@@ -35,18 +35,6 @@ for(var i = 0; i < btn.length; i++) {
         // Get selected category
         var show = grps.filter(pub => showpub.includes(pub));
 
-        // Show pubs
-        for(var a = 0; a < show.length; a++) {
-            // Get array of iteration elements
-            var pub = document.getElementsByClassName(show[a]);
-
-            // Set each element to visible
-            for (var b = 0; b < pub.length; b++) {
-                // Make element visible
-                pub[b].style.display = "block";
-            }
-        }
-
         // Hide pubs
         for(var c = 0; c < hide.length; c++) {
             // Get array of iteration elements
@@ -56,6 +44,18 @@ for(var i = 0; i < btn.length; i++) {
             for (var d = 0; d < pub.length; d++) {
                 // Make element invisible
                 pub[d].style.display = "none";
+            }
+        }
+
+        // Show pubs
+        for(var a = 0; a < show.length; a++) {
+            // Get array of iteration elements
+            var pub = document.getElementsByClassName(show[a]);
+
+            // Set each element to visible
+            for (var b = 0; b < pub.length; b++) {
+                // Make element visible
+                pub[b].style.display = "block";
             }
         }
     })
