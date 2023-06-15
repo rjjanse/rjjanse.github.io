@@ -823,6 +823,12 @@ html {
     justify-content: center;
 }
 
+/* Peer review chart */
+#chart_div {
+    width: 100%;
+    height: 10vh;
+}
+
 /* GitHub activity */
 #gh-activity {
     width: 100%;
