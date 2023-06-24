@@ -7,27 +7,33 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
     // Data
     var data = google.visualization.arrayToDataTable([
-      ['Journal', 'Year'],
-      ['Kidney International', 2023],
-      ['Clinical Kidney Journal', 2023],
-      ['Journal of the American Society of Nephrology (JASN)', 2023],
-      ['British Medical Journal (BMJ) Open', 2023],
-      ['Nephrology Dialysis Transplantation (NDT)', 2022],
-      ['Nederlands Tijdschrift voor Geneeskunde (NTvG)', 2022],
-      ['Clinical Kidney Journal (CKJ)', 2022],
-      ['American Journal of Kidney Disease (AJKD)', 2022]]);
+      ['Year', 'Number', {role: 'tooltip'}],
+      ["2022", 4, 'AJKD, CKJ, NDT, NTvG'],
+      ["2023", 4, 'BMJ Open, CKJ, JASN, Kidney Int']])
   
     // Chart options
     var options = {
-      legend: { position: 'none' },
-      hAxis: {format: 'none'},
+      legend: {
+        position: 'none' 
+      },
       colors: ['#D17010'],
       backgroundColor: "#EDF2F4",
-      chartArea: {backgroundColor: "#EDF2F4"},
-      histogram: {bucketSize: 0.6}
+      chartArea: {
+        backgroundColor: "#EDF2F4"
+      },
+      histogram: {
+        bucketSize: 0.6
+      },
+      hAxis: {
+        title: "Year"
+      },
+      vAxis: {
+        title: "Nr. of citations",
+        minValue: 0
+      }
     };
 
     // Draw chart
-    var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
     chart.draw(data, options);
 }
