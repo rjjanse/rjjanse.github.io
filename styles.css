@@ -826,7 +826,7 @@ html {
 /* Peer review chart */
 #chart_div {
     width: 100%;
-    height: 12vh;
+    height: 100px;
 }
 
 /* GitHub activity */

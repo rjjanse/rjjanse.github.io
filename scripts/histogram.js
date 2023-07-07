@@ -30,6 +30,9 @@ function drawChart() {
       vAxis: {
         title: "Nr. of citations",
         minValue: 0
+      },
+      chartArea: {
+        height: "50%"
       }
     };
 
