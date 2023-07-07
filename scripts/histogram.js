@@ -25,14 +25,11 @@ function drawChart() {
         bucketSize: 0.6
       },
       hAxis: {
-        title: "Year"
+        title: ""
       },
       vAxis: {
         title: "Nr. of citations",
         minValue: 0
-      },
-      chartArea: {
-        height: "50%"
       }
     };
 
