@@ -9,7 +9,7 @@ function drawChart() {
     var data = google.visualization.arrayToDataTable([
       ['Year', 'Number', {role: 'tooltip'}],
       ["2022", 4, 'AJKD, CKJ, NDT, NTvG'],
-      ["2023", 4, 'BMJ Open, CKJ, JASN, Kidney Int']])
+      ["2023", 5, 'BMJ Open, CKJ, JASN, Kidney Int']])
   
     // Chart options
     var options = {
