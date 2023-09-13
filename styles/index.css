@@ -1,0 +1,119 @@
+/* Palette:
+    #472D30
+    #723D46
+    #E26D5C
+    #FFE1A8
+    #C9CBA3
+    https://coolors.co/palette/c9cba3-ffe1a8-e26d5c-723d46-472d30
+*/
+
+/* Body in general */
+body {
+    background-color: #472D30;
+    color: #FFE1A8;
+    font-family: "Phudu", Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Landing section */
+#landing {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Headshot container */
+#headshot-container {
+    position: relative;
+    top: 20vh;
+    left: 15vw;
+    height: 50vh;
+}
+
+/* Headshot image */
+#headshot {
+    position: absolute;
+    -webkit-animation: appear-left 1s;
+    animation: appear-left 1s;
+    height: 50vh;
+    z-index: 2;
+    transition-duration: 1s;
+}
+
+/* Second headshot image hidden behind first */
+#headshot2 {
+    position: absolute;
+    -webkit-animation: appear-left 1s;
+    animation: appear-left 1s;
+    height: 50vh;
+    z-index: 1;
+}
+
+/* Show second headshot when hovering on first */
+#headshot:hover {
+    opacity: 0;
+}
+
+/* Main title */
+#main-title {
+    position: relative;
+    padding: 0;
+    top: -15vh;
+    left: 40vw;
+    line-height: 0.25em;
+    -webkit-animation: appear-right 1s;
+    animation: appear-right 1s;
+}
+
+/* Heading 1 in main title */
+#main-title h1 {
+    font-size: 5em;
+}
+
+/* Heading 2 in main title */
+#main-title h2 {
+    font-size: 4em;
+}
+
+/* Animation for main title */
+@-webkit-keyframes appear-right {
+    from {left: 200vw}
+    to {left: 40vw}
+}
+
+@keyframes appear-right {
+    from {left: 200vw}
+    to {left: 40vw}
+}
+
+/* Animation for headshot */
+@-webkit-keyframes appear-left {
+    from {left: -175vw}
+    to {left: 0}
+}
+
+@keyframes appear-left {
+    from {left: -175vw}
+    to {left: 0}
+}
+
+/* Introduction section */
+#introduction-container {
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Introduction paragraph */
+#introduction {
+    position: relative;
+    top: 15vh;
+    min-height: 70vh;
+    left: 15vw;
+    width: 70vw;
+    border-left: solid #723D46 20px;
+    padding-left: 20px;
+    font-size: 1.5em;
+    text-align: justify;
+}
