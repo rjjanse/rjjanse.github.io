@@ -37,24 +37,55 @@ body::-webkit-scrollbar{
     height: 50vh;
 }
 
-/* Social links container */
+/* Social links */
 #social-links {
     position: absolute;
+    display: flex;
     right: 0;
     margin-top: 5px;
 }
 
+/* Individual social links contianer */
+.social-link-container {
+    position: absolute;
+    margin: 5px;
+}
+
 /* Social links images size */
 #social-links img {
-    align-items: right;
-    height: 4vh;
-    margin: 10px;
-    transition: 0.5s;
+    height: 5vh;
+}
+
+/* Individual positioning for PubMed */
+.soc-pub {
+    right: 0;
+}
+
+/* Individual positioning for GitHub */
+.soc-git {
+    right: calc(5vh + 10px);
+}
+
+/* Individual positioning for OSF */
+.soc-osf {
+    right: calc(10vh + 20px);
+}
+
+/* Individual positioning for ORCID */
+.soc-orc {
+    right: calc(15vh + 30px);
+}
+
+/* Main image (unselected) */
+.soc-main {
+    background-color: #472D30;
+    z-index: 3;
+    transition: 0.6s;
 }
 
 /* Transition on hover over social links */
-#social-links img:hover {
-    opacity: 0.7;
+.soc-main:hover {
+    opacity: 0;
 }
 
 /* Headshot container */
@@ -110,19 +141,56 @@ body::-webkit-scrollbar{
 
 /* Introduction section */
 #introduction-container {
-    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     width: 100vw;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Introduction paragraph */
 #introduction {
-    position: relative;
-    top: 15vh;
-    left: calc(15vw - 20px);
     width: 70vw;
     border-left: solid #723D46 20px;
     padding-left: 20px;
     padding-right: 0px;
     font-size: 1.5em;
     text-align: justify;
+}
+
+/* Navigation */
+#navigation {
+    width: 100vw;
+    min-height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Nav button container */
+#nav-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+/* Nav buttons */
+.nav-button {
+    border: none;
+    font-size: 1.25em;
+    color: #FFE1A8;
+    margin: 2vh 4vw;
+    text-align: center;
+    display: inline-block;
+    padding: 2vh 2vw;
+    background-position: 100%;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
+    transition: background-position 1s;
+}
+
+/* Upon hovering nav button */
+.nav-button:hover {
+    background-position: 0% 100%;
+    cursor: pointer;
 }
