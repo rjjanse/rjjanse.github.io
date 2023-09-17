@@ -7,6 +7,11 @@
     https://coolors.co/palette/c9cba3-ffe1a8-e26d5c-723d46-472d30
 */
 
+/* All HTML */
+html {
+    scroll-behavior: smooth;
+}
+
 /* Body in general */
 body {
     background-color: #472D30;
@@ -166,6 +171,7 @@ body::-webkit-scrollbar{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20vh;
 }
 
 /* Nav button container */
@@ -193,4 +199,26 @@ body::-webkit-scrollbar{
 .nav-button:hover {
     background-position: 0% 100%;
     cursor: pointer;
+}
+
+/* Section containers */
+.section-container {
+    width: 100vw;
+    min-height: 100vh;
+    padding-top: 30px;
+}
+
+/* Section titles */
+.section-title {
+    position: relative;
+    color: #FFE1A8;
+    font-size: 2em;
+    border-left: solid #723D46 20px;
+    left: 15vw;
+    padding-left: 15px;
+}
+
+/* Academic content container */
+#academic-content-container {
+    display: flex;
 }
