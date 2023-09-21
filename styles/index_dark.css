@@ -1,0 +1,249 @@
+/* Palette:
+    #472D30
+    #723D46
+    #E26D5C
+    #FFE1A8
+    #C9CBA3
+    https://coolors.co/palette/c9cba3-ffe1a8-e26d5c-723d46-472d30
+*/
+
+/* All HTML */
+html {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body in general */
+body {
+    background-color: #472D30;
+    color: #FFE1A8;
+    font-family: "Titillium Web", Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+/* Hide scrollbar */
+body::-webkit-scrollbar{
+    display: none;
+}
+
+/* Landing section */
+#landing {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Landing section content container */
+#landing-content-container {
+    display: flex;
+    height: 50vh;
+}
+
+/* Social links */
+#social-links {
+    position: absolute;
+    display: flex;
+    right: 0;
+    margin-top: 5px;
+}
+
+/* Individual social links contianer */
+.social-link-container {
+    position: absolute;
+    margin: 5px;
+}
+
+/* Social links images size */
+#social-links img {
+    height: 5vh;
+}
+
+/* Individual positioning for PubMed */
+.soc-pub {
+    right: 0;
+}
+
+/* Individual positioning for GitHub */
+.soc-git {
+    right: calc(5vh + 10px);
+}
+
+/* Individual positioning for OSF */
+.soc-osf {
+    right: calc(10vh + 20px);
+}
+
+/* Individual positioning for ORCID */
+.soc-orc {
+    right: calc(15vh + 30px);
+}
+
+/* Main image (unselected) */
+.soc-main {
+    background-color: #472D30;
+    z-index: 3;
+    transition: 0.6s;
+}
+
+/* Transition on hover over social links */
+.soc-main:hover {
+    opacity: 0;
+}
+
+/* Headshot container */
+#headshot-container {
+    height: 50vh;
+    width: calc(50vh / 1.3);
+}
+
+/* Headshot image */
+#headshot {
+    position: absolute;
+    max-height: 50vh;
+    z-index: 2;
+    transition-duration: 1s;
+}
+
+/* Second headshot image hidden behind first */
+#headshot2 {
+    position: absolute;
+    -webkit-animation: appear 1s;
+    animation: appear 1s;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+    max-height: 50vh;
+    z-index: 1;
+    transition-duration: 1s;
+}
+
+/* Show second headshot when hovering on first */
+#headshot:hover {
+    opacity: 0;
+}
+
+/* Main title */
+#main-title-container {
+    display: flex;
+    align-items: center;
+    height: 50vh;
+    z-index: 3;
+}
+
+/* Heading 1 in main title */
+#main-title-container h1 {
+    font-size: 5vw;
+    margin: 0;
+}
+
+/* Heading 2 in main title */
+#main-title-container h2 {
+    font-size: 2vw;
+    margin: 0;
+}
+
+/* Introduction section */
+#introduction-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Introduction paragraph */
+#introduction {
+    width: 70vw;
+    border-left: solid #723D46 20px;
+    padding-left: 20px;
+    padding-right: 0px;
+    font-size: 1.5em;
+    text-align: justify;
+}
+
+/* Navigation */
+#navigation {
+    width: 100vw;
+    min-height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20vh;
+}
+
+/* Nav button container */
+#nav-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+/* Nav buttons */
+.nav-button {
+    border: none;
+    font-size: 1.25em;
+    color: #FFE1A8;
+    margin: 2vh 4vw;
+    text-align: center;
+    display: inline-block;
+    padding: 2vh 2vw;
+    background-position: 100%;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
+    transition: background-position 1s;
+}
+
+/* Upon hovering nav button */
+.nav-button:hover {
+    background-position: 0% 100%;
+    cursor: pointer;
+}
+
+/* Section containers */
+.section-container {
+    width: 100vw;
+    min-height: 100vh;
+    padding-top: 30px;
+}
+
+/* Section titles */
+.section-title {
+    position: relative;
+    color: #FFE1A8;
+    font-size: 2em;
+    border-left: solid #723D46 20px;
+    left: 15vw;
+    padding-left: 15px;
+    width: 80vw;
+}
+
+/* Academic content container */
+#academic-content-container {
+    display: block;
+    position: relative;
+    width: 80vw;
+    left: 10vw;
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+/* Specific academic columns container */
+#academic-specific-texts {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+/* Academic text columns */
+#academic-column {
+    width: calc(80vw / 3.5);
+}
+
+/* Important text */
+span.important {
+    color: #C9CBA3;
+}

@@ -10,12 +10,14 @@
 /* All HTML */
 html {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
 }
 
 /* Body in general */
 body {
-    background-color: #472D30;
-    color: #FFE1A8;
+    background-color: #FFE1A8;
+    color: #472D30;
     font-family: "Titillium Web", Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -83,7 +85,7 @@ body::-webkit-scrollbar{
 
 /* Main image (unselected) */
 .soc-main {
-    background-color: #472D30;
+    background-color: #FFE1A8;
     z-index: 3;
     transition: 0.6s;
 }
@@ -157,7 +159,7 @@ body::-webkit-scrollbar{
 /* Introduction paragraph */
 #introduction {
     width: 70vw;
-    border-left: solid #723D46 20px;
+    border-left: solid #C9CBA3 20px;
     padding-left: 20px;
     padding-right: 0px;
     font-size: 1.5em;
@@ -184,7 +186,7 @@ body::-webkit-scrollbar{
 .nav-button {
     border: none;
     font-size: 1.25em;
-    color: #FFE1A8;
+    color: #472D30;
     margin: 2vh 4vw;
     text-align: center;
     display: inline-block;
@@ -211,14 +213,37 @@ body::-webkit-scrollbar{
 /* Section titles */
 .section-title {
     position: relative;
-    color: #FFE1A8;
+    color: #472D30;
     font-size: 2em;
-    border-left: solid #723D46 20px;
+    border-left: solid #C9CBA3 20px;
     left: 15vw;
     padding-left: 15px;
+    width: 80vw;
 }
 
 /* Academic content container */
 #academic-content-container {
+    display: block;
+    position: relative;
+    width: 80vw;
+    left: 10vw;
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+/* Specific academic columns container */
+#academic-specific-texts {
     display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+/* Academic text columns */
+#academic-column {
+    width: calc(80vw / 3.5);
+}
+
+/* Important text */
+span.important {
+    color: #E26D5C;
 }
