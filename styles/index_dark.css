@@ -186,6 +186,7 @@ body::-webkit-scrollbar{
 .nav-button {
     border: none;
     font-size: 1.25em;
+    font-family: "Titillium Web", Helvetica, sans-serif;
     color: #FFE1A8;
     margin: 2vh 4vw;
     text-align: center;
@@ -239,11 +240,162 @@ body::-webkit-scrollbar{
 }
 
 /* Academic text columns */
-#academic-column {
+.academic-column {
     width: calc(80vw / 3.5);
 }
 
 /* Important text */
 span.important {
     color: #C9CBA3;
+}
+
+/* Change title of publications section */
+#pubs-title {
+    font-size: 1.5em;
+}
+
+/* Publications */
+#publications {
+    min-height: 80vh;
+    display: flex;
+}
+
+/* Publication list */
+#publication-list {
+    display: block;
+    width: 15vw;
+    height: 80vh;
+    min-width: 200px;
+    border-right: solid #723D46 15px;
+    padding-top: 20px;
+    overflow-y: scroll;
+}
+
+/* Style scrollbar */
+ /* width */
+ ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #723D46;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #723D46;
+    transition: background 0.5s;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E26D5C;
+  } 
+
+/* Publication buttons */
+.publication-button {
+    width: 100%;
+    padding: 10px 5%;
+    border: none;
+    font-size: 0.85em;
+    font-family: "Titillium Web", Helvetica, sans-serif;
+    color: #FFE1A8;
+    margin-bottom: 15px;
+    text-align: right;
+    transition: 1s;
+    background-color: #472D30;
+    background-position: 0%;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #472D30, #472D30 50%, #723D46 50%);
+    transition: background-position 1s;
+
+}
+
+/* Upon hovering publication button */
+.publication-button:hover {
+    cursor: pointer;
+    background-position: 100% 100%;
+}
+
+/* Container for publication information */
+#publication-information {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+}
+
+/* By default, hide publication */
+.publication {
+    display: none;
+}
+
+/* Publication information header */
+.pub-header {
+    min-height: 25px;
+    margin: 0;
+}
+
+/* Highlight author position */
+.author {
+    color: #C9CBA3;
+}
+
+/* Publication information header heading text */
+.pub-header h2 {
+    padding: 15px 20px 10px 20px;
+    margin: 0;
+}
+
+/* Publication information subheader */
+.pub-subheader {
+    font-weight: normal;
+    padding: 5px 20px 5px 20px;
+    font-size: 0.8em;
+}
+
+/* Publication information main */
+.pub-main {
+    font-weight: normal;
+    padding: 5px 20px 5px 20px;
+    margin: 0;
+}
+
+/* Publication information footer */
+.pub-footer {
+    min-height: 15px;
+    font-weight: normal;
+    padding: 10px 20px 10px 20px;
+    font-size: 0.8em;
+}
+
+/* Publication information buttons wrapper */
+.pub-buttons {
+    float: right;
+}
+
+/* Publication information buttons */
+.pub-buttons a {
+    padding: 3px;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 10px;
+    color: #FFE1A8;
+    transition: 0.5s;
+}
+
+/* Publication information buttons hover effect */
+.pub-buttons a:hover {
+    color: #C9CBA3;
+}
+
+/* Placeholder for when no publication is chosen yet */
+#publication-placeholder {
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.7em;
 }

@@ -1,10 +1,10 @@
 /* Palette:
-    #472D30
-    #723D46
-    #E26D5C
-    #FFE1A8
-    #C9CBA3
-    https://coolors.co/palette/c9cba3-ffe1a8-e26d5c-723d46-472d30
+    #CCD5AE
+    #E9EDC9
+    #FFFEF9
+    #FAEDCD
+    #D4A373
+    https://coolors.co/ccd5ae-e9edc9-fffef9-faedcd-d4a373
 */
 
 /* All HTML */
@@ -16,8 +16,8 @@ html {
 
 /* Body in general */
 body {
-    background-color: #FFE1A8;
-    color: #472D30;
+    background-color: #FFFEF9;
+    color: #D4A373;
     font-family: "Titillium Web", Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -85,7 +85,7 @@ body::-webkit-scrollbar{
 
 /* Main image (unselected) */
 .soc-main {
-    background-color: #FFE1A8;
+    background-color: #FFFEF9;
     z-index: 3;
     transition: 0.6s;
 }
@@ -159,7 +159,7 @@ body::-webkit-scrollbar{
 /* Introduction paragraph */
 #introduction {
     width: 70vw;
-    border-left: solid #C9CBA3 20px;
+    border-left: solid #FAEDCD 20px;
     padding-left: 20px;
     padding-right: 0px;
     font-size: 1.5em;
@@ -186,14 +186,15 @@ body::-webkit-scrollbar{
 .nav-button {
     border: none;
     font-size: 1.25em;
-    color: #472D30;
+    font-family: "Titillium Web", Helvetica, sans-serif;
+    color: #D4A373;
     margin: 2vh 4vw;
     text-align: center;
     display: inline-block;
     padding: 2vh 2vw;
     background-position: 100%;
     background-size: 200% 100%;
-    background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
+    background-image: linear-gradient(to right, #E9EDC9, #E9EDC9 50%, #FAEDCD 50%);
     transition: background-position 1s;
 }
 
@@ -213,9 +214,9 @@ body::-webkit-scrollbar{
 /* Section titles */
 .section-title {
     position: relative;
-    color: #472D30;
+    color: #D4A373;
     font-size: 2em;
-    border-left: solid #C9CBA3 20px;
+    border-left: solid #FAEDCD 20px;
     left: 15vw;
     padding-left: 15px;
     width: 80vw;
@@ -239,11 +240,162 @@ body::-webkit-scrollbar{
 }
 
 /* Academic text columns */
-#academic-column {
+.academic-column {
     width: calc(80vw / 3.5);
 }
 
 /* Important text */
 span.important {
-    color: #E26D5C;
+    color: #CCD5AE;
+}
+
+/* Change title of publications section */
+#pubs-title {
+    font-size: 1.5em;
+}
+
+/* Publications */
+#publications {
+    min-height: 80vh;
+    display: flex;
+}
+
+/* Publication list */
+#publication-list {
+    display: block;
+    width: 15vw;
+    height: 80vh;
+    min-width: 200px;
+    border-right: solid #FAEDCD 15px;
+    padding-top: 20px;
+    overflow-y: scroll;
+}
+
+/* Style scrollbar */
+ /* width */
+ ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #FAEDCD;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #FAEDCD;
+    transition: background 0.5s;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E9EDC9;
+  } 
+
+/* Publication buttons */
+.publication-button {
+    width: 100%;
+    padding: 10px 5%;
+    border: none;
+    font-size: 0.85em;
+    font-family: "Titillium Web", Helvetica, sans-serif;
+    color: #D4A373;
+    margin-bottom: 15px;
+    text-align: right;
+    transition: 1s;
+    background-color: #FFFEF9;
+    background-position: 0%;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #FFFEF9, #FFFEF9 50%, #FAEDCD 50%);
+    transition: background-position 1s;
+
+}
+
+/* Upon hovering publication button */
+.publication-button:hover {
+    cursor: pointer;
+    background-position: 100% 100%;
+}
+
+/* Container for publication information */
+#publication-information {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+}
+
+/* By default, hide publication */
+.publication {
+    display: none;
+}
+
+/* Publication information header */
+.pub-header {
+    min-height: 25px;
+    margin: 0;
+}
+
+/* Highlight author position */
+.author {
+    color: #CCD5AE;
+}
+
+/* Publication information header heading text */
+.pub-header h2 {
+    padding: 15px 20px 10px 20px;
+    margin: 0;
+}
+
+/* Publication information subheader */
+.pub-subheader {
+    font-weight: normal;
+    padding: 5px 20px 5px 20px;
+    font-size: 0.8em;
+}
+
+/* Publication information main */
+.pub-main {
+    font-weight: normal;
+    padding: 5px 20px 5px 20px;
+    margin: 0;
+}
+
+/* Publication information footer */
+.pub-footer {
+    min-height: 15px;
+    font-weight: normal;
+    padding: 10px 20px 10px 20px;
+    font-size: 0.8em;
+}
+
+/* Publication information buttons wrapper */
+.pub-buttons {
+    float: right;
+}
+
+/* Publication information buttons */
+.pub-buttons a {
+    padding: 3px;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 10px;
+    color: #D4A373;
+    transition: 0.5s;
+}
+
+/* Publication information buttons hover effect */
+.pub-buttons a:hover {
+    color: #CCD5AE;
+}
+
+/* Placeholder for when no publication is chosen yet */
+#publication-placeholder {
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.7em;
 }
