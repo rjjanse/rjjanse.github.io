@@ -44,6 +44,24 @@ body::-webkit-scrollbar{
     height: 50vh;
 }
 
+/* Button to change theme */
+#theme {
+    position: absolute;
+    display: flex;
+    left: 0;
+    margin: 10px;
+}
+
+/* Change theme image size */
+#theme img {
+    height: 5vh;
+}
+
+/* Upon hovering over theme */
+#theme:hover {
+    cursor: pointer;
+}
+
 /* Social links */
 #social-links {
     position: absolute;
@@ -272,26 +290,26 @@ span.important {
 }
 
 /* Style scrollbar */
- /* width */
- ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #723D46;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #723D46;
-    transition: background 0.5s;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #E26D5C;
-  } 
+/* width */
+#publication-list::-webkit-scrollbar {
+   width: 5px;
+ }
+ 
+ /* Track */
+ #publication-list::-webkit-scrollbar-track {
+   background: #723D46;
+ }
+ 
+ /* Handle */
+ #publication-list::-webkit-scrollbar-thumb {
+   background: #723D46;
+   transition: background 0.5s;
+ }
+ 
+ /* Handle on hover */
+ #publication-list::-webkit-scrollbar-thumb:hover {
+   background: #E26D5C;
+ } 
 
 /* Publication buttons */
 .publication-button {

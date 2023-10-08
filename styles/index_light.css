@@ -1,10 +1,10 @@
 /* Palette:
-    #CCD5AE
+    #B3C186
     #E9EDC9
     #FFFEF9
     #FAEDCD
-    #D4A373
-    https://coolors.co/ccd5ae-e9edc9-fffef9-faedcd-d4a373
+    #CA8F53
+    https://coolors.co/B3C186-e9edc9-fffef9-faedcd-CA8F53
 */
 
 /* All HTML */
@@ -17,7 +17,7 @@ html {
 /* Body in general */
 body {
     background-color: #FFFEF9;
-    color: #D4A373;
+    color: #CA8F53;
     font-family: "Titillium Web", Helvetica, sans-serif;
     margin: 0;
     padding: 0;
@@ -42,6 +42,24 @@ body::-webkit-scrollbar{
 #landing-content-container {
     display: flex;
     height: 50vh;
+}
+
+/* Button to change theme */
+#theme {
+    position: absolute;
+    display: flex;
+    left: 0;
+    margin: 10px;
+}
+
+/* Change theme image size */
+#theme img {
+    height: 5vh;
+}
+
+/* Upon hovering over theme */
+#theme:hover {
+    cursor: pointer;
 }
 
 /* Social links */
@@ -187,7 +205,7 @@ body::-webkit-scrollbar{
     border: none;
     font-size: 1.25em;
     font-family: "Titillium Web", Helvetica, sans-serif;
-    color: #D4A373;
+    color: #CA8F53;
     margin: 2vh 4vw;
     text-align: center;
     display: inline-block;
@@ -214,7 +232,7 @@ body::-webkit-scrollbar{
 /* Section titles */
 .section-title {
     position: relative;
-    color: #D4A373;
+    color: #CA8F53;
     font-size: 2em;
     border-left: solid #FAEDCD 20px;
     left: 15vw;
@@ -246,7 +264,7 @@ body::-webkit-scrollbar{
 
 /* Important text */
 span.important {
-    color: #CCD5AE;
+    color: #B3C186;
 }
 
 /* Change title of publications section */
@@ -300,7 +318,7 @@ span.important {
     border: none;
     font-size: 0.85em;
     font-family: "Titillium Web", Helvetica, sans-serif;
-    color: #D4A373;
+    color: #CA8F53;
     margin-bottom: 15px;
     text-align: right;
     transition: 1s;
@@ -339,7 +357,7 @@ span.important {
 
 /* Highlight author position */
 .author {
-    color: #CCD5AE;
+    color: #B3C186;
 }
 
 /* Publication information header heading text */
@@ -381,13 +399,13 @@ span.important {
     text-decoration: none;
     text-align: center;
     margin-left: 10px;
-    color: #D4A373;
+    color: #CA8F53;
     transition: 0.5s;
 }
 
 /* Publication information buttons hover effect */
 .pub-buttons a:hover {
-    color: #CCD5AE;
+    color: #B3C186;
 }
 
 /* Placeholder for when no publication is chosen yet */
