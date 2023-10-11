@@ -127,7 +127,7 @@ body::-webkit-scrollbar{
 
 /* Main image (unselected) */
 .soc-main {
-    background-color: #472D30;
+    background-color: transparent;
     z-index: 3;
     transition: 0.6s;
 }
