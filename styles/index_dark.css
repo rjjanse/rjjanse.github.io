@@ -1,10 +1,19 @@
-/* Palette:
+/* Palette dark:
     #472D30
     #723D46
     #E26D5C
     #FFE1A8
     #C9CBA3
     https://coolors.co/palette/c9cba3-ffe1a8-e26d5c-723d46-472d30
+*/
+
+/* Palette light:
+    #B3C186
+    #E9EDC9
+    #FFFEF9
+    #FAEDCD
+    #CA8F53
+    https://coolors.co/B3C186-e9edc9-fffef9-faedcd-CA8F53
 */
 
 /* All HTML */
@@ -44,12 +53,27 @@ body::-webkit-scrollbar{
     height: 50vh;
 }
 
-/* Button to change theme */
-#theme {
+/* Button to change theme container */
+.theme_container {
     position: absolute;
-    display: flex;
-    left: 0;
     margin: 10px;
+}
+
+/* Overlap theme buttons */
+.theme_button {
+    position: absolute;
+    left: 0;
+}
+
+/* Main button to change theme */
+.theme_main {
+    z-index: 3;
+    transition: 0.6s;
+}
+
+/* Main button to change theme disappear on hover */
+.theme_main:hover {
+    opacity: 0;
 }
 
 /* Change theme image size */

@@ -44,12 +44,27 @@ body::-webkit-scrollbar{
     height: 50vh;
 }
 
-/* Button to change theme */
-#theme {
+/* Button to change theme container */
+.theme_container {
     position: absolute;
-    display: flex;
-    left: 0;
     margin: 10px;
+}
+
+/* Overlap theme buttons */
+.theme_button {
+    position: absolute;
+    left: 0;
+}
+
+/* Main button to change theme */
+.theme_main {
+    z-index: 3;
+    transition: 0.6s;
+}
+
+/* Main button to change theme disappear on hover */
+.theme_main:hover {
+    opacity: 0;
 }
 
 /* Change theme image size */
