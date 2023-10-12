@@ -199,6 +199,11 @@ body::-webkit-scrollbar{
     text-align: justify;
 }
 
+/* Styling for IPA hyperlink */
+#ipa { 
+    color: #B3C186;
+}
+
 /* Navigation */
 #navigation {
     width: 100vw;
