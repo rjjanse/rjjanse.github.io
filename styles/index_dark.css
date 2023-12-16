@@ -354,7 +354,7 @@ span.important {
     background-color: #472D30;
     background-position: 0%;
     background-size: 200% 100%;
-    background-image: linear-gradient(to right, #472D30, #472D30 50%, #723D46 50%);
+    background-image: linear-gradient(to right, #472D30, #723D46 50%, #723D46 50%);
     transition: background-position 1s;
 
 }
