@@ -208,8 +208,8 @@ body::-webkit-scrollbar{
     text-align: justify;
 }
 
-/* Styling for IPA hyperlink */
-#ipa { 
+/* Styling for hyperlink */
+.hyperlink { 
     color: #C9CBA3;
 }
 
@@ -388,23 +388,23 @@ span.important {
 /* width */
 #publication-information::-webkit-scrollbar {
     width: 5px;
-  }
+}
   
-  /* Track */
-  #publication-information::-webkit-scrollbar-track {
+/* Track */
+#publication-information::-webkit-scrollbar-track {
     background: #472D30;
-  }
+}
   
-  /* Handle */
-  #publication-information::-webkit-scrollbar-thumb {
-    background: #E26D5C;
-    transition: background 0.5s;
-  }
-  
-  /* Handle on hover */
-  #publication-information::-webkit-scrollbar-thumb:hover {
-    background: #E26D5C;
-  } 
+/* Handle */
+#publication-information::-webkit-scrollbar-thumb {
+  background: #E26D5C;
+  transition: background 0.5s;
+}
+
+/* Handle on hover */
+#publication-information::-webkit-scrollbar-thumb:hover {
+  background: #E26D5C;
+} 
 
 /* By default, hide publication */
 .publication {
@@ -479,3 +479,87 @@ span.important {
     width: 100%;
     font-size: 0.7em;
 }
+
+/* CV container */
+#cv-content-container {
+    display: block;
+    position: relative;
+    width: 80vw;
+    left: 10vw;
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+/* Specific CV columns container */
+.cv-columns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+/* CV columns */
+.cv-column {
+    width: calc(80vw / 2.1);
+}
+
+/* CV list with items */
+.cv-items {
+    height: 20em;
+    overflow-y: scroll;
+    scrollbar-color: #472D30 #472D30;
+    scrollbar-width: thin;
+}
+
+/* Styling for items in CV */
+.cv-item {
+    display: block;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+/* Fading text */
+.fade {
+    -webkit-mask-image: linear-gradient(180deg, #472D30 10em, transparent);
+    mask-image: linear-gradient(180deg, #472D30 10em, transparent);
+}
+
+/* Styling for text in CV */
+.cv-text {
+    margin: 0;
+    padding: 2px 2px 2px 10px;
+}
+
+/* Styling for years in CV */
+.cv-year {
+    width: 150px;
+    margin: 0;
+    padding-left: 5px;
+    border-bottom: solid 2px #E26D5C;
+}
+
+/* Buffer at end of CV column to scroll out of fade */
+.cv-item-end {
+    height: 5em;
+}
+
+/* Style scrollbar for CV */
+/* width */
+.cv-items::-webkit-scrollbar {
+    width: 5px;
+}
+  
+/* Track */
+.cv-items::-webkit-scrollbar-track {
+    background: #472D30;
+}
+  
+/* Handle */
+.cv-items::-webkit-scrollbar-thumb {
+  background: #472D30;
+  transition: background 0.5s;
+}
+
+/* Handle on hover */
+.cv-items::-webkit-scrollbar-thumb:hover {
+  background: #472D30;
+} 
