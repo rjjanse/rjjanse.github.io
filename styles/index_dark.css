@@ -313,6 +313,8 @@ span.important {
     width: calc(15vw + 15px);
     min-width: 200px;
     overflow-y: scroll;
+    scrollbar-color: #E26D5C #723D46;
+    scrollbar-width: thin;
     height: 80vh;
 }
 
@@ -375,6 +377,8 @@ span.important {
     width: 90%;
     max-height: 80vh !important;
     overflow-y: scroll;
+    scrollbar-color: #E26D5C #723D46;
+    scrollbar-width: thin;
     margin-left: 5%;
     margin-right: 5%;
     display: flex;
