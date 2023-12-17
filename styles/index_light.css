@@ -298,38 +298,45 @@ span.important {
     display: flex;
 }
 
+/* Publication list wrapper to allow scroll-bar on far side of border */
+#publication-list-wrapper {
+    display: block;
+    width: calc(15vw + 15px);
+    min-width: 200px;
+    overflow-y: scroll;
+    scrollbar-color: #E9EDC9 #FAEDCD;
+    scrollbar-width: thin;
+    height: 80vh;
+}
+
 /* Publication list */
 #publication-list {
     display: block;
-    width: 15vw;
-    height: 80vh;
-    min-width: 200px;
     border-right: solid #FAEDCD 15px;
     padding-top: 20px;
-    overflow-y: scroll;
 }
 
-/* Style scrollbar */
- /* width */
- ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #FAEDCD;
-  }
-  
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #FAEDCD;
-    transition: background 0.5s;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #E9EDC9;
-  } 
+/* Style scrollbar for list */
+/* width */
+#publication-list-wrapper::-webkit-scrollbar {
+   width: 5px;
+ }
+ 
+ /* Track */
+ #publication-list-wrapper::-webkit-scrollbar-track {
+   background: #FAEDCD;
+ }
+ 
+ /* Handle */
+ #publication-list-wrapper::-webkit-scrollbar-thumb {
+   background: #E9EDC9;
+   transition: background 0.5s;
+ }
+ 
+ /* Handle on hover */
+ #publication-list-wrapper::-webkit-scrollbar-thumb:hover {
+   background: #E9EDC9;
+ } 
 
 /* Publication buttons */
 .publication-button {
@@ -345,7 +352,7 @@ span.important {
     background-color: #FFFEF9;
     background-position: 0%;
     background-size: 200% 100%;
-    background-image: linear-gradient(to right, #FFFEF9, #FFFEF9 50%, #FAEDCD 50%);
+    background-image: linear-gradient(to right, #FFFEF9, #FAEDCD 50%, #FAEDCD 50%);
     transition: background-position 1s;
 
 }
@@ -359,10 +366,36 @@ span.important {
 /* Container for publication information */
 #publication-information {
     width: 90%;
+    max-height: 80vh !important;
+    overflow-y: scroll;
+    scrollbar-color: #E9EDC9 #FAEDCD;
+    scrollbar-width: thin;
     margin-left: 5%;
     margin-right: 5%;
     display: flex;
 }
+
+/* Style scrollbar for information */
+/* width */
+#publication-information::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  #publication-information::-webkit-scrollbar-track {
+    background: #FFFEF9;
+  }
+  
+  /* Handle */
+  #publication-information::-webkit-scrollbar-thumb {
+    background: #E9EDC9;
+    transition: background 0.5s;
+  }
+  
+  /* Handle on hover */
+  #publication-information::-webkit-scrollbar-thumb:hover {
+    background: #E9EDC9;
+  } 
 
 /* By default, hide publication */
 .publication {
