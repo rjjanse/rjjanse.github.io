@@ -307,36 +307,41 @@ span.important {
     display: flex;
 }
 
+/* Publication list wrapper to allow scroll-bar on far side of border */
+#publication-list-wrapper {
+    display: block;
+    width: calc(15vw + 15px);
+    min-width: 200px;
+    overflow-y: scroll;
+    height: 80vh;
+}
+
 /* Publication list */
 #publication-list {
     display: block;
-    width: 15vw;
-    height: 80vh;
-    min-width: 200px;
     border-right: solid #723D46 15px;
     padding-top: 20px;
-    overflow-y: scroll;
 }
 
-/* Style scrollbar */
+/* Style scrollbar for list */
 /* width */
-#publication-list::-webkit-scrollbar {
+#publication-list-wrapper::-webkit-scrollbar {
    width: 5px;
  }
  
  /* Track */
- #publication-list::-webkit-scrollbar-track {
+ #publication-list-wrapper::-webkit-scrollbar-track {
    background: #723D46;
  }
  
  /* Handle */
- #publication-list::-webkit-scrollbar-thumb {
-   background: #723D46;
+ #publication-list-wrapper::-webkit-scrollbar-thumb {
+   background: #E26D5C;
    transition: background 0.5s;
  }
  
  /* Handle on hover */
- #publication-list::-webkit-scrollbar-thumb:hover {
+ #publication-list-wrapper::-webkit-scrollbar-thumb:hover {
    background: #E26D5C;
  } 
 
@@ -368,10 +373,34 @@ span.important {
 /* Container for publication information */
 #publication-information {
     width: 90%;
+    max-height: 80vh !important;
+    overflow-y: scroll;
     margin-left: 5%;
     margin-right: 5%;
     display: flex;
 }
+
+/* Style scrollbar for information */
+/* width */
+#publication-information::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  #publication-information::-webkit-scrollbar-track {
+    background: #472D30;
+  }
+  
+  /* Handle */
+  #publication-information::-webkit-scrollbar-thumb {
+    background: #E26D5C;
+    transition: background 0.5s;
+  }
+  
+  /* Handle on hover */
+  #publication-information::-webkit-scrollbar-thumb:hover {
+    background: #E26D5C;
+  } 
 
 /* By default, hide publication */
 .publication {
