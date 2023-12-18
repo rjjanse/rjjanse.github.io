@@ -9,11 +9,11 @@
 
 /* Palette light:
     #B3C186 = #C9CBA3
-    #E9EDC9 = #E26D5C
+    #CCD683 = #E26D5C
     #FFFEF9 = #472D30
     #FAEDCD = #723D46
     #CA8F53 = #FFE1A8
-    https://coolors.co/B3C186-e9edc9-fffef9-faedcd-CA8F53
+    https://coolors.co/B3C186-CCD683-fffef9-faedcd-CA8F53
 */
 
 /* All HTML */
@@ -480,6 +480,60 @@ span.important {
     font-size: 0.7em;
 }
 
+/* Title for section other output */
+#oo-title {
+    font-size: 1.5em;
+    margin-top: 40px;
+}
+
+/* Divider for columns in other output */
+#oo-divider {
+    display: flex;
+    width: 80vw;
+    min-height: 80vh;
+}
+
+/* Left column of other output */
+#oo-leftcolumn {
+    width: calc(80vw - 300px);
+}
+
+/* Items under other output */
+.oo-item {
+    width: calc(80vw - 340px);
+    margin-bottom: 40px;
+}
+
+/* Title styling */
+.oo-item b {
+    border-bottom: solid 2px #E26D5C;
+}
+
+/* Right column of other output */
+#oo-rightcolumn {
+    width: 300px;
+    background-color: #723D46;
+    padding: 10px;
+    margin-top: 0;
+}
+
+/* Remove top margins from right column titles */
+#oo-rightcolumn h3 {
+    margin-top: 0;
+}
+
+/* Peer review title */
+#pr-title {
+    margin-top: 20px !important;
+    margin-bottom: 0;
+}
+
+/* Peer review chart */
+.chart {
+    margin: 0;
+    padding: 0;
+}
+
 /* CV container */
 #cv-content-container {
     display: block;
@@ -502,12 +556,21 @@ span.important {
     width: calc(80vw / 2.1);
 }
 
+/* Main titles for CV sections */
+.cv-title {
+    background: #723D46;
+    width: calc(80vw / 2.1);
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
 /* CV list with items */
 .cv-items {
     height: 20em;
     overflow-y: scroll;
     scrollbar-color: #472D30 #472D30;
     scrollbar-width: thin;
+    padding-top: 20px;
 }
 
 /* Styling for items in CV */

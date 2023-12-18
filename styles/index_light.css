@@ -1,10 +1,19 @@
-/* Palette:
-    #B3C186
-    #E9EDC9
+/* Palette dark:
     #FFFEF9
     #FAEDCD
+    #CCD683
     #CA8F53
-    https://coolors.co/B3C186-e9edc9-fffef9-faedcd-CA8F53
+    #B3C186
+    https://coolors.co/palette/B3C186-CA8F53-CCD683-FAEDCD-FFFEF9
+*/
+
+/* Palette light:
+    #B3C186 = #B3C186
+    #CCD683 = #CCD683
+    #FFFEF9 = #FFFEF9
+    #FAEDCD = #FAEDCD
+    #CA8F53 = #CA8F53
+    https://coolors.co/B3C186-CCD683-fffef9-faedcd-CA8F53
 */
 
 /* All HTML */
@@ -199,7 +208,7 @@ body::-webkit-scrollbar{
     text-align: justify;
 }
 
-/* Styling for IPA hyperlink */
+/* Styling for hyperlink */
 .hyperlink { 
     color: #B3C186;
 }
@@ -232,7 +241,7 @@ body::-webkit-scrollbar{
     padding: 2vh 2vw;
     background-position: 100%;
     background-size: 200% 100%;
-    background-image: linear-gradient(to right, #E9EDC9, #E9EDC9 50%, #FAEDCD 50%);
+    background-image: linear-gradient(to right, #CCD683, #CCD683 50%, #FAEDCD 50%);
     transition: background-position 1s;
 }
 
@@ -304,7 +313,7 @@ span.important {
     width: calc(15vw + 15px);
     min-width: 200px;
     overflow-y: scroll;
-    scrollbar-color: #E9EDC9 #FAEDCD;
+    scrollbar-color: #CCD683 #FAEDCD;
     scrollbar-width: thin;
     height: 80vh;
 }
@@ -329,13 +338,13 @@ span.important {
  
  /* Handle */
  #publication-list-wrapper::-webkit-scrollbar-thumb {
-   background: #E9EDC9;
+   background: #CCD683;
    transition: background 0.5s;
  }
  
  /* Handle on hover */
  #publication-list-wrapper::-webkit-scrollbar-thumb:hover {
-   background: #E9EDC9;
+   background: #CCD683;
  } 
 
 /* Publication buttons */
@@ -368,7 +377,7 @@ span.important {
     width: 90%;
     max-height: 80vh !important;
     overflow-y: scroll;
-    scrollbar-color: #E9EDC9 #FAEDCD;
+    scrollbar-color: #CCD683 #FAEDCD;
     scrollbar-width: thin;
     margin-left: 5%;
     margin-right: 5%;
@@ -379,23 +388,23 @@ span.important {
 /* width */
 #publication-information::-webkit-scrollbar {
     width: 5px;
-  }
+}
   
-  /* Track */
-  #publication-information::-webkit-scrollbar-track {
+/* Track */
+#publication-information::-webkit-scrollbar-track {
     background: #FFFEF9;
-  }
+}
   
-  /* Handle */
-  #publication-information::-webkit-scrollbar-thumb {
-    background: #E9EDC9;
-    transition: background 0.5s;
-  }
-  
-  /* Handle on hover */
-  #publication-information::-webkit-scrollbar-thumb:hover {
-    background: #E9EDC9;
-  } 
+/* Handle */
+#publication-information::-webkit-scrollbar-thumb {
+  background: #CCD683;
+  transition: background 0.5s;
+}
+
+/* Handle on hover */
+#publication-information::-webkit-scrollbar-thumb:hover {
+  background: #CCD683;
+} 
 
 /* By default, hide publication */
 .publication {
@@ -471,6 +480,60 @@ span.important {
     font-size: 0.7em;
 }
 
+/* Title for section other output */
+#oo-title {
+    font-size: 1.5em;
+    margin-top: 40px;
+}
+
+/* Divider for columns in other output */
+#oo-divider {
+    display: flex;
+    width: 80vw;
+    min-height: 80vh;
+}
+
+/* Left column of other output */
+#oo-leftcolumn {
+    width: calc(80vw - 300px);
+}
+
+/* Items under other output */
+.oo-item {
+    width: calc(80vw - 340px);
+    margin-bottom: 40px;
+}
+
+/* Title styling */
+.oo-item b {
+    border-bottom: solid 2px #CCD683;
+}
+
+/* Right column of other output */
+#oo-rightcolumn {
+    width: 300px;
+    background-color: #FAEDCD;
+    padding: 10px;
+    margin-top: 0;
+}
+
+/* Remove top margins from right column titles */
+#oo-rightcolumn h3 {
+    margin-top: 0;
+}
+
+/* Peer review title */
+#pr-title {
+    margin-top: 20px !important;
+    margin-bottom: 0;
+}
+
+/* Peer review chart */
+.chart {
+    margin: 0;
+    padding: 0;
+}
+
 /* CV container */
 #cv-content-container {
     display: block;
@@ -493,12 +556,21 @@ span.important {
     width: calc(80vw / 2.1);
 }
 
+/* Main titles for CV sections */
+.cv-title {
+    background: #FAEDCD;
+    width: calc(80vw / 2.1);
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
 /* CV list with items */
 .cv-items {
     height: 20em;
     overflow-y: scroll;
     scrollbar-color: #FFFEF9 #FFFEF9;
     scrollbar-width: thin;
+    padding-top: 20px;
 }
 
 /* Styling for items in CV */
@@ -525,7 +597,7 @@ span.important {
     width: 150px;
     margin: 0;
     padding-left: 5px;
-    border-bottom: solid 2px #E9EDC9;
+    border-bottom: solid 2px #CCD683;
 }
 
 /* Buffer at end of CV column to scroll out of fade */
