@@ -626,3 +626,67 @@ span.important {
 .cv-items::-webkit-scrollbar-thumb:hover {
   background: #472D30;
 } 
+
+/* Personal content container */
+#personal-content-container {
+    display: block;
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    left: 10vw;
+    font-size: 1.2em;
+    text-align: justify;
+}
+
+/* Personal content divider */
+#personal-divider {
+    display: flex;
+    width: 80vw;
+    height: 75vh;
+}
+
+/* Left column of personal content */
+#personal-leftcolumn {
+    width: calc(80vw - 200px);
+}
+
+/* Right column of personal content */
+#personal-rightcolumn {
+    width: 200px;
+}
+
+/* Remove top margins from right column titles */
+#personal-rightcolumn h3 {
+    margin: 0;
+    text-align: center;
+}
+
+/* Interest buttons */
+.interest-button {
+    border: none;
+    font-size: 1.05em;
+    font-family: "Titillium Web", Helvetica, sans-serif;
+    color: #FFE1A8;
+    text-align: center;
+    display: inline-block;
+    margin-top: 10px;
+    padding: 2vh 2vw;
+    width: 200px;
+    background-position: 100%;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
+    transition: background-position 1s;
+}
+
+/* Upon hovering interest button */
+.interest-button:hover {
+    background-position: 0% 100%;
+    cursor: pointer;
+}
+
+/* Interest */
+.interest {
+    width: 95%;
+    height: 100%;
+
+}

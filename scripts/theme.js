@@ -28,14 +28,14 @@ theme_btn.addEventListener("click", (e) => {
     style_link.setAttribute("href", new_style);
 
     // Change themed images
-    /*for (var i = 0; i < themed_imgs.length; i++) {
+    for (var i = 0; i < themed_imgs.length; i++) {
         // Set to corresponding source
         if (new_style.includes("dark")) themed_imgs[i].setAttribute("src", themed_imgs[i].getAttribute("src").replace("light", "dark"));
 
         // Set to corresponding source
         else themed_imgs[i].setAttribute("src", themed_imgs[i].getAttribute("src").replace("dark", "light"));
     }
-
+/*
     // If dark, define new light options
     if (current_style.includes("dark")) var options = {
         legend: {
