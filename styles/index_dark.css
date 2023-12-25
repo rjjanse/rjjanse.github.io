@@ -642,12 +642,12 @@ span.important {
 #personal-divider {
     display: flex;
     width: 80vw;
-    height: 75vh;
 }
 
 /* Left column of personal content */
 #personal-leftcolumn {
     width: calc(80vw - 200px);
+    margin-right: 30px;
 }
 
 /* Right column of personal content */
@@ -655,9 +655,9 @@ span.important {
     width: 200px;
 }
 
-/* Remove top margins from right column titles */
+/* Remove top margins from right column title */
 #personal-rightcolumn h3 {
-    margin: 0;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -669,7 +669,7 @@ span.important {
     color: #FFE1A8;
     text-align: center;
     display: inline-block;
-    margin-top: 10px;
+    margin-bottom: 10px;
     padding: 2vh 2vw;
     width: 200px;
     background-position: 100%;
@@ -684,9 +684,154 @@ span.important {
     cursor: pointer;
 }
 
-/* Interest */
-.interest {
-    width: 95%;
-    height: 100%;
-
+/* Interest buttons */
+#interest-buttons {
+    margin: 0;
+    padding: 0;
+    height: calc(80vh - 6.33em + 10px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: #472D30 #472D30;
+    scrollbar-width: thin;
 }
+
+/* Style scrollbar for interest buttons */
+/* width */
+#interest-buttons::-webkit-scrollbar {
+    width: 5px;
+}
+  
+/* Track */
+#interest-buttons::-webkit-scrollbar-track {
+    background: #472D30;
+}
+  
+/* Handle */
+#interest-buttons::-webkit-scrollbar-thumb {
+  background: #472D30;
+  transition: background 0.5s;
+}
+
+/* Handle on hover */
+#interest-buttons::-webkit-scrollbar-thumb:hover {
+  background: #472D30;
+} 
+
+/* Interest (hidden by default) */
+.interest {
+    height: 100%;
+    display: none;
+}
+
+/* Interest wrapper */
+.interest-wrapper {
+    display: block;
+    overflow-y: scroll;
+    scrollbar-color: #472D30 #E26D5C;
+    scrollbar-width: thin;
+    padding-right: 10px;
+    height: calc(80vh - 6.33em);
+}
+
+/* Style scrollbar for interests */
+/* width */
+.interest-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+  
+/* Track */
+.interest-wrapper::-webkit-scrollbar-track {
+    background: #472D30;
+}
+  
+/* Handle */
+.interest-wrapper::-webkit-scrollbar-thumb {
+    background: #E26D5C;
+    transition: background 0.5s;
+}
+
+/* Handle on hover */
+.interest-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #E26D5C;
+} 
+
+/* Interest image wrapper */
+.interest-image {
+    float: left;
+    margin-right: 20px;
+}
+
+/* Scrolling through interest image */
+.interest-img-scroller {
+    display: flex;
+    background-color: #723D46;
+    width: 180px;
+    justify-content: space-between;
+    font-weight: bold;
+    margin: 0;
+    padding: 1px 10px;
+}
+
+/* Button for scrolling through interest image */
+.interest-img-scroller-button {
+    transition: 0.5;
+}
+
+/* Change colour upon hover */
+.interest-img-scroller-button:hover {
+    color: #C9CBA3;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+/* Quote styling */
+.quote {
+    font-style: italic;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+/* Language levels wrapper */
+#language-levels {
+    float: left;
+    width: 250px;
+    background-color: #723D46;
+    margin: 0px 20px 15px 0;
+}
+
+/* Language levels title */
+#language-levels h4 {
+    text-align: center;
+    margin: 5px 0 0 0;
+    padding: 0;
+}
+
+/* Language levels list */
+#language-levels ul {
+    margin: 5px 0 15px 0;
+    padding: 0 0 0 40px;
+}
+
+/* Sparkbar for languages */
+.sparkbar {
+    width: 180px;
+    background-color: #472D30;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    position: relative;
+}
+
+/* Sparkbar building blocks */
+.sparkbar-building-block {
+    margin: 0;
+    padding: 0;
+    height: 1.5em;
+    font-weight: bold;
+    color: #C9CBA3;
+    font-size: 0.5em;
+    width: 30px;
+    background-color: #E26D5C;
+    text-align: center;
+}
+
