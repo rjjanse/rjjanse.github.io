@@ -26,7 +26,7 @@ left.addEventListener("click", (e) => {
     var new_image = images[index]
 
     // Set src of img to new image
-    img.setAttribute("src", "images2/interests/climbing/" + new_image)
+    img.setAttribute("src", "images/interests/climbing/" + new_image)
 })
 
 // Listen for right button click
