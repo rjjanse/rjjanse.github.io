@@ -363,7 +363,13 @@ span.important {
     background-size: 200% 100%;
     background-image: linear-gradient(to right, #472D30, #723D46 50%, #723D46 50%);
     transition: background-position 1s;
+}
 
+/* First author flair */
+.first-author {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #C9CBA3;
 }
 
 /* Upon hovering publication button */
@@ -646,13 +652,13 @@ span.important {
 
 /* Left column of personal content */
 #personal-leftcolumn {
-    width: calc(80vw - 200px);
+    width: calc(80vw - 250px);
     margin-right: 30px;
 }
 
 /* Right column of personal content */
 #personal-rightcolumn {
-    width: 200px;
+    width: 250px;
 }
 
 /* Remove top margins from right column title */
@@ -671,7 +677,7 @@ span.important {
     display: inline-block;
     margin-bottom: 10px;
     padding: 2vh 2vw;
-    width: 200px;
+    width: 250px;
     background-position: 100%;
     background-size: 200% 100%;
     background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
@@ -835,3 +841,15 @@ span.important {
     text-align: center;
 }
 
+/* Image gallery for interests */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #723D46;
+}
+
+/* Images in image gallery */
+.image-gallery img {
+    height: 20vh;
+    margin: 15px;
+}

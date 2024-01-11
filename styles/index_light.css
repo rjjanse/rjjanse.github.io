@@ -363,7 +363,13 @@ span.important {
     background-size: 200% 100%;
     background-image: linear-gradient(to right, #FFFEF9, #FAEDCD 50%, #FAEDCD 50%);
     transition: background-position 1s;
+}
 
+/* First author flair */
+.first-author {
+    float: right;
+    width: 10%;
+    
 }
 
 /* Upon hovering publication button */

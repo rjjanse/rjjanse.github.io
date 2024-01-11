@@ -13,6 +13,7 @@ for (var i = 0; i < btn.length; i++) {
 
         // Set all publications to invisible
         for (var p = 0; p < pubs.length; p++) {
+            console.log(pubs[p]);
             // Set publication to not visible
             pubs[p].style.display = "none";
         }
