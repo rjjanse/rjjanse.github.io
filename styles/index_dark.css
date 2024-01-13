@@ -220,7 +220,6 @@ body::-webkit-scrollbar{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20vh;
 }
 
 /* Nav button container */
@@ -852,4 +851,14 @@ span.important {
 .image-gallery img {
     height: 20vh;
     margin: 15px;
+}
+
+/* Placeholder for when no interest is chosen yet */
+#interest-placeholder {
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.7em;
 }

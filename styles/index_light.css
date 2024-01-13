@@ -220,7 +220,6 @@ body::-webkit-scrollbar{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20vh;
 }
 
 /* Nav button container */
@@ -367,9 +366,9 @@ span.important {
 
 /* First author flair */
 .first-author {
-    float: right;
-    width: 10%;
-    
+    font-size: 0.8em;
+    font-style: italic;
+    color: #B3C186;
 }
 
 /* Upon hovering publication button */
@@ -652,13 +651,13 @@ span.important {
 
 /* Left column of personal content */
 #personal-leftcolumn {
-    width: calc(80vw - 200px);
+    width: calc(80vw - 250px);
     margin-right: 30px;
 }
 
 /* Right column of personal content */
 #personal-rightcolumn {
-    width: 200px;
+    width: 250px;
 }
 
 /* Remove top margins from right column title */
@@ -677,7 +676,7 @@ span.important {
     display: inline-block;
     margin-bottom: 10px;
     padding: 2vh 2vw;
-    width: 200px;
+    width: 250px;
     background-position: 100%;
     background-size: 200% 100%;
     background-image: linear-gradient(to right, #CCD683, #CCD683 50%, #FAEDCD 50%);
@@ -841,3 +840,25 @@ span.important {
     text-align: center;
 }
 
+/* Image gallery for interests */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #FAEDCD;
+}
+
+/* Images in image gallery */
+.image-gallery img {
+    height: 20vh;
+    margin: 15px;
+}
+
+/* Placeholder for when no interest is chosen yet */
+#interest-placeholder {
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 0.7em;
+}
