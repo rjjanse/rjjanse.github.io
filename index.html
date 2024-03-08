@@ -90,7 +90,7 @@
                 Hejsan! I'm Roemer (<a class = "hyperlink" href = "http://ipa-reader.xyz/?text=rum%C9%99r&voice=Ruben" rel = "noopener" target = "_blank">['rumər]</a>) 
                 and I am currently working as a PhD candidate at the Department of Clinical Epidemiology
                 at the Leiden University Medical Center (LUMC) in Leiden, the Netherlands. I am writing my thesis on prediction modelling
-                of patient-reported outcome measures in kidney disease, with a special interest in prediction methodology. Besides working 
+                of patient-relevant outcomes in kidney disease, with a special interest in prediction methodology. Besides working 
                 on prediction modelling, I like to work on studies revolving around causal inference and treatment trajectories in renal
                 pharmacoepidemiology. Last, but not least, I am part of a research team at the Center for Innovation in Medical Education 
                 at the LUMC, where we focus on improving assessment in the medical curriculum. <br> <br> 
@@ -100,10 +100,10 @@
                 into account my ecological footprint in everything I do, including work. This entails more than visiting conferences and the mode
                 of transportation to get there. It is my aim to be conscious of the tools I use while doing research and their carbon footprint. <br> <br> 
                 
-                Although I am fond of my academic interests, nothing can make me relax like climbing. Although I mainly do bouldering, I am currently
-                expanding into top rope climbing and looking to try many other kinds of climbing in the future. When I am not climbing, you are likely
-                to find me reading, making puzzles, playing tabletop or video games, taking pictures, dancing to swing music, learning (about) languages,
-                or boring someone by talking just a bit too much about the Lord of the Rings or trains. <br> <br> 
+                Although I am fond of my academic interests, nothing can make me relax like climbing. I spend my time bouldering and toproping, although
+                soon I am following a course on lead climbing. When I am not climbing, you are likely to find me reading, making puzzles, playing tabletop 
+                or video games, taking pictures, dancing to swing music, learning (about) languages, or boring someone by talking just a bit too much about 
+                the Lord of the Rings or trains. <br> <br> 
 
                 Feel free to browse around and discover more about me! <br> <br> 
 
@@ -152,7 +152,7 @@
                             advanced methodology are always fun. My main experience is renal epidemiology, where I have worked on
                             <span class = "important"> causal inference</span>, especially regarding <span class = "important">
                             comparative effectiveness</span> of drugs. My PhD thesis focuses on <span class = "important"> prediction
-                            modelling</span>, especially in the area of patient reported outcomes, with an additional focus on
+                            modelling</span>, especially in the area of patient relevant outcomes, with an additional focus on
                             <span class = "important"> advanced modelling strategies</span>. Lastly, I have done multiple studies on
                             <span class = "important"> treatment trajectories</span>. 
                         </p>
@@ -276,20 +276,17 @@
                                 </div>
                                 <div class = "pub-main" > 
                                     <p> <b>Background and hypothesis:</b> Non-traumatic lower extremity amputation (LEA) is a severe complication during dialysis. To inform decision-making 
-                                        for physicians, we developed a multivariable prediction model for LEA after starting dialysis.
-
+                                        for physicians, we developed a multivariable prediction model for LEA after starting dialysis. <br>
                                         <b>Methods:</b> Data from the Swedish Renal Registry (SNR) between 2010 and 2020 were geographically split into a development and validation cohort. 
                                         Data from NECOSAD between 1997 and 2009 were used for validation targeted at Dutch patients. Inclusion criteria were no previous LEA and kidney 
                                         transplant and age ≥ 40 years at baseline. A Fine-Gray model was developed with LEA within 3 years after starting dialysis as outcome of interest. 
                                         Death and kidney transplant were treated as competing events. One coefficient, ordered by expected relevance, per 20 events was estimated. Performance 
-                                        was assessed with calibration and discrimination.
-                                        
+                                        was assessed with calibration and discrimination. <br>                                        
                                         <b>Results:</b> SNR was split into an urban development cohort with 4 771 individuals experiencing 201 (4.8%) events and a rural validation cohort with 
                                         4.876 individuals experiencing 155 (3.2%) events. NECOSAD contained 1 658 individuals experiencing 61 (3.7%) events. Ten predictors were included: female 
                                         sex, age, diabetes mellitus, peripheral artery disease, cardiovascular disease, congestive heart failure, obesity, albumin, haemoglobin and diabetic 
                                         retinopathy. In SNR, calibration intercept and slope were -0.003 and 0.912 respectively. The C-index was estimated as 0.813 (0.783-0.843). In NECOSAD, 
-                                        calibration intercept and slope were 0.001 and 1.142 respectively. The C-index was estimated as 0.760 (0.697-0.824). Calibration plots showed good calibration.
-                                        
+                                        calibration intercept and slope were 0.001 and 1.142 respectively. The C-index was estimated as 0.760 (0.697-0.824). Calibration plots showed good calibration. <br>                                        
                                         <b>Conclusion:</b> A newly developed model to predict LEA after starting dialysis showed good discriminatory performance and calibration. By identifying 
                                         high-risk individuals this model could help select patients for preventive measures.
                                     </p>
@@ -358,6 +355,7 @@
                                     <i> Clinical Kidney Journal - 12 January 2024 </i>
                                     <div class = "pub-buttons" >
                                         <a target = "_blank" href = "https://doi.org/10.1093/ckj/sfae009" rel = "noopener"> Full-text </a>
+                                        <a target = "_blank" href = "https://pubmed.ncbi.nlm.nih.gov/38455523/" rel = "noopener"> PubMed </a>
                                     </div>
                                 </div>
                             </div>
@@ -778,9 +776,9 @@
                 <div class = "cv-columns" name = "row1">
                     <!-- Experience -->
                     <div class = "cv-column">
-                        <h3 class = "cv-title"> Experience </h3>
+                        <h3 class = "cv-title"> Experience <span class = "cv-expand" name = "experience">></span> </h3>
     
-                        <div class = "cv-items fade"> 
+                        <div class = "cv-items fade" id = "experience"> 
                             <div class = "cv-item"> 
                                 <div class = "cv-year"> 
                                     2022 - Current
@@ -864,9 +862,9 @@
 
                     <!-- Education -->
                     <div class = "cv-column">
-                        <h3 class = "cv-title"> Education </h3>
+                        <h3 class = "cv-title"> Education <span class = "cv-expand" name = "education">></span> </h3>
 
-                        <div class = "cv-items fade">     
+                        <div class = "cv-items fade" id = "education">     
                             <div class = "cv-item"> 
                                 <div class = "cv-year"> 
                                     2022 - Current
@@ -921,9 +919,9 @@
                 <div class = "cv-columns" name = "row2">
                     <!-- Courses -->
                     <div class = "cv-column">
-                        <h3 class = "cv-title"> Courses </h3>
+                        <h3 class = "cv-title"> Courses <span class = "cv-expand" name = "courses">></span> </h3>
                         
-                        <div class = "cv-items fade"> 
+                        <div class = "cv-items fade" id = "courses"> 
                             <div class = "cv-item"> 
                                 <div class = "cv-year"> 
                                     2023
@@ -1128,9 +1126,9 @@
 
                     <!-- Conferences, grants, and awards -->
                     <div class = "cv-column">
-                        <h3 class = "cv-title"> Conferences, grants, and awards </h3>
+                        <h3 class = "cv-title"> Conferences, grants, and awards <span class = "cv-expand" name = "cga">></span> </h3>
 
-                        <div class = "cv-items fade"> 
+                        <div class = "cv-items fade" id = "cga"> 
                             <div class = "cv-item"> 
                                 <div class = "cv-year"> 
                                     2023
@@ -1421,7 +1419,7 @@
 
                             <div class = "interest-wrapper">
                                 <div id = "language-levels">
-                                    <h4> <a class = "hyperlink" rel = "noopener" target = "_blank" href = "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions">CREF</a> levels </h4>
+                                    <h4> <a class = "hyperlink" rel = "noopener" target = "_blank" href = "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions">CEFR</a> levels </h4>
 
                                     <ul>
                                         <li> Dutch
@@ -1504,6 +1502,7 @@
         </section>
 
         <!-- Javascript -->
+        <script type = "text/javascript" src = "scripts/cv_expand.js"></script> <!-- Expand CV sections -->
         <script type = "text/javascript" src = "scripts/publications.js"></script> <!-- Publication overview -->
         <script type = "text/javascript" src = "scripts/interests.js"></script> <!-- Interests overview -->
         <script type = "text/javascript" src = "scripts/climbing.js"></script> <!-- Climbing images -->

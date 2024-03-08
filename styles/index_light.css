@@ -569,6 +569,19 @@ span.important {
     margin-bottom: 0;
 }
 
+/* Expand button for CV */
+.cv-expand {
+    float: right;
+    margin-right: 10px;
+    transition: 0.5s;
+}
+
+/* Upon hovering */
+.cv-expand:hover {
+    color: #B3C186;
+    cursor: pointer;
+}
+
 /* CV list with items */
 .cv-items {
     height: 20em;
