@@ -80,7 +80,10 @@ body::-webkit-scrollbar{
 
 /* Landing title */
 #landing-title {
-    margin: 150px 0 0 150px;
+    top: 25vh;
+    left: 18vh;
+    position: absolute;
+    margin: 0;
     font-size: 5em;
     color: black;
     line-height: 1em;
@@ -109,10 +112,85 @@ body::-webkit-scrollbar{
     line-height: 0;
 }
 
+/* Social links */
+#social-links {
+    top: calc(25vh);
+    left: 70vw;;
+    position: absolute;
+    margin: 0;
+    z-index: 2;
+    color: #E26D5C;
+}
+
+/* Social links title */
+#social-links-title {
+    font-size: 2em;
+    margin: 0;
+}
+
+/* Social links text styling */
+#social-links a {
+    display: flex;
+    font-weight: 100;
+    color: white;
+    transition: 0.5s;
+}
+
+/* Social links text styling */
+#social-links a:hover {
+    opacity: 0.75;
+}
+
+/* Social links images size */
+#social-links img {
+    height: 7.5vh;
+    margin: 4px 15px 4px 0;
+}
+
+/* Social links text */
+#social-links p {
+    font-size: 4vh;
+    margin: 0;
+    line-height: 2;
+}
+
+/* Aesthetic text */
+#landing-aes-txt1 {
+    position: absolute;
+    top: 80vh;
+    left: 90vw;
+}
+
+/* Aesthetic text */
+#landing-aes-txt1 div {
+    display: flex;
+}
+
+/* Aesthetic text */
+#landing-aes-txt1 div div {
+    border-radius: 50%;
+    margin: 3px;
+    height: 5px;
+    width: 5px;
+    background-color: #E26D5C;
+    z-index: 10;
+}
+
+
+
+
+
+/* Publication information buttons hover effect */
+.pub-buttons a:hover {
+    color: #C9CBA3;
+}
+
+
+
 /* Landing profile shadow */
 #landing-intro-shadow {
     position: absolute;
-    top: 450px;
+    top: calc(100vh - 100px);
     left: 0;
     background-color: #FFE1A8;
     width: 70vw;
@@ -123,7 +201,7 @@ body::-webkit-scrollbar{
 /* Landing profile */
 #landing-intro {
     position: absolute;
-    top: 500px;
+    top: calc(100vh - 50px);
     left: 0;
     background-color: #723D46;
     width: 70vw;
@@ -135,7 +213,7 @@ body::-webkit-scrollbar{
 #landing-aes-bg2 {
     position: absolute;
     left: calc(70vw - (15em + 300px) / 2);
-    top: 450px;
+    top: calc(100vh - 100px);
     height: calc(15em + 300px);
     width: calc(15em + 300px);
     background-color: #FFE1A8;
@@ -147,7 +225,7 @@ body::-webkit-scrollbar{
 #landing-aes-fg2 {
     position: absolute;
     left: calc(70vw - (15em + 200px) / 2);
-    top: 500px;
+    top: calc(100vh - 50px);
     height: calc(15em + 200px);
     width: calc(15em + 200px);
     background-color: #723D46;
@@ -189,57 +267,6 @@ body::-webkit-scrollbar{
 /* Upon hovering over theme */
 #theme:hover {
     cursor: pointer;
-}
-
-/* Social links */
-#social-links {
-    position: absolute;
-    display: flex;
-    right: 0;
-    margin-top: 5px;
-}
-
-/* Individual social links contianer */
-.social-link-container {
-    position: absolute;
-    margin: 5px;
-}
-
-/* Social links images size */
-#social-links img {
-    height: 5vh;
-}
-
-/* Individual positioning for PubMed */
-.soc-pub {
-    right: 0;
-}
-
-/* Individual positioning for GitHub */
-.soc-git {
-    right: calc(5vh + 10px);
-}
-
-/* Individual positioning for OSF */
-.soc-osf {
-    right: calc(10vh + 20px);
-}
-
-/* Individual positioning for ORCID */
-.soc-orc {
-    right: calc(15vh + 30px);
-}
-
-/* Main image (unselected) */
-.soc-main {
-    background-color: transparent;
-    z-index: 3;
-    transition: 0.6s;
-}
-
-/* Transition on hover over social links */
-.soc-main:hover {
-    opacity: 0;
 }
 
 /* Headshot container */
