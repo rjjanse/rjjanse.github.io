@@ -1,19 +1,10 @@
-/* Palette dark:
+/* Palette:
     #472D30
     #723D46
     #E26D5C
     #FFE1A8
     #C9CBA3
     https://coolors.co/palette/c9cba3-ffe1a8-e26d5c-723d46-472d30
-*/
-
-/* Palette light:
-    #B3C186 = #C9CBA3
-    #CCD683 = #E26D5C
-    #FFFEF9 = #472D30
-    #FAEDCD = #723D46
-    #CA8F53 = #FFE1A8
-    https://coolors.co/B3C186-CCD683-fffef9-faedcd-CA8F53
 */
 
 /* All HTML */
@@ -124,7 +115,7 @@ body::-webkit-scrollbar{
 
 /* Social links title */
 #social-links-title {
-    font-size: 2em;
+    font-size: 4vh;
     margin: 0;
 }
 
@@ -328,10 +319,11 @@ body::-webkit-scrollbar{
     width: 100%;
 }
 
-#navigation {
+#placeholder {
     position: absolute;
     top: calc(100vh - 50px + 15em + 200px);
-    height: 60vh;
+    min-height: 400px;
+    height: 70vh;
     width: 60vw;
     background-color: #C9CBA3;
 }
@@ -358,6 +350,40 @@ body::-webkit-scrollbar{
     overflow: hidden;
     z-index: 15;
 }
+
+#navigation {
+    position: absolute;
+    top: calc(100vh - 50px + 15em + 200px);
+}
+
+#navigation-buttons {
+    display: block;
+    margin-top: 100px;
+}
+
+.nav-button {
+    border: none;
+    font-size: 1.25em;
+    font-family: "Titillium Web", Helvetica, sans-serif;
+    color: #FFE1A8;
+    margin: 2vh 8vw;
+    width: 26vw;
+    text-align: center;
+    display: inline-block;
+    padding: 2vh 2vw;
+    background-position: 100%;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
+    transition: background-position 1s;
+}
+
+.nav-button:hover {
+    background-position: 0% 100%;
+    cursor: pointer;
+}
+
+
+
 
 
 
@@ -408,42 +434,6 @@ body::-webkit-scrollbar{
     color: #FFE1A8;
 }
 
-/* Navigation */
-#navigation {
-    width: 100vw;
-    min-height: 30vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Nav button container */
-#nav-buttons {
-    display: flex;
-    justify-content: center;
-}
-
-/* Nav buttons */
-.nav-button {
-    border: none;
-    font-size: 1.25em;
-    font-family: "Titillium Web", Helvetica, sans-serif;
-    color: #FFE1A8;
-    margin: 2vh 4vw;
-    text-align: center;
-    display: inline-block;
-    padding: 2vh 2vw;
-    background-position: 100%;
-    background-size: 200% 100%;
-    background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
-    transition: background-position 1s;
-}
-
-/* Upon hovering nav button */
-.nav-button:hover {
-    background-position: 0% 100%;
-    cursor: pointer;
-}
 
 /* Section containers */
 .section-container {
