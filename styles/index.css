@@ -382,6 +382,28 @@ body::-webkit-scrollbar{
     cursor: pointer;
 }
 
+#landing-aes-bg6 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #C9CBA3;
+    overflow: hidden;
+    z-index: 15;
+    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px));
+    left: 0;
+}
+
+#landing-aes-fg6 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: #472D30;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 15;
+    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px));
+    left: 0;
+}
 
 
 
