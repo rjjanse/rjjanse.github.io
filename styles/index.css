@@ -29,79 +29,282 @@ body::-webkit-scrollbar{
     display: none;
 }
 
+/* -------------- LANDING AESTHETICS ---------------*/
+#landing-aes-bg1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100px;
+    width: 100px;
+    background-color: #472D30;
+    z-index: 1;
+}
+
+#landing-aes-fg1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 200px;
+    width: 200px;
+    background-color: #FFE1A8;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+#landing-aes-bg2 {
+    position: absolute;
+    left: calc(70vw - (15em + 300px) / 2);
+    top: calc(100vh - 100px);
+    height: calc(15em + 300px);
+    width: calc(15em + 300px);
+    background-color: #FFE1A8;
+    border-radius: 50%;
+    z-index: 6;
+}
+
+#landing-aes-fg2 {
+    position: absolute;
+    left: calc(70vw - (15em + 200px) / 2);
+    top: calc(100vh - 50px);
+    height: calc(15em + 200px);
+    width: calc(15em + 200px);
+    background-color: #723D46;
+    border-radius: 50%;
+    z-index: 8;
+}
+
+#landing-aes-bg3 {
+    position: absolute;
+    top: calc(100vh - 50px + 15em + 200px);
+    left: 0;
+    height: 100px;
+    width: 100px;
+    background-color: #723D46;
+    z-index: 8;
+}
+
+#landing-aes-fg3 {
+    position: absolute;
+    top: calc(100vh - 50px + 15em + 200px);
+    left: 0;
+    height: 200px;
+    width: 200px;
+    background-color: #FFE1A8;
+    border-radius: 50%;
+    z-index: 8;
+}
+
+#landing-aes-bg4 {
+    position: absolute;
+    top: calc(100vh - 50px + 15em + 200px);
+    left: 0;
+    width: 200px;
+    height: 200px;
+    background-color: #C9CBA3;
+    border-radius: 50%;
+    border: none;
+    overflow: hidden;
+    z-index: 15;
+}
+
+#landing-aes-bg4:after {
+    content: '';
+    background: #FFE1A8;
+    height: 50px;
+    display: block;
+    top: 0;
+    position: absolute;
+    width: 100%;
+}
+
+#landing-aes-bg5 {
+    position: absolute;
+    top: calc(100vh + 15em + 200px);
+    left: calc(60vw - 100px);
+    width: 100px;
+    height: 100px;
+    background-color: #FFE1A8;
+    overflow: hidden;
+    z-index: 15;
+}
+
+#landing-aes-fg5 {
+    position: absolute;
+    top: calc(100vh + 15em + 200px);
+    left: calc(60vw - 200px);
+    width: 200px;
+    height: 200px;
+    background-color: #C9CBA3;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 15;
+}
+
+#landing-aes-bg6 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #C9CBA3;
+    overflow: hidden;
+    z-index: 15;
+    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px));
+    left: 0;
+}
+
+#landing-aes-fg6 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: #472D30;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 15;
+    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px));
+    left: 0;
+}
+
+#landing-aes-bg7 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #472D30;
+    overflow: hidden;
+    z-index: 15;
+    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px) - 100px);
+    left: calc(60vw - 100px);
+}
+
+#landing-aes-fg7 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: #C9CBA3;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 15;
+    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px) - 200px);
+    left: calc(60vw - 200px);
+}
+
+/*----------------------------------------------------*/
+
 /* Landing section */
 #landing {
+    position: static;
     display: flex;
     height: 200vh;
     width: 100vw;
     background-color: #FFE1A8;
 }
 
-/* Landing left column*/
+/*------------ LANDING LEFT COLUMN ------------------ */
 #landing-left {
+    position: relative;
+    display: block;
     width: 60vw;
 }
 
-/* Landing right column */
-#landing-right {
-    background-color: #472D30;
-    width: 40vw;
-    z-index: 1;
+#landing-title-wrapper {
+    position: relative;
+    height: calc(100vh - 100px);
+    z-index: 5;
 }
 
-/* Aesthetic corner background 1 */
-#landing-aes-bg1 {
-    position: absolute;
-    right: 40vw;
-    height: 100px;
-    width: 100px;
-    background-color: #472D30;
-}
-
-/* Aesthetic corner foreground 1 */
-#landing-aes-fg1 {
-    position: absolute;
-    right: 40vw;
-    height: 200px;
-    width: 200px;
-    background-color: #FFE1A8;
-    border-radius: 50%;
-    z-index: 1;
-}
-
-/* Landing title */
 #landing-title {
-    top: 25vh;
-    left: 18vh;
-    position: absolute;
-    margin: 0;
-    font-size: 5em;
+    position: relative;
+    padding-top: 25vh;
+    padding-left: 10vw;
+    font-size: 6em;
     color: black;
     line-height: 1em;
-    max-width: 60vw;
-    height: 250px;
-    z-index: 2;
 }
 
-/* First name */
 #first-name {
     word-spacing: 20px;
     z-index: 2;
 }
 
-/* Last name */
 #last-name {
     color: #723D46;
     font-weight: bolder;
     z-index: 2;
 }
 
-/* Subtitle */
 #subtitle {
     font-size: 0.5em;
     font-weight: bold;
     line-height: 0;
 }
+
+#landing-intro-wrapper {
+    position: relative;
+
+}
+
+#landing-intro-shadow {
+    position: absolute;
+    background-color: #FFE1A8;
+    width: 70vw;
+    height: calc(15em + 300px);
+    z-index: 5;
+}
+
+/* Landing profile */
+#landing-intro {
+    position: absolute;
+    background-color: #723D46;
+    width: 70vw;
+    top: 50px;
+    height: calc(15em + 200px);
+    z-index: 10;
+}
+
+
+
+#landing-picture {
+    position: absolute;
+    top: 50px;
+    left: calc(70vw + 50px - (15em + 200px) / 2);
+}
+
+#lp-head1 {
+    position: absolute;
+    height: calc(15em + 100px);
+    transition: 1s;
+    z-index: 12;
+}
+
+#lp-head2 {
+    position: absolute;
+    height: calc(15em + 100px);
+    z-index: 11;
+}
+
+#lp-head1:hover {
+    opacity: 0;
+}
+
+#intro-text {
+    margin: 50px;
+    width: calc(70vw + 50px - (15em + 100px));
+}
+
+#intro-text p {
+    color: white;
+    font-size: 1.75em;
+}
+
+#intro-text h1 {
+    color: white;
+    font-weight: bolder;
+    font-size: 2em;
+}
+
+/*----------------------------------------------------*/
+
+
+
+
 
 /* Social links */
 #social-links {
@@ -167,111 +370,8 @@ body::-webkit-scrollbar{
     z-index: 10;
 }
 
-#landing-aes-bg3 {
-    position: absolute;
-    top: calc(100vh - 50px + 15em + 200px);
-    left: 0;
-    height: 100px;
-    width: 100px;
-    background-color: #723D46;
-    z-index: 8;
-}
 
-#landing-aes-fg3 {
-    position: absolute;
-    top: calc(100vh - 50px + 15em + 200px);
-    left: 0;
-    height: 200px;
-    width: 200px;
-    background-color: #FFE1A8;
-    border-radius: 50%;
-    z-index: 8;
-}
 
-/* Landing profile shadow */
-#landing-intro-shadow {
-    position: absolute;
-    top: calc(100vh - 100px);
-    left: 0;
-    background-color: #FFE1A8;
-    width: 70vw;
-    height: calc(15em + 300px);
-    z-index: 5;
-}
-
-/* Landing profile */
-#landing-intro {
-    position: absolute;
-    top: calc(100vh - 50px);
-    left: 0;
-    background-color: #723D46;
-    width: 70vw;
-    height: calc(15em + 200px);
-    z-index: 10;
-}
-
-/* Aesthetic corner background 2 */
-#landing-aes-bg2 {
-    position: absolute;
-    left: calc(70vw - (15em + 300px) / 2);
-    top: calc(100vh - 100px);
-    height: calc(15em + 300px);
-    width: calc(15em + 300px);
-    background-color: #FFE1A8;
-    border-radius: 50%;
-    z-index: 6;
-}
-
-/* Aesthetic corner foreground 2 */
-#landing-aes-fg2 {
-    position: absolute;
-    left: calc(70vw - (15em + 200px) / 2);
-    top: calc(100vh - 50px);
-    height: calc(15em + 200px);
-    width: calc(15em + 200px);
-    background-color: #723D46;
-    border-radius: 50%;
-    z-index: 8;
-}
-
-#landing-picture {
-    position: absolute;
-    top: 50px;
-    left: calc(70vw + 50px - (15em + 200px) / 2);
-}
-
-#lp-head1 {
-    position: absolute;
-    height: calc(15em + 100px);
-    transition: 1s;
-    z-index: 12;
-}
-
-#lp-head2 {
-    position: absolute;
-    height: calc(15em + 100px);
-    z-index: 11;
-}
-
-#lp-head1:hover {
-    opacity: 0;
-}
-
-#intro-text {
-    margin: 50px;
-    width: calc(70vw + 50px - (15em + 100px));
-}
-
-#intro-text p {
-    color: white;
-    font-size: 1.75em;
-}
-
-#intro-text h1 {
-    color: white;
-    font-weight: bolder;
-    font-size: 2em;
-}
 
 /* Aesthetic text */
 #landing-aes-txt2 {
@@ -296,28 +396,7 @@ body::-webkit-scrollbar{
     z-index: 10;
 }
 
-#landing-aes-bg4 {
-    position: absolute;
-    top: calc(100vh - 50px + 15em + 200px);
-    left: 0;
-    width: 200px;
-    height: 200px;
-    background-color: #C9CBA3;
-    border-radius: 50%;
-    border: none;
-    overflow: hidden;
-    z-index: 15;
-}
 
-#landing-aes-bg4:after {
-    content: '';
-    background: #FFE1A8;
-    height: 50px;
-    display: block;
-    top: 0;
-    position: absolute;
-    width: 100%;
-}
 
 #highlight-wrapper {
     position: absolute;
@@ -328,28 +407,16 @@ body::-webkit-scrollbar{
     background-color: #C9CBA3;
 }
 
-#landing-aes-bg5 {
-    position: absolute;
-    top: calc(100vh + 15em + 200px);
-    left: calc(60vw - 100px);
-    width: 100px;
-    height: 100px;
-    background-color: #FFE1A8;
-    overflow: hidden;
-    z-index: 15;
+
+
+/* Landing right column */
+#landing-right {
+    background-color: #472D30;
+    width: 40vw;
+    z-index: 1;
 }
 
-#landing-aes-fg5 {
-    position: absolute;
-    top: calc(100vh + 15em + 200px);
-    left: calc(60vw - 200px);
-    width: 200px;
-    height: 200px;
-    background-color: #C9CBA3;
-    border-radius: 50%;
-    overflow: hidden;
-    z-index: 15;
-}
+
 
 #navigation {
     position: absolute;
@@ -382,51 +449,6 @@ body::-webkit-scrollbar{
     cursor: pointer;
 }
 
-#landing-aes-bg6 {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: #C9CBA3;
-    overflow: hidden;
-    z-index: 15;
-    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px));
-    left: 0;
-}
-
-#landing-aes-fg6 {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background-color: #472D30;
-    border-radius: 50%;
-    overflow: hidden;
-    z-index: 15;
-    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px));
-    left: 0;
-}
-
-#landing-aes-bg7 {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: #472D30;
-    overflow: hidden;
-    z-index: 15;
-    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px) - 100px);
-    left: calc(60vw - 100px);
-}
-
-#landing-aes-fg7 {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background-color: #C9CBA3;
-    border-radius: 50%;
-    overflow: hidden;
-    z-index: 15;
-    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px) - 200px);
-    left: calc(60vw - 200px);
-}
 
 /* Academic profile */
 #academic-profile {
