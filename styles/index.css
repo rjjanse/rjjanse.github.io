@@ -319,7 +319,7 @@ body::-webkit-scrollbar{
     width: 100%;
 }
 
-#placeholder {
+#highlight-wrapper {
     position: absolute;
     top: calc(100vh - 50px + 15em + 200px);
     min-height: 400px;
@@ -403,6 +403,35 @@ body::-webkit-scrollbar{
     z-index: 15;
     top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px));
     left: 0;
+}
+
+#landing-aes-bg7 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #472D30;
+    overflow: hidden;
+    z-index: 15;
+    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px) - 100px);
+    left: calc(60vw - 100px);
+}
+
+#landing-aes-fg7 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background-color: #C9CBA3;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 15;
+    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px) - 200px);
+    left: calc(60vw - 200px);
+}
+
+/* Academic profile */
+#academic-profile {
+    position: relative;
+    margin-top: 50px;
 }
 
 
