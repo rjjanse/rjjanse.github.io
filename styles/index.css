@@ -53,10 +53,9 @@ body::-webkit-scrollbar{
 
 #landing-aes-bg2 {
     position: absolute;
-    left: calc(70vw - (15em + 300px) / 2);
-    top: calc(100vh - 100px);
-    height: calc(15em + 300px);
-    width: calc(15em + 300px);
+    left: calc(70vw - 275px);
+    height: 550px;
+    width: 550px;
     background-color: #FFE1A8;
     border-radius: 50%;
     z-index: 6;
@@ -64,10 +63,10 @@ body::-webkit-scrollbar{
 
 #landing-aes-fg2 {
     position: absolute;
-    left: calc(70vw - (15em + 200px) / 2);
-    top: calc(100vh - 50px);
-    height: calc(15em + 200px);
-    width: calc(15em + 200px);
+    top: 50px;
+    left: calc(70vw - 225px);
+    height: 450px;
+    width: 450px;
     background-color: #723D46;
     border-radius: 50%;
     z-index: 8;
@@ -75,8 +74,7 @@ body::-webkit-scrollbar{
 
 #landing-aes-bg3 {
     position: absolute;
-    top: calc(100vh - 50px + 15em + 200px);
-    left: 0;
+    top: -50px;
     height: 100px;
     width: 100px;
     background-color: #723D46;
@@ -85,8 +83,7 @@ body::-webkit-scrollbar{
 
 #landing-aes-fg3 {
     position: absolute;
-    top: calc(100vh - 50px + 15em + 200px);
-    left: 0;
+    top: -50px;
     height: 200px;
     width: 200px;
     background-color: #FFE1A8;
@@ -96,8 +93,7 @@ body::-webkit-scrollbar{
 
 #landing-aes-bg4 {
     position: absolute;
-    top: calc(100vh - 50px + 15em + 200px);
-    left: 0;
+    top: -50px;
     width: 200px;
     height: 200px;
     background-color: #C9CBA3;
@@ -119,7 +115,6 @@ body::-webkit-scrollbar{
 
 #landing-aes-bg5 {
     position: absolute;
-    top: calc(100vh + 15em + 200px);
     left: calc(60vw - 100px);
     width: 100px;
     height: 100px;
@@ -130,7 +125,6 @@ body::-webkit-scrollbar{
 
 #landing-aes-fg5 {
     position: absolute;
-    top: calc(100vh + 15em + 200px);
     left: calc(60vw - 200px);
     width: 200px;
     height: 200px;
@@ -147,8 +141,7 @@ body::-webkit-scrollbar{
     background-color: #C9CBA3;
     overflow: hidden;
     z-index: 15;
-    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px));
-    left: 0;
+    top: calc(100vh - 100px);
 }
 
 #landing-aes-fg6 {
@@ -159,8 +152,7 @@ body::-webkit-scrollbar{
     border-radius: 50%;
     overflow: hidden;
     z-index: 15;
-    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px));
-    left: 0;
+    top: calc(100vh - 100px);
 }
 
 #landing-aes-bg7 {
@@ -170,7 +162,7 @@ body::-webkit-scrollbar{
     background-color: #472D30;
     overflow: hidden;
     z-index: 15;
-    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px) - 100px);
+    top: calc(100vh - 200px);
     left: calc(60vw - 100px);
 }
 
@@ -182,7 +174,7 @@ body::-webkit-scrollbar{
     border-radius: 50%;
     overflow: hidden;
     z-index: 15;
-    top: calc(100vh - 50px + 15em + 200px + max(70vh, 400px) - 200px);
+    top: calc(100vh - 300px);
     left: calc(60vw - 200px);
 }
 
@@ -192,7 +184,7 @@ body::-webkit-scrollbar{
 #landing {
     position: static;
     display: flex;
-    height: 200vh;
+    height: calc(((100vh - 100px) * 2) + 550px);
     width: 100vw;
     background-color: #FFE1A8;
 }
@@ -214,7 +206,7 @@ body::-webkit-scrollbar{
     position: relative;
     padding-top: 25vh;
     padding-left: 10vw;
-    font-size: 6em;
+    font-size: 12vh;
     color: black;
     line-height: 1em;
 }
@@ -231,21 +223,21 @@ body::-webkit-scrollbar{
 }
 
 #subtitle {
-    font-size: 0.5em;
+    font-size: 6vh;
     font-weight: bold;
     line-height: 0;
 }
 
 #landing-intro-wrapper {
     position: relative;
-
+    height: 550px;
 }
 
 #landing-intro-shadow {
     position: absolute;
     background-color: #FFE1A8;
     width: 70vw;
-    height: calc(15em + 300px);
+    height: 550px;
     z-index: 5;
 }
 
@@ -255,28 +247,26 @@ body::-webkit-scrollbar{
     background-color: #723D46;
     width: 70vw;
     top: 50px;
-    height: calc(15em + 200px);
+    height: 450px;
     z-index: 10;
 }
-
-
 
 #landing-picture {
     position: absolute;
     top: 50px;
-    left: calc(70vw + 50px - (15em + 200px) / 2);
+    right: 175px;
 }
 
 #lp-head1 {
     position: absolute;
-    height: calc(15em + 100px);
+    height: 350px;
     transition: 1s;
     z-index: 12;
 }
 
 #lp-head2 {
     position: absolute;
-    height: calc(15em + 100px);
+    height: 350px;
     z-index: 11;
 }
 
@@ -286,18 +276,30 @@ body::-webkit-scrollbar{
 
 #intro-text {
     margin: 50px;
-    width: calc(70vw + 50px - (15em + 100px));
+    width: calc(70vw - 275px);
 }
 
 #intro-text p {
     color: white;
-    font-size: 1.75em;
+    font-size: calc(15px + 0.95vw);
 }
 
 #intro-text h1 {
     color: white;
     font-weight: bolder;
-    font-size: 2em;
+    font-size: 30px;
+}
+
+#highlights-wrapper {
+    position: relative;
+    height: calc(100vh - 100px);
+    width: 60vw;
+    background-color: #C9CBA3;
+}
+
+#highlights {
+    height: 70vh;
+    width: 60vw;
 }
 
 /*----------------------------------------------------*/
@@ -398,14 +400,6 @@ body::-webkit-scrollbar{
 
 
 
-#highlight-wrapper {
-    position: absolute;
-    top: calc(100vh - 50px + 15em + 200px);
-    min-height: 400px;
-    height: 70vh;
-    width: 60vw;
-    background-color: #C9CBA3;
-}
 
 
 
