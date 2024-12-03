@@ -690,6 +690,11 @@ span.important {
     color: #C9CBA3;
 }
 
+/* Shared first author note */
+.sfa {
+    font-size: 0.75em;
+}
+
 /* Publication information header heading text */
 .pub-header h2 {
     padding: 15px 20px 10px 20px;

@@ -8,8 +8,9 @@ function drawChart() {
   // Data
   var data = google.visualization.arrayToDataTable([
     ['Year', 'Number', {role: 'tooltip'}],
-    ["2022", 4, 'AJKD, CKJ, NDT, NTvG'],
-    ["2023", 6, 'BMJ Open, CKJ, JASN, Kidney Int, NDT']
+    ["2022", 4, "AJKD, CKJ, NDT, NTvG"],
+    ["2023", 6, "BMJ Open, CKJ, JASN, Kidney Int, NDT"],
+    ["2024", 11, "BMC Medical Educ, CKJ, Health Sci Rep, J Nephrol, Kidney Med, Kidney360, Lancet Healthy Longev, NDT, Sci Rep"]
   ]);
 
   // Chart options
