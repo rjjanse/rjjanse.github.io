@@ -795,6 +795,10 @@ span.important {
     margin-top: 0;
 }
 
+#acknowledge-list {
+    text-align: left;
+}
+
 /* Peer review title */
 #pr-title {
     margin-top: 20px !important;
