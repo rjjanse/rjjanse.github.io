@@ -832,6 +832,10 @@ span.important {
     padding: 0;
 }
 
+#pr-list {
+    font-size: 0.5em;
+}
+
 /* CV container */
 #cv-content-container {
     display: block;
