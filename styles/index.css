@@ -1000,6 +1000,29 @@ span.important {
 }
 
 /* Interest buttons */
+.interest-button-external {
+    border: none;
+    font-size: 1.05em;
+    font-family: "Titillium Web", Helvetica, sans-serif;
+    color: #FFE1A8;
+    text-align: center;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 2vh 2vw;
+    width: 250px;
+    background-position: 100%;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
+    transition: background-position 1s;
+}
+
+/* Upon hovering interest button */
+.interest-button-external:hover {
+    background-position: 0% 100%;
+    cursor: pointer;
+}
+
+/* Interest buttons */
 #interest-buttons {
     margin: 0;
     padding: 0;
