@@ -206,6 +206,7 @@ body::-webkit-scrollbar{
     position: relative;
     padding-top: 25vh;
     padding-left: 10vw;
+    padding-right: 10vw;
     font-size: 12vh;
     color: black;
     line-height: 1em;
