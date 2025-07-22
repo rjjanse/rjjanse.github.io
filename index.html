@@ -127,14 +127,14 @@
 
                     <div class = "social-link-container">
                         <a target = "_blank" href = "https://europepmc.org/search?query=AUTH%3A%22Janse%20RJ%22" rel = "noopener"> 
-                            <img class = "themed" src = "images/dark/pubmed.png" alt = "pubmed icon"> 
+                            <img class = "themed" src = "images/dark/europepmc.png" alt = "europepmc icon"> 
                             <p> EuropePMC </p>
                         </a>
                     </div>
 
                     <div class = "social-link-container">
                         <a target = "_blank" href = "https://osf.io/fwzdu/" rel = "noopener"> 
-                            <img class = "themed" src = "images/dark/pubmed.png" alt = "pubmed icon"> 
+                            <img class = "themed" src = "images/dark/osf.png" alt = "osf icon"> 
                             <p> OSF </p>
                         </a>
                     </div>
@@ -254,119 +254,168 @@
                 <div>
                     <h3 id = "pubs-title"> Publications </h3>
 
+                    <div id = "pubs-filter"> 
+                        <div>
+                            <label for = "pub-filter-author">Author position:</label>
+
+                            <select title = "Author pos." name = "author" class = "pub-filter" id = "pub-filter-author">
+                                <button>
+                                    <selectedcontent></selectedcontent>
+                                </button>
+
+                                <option value = "pfa-all"></option>
+                                <option value = "pfa-first">First</option>
+                                <option value = "pfa-second">Second</option>
+                                <option value = "pfa-third">Third or more</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for = "pub-filter-approach">Focus:</label>
+
+                            <select title = "Approach" name = "approach" class = "pub-filter" id = "pub-filter-approach">
+                                <button>
+                                    <selectedcontent></selectedcontent>
+                                </button>
+
+                                <option value = "pfap-all"></option>
+                                <option value = "pfap-descriptive">Descriptive</option>
+                                <option value = "pfap-predictive">Predictive</option>
+                                <option value = "pfap-causal">Causal</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for = "pub-filter-discipline">Discipline:</label>
+
+                            <select title = "Discipline" name = "discipline" class = "pub-filter" id = "pub-filter-discipline">
+                                <button>
+                                    <selectedcontent></selectedcontent>
+                                </button>
+
+                                <option value = "pfd-all"></option>
+                                <option value = "pfd-epi">Epidemiology</option>
+                                <option value = "pfd-neph">Nephrology</option>
+                                <option value = "pfd-cvd">Cardiology</option>
+                                <option value = "pfd-dm">Diabetiology</option>
+                                <option value = "pfd-me">Medical education</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div id = "publications">
                         <div id = "publication-list-wrapper">
                             <div id = "publication-list">
-                                <button class = "publication-button" name = "janse-2025-kme">
+                                <button class = "publication-button pfa-first pfap-predictive pfd-neph" name = "janse-2025-kme">
                                     Predicting hospitalisations in kidney disease <br>
                                     <span class = "first-author"> First author </span>
                                 </button>
 
-                                <button class = "publication-button" name = "aylward-2025-ckj">
+                                <button class = "publication-button pfa-third pfap-causal pfd-neph pfd-cvd" name = "aylward-2025-ckj">
                                     Cardiometabolic proteins and kidney function
                                 </button>
 
-                                <button class = "publication-button" name = "janse-2025-ckj">
+                                <button class = "publication-button pfa-first pfap-predictive pfd-epi" name = "janse-2025-ckj">
                                     On machine learning for prediction modelling <br>
                                     <span class = "first-author"> First author </span>
                                 </button>
 
-                                <button class = "publication-button" name = "wijk-2024-bmcme">
+                                <button class = "publication-button pfa-third pfap-causal pfd-me" name = "wijk-2024-bmcme">
                                     Retrieval practice using VSAQs vs. MCQs
                                 </button>
 
-                                <button class = "publication-button" name = "driehuis-2024-ckj">
+                                <button class = "publication-button pfa-second pfap-causal pfd-neph" name = "driehuis-2024-ckj">
                                     Informal caregiver burden in dialysis care
                                 </button>
 
-                                <button class = "publication-button" name = "janse-2024-lanhl">
+                                <button class = "publication-button pfa-first pfap-predictive pfd-neph" name = "janse-2024-lanhl">
                                     Health-related quality of life after kidney transplantion <br>
                                     <span class = "first-author"> First author </span>
                                 </button>
 
-                                <button class = "publication-button" name = "magagnoli-2024-cjasn">
+                                <button class = "publication-button pfa-third pfap-causal pfd-neph" name = "magagnoli-2024-cjasn">
                                     CKD-MBD biomarkers and symptom burden
                                 </button>
 
-                                <button class = "publication-button" name = "janse-2024-ndt">
+                                <button class = "publication-button pfa-first pfap-causal pfap-predictive pfd-epi" name = "janse-2024-ndt">
                                     Alternatives to impact trials  <br>
                                     <span class = "first-author"> First author </span>
                                 </button>
 
-                                <button class = "publication-button" name = "ohara-2024-drcp">
+                                <button class = "publication-button pfa-first pfap-descriptive pfd-dm" name = "ohara-2024-drcp">
                                     Adherence and persistence to novel glucose-lowering medications <br>
                                     <span class = "first-author"> First author </span>
                                 </button>
 
-                                <button class = "publication-button" name = "wijk-2024-ahsetp">
+                                <button class = "publication-button pfa-third pfap-causal pfd-me" name = "wijk-2024-ahsetp">
                                     Study credits, feedback use, and test-taking motivation
                                 </button>
 
-                                <button class = "publication-button" name = "wijk-2024-meded">
+                                <button class = "publication-button pfa-third pfap-causal pfd-me" name = "wijk-2024-meded">
                                     Students' feedback use in medical progress testing
                                 </button>
                                 
-                                <button class = "publication-button" name = "akerboom-2024-ndt">
+                                <button class = "publication-button pfa-second pfap-predictive pfd-neph" name = "akerboom-2024-ndt">
                                     Predicting lower extremity amputation in dialysis patients
                                 </button>
 
-                                <button class = "publication-button" name = "wijk-2024-ntvg">
+                                <button class = "publication-button pfa-second pfap-causal pfd-me" name = "wijk-2024-ntvg">
                                     How quality questions stimulate learning
                                 </button>
 
-                                <button class = "publication-button" name = "luo-2024-ckj">
+                                <button class = "publication-button pfa-third pfap-causal pfd-neph" name = "luo-2024-ckj">
                                     Albuminuria increase and cancer risk
                                 </button>
 
-                                <button class = "publication-button" name = "milders-2023-jasn">
+                                <button class = "publication-button pfa-third pfap-predictive pfd-neph" name = "milders-2023-jasn">
                                     Prognostic models in nephrology: a scoping review 
                                 </button>
 
-                                <button class = "publication-button" name = "janse-2023-ajkd">
+                                <button class = "publication-button pfa-first pfap-predictive pfd-epi pfd-neph" name = "janse-2023-ajkd">
                                     Predicting kidney failure: time to rethink probabilities <br>
                                     <span class = "first-author"> First author </span>
                                 </button>
 
-                                <button class = "publication-button" name = "wijk-2023-plos">
+                                <button class = "publication-button pfa-second pfap-causal pfd-me" name = "wijk-2023-plos">
                                     Very short answer questions in medical education
                                 </button>
 
-                                <button class = "publication-button" name = "luo-2023-ckj">
+                                <button class = "publication-button pfa-third pfap-causal pfd-neph" name = "luo-2023-ckj">
                                     Albuminuria and cancer risk
                                 </button>
 
-                                <button class = "publication-button" name = "langenhuijsen-2023-jce">
+                                <button class = "publication-button pfa-second pfap-predictive pfd-epi" name = "langenhuijsen-2023-jce">
                                    Meta-review of bias in prediction studies
                                 </button>
 
-                                <button class = "publication-button" name = "vrijlandt-2023-jnephrol">
+                                <button class = "publication-button pfa-third pfap-descriptive pfd-neph" name = "vrijlandt-2023-jnephrol">
                                     Prevalence of CKD in fertile women and birth rates
                                 </button>
 
-                                <button class = "publication-button" name = "wijk-2022-mt">
+                                <button class = "publication-button pfa-second pfap-causal pfd-me" name = "wijk-2022-mt">
                                     Response to: 'Twelve tips for introducing VSAQs'
                                 </button>
 
-                                <button class = "publication-button" name = "janse-2022-ejhf">
+                                <button class = "publication-button pfa-first pfap-descriptive pfd-cvd pfd-neph" name = "janse-2022-ejhf">
                                     Medication use in HF and CKD <br>
                                     <span class = "first-author"> First author </span>
                                 </button>
 
-                                <button class = "publication-button" name = "janse-2022-ckj">
+                                <button class = "publication-button pfa-first pfap-causal pfd-neph" name = "janse-2022-ckj">
                                     Stopping RASi after hospitalization for AKI <br>
                                     <span class = "first-author"> First author </span>
                                 </button>
 
-                                <button class = "publication-button" name = "fu-2022-ijc">
+                                <button class = "publication-button pfa-third pfap-causal pfd-cvd" name = "fu-2022-ijc">
                                     SGLT2i vs. GLP1-RA on cardiovascular outcomes
                                 </button>
 
-                                <button class = "publication-button" name = "janse-2021-ckj">
+                                <button class = "publication-button pfa-first pfap-causal pfd-epi" name = "janse-2021-ckj">
                                     Correlation analysis: limitations and pitfalls <br>
                                     <span class = "first-author"> First author </span>
                                 </button>
 
-                                <button class = "publication-button" name = "fu-2020-ckj">
+                                <button class = "publication-button pfa-second pfap-causal pfd-neph" name = "fu-2020-ckj">
                                     AKI and KRT in COVID-19 patients
                                 </button>
                             </div>
@@ -2051,12 +2100,12 @@
 
         <!-- Javascript -->
         <script type = "text/javascript" src = "scripts/cv_expand.js"></script> <!-- Expand CV sections -->
+        <script type = "text/javascript" src = "scripts/pub-filter.js"></script> <!-- Publication filter -->
         <script type = "text/javascript" src = "scripts/publications.js"></script> <!-- Publication overview -->
         <script type = "text/javascript" src = "scripts/interests.js"></script> <!-- Interests overview -->
         <script type = "text/javascript" src = "scripts/climbing.js"></script> <!-- Climbing images -->
         <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js"></script> <!-- Charts -->
         <script type = "text/javascript" src = "scripts/peerreview.js"></script> <!-- Barchart for peer review -->
-        <script type = "text/javascript" src = "scripts/theme.js"></script> <!-- Change theme -->
 
     <!-- Finish -->
     </body>

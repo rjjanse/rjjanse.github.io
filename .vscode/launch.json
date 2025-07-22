@@ -5,10 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "name": "Launch index Firefox.html",
+            "file": "${workspaceFolder}/index.html"
+        },
+        {
             "type": "msedge",
             "request": "launch",
             "name": "Open index.html",
-            "file": "c:\\Users\\rjjanse.LUMCNET\\Documents\\GitHub\\rjjanse.github.io\\index.html"
+            "file": "c:\\Users\\rjjan\\OneDrive\\Documents\\GitHub\\rjjanse.github.io\\index.html"
         }
     ]
 }

@@ -585,6 +585,29 @@ span.important {
     font-size: 1.5em;
 }
 
+#pubs-filter {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+select, ::picker(select), option {
+    appearance: base-select;
+}
+
+select {
+    font-family: "Titillium Web", Helvetica, sans-serif;
+    background: #723D46;
+    color: #FFE1A8;
+    border: 0;
+    transition: 0.4s;
+}
+
+select::picker-icon {
+  color: #723D46;
+}
+
+
 /* Publications */
 #publications {
     min-height: 80vh;
@@ -633,6 +656,7 @@ span.important {
 
 /* Publication buttons */
 .publication-button {
+    display: block;
     width: 100%;
     padding: 10px 5%;
     border: none;
