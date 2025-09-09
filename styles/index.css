@@ -1226,3 +1226,311 @@ select::picker-icon {
     width: 100%;
     font-size: 0.7em;
 }
+
+/* Phone compatability */
+@media only screen and (max-width: 640px)  {
+    
+/* -------------- LANDING AESTHETICS ---------------*/
+#landing-aes-bg1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    background-color: #472D30;
+    z-index: 1;
+}
+
+#landing-aes-fg1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 200px;
+    width: 200px;
+    background-color: #FFE1A8;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+#landing-aes-bg2, #landing-aes-fg2, #landing-aes-bg3, #landing-aes-fg3, #landing-aes-bg4, #landing-aes-fg4, 
+#landing-aes-bg5, #landing-aes-fg5, #landing-aes-bg6, #landing-aes-fg6, #landing-aes-bg7, #landing-aes-fg7 {
+    display: none;
+}
+
+/*----------------------------------------------------*/
+
+/* Landing section */
+#landing {
+    position: static;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: #FFE1A8;
+}
+
+/*------------ LANDING LEFT COLUMN ------------------ */
+
+#landing-left {
+    display: block;
+    width: 100vw;
+}
+
+#landing-title-wrapper {
+    position: relative;
+    height: 100vh;
+    z-index: 5;
+}
+
+#landing-title {
+    position: relative;
+    padding-top: 25vh;
+    padding-left: 10vw;
+    padding-right: 10vw;
+    font-size: 12vh;
+    color: black;
+    line-height: 1em;
+}
+
+#first-name {
+    word-spacing: 20px;
+    z-index: 2;
+}
+
+#last-name {
+    color: #723D46;
+    font-weight: bolder;
+    z-index: 2;
+}
+
+#subtitle {
+    font-size: 5.5vh;
+    font-weight: bold;
+    line-height: 0;
+}
+
+#landing-intro-wrapper {
+    position: relative;
+    height: 550px;
+}
+
+#landing-intro-shadow {
+    position: absolute;
+    background-color: #FFE1A8;
+    width: 70vw;
+    height: 550px;
+    z-index: 5;
+}
+
+/* Landing profile */
+#landing-intro {
+    position: absolute;
+    background-color: #723D46;
+    width: 70vw;
+    top: 50px;
+    height: 450px;
+    z-index: 10;
+}
+
+#landing-picture {
+    position: absolute;
+    top: 50px;
+    right: 175px;
+}
+
+#lp-head1 {
+    position: absolute;
+    height: 350px;
+    transition: 1s;
+    z-index: 12;
+}
+
+#lp-head2 {
+    position: absolute;
+    height: 350px;
+    z-index: 11;
+}
+
+#lp-head1:hover {
+    opacity: 0;
+}
+
+#intro-text {
+    margin: 50px;
+    width: calc(70vw - 275px);
+}
+
+#intro-text p {
+    color: white;
+    font-size: calc(15px + 0.90vw);
+}
+
+#intro-text h1 {
+    color: white;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+#highlights-wrapper {
+    position: relative;
+    height: calc(100vh - 100px);
+    width: 60vw;
+    background-color: #C9CBA3;
+}
+
+#appointments {
+    position: relative;
+    height: calc(100vh - 250px);
+    width: calc(60vw - 150px);
+    padding: 75px;
+    z-index: 20;
+}
+
+#appointments-title {
+    font-size: 2em;
+    font-weight: bolder;
+    color: #472D30;
+}
+
+.appointment {
+    display: flex;
+    font-size: 1.5em;
+    color: #472D30;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.appointment-text {
+    margin: 0;
+    padding: calc(7.5vh - 3.5em);
+}
+
+.appointment-img {
+    height: 7.5vh;
+    margin-right: 20px;
+    border: #472D30 3px solid;
+}
+
+.appointment-institution {
+    font-style: italic;
+}
+
+/*------------LANDING RIGHT COLUMN ----------------*/
+
+/* Landing right column */
+#landing-right {
+    background-color: #472D30;
+    width: 100vw;
+    z-index: 1;
+}
+/* Social links */
+#social-links {
+    top: 100vh;
+    margin: 0;
+    z-index: 2;
+    color: #E26D5C;
+}
+
+/* Social links title */
+#social-links-title {
+    font-size: 4vh;
+    margin: 0;
+}
+
+/* Social links text styling */
+#social-links a {
+    display: flex;
+    font-weight: 100;
+    color: white;
+    transition: 0.5s;
+}
+
+/* Social links text styling */
+#social-links a:hover {
+    opacity: 0.75;
+}
+
+/* Social links images size */
+#social-links img {
+    height: 7.5vh;
+    margin: 4px 15px 4px 0;
+}
+
+/* Social links text */
+#social-links p {
+    font-size: 4vh;
+    margin: 0;
+    line-height: 2;
+}
+
+/* Aesthetic text */
+#landing-aes-txt1 {
+    display: none;
+}
+
+/* Aesthetic text */
+#landing-aes-txt1 div {
+    display: none;
+}
+
+/* Aesthetic text */
+#landing-aes-txt1 div div {
+    display: none;
+}
+
+/* Aesthetic text */
+#landing-aes-txt2 {
+    display: none;
+}
+
+/* Aesthetic text */
+#landing-aes-txt2 div {
+    display: none;
+}
+
+/* Aesthetic text */
+#landing-aes-txt2 div div {
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+#navigation {
+    position: absolute;
+    top: calc(100vh - 50px + 15em + 200px);
+}
+
+#navigation-buttons {
+    display: block;
+    margin-top: 100px;
+}
+
+.nav-button {
+    border: none;
+    font-size: 1.25em;
+    font-family: "Titillium Web", Helvetica, sans-serif;
+    color: #FFE1A8;
+    margin: 2vh 8vw;
+    width: 26vw;
+    text-align: center;
+    display: inline-block;
+    padding: 2vh 2vw;
+    background-position: 100%;
+    background-size: 200% 100%;
+    background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
+    transition: background-position 1s;
+}
+
+.nav-button:hover {
+    background-position: 0% 100%;
+    cursor: pointer;
+}
+
+
+
+}
