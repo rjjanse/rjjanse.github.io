@@ -178,6 +178,10 @@ body::-webkit-scrollbar{
     left: calc(60vw - 200px);
 }
 
+#landing-aes-bg8, #landing-aes-fg8, #landing-aes-bg9, #landing-aes-fg9 {
+    display: none;
+}
+
 /*----------------------------------------------------*/
 
 /* Landing section */
@@ -1252,8 +1256,109 @@ select::picker-icon {
     z-index: 2;
 }
 
+#landing-aes-bg6 {
+    position: absolute;
+    top: auto;
+    bottom: -100px;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    background-color: #C9CBA3;
+    z-index: 1;
+}
+
+#landing-aes-fg6 {
+    position: absolute;
+    top: auto;
+    bottom: -200px;
+    left: 0;
+    height: 200px;
+    width: 200px;
+    background-color: #472D30;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+#landing-aes-bg7 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    background-color: #723D46;
+    z-index: 1;
+}
+
+#landing-aes-fg7 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 200px;
+    width: 200px;
+    background-color: #C9CBA3;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+#landing-aes-bg8 {
+    position: absolute;
+    display: block;
+    top: calc(100vh - 100px);
+    left: 0;
+    height: 100px;
+    width: 100px;
+    background-color: #472D30;
+    z-index: 1;
+}
+
+#landing-aes-fg8 {
+    position: absolute;
+    display: block;
+    top: calc(100vh - 200px);
+    left: 0;
+    height: 200px;
+    width: 200px;
+    background-color: #FFE1A8;
+    border-radius: 50%;
+    z-index: 4;
+}
+
+#landing-aes-fg8-2 {
+    position: absolute;
+    display: block;
+    top: calc(100vh - 200px);
+    left: 100px;
+    height: 200px;
+    width: 200px;
+    background-color: #FFE1A8;
+    z-index: 5;
+}
+
+#landing-aes-bg9 {
+    position: absolute;
+    display: block;
+    top: -50px;
+    left: 0;
+    height: 100px;
+    width: 100px;
+    background-color: #723D46;
+    z-index: 2;
+}
+
+#landing-aes-fg9 {
+    position: absolute;
+    display: block;
+    top: -150px;
+    left: 0;
+    height: 200px;
+    width: 200px;
+    background-color: #472D30;
+    border-radius: 50%;
+    z-index: 3;
+}
+
 #landing-aes-bg2, #landing-aes-fg2, #landing-aes-bg3, #landing-aes-fg3, #landing-aes-bg4, #landing-aes-fg4, 
-#landing-aes-bg5, #landing-aes-fg5, #landing-aes-bg6, #landing-aes-fg6, #landing-aes-bg7, #landing-aes-fg7 {
+#landing-aes-bg5, #landing-aes-fg5, #landing-aes-txt1, #landing-aes-txt2 {
     display: none;
 }
 
@@ -1263,7 +1368,7 @@ select::picker-icon {
 #landing {
     position: static;
     display: flex;
-    height: 100vh;
+    height: auto;
     width: 100vw;
     background-color: #FFE1A8;
 }
@@ -1286,9 +1391,10 @@ select::picker-icon {
     padding-top: 25vh;
     padding-left: 10vw;
     padding-right: 10vw;
-    font-size: 12vh;
+    font-size: 8vh;
     color: black;
     line-height: 1em;
+    height: 100vh;
 }
 
 #first-name {
@@ -1300,6 +1406,7 @@ select::picker-icon {
     color: #723D46;
     font-weight: bolder;
     z-index: 2;
+    font-size: 10vh;
 }
 
 #subtitle {
@@ -1310,43 +1417,45 @@ select::picker-icon {
 
 #landing-intro-wrapper {
     position: relative;
-    height: 550px;
+    height: 800px;
+    background-color: #472D30;
 }
 
 #landing-intro-shadow {
-    position: absolute;
-    background-color: #FFE1A8;
-    width: 70vw;
-    height: 550px;
-    z-index: 5;
+    display: none;
 }
 
 /* Landing profile */
 #landing-intro {
     position: absolute;
+    display: block;
     background-color: #723D46;
-    width: 70vw;
     top: 50px;
-    height: 450px;
+    height: 750px;
+    width: 100vw;
     z-index: 10;
 }
 
 #landing-picture {
-    position: absolute;
-    top: 50px;
-    right: 175px;
+    position: relative;
+    top: 0;
+    right: 0;
+    height: calc(100vw - 100px);
+    margin: 0px 50px 25px 50px;
 }
 
 #lp-head1 {
     position: absolute;
-    height: 350px;
+    height: calc(100vw - 100px);
+    width: calc(100vw - 100px);
     transition: 1s;
     z-index: 12;
 }
 
 #lp-head2 {
     position: absolute;
-    height: 350px;
+    height: calc(100vw - 100px);
+    width: calc(100vw - 100px);
     z-index: 11;
 }
 
@@ -1355,8 +1464,8 @@ select::picker-icon {
 }
 
 #intro-text {
-    margin: 50px;
-    width: calc(70vw - 275px);
+    margin: 25px 50px 0px 50px;
+    width: calc(100% - 100px);
 }
 
 #intro-text p {
@@ -1372,16 +1481,17 @@ select::picker-icon {
 
 #highlights-wrapper {
     position: relative;
-    height: calc(100vh - 100px);
-    width: 60vw;
+    top: 0;
+    height: auto;
+    width: 100vw;
     background-color: #C9CBA3;
 }
 
 #appointments {
     position: relative;
-    height: calc(100vh - 250px);
-    width: calc(60vw - 150px);
-    padding: 75px;
+    height: auto;
+    width: calc(100vw - 50px);
+    padding: 50px 25px 25px 25px;
     z-index: 20;
 }
 
@@ -1393,7 +1503,7 @@ select::picker-icon {
 
 .appointment {
     display: flex;
-    font-size: 1.5em;
+    font-size: 1em;
     color: #472D30;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -1401,13 +1511,13 @@ select::picker-icon {
 
 .appointment-text {
     margin: 0;
-    padding: calc(7.5vh - 3.5em);
+    padding: calc(3.5vh - 3.5em);
 }
 
 .appointment-img {
-    height: 7.5vh;
-    margin-right: 20px;
-    border: #472D30 3px solid;
+    height: 3.5vh;
+    margin: 10px 20px 0px 0px;
+    border: #472D30 1px solid;
 }
 
 .appointment-institution {
@@ -1415,122 +1525,62 @@ select::picker-icon {
 }
 
 /*------------LANDING RIGHT COLUMN ----------------*/
-
-/* Landing right column */
-#landing-right {
-    background-color: #472D30;
-    width: 100vw;
-    z-index: 1;
-}
-/* Social links */
-#social-links {
-    top: 100vh;
-    margin: 0;
-    z-index: 2;
-    color: #E26D5C;
-}
-
-/* Social links title */
-#social-links-title {
-    font-size: 4vh;
-    margin: 0;
-}
-
-/* Social links text styling */
-#social-links a {
-    display: flex;
-    font-weight: 100;
-    color: white;
-    transition: 0.5s;
-}
-
-/* Social links text styling */
-#social-links a:hover {
-    opacity: 0.75;
-}
-
-/* Social links images size */
-#social-links img {
-    height: 7.5vh;
-    margin: 4px 15px 4px 0;
-}
-
-/* Social links text */
-#social-links p {
-    font-size: 4vh;
-    margin: 0;
-    line-height: 2;
-}
-
-/* Aesthetic text */
-#landing-aes-txt1 {
-    display: none;
-}
-
-/* Aesthetic text */
-#landing-aes-txt1 div {
-    display: none;
-}
-
-/* Aesthetic text */
-#landing-aes-txt1 div div {
-    display: none;
-}
-
-/* Aesthetic text */
-#landing-aes-txt2 {
-    display: none;
-}
-
-/* Aesthetic text */
-#landing-aes-txt2 div {
-    display: none;
-}
-
-/* Aesthetic text */
-#landing-aes-txt2 div div {
-    display: none;
-}
-
-
-
-
-
-
-
-
-
+/* Hide navigation buttons */
 #navigation {
-    position: absolute;
-    top: calc(100vh - 50px + 15em + 200px);
+    display: none;
 }
 
-#navigation-buttons {
-    display: block;
-    margin-top: 100px;
+/* Hide social links */
+#social-links {
+    display: none;
 }
 
-.nav-button {
-    border: none;
-    font-size: 1.25em;
-    font-family: "Titillium Web", Helvetica, sans-serif;
-    color: #FFE1A8;
-    margin: 2vh 8vw;
-    width: 26vw;
-    text-align: center;
-    display: inline-block;
-    padding: 2vh 2vw;
-    background-position: 100%;
-    background-size: 200% 100%;
-    background-image: linear-gradient(to right, #E26D5C, #E26D5C 50%, #723D46 50%);
-    transition: background-position 1s;
+/*-----------------ACADEMIC PROFILE----------------*/
+.section-title {
+    z-index: 3;
+    left: 10vw;
 }
 
-.nav-button:hover {
-    background-position: 0% 100%;
-    cursor: pointer;
+#academic-content-container {
+    width: 90vw;
+    left: 5vw;
 }
 
+#academic-specific-texts {
+    display: none;
+}
 
+#publications-wrapper {
+    width: 90vw;
+}
+
+#pubs-filter {
+    font-size: 0.5em;
+}
+
+#pubs-filter div, #pubs-filter select {
+    width: 20vw;
+}
+
+#publication-list-wrapper {
+    width: 25vw;
+    min-width: 25vw;
+    font-size: 0.75em;
+}
+
+.pub-header h2 {
+    font-size: 1em;
+    padding: 5px;
+}
+
+.pub-subheader, .pub-footer {
+    font-size: 0.5em;
+    padding: 5px;
+}
+
+.pub-main {
+    font-size: 0.6em;
+    padding: 5px;
+}
 
 }
