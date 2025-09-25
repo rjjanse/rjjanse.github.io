@@ -584,6 +584,10 @@ span.important {
     color: #C9CBA3;
 }
 
+#phone-pubs {
+    display: none;
+}
+
 /* Change title of publications section */
 #pubs-title {
     font-size: 1.5em;
@@ -1535,10 +1539,12 @@ select::picker-icon {
     display: none;
 }
 
-/*-----------------ACADEMIC PROFILE----------------*/
+/*-----------------ACADEMIC PROFILE-----------------*/
 .section-title {
     z-index: 3;
     left: 10vw;
+    font-size: 1.5em;
+    background-color: #472D30;
 }
 
 #academic-content-container {
@@ -1551,36 +1557,109 @@ select::picker-icon {
 }
 
 #publications-wrapper {
+    display: none;
+}
+
+#phone-pubs {
+    display: block;
+}
+
+.phone-social-link-container a {
+    display: flex;
+    color: white;
+    font-size: 1.5em;
+    margin: 5px 0 5px 0;
+}
+
+.phone-social-link-container a:hover {
+    display: flex;
+    color: white;
+    opacity: 0.75;
+    cursor: pointer;
+    transition: 0.5s;
+    font-size: 1.5em;
+    margin: 5px 0 5px 0;
+}
+
+.phone-social-link-container img {
+    height: 1.5em;
+    margin-right: 15px;
+}
+
+.phone-social-link-container p {
+    margin: 0;
+}
+
+#oo {
+    display: none;
+}
+
+#oo-rightcolumn {
+    width: 90vw;
+    padding: 0;
+    margin: 0;
+    background-color: #472D30;
+}
+
+/*-----------------CURRICULUM VITAE-----------------*/
+#cv-content-container {
+    display: block;
+    width: 90vw;
+    left: 5vw;
+}
+
+.cv-columns {
+    display: block;
+}
+
+.cv-column {
     width: 90vw;
 }
 
-#pubs-filter {
-    font-size: 0.5em;
+.cv-title {
+    width: 90vw;
 }
 
-#pubs-filter div, #pubs-filter select {
+/*-----------------PERSONAL PROFILE-----------------*/
+#personal-content-container {
+    width: 90vw;
+    left: 5vw;
+}
+
+#personal-leftcolumn {
+    width: calc(70vw - 30px);
+}
+
+#personal-rightcolumn {
+    width: 20vw;
+    font-size: 0.6em;
+}
+
+#personal-divider {
+    width: 70vw;
+}
+
+.interest-button, .interest-button-external {
     width: 20vw;
 }
 
-#publication-list-wrapper {
-    width: 25vw;
-    min-width: 25vw;
-    font-size: 0.75em;
+#interest-placeholder {
+    width: 70vw;
+    margin-right: 30px;
 }
 
-.pub-header h2 {
-    font-size: 1em;
-    padding: 5px;
+.interest-wrapper {
+    padding: 0;
 }
 
-.pub-subheader, .pub-footer {
-    font-size: 0.5em;
-    padding: 5px;
+.image-gallery {
+    width: 70vw;
 }
 
-.pub-main {
-    font-size: 0.6em;
-    padding: 5px;
+.image-gallery img {
+    height: auto;
+    width: calc(70vw - 30px);
 }
+
 
 }
