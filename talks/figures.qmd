@@ -6,8 +6,6 @@ title-slide-attributes:
     data-background-opacity: "0.25"
 author: 
     - name: "Roemer J. Janse"
-date: 2025/12/10
-date-format: iso
 warning: false
 format: 
     revealjs:
