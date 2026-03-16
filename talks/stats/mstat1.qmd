@@ -1,0 +1,38 @@
+---
+title: "Medical statistics"
+author:
+    - name: Roemer J. Janse
+      orcid: 0000-0003-0059-872X
+      email: R.J.Janse-5@umcutrecht.nl
+      affiliations:
+        - name: UMC Utrecht
+format: revealjs
+---
+
+# Concerning probability
+
+- What is probability
+- Is probability real
+- Stochastic vs. deterministic systems
+
+# Viewing the world as a stochastic process
+- Probability distributions
+- Sampling to find your distribution
+- Sufficient samples
+
+# Thinking about probability
+
+- Frequentism: one truth
+- Bayesian: an updated truth
+
+# Dealing with probability & uncertainty
+
+- Frequentism
+    - Confidence intervals
+    - P functions/values
+    - Bootstrapping
+    
+- Bayesian
+    - Credibility intervals
+    - Priors & posteriors
+    
