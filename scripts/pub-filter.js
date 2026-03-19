@@ -34,7 +34,7 @@ btn_author.onchange = (e) => {
     // If value is all, select all publications again
     if (val == "pfa-all") var pubs_author = document.querySelectorAll(".publication-button");
 
-    // Subset arrya to include items present in all publication filters
+    // Subset array to include items present in all publication filters
     var pubs_author_final = [...pubs_author].filter(node => [...pubs_approach].includes(node) && [...pubs_disc].includes(node));
     
     // Set all publications to invisible
