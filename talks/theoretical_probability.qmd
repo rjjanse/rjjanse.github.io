@@ -1,0 +1,103 @@
+---
+title: "Pr(obabilities), E[xpectations], and the Truth"
+title-slide-attributes:
+    data-background-image: images/probability.png
+    data-background-size: fill
+    data-background-opacity: "0.5"
+author:
+    - name: Roemer J. Janse
+      orcid: 0000-0003-0059-872X
+      email: R.J.Janse-5@umcutrecht.nl
+      affiliations:
+        - name: UMC Utrecht
+format: revealjs
+---
+
+# Disclaimer {background-image=images/statistician.jpg background-opacity="0.3"}
+
+::: {.fragment}
+**I am not a statistician**
+:::
+
+::: {.fragment}
+We want to apply probability so:
+:::
+
+::: {.fragment}
+We forego a formal study of probability and instead focus on thinking about probability.
+:::
+
+## Agenda
+- Conflating Probability and Reality
+- Probability: Our Fake Best Friend
+- Expectations Instead of Probabilities
+- How Do We Probably Find the Truth?
+- How Can We Make the Truth Probable?
+
+# Conflating Probability and Reality
+
+## What is Probability?
+::: {.fragment}
+A reflection of our uncertainty:
+:::
+
+::: {.incremental}
+- *It will probably be...*
+- *The likelihood that...*
+- *There is a risk of...*
+- *We have a chance to...*
+- *I expect that...*
+:::
+
+# Probability vs. Reality
+- What is probability
+    simple definition of porbability, how it is limited
+- Is probability even real 
+    are there any true probabilities outside of the quantu mworld?
+- Determinism and stochasticism
+    what kind of system do we live in
+
+
+# Probability: Our Fake Best Friend
+- The world is too complex to know the future
+    Thus we must guess it
+    To guess well, we need experience, in the form of many observations
+- Groups vs. individuals
+    In the medical sciences, those observations are often individual people
+    At the individual level, the probability does not exist, but on the group level it does
+
+# Expecting more than Probabilities
+- We can also expect values instead of events (variance)/expected value
+- Distributions
+    Visualising all those experiences forms a distribution
+    Tells us where we can expect most people to be
+- Sufficient samples
+    Sampling is a case of maximising your experience
+
+# Thinking about finding the truth
+- Probabilities and Expecations help us think about the truth. But what truth are we working towards?
+- Frequentism: one truth
+- Bayesian: an updated truth
+
+# Dealing with uncertainty about the truth
+
+- Frequentism
+    - Confidence intervals
+    - P functions/values
+    - Bootstrapping
+    
+- Bayesian
+    - Credibility intervals
+    - Priors & posteriors
+    
+
+
+
+# Second talk
+- applied probability
+- from tests to regression models
+- regression models & more complex architecture
+- data driven vs. knowledge driven
+- causal vs. descriptive vs. diagnostic/prognostic
+- frameworks (EQUATOR)
+- programming (R, python; Julia)

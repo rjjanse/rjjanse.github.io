@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="mstat1_files/libs/clipboard/clipboard.min.js"></script>
-<script src="mstat1_files/libs/quarto-html/tabby.min.js"></script>
-<script src="mstat1_files/libs/quarto-html/popper.min.js"></script>
-<script src="mstat1_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="mstat1_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="mstat1_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="mstat1_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="theoretical_probability_files/libs/clipboard/clipboard.min.js"></script>
+<script src="theoretical_probability_files/libs/quarto-html/tabby.min.js"></script>
+<script src="theoretical_probability_files/libs/quarto-html/popper.min.js"></script>
+<script src="theoretical_probability_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="theoretical_probability_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="theoretical_probability_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="theoretical_probability_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Roemer J. Janse">
-  <title>Medical statistics</title>
+  <title>Pr(obabilities), E[xpectations], and the Truth</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="mstat1_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="mstat1_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="theoretical_probability_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="theoretical_probability_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -29,11 +29,11 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="mstat1_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
-  <link href="mstat1_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="mstat1_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="mstat1_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="mstat1_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="theoretical_probability_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link href="theoretical_probability_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="theoretical_probability_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="theoretical_probability_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="theoretical_probability_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
@@ -126,8 +126,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Medical statistics</h1>
+<section id="title-slide" data-background-image="images/probability.png" data-background-opacity="0.5" data-background-size="fill" class="quarto-title-block center">
+  <h1 class="title">Pr(obabilities), E[xpectations], and the Truth</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -144,12 +144,109 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
 </div>
 
 </section>
-<section id="concerning-probability" class="title-slide slide level1 center">
-<h1>Concerning probability</h1>
+<section>
+<section id="disclaimer" class="title-slide slide level1 center" data-background-image="images/statistician.jpg" data-background-opacity="0.3">
+<h1>Disclaimer</h1>
+<div class="fragment">
+<p><strong>I am not a statistician</strong></p>
+</div>
+<div class="fragment">
+<p>We want to apply probability so:</p>
+</div>
+<div class="fragment">
+<p>We forego a formal study of probability and instead focus on thinking about probability.</p>
+</div>
+</section>
+<section id="agenda" class="slide level2">
+<h2>Agenda</h2>
 <ul>
-<li>What is probability</li>
-<li>Is probability real</li>
-<li>Stochastic vs.&nbsp;deterministic systems</li>
+<li>Conflating Probability and Reality</li>
+<li>Probability: Our Fake Best Friend</li>
+<li>Expectations Instead of Probabilities</li>
+<li>How Do We Probably Find the Truth?</li>
+<li>How Can We Make the Truth Probable?</li>
+</ul>
+</section></section>
+<section>
+<section id="conflating-probability-and-reality" class="title-slide slide level1 center">
+<h1>Conflating Probability and Reality</h1>
+
+</section>
+<section id="what-is-probability" class="slide level2">
+<h2>What is Probability?</h2>
+<div class="fragment">
+<p>A reflection of our uncertainty:</p>
+</div>
+<ul>
+<li class="fragment"><em>It will probably be…</em></li>
+<li class="fragment"><em>The likelihood that…</em></li>
+<li class="fragment"><em>There is a risk of…</em></li>
+<li class="fragment"><em>We have a chance to…</em></li>
+<li class="fragment"><em>I expect that…</em></li>
+</ul>
+</section></section>
+<section id="probability-vs.-reality" class="title-slide slide level1 center">
+<h1>Probability vs.&nbsp;Reality</h1>
+<ul>
+<li>What is probability simple definition of porbability, how it is limited</li>
+<li>Is probability even real are there any true probabilities outside of the quantu mworld?</li>
+<li>Determinism and stochasticism what kind of system do we live in</li>
+</ul>
+</section>
+
+<section id="probability-our-fake-best-friend" class="title-slide slide level1 center">
+<h1>Probability: Our Fake Best Friend</h1>
+<ul>
+<li>The world is too complex to know the future Thus we must guess it To guess well, we need experience, in the form of many observations</li>
+<li>Groups vs.&nbsp;individuals In the medical sciences, those observations are often individual people At the individual level, the probability does not exist, but on the group level it does</li>
+</ul>
+</section>
+
+<section id="expecting-more-than-probabilities" class="title-slide slide level1 center">
+<h1>Expecting more than Probabilities</h1>
+<ul>
+<li>We can also expect values instead of events (variance)/expected value</li>
+<li>Distributions Visualising all those experiences forms a distribution Tells us where we can expect most people to be</li>
+<li>Sufficient samples Sampling is a case of maximising your experience</li>
+</ul>
+</section>
+
+<section id="thinking-about-finding-the-truth" class="title-slide slide level1 center">
+<h1>Thinking about finding the truth</h1>
+<ul>
+<li>Probabilities and Expecations help us think about the truth. But what truth are we working towards?</li>
+<li>Frequentism: one truth</li>
+<li>Bayesian: an updated truth</li>
+</ul>
+</section>
+
+<section id="dealing-with-uncertainty-about-the-truth" class="title-slide slide level1 center">
+<h1>Dealing with uncertainty about the truth</h1>
+<ul>
+<li>Frequentism
+<ul>
+<li>Confidence intervals</li>
+<li>P functions/values</li>
+<li>Bootstrapping</li>
+</ul></li>
+<li>Bayesian
+<ul>
+<li>Credibility intervals</li>
+<li>Priors &amp; posteriors</li>
+</ul></li>
+</ul>
+</section>
+
+<section id="second-talk" class="title-slide slide level1 center">
+<h1>Second talk</h1>
+<ul>
+<li>applied probability</li>
+<li>from tests to regression models</li>
+<li>regression models &amp; more complex architecture</li>
+<li>data driven vs.&nbsp;knowledge driven</li>
+<li>causal vs.&nbsp;descriptive vs.&nbsp;diagnostic/prognostic</li>
+<li>frameworks (EQUATOR)</li>
+<li>programming (R, python; Julia)</li>
 </ul>
 
 </section>
@@ -161,19 +258,19 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
 </div></div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="mstat1_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="mstat1_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="mstat1_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="mstat1_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="mstat1_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="mstat1_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="mstat1_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="mstat1_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="mstat1_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="mstat1_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="theoretical_probability_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
