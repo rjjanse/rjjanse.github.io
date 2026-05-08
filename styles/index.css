@@ -682,7 +682,7 @@ select::picker-icon {
 }
 
 /* First author flair */
-.first-author {
+.highlight-author {
     font-size: 0.8em;
     font-style: italic;
     color: #C9CBA3;
