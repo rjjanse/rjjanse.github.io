@@ -1,0 +1,115 @@
+---
+title: "Models and the Pillars of Research with Data"
+title-slide-attributes:
+    data-background-image: images/modelling.webp
+    data-background-size: fill
+    data-background-opacity: "0.25"
+author:
+    - name: Roemer J. Janse
+      orcid: 0000-0003-0059-872X
+      email: R.J.Janse-5@umcutrecht.nl
+      affiliations:
+        - name: UMC Utrecht
+format: 
+    revealjs:
+        theme: simple
+---
+
+# Disclaimer
+Depending on who you ask, this talk is about:
+
+:::{.incremental}
+- Epidemiology
+- Data science / analytics
+- Machine learning / Artificial intelligence
+:::
+
+:::{.fragment}
+These are generally the same, but differ in the terminology used for the same concepts, certain convictions, and approaches.
+:::
+
+## Agenda
+- Tests are Void in the Presence of Models
+- What Makes a Model?
+- Making a Model
+- The Pillars of Data Research
+- Models and Pillars
+- Modelling in Practice
+
+# Tests are Void in the Presence of Models
+
+## What is a Test?
+:::{.incremental}
+- Statistical tests are tools made for hypothesis testing.
+
+- They yield the p-value, but do not say anything about direction or size.
+:::
+
+:::: {.fragment}
+Examples are:
+
+- T-test
+- Chi-square test
+- Fisher's exact test
+:::
+
+## What is a Model? 
+::::{.r-fit-text}
+:::{.incremental}
+- Statistical models are mathematical models that summarise the relationship between different variables
+
+- This relationship is quantified and can be used for a plethora of goals beyond hypothesis testing.
+:::
+
+:::{.fragment}
+Statistical tests are just simple statistical models:
+
+Statistical test|Equivalent statistical model
+-|-
+One-sample t-test|Intercept-only linear regression
+Wilcoxon signed-rank test|Ranked univariable linear regression
+Two-sample t-test|Univariable linear regression
+One-way ANOVA|Multivariable linear regression
+Chi-square test|Univariable logistic regression w/ dichotomous independent variable
+
+More at [Jonas Kristoffer Lindeløv's GitHub](https://lindeloev.github.io/tests-as-linear/)
+:::
+::::
+
+## Models > Tests
+Models allow us to:
+
+:::{.incremental}
+- Model more explicitly
+- Model more flexibly
+- Derive more information from our data
+:::
+
+# What Makes a Model?
+
+## Parametric & Non-parametric models
+
+
+
+
+
+
+
+
+
+
+## The End
+Contact me: [r.j.janse-5@umcutrecht.nl](mailto:r.j.janse-5@umcutrecht.nl)\
+\
+
+More about me: [rjjanse.github.io](https://rjjanse.github.io)\
+\
+
+These slides: [rjjanse.github.io/talks/modelling](https://rjjanse.github.io/talks/pet)\
+\
+
+:::{style="font-size: 0.5em;"}
+Image for title slide by Environmental Graphiti:\
+[350 Species at Risk from Climate Change](https://www.environmentalgraphiti.org/all-series/scenarios-for-reducing-emissions-x3ex9-6rfd9-7wr3z-ghgsp-3mpra-3shbx-22bch-gfmyr) \
+© 2025 Environmental Graphiti® All rights reserved.
+:::
