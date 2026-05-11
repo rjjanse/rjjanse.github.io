@@ -622,6 +622,12 @@ select::picker-icon {
     display: flex;
 }
 
+/* Fading text */
+.fade {
+    -webkit-mask-image: linear-gradient(180deg, #472D30 90%, transparent);
+    mask-image: linear-gradient(180deg, #472D30 90%, transparent);
+}
+
 /* Publication list wrapper to allow scroll-bar on far side of border */
 #publication-list-wrapper {
     display: block;
@@ -844,9 +850,10 @@ select::picker-icon {
     margin-top: 0;
 }
 
-/* Remove top margins from right column titles */
+/* Remove margins from right column titles */
 #oo-rightcolumn h3 {
     margin-top: 0;
+    margin-bottom: 0;
 }
 
 #acknowledge-list {
@@ -925,12 +932,6 @@ select::picker-icon {
     display: block;
     margin-bottom: 30px;
     text-align: left;
-}
-
-/* Fading text */
-.fade {
-    -webkit-mask-image: linear-gradient(180deg, #472D30 10em, transparent);
-    mask-image: linear-gradient(180deg, #472D30 10em, transparent);
 }
 
 /* Styling for text in CV */
