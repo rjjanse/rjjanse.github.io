@@ -12,7 +12,7 @@ function drawChart() {
     ["2023", 6],
     ["2024", 11],
     ["2025", 35],
-    ["2026", 14]
+    ["2026", 17]
   ]);
 
   // Chart options
@@ -55,5 +55,9 @@ function drawChart() {
 
   // Draw chart
   var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+  chart.draw(data, options);
+
+  // Draw chart on phone
+  var chart = new google.visualization.BarChart(document.getElementById('chart_div_phone'));
   chart.draw(data, options);
 }
