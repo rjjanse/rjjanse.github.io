@@ -760,4 +760,4 @@ Contact me: [r.j.janse-5@umcutrecht.nl](mailto:r.j.janse-5@umcutrecht.nl)\
 More about me: [rjjanse.github.io](https://rjjanse.github.io)\
 \
 
-These slides: [rjjanse.github.io/talks/theoretical_probability](https://rjjanse.github.io/talks/pet)
+These slides: [rjjanse.github.io/talks/pet](https://rjjanse.github.io/talks/pet)
