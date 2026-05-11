@@ -1,0 +1,19 @@
+---
+title: "Talks"
+format:
+    html:
+        theme: sketchy
+---
+
+[Go back](https://rjjanse.github.io#oo)
+
+---
+
+::: {layout-ncol=3}
+
+[![P(robabilities), E[xpectations], and the Truth](images/probability.png)](https://rjjanse.github.io/talks/pet){target="_blank"}
+
+[![Figuring It Out](images/cholera-map.jpg)](https://rjjanse.github.io/talks/figures){target="_blank"}
+
+:::
+
