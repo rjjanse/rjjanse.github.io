@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Roemer J. Janse">
-  <title>Pr(obabilities), E[xpectations], and the Truth</title>
+  <title>P(robabilities), E[xpectations], and the Truth</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,7 +29,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="theoretical_probability_files/libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
+  <link rel="stylesheet" href="theoretical_probability_files/libs/revealjs/dist/theme/quarto-2c1b5f745a11cfad616ebade4a4a7d24.css">
   <link href="theoretical_probability_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="theoretical_probability_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="theoretical_probability_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -127,7 +127,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="images/probability.png" data-background-opacity="0.5" data-background-size="fill" class="quarto-title-block center">
-  <h1 class="title">Pr(obabilities), E[xpectations], and the Truth</h1>
+  <h1 class="title">P(robabilities), E[xpectations], and the Truth</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -144,17 +144,28 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
 </div>
 
 </section>
+<section id="rationale" class="title-slide slide level1 center">
+<h1>Rationale</h1>
+<p><strong>Understanding</strong> &gt;&gt;&gt; Doing</p>
+<div class="fragment">
+<p>Want to know which test to use: <a href="https://wikistatistiek.amc.nl/KEUZE_TOETS#Schema_welke_toets_bij_welke_vergelijking">Wikistatistiek AMC Toetskeuzetabel</a></p>
+</div>
+<div class="fragment">
+<p>Want to know how SPSS works: <a href="https://www.youtube.com/watch?v=ZpwZS3XnEZA">Youtube</a></p>
+</div>
+</section>
+
 <section>
 <section id="disclaimer" class="title-slide slide level1 center" data-background-image="images/statistician.jpg" data-background-opacity="0.3">
 <h1>Disclaimer</h1>
 <div class="fragment">
-<p><strong>I am not a statistician</strong></p>
+<p><strong>I am not a statistician nor philosophist</strong></p>
 </div>
 <div class="fragment">
 <p>We want to apply probability so:</p>
 </div>
 <div class="fragment">
-<p>We forego a formal study of probability and instead focus on thinking about probability.</p>
+<p>We focus on developing an intuitive feeling for probability, foregoing unnecessary detail for application.</p>
 </div>
 </section>
 <section id="agenda" class="slide level2">
@@ -163,7 +174,7 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
 <li>Conflating Probability and Reality</li>
 <li>Probability: Our Fake Best Friend</li>
 <li>Expectations Instead of Probabilities</li>
-<li>How Do We Probably Find the Truth?</li>
+<li>Maximising experience (or scientific FOMO)</li>
 <li>How Can We Make the Truth Probable?</li>
 </ul>
 </section></section>
@@ -184,72 +195,519 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
 <li class="fragment"><em>We have a chance to…</em></li>
 <li class="fragment"><em>I expect that…</em></li>
 </ul>
+</section>
+<section id="what-is-probability-1" class="slide level2">
+<h2>What is Probability?</h2>
+<p>Specifically, the chance that some phenomenon <span class="math inline">\(Y\)</span> occurs.<br>
+<em>E.g. the chance of perforation during PCI</em><br>
+<br>
+</p>
+<div class="fragment">
+<p>Expressed as either a percentage (bounded by 0% and 100%), or a proportion (bounded by 0 and 1).</p>
+</div>
+</section>
+<section id="what-is-probability-2" class="slide level2">
+<h2>What is Probability?</h2>
+<p>We denote the probability of <span class="math inline">\(Y\)</span> as <span class="math inline">\(P(Y)\)</span><br>
+<em>(and sometimes as <span class="math inline">\(Pr(Y)\)</span> or <span class="math inline">\(\mathbb{P}(Y)\)</span>)</em><br>
+<br>
+</p>
+<div class="fragment">
+<p>If the probability is conditional on some factor <span class="math inline">\(X\)</span>, we use <span class="math inline">\(|\)</span>: <span class="math inline">\(P(Y|X)\)</span>, which reads as the probability of Y given X</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p>For instance the probability of perforation during PCI given that the patient is &gt;70 years old.<br>
+<span class="math inline">\(P(Y|X&gt;70)\)</span></p>
+</div>
+</section>
+<section id="is-probability" class="slide level2">
+<h2>Is Probability?</h2>
+<div class="r-fit-text">
+<p>Is there still probability beyond our own (ignorance-driven) uncertainty?<br>
+What we believe influences the way we think about probability.<br>
+<br>
+</p>
+<div class="fragment">
+<p><strong>Deterministic worldview</strong><br>
+The future <em>can</em> be perfectly predicted if we understood all moving parts.</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p><strong>Stochastic worldview</strong><br>
+The future <em>cannot</em> be perfectly predicted, even if we understood all moving parts.<br>
+Truly (non-negligible) random processes exist</p>
+</div>
+</div>
+</section>
+<section id="dealing-with-a-complex-world" class="slide level2">
+<h2>Dealing With a Complex World</h2>
+<p>Regardless of our worldview, our technology is too primitive to make deterministic statements about:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 75%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>our world</td>
+<td>e.g.&nbsp;the prevalence of heart failure</td>
+</tr>
+<tr class="even">
+<td>our actions</td>
+<td>e.g.&nbsp;the effect of a heart transplantation on survival</td>
+</tr>
+<tr class="odd">
+<td>the future</td>
+<td>e.g.&nbsp;who is most likely to get a complication during surgery</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="dealing-with-a-complex-world-1" class="slide level2">
+<h2>Dealing With a Complex World</h2>
+<div class="r-fit-text">
+<p>Our solution?<br>
+<br>
+</p>
+<div class="fragment">
+<p>Take a guess of the probability</p>
+</div>
+<div class="fragment">
+<p><em>Based on experience</em></p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 9%">
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">entrytime</th>
+<th style="text-align: right;">survtime</th>
+<th style="text-align: right;">censorid</th>
+<th style="text-align: right;">unit</th>
+<th style="text-align: right;">exptheta</th>
+<th style="text-align: right;">psival</th>
+<th style="text-align: right;">age</th>
+<th style="text-align: left;">sex</th>
+<th style="text-align: right;">BMI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">4775</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1.089509</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">23.61</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">13218</td>
+<td style="text-align: right;">431</td>
+<td style="text-align: right;">55</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">21</td>
+<td style="text-align: right;">0.428315</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">25.41</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">17401</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">1.106653</td>
+<td style="text-align: right;">1.5</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">17.08</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24388</td>
+<td style="text-align: right;">166</td>
+<td style="text-align: right;">31</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">1.252265</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: left;">male</td>
+<td style="text-align: right;">27.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">26753</td>
+<td style="text-align: right;">319</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">1.429925</td>
+<td style="text-align: right;">1.0</td>
+<td style="text-align: right;">49</td>
+<td style="text-align: left;">female</td>
+<td style="text-align: right;">31.44</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 </section></section>
-<section id="probability-vs.-reality" class="title-slide slide level1 center">
-<h1>Probability vs.&nbsp;Reality</h1>
-<ul>
-<li>What is probability simple definition of porbability, how it is limited</li>
-<li>Is probability even real are there any true probabilities outside of the quantu mworld?</li>
-<li>Determinism and stochasticism what kind of system do we live in</li>
-</ul>
-</section>
-
-<section id="probability-our-fake-best-friend" class="title-slide slide level1 center">
-<h1>Probability: Our Fake Best Friend</h1>
-<ul>
-<li>The world is too complex to know the future Thus we must guess it To guess well, we need experience, in the form of many observations</li>
-<li>Groups vs.&nbsp;individuals In the medical sciences, those observations are often individual people At the individual level, the probability does not exist, but on the group level it does</li>
-</ul>
-</section>
-
-<section id="expecting-more-than-probabilities" class="title-slide slide level1 center">
-<h1>Expecting more than Probabilities</h1>
-<ul>
-<li>We can also expect values instead of events (variance)/expected value</li>
-<li>Distributions Visualising all those experiences forms a distribution Tells us where we can expect most people to be</li>
-<li>Sufficient samples Sampling is a case of maximising your experience</li>
-</ul>
-</section>
-
-<section id="thinking-about-finding-the-truth" class="title-slide slide level1 center">
-<h1>Thinking about finding the truth</h1>
-<ul>
-<li>Probabilities and Expecations help us think about the truth. But what truth are we working towards?</li>
-<li>Frequentism: one truth</li>
-<li>Bayesian: an updated truth</li>
-</ul>
-</section>
-
-<section id="dealing-with-uncertainty-about-the-truth" class="title-slide slide level1 center">
-<h1>Dealing with uncertainty about the truth</h1>
-<ul>
-<li>Frequentism
-<ul>
-<li>Confidence intervals</li>
-<li>P functions/values</li>
-<li>Bootstrapping</li>
-</ul></li>
-<li>Bayesian
-<ul>
-<li>Credibility intervals</li>
-<li>Priors &amp; posteriors</li>
-</ul></li>
-</ul>
-</section>
-
-<section id="second-talk" class="title-slide slide level1 center">
-<h1>Second talk</h1>
-<ul>
-<li>applied probability</li>
-<li>from tests to regression models</li>
-<li>regression models &amp; more complex architecture</li>
-<li>data driven vs.&nbsp;knowledge driven</li>
-<li>causal vs.&nbsp;descriptive vs.&nbsp;diagnostic/prognostic</li>
-<li>frameworks (EQUATOR)</li>
-<li>programming (R, python; Julia)</li>
-</ul>
+<section>
+<section id="expectations-instead-of-probabilities" class="title-slide slide level1 center">
+<h1>Expectations Instead of Probabilities</h1>
 
 </section>
+<section id="continuous-expectations" class="slide level2">
+<h2>Continuous Expectations</h2>
+<p>Probabilities apply the occurrence of phenomena.<br>
+<br>
+In other words: <em>‘Did an event happen or not?’</em><br>
+<br>
+</p>
+<p>However, we may also want to say something about continuous values:<br>
+</p>
+<ul>
+<li class="fragment">What is the average height?</li>
+<li class="fragment">What is the expected future quality of life?</li>
+<li class="fragment">How does this procedure improve functioning as measured on some scale?</li>
+</ul>
+</section>
+<section id="continuous-expectations-1" class="slide level2">
+<h2>Continuous Expectations</h2>
+<p>Probabilities do not apply to continuous values.<br>
+<br>
+Instead, we talk about the expected value of some continuous value <span class="math inline">\(Y\)</span>:<br>
+<br>
+<span class="math inline">\(E(Y)\)</span> (or <span class="math inline">\(\mathbb{E}(Y)\)</span>)<br>
+<br>
+This is generally the same as the mean.</p>
+</section>
+<section id="continuous-expectations-2" class="slide level2">
+<h2>Continuous Expectations</h2>
+<p>Sometimes (often), people will want to categorise continuous measures<br>
+<br>
+</p>
+
+<img data-src="theoretical_probability_files/figure-revealjs/categorisation-1.png" width="960" class="r-stretch"></section></section>
+<section>
+<section id="maximising-experience-or-scientific-fomo" class="title-slide slide level1 center">
+<h1>Maximising experience &nbsp;(or scientific FOMO)</h1>
+
+</section>
+<section id="gaining-experience-sampling" class="slide level2">
+<h2>Gaining Experience (Sampling)</h2>
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="theoretical_probability_files/figure-revealjs/true%20proportion%20sex-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="theoretical_probability_files/figure-revealjs/sample%20proportion%20sex-1.gif"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></section>
+<section id="gaining-experience-sampling-1" class="slide level2">
+<h2>Gaining Experience (Sampling)</h2>
+<div class="column">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="theoretical_probability_files/figure-revealjs/true%20mean%20bmi-1.png" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column">
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="theoretical_probability_files/figure-revealjs/sample%20mean%20bmi-1.gif"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div></section>
+<section id="gaining-experience-sampling-2" class="slide level2">
+<h2>Gaining Experience (Sampling)</h2>
+<p>Importantly:<br>
+<br>
+</p>
+<div class="fragment">
+<p>Which (theoretical) population are we sampling?<br>
+</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p>Try sampling for yourself:<br>
+<a href="https://utrecht-university.shinyapps.io/sampling_app/">UU Sampling App</a></p>
+</div>
+</section>
+<section id="minimally-required-experience" class="slide level2">
+<h2>Minimally Required Experience</h2>
+<p><strong>Three approaches:</strong></p>
+<p><em>Calculate sample size</em></p>
+<ul>
+<li class="fragment">Only works beforehand</li>
+<li class="fragment">Prior data must be available</li>
+</ul>
+<p><em>Convenience sample size</em></p>
+<ul>
+<li class="fragment">Sample might still not be sufficient</li>
+</ul>
+<p><em>Simulate sample size</em></p>
+<ul>
+<li class="fragment">Prior data must be available</li>
+</ul>
+</section>
+<section id="minimally-required-experience-1" class="slide level2">
+<h2>Minimally Required Experience</h2>
+<div class="r-fit-text">
+<p><strong>Some well-established calculations</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Focus</th>
+<th>Study type</th>
+<th>Outcome type</th>
+<th>Calculation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Causal</td>
+<td>Any</td>
+<td>Continuous &amp; Dichotomous</td>
+<td><a href="https://doi.org/10.1093/ejendo/lvae129">Jansen <em>et al.</em></a></td>
+</tr>
+<tr class="even">
+<td>Diagnostic</td>
+<td>Any</td>
+<td>Dichotomous</td>
+<td><a href="https://doi.org/10.1111/j.1553-2712.1996.tb03538.x">Buderer <em>et al.</em></a></td>
+</tr>
+<tr class="odd">
+<td>Prognostic</td>
+<td>Development</td>
+<td>Continuous</td>
+<td><a href="https://doi.org/10.1136/bmj.m441">Riley <em>et al.</em></a> &amp; <a href="https://doi.org/10.1186/s41512-026-00228-9">Whittle <em>et al.</em></a></td>
+</tr>
+<tr class="even">
+<td>Prognostic</td>
+<td>Development</td>
+<td>Dichotomous</td>
+<td><a href="https://doi.org/10.1136/bmj.m441">Riley <em>et al.</em></a> &amp; <a href="https://doi.org/10.1186/s41512-025-00193-9">Riley <em>et al.</em></a></td>
+</tr>
+<tr class="odd">
+<td>Prognostic</td>
+<td>Development</td>
+<td>Survival</td>
+<td><a href="https://doi.org/10.1136/bmj.m441">Riley <em>et al.</em></a> &amp; <a href="https://doi.org/10.1186/s41512-025-00204-9">Riley <em>et al.</em></a></td>
+</tr>
+<tr class="even">
+<td>Prognostic</td>
+<td>Validation</td>
+<td>Continuous, Dichotomous &amp; Survival</td>
+<td><a href="https://doi.org/10.1136/bmj-2023-074821">Riley <em>et al.</em></a></td>
+</tr>
+</tbody>
+</table>
+<p>etc…</p>
+</div>
+</section>
+<section id="population-focus" class="slide level2">
+<h2>Population focus</h2>
+<ul>
+<li class="fragment">Experience = observations = (often) individual people</li>
+<li class="fragment">For the individual, <span class="math inline">\(P(Y)\)</span> will be 1 or 0 and <span class="math inline">\(E(Y)\)</span> may not exist</li>
+<li class="fragment">The average individual is a myth: <a href="https://apps.dtic.mil/sti/tr/pdf/AD0010203.pdf">Daniels’ <em>The Average Man</em></a></li>
+<li class="fragment">Traditional RCTs give us population effects (interesting for policy-makers)</li>
+<li class="fragment">Modern methods give us individualised effects (interesting for healthcare providers)</li>
+<li class="fragment">Ecological fallacy: <em>…when conclusions about individuals are drawn from conclusions about the total population…</em></li>
+</ul>
+</section></section>
+<section>
+<section id="how-can-we-make-the-truth-probable" class="title-slide slide level1 center">
+<h1>How Can We Make the Truth Probable?</h1>
+
+</section>
+<section id="thinking-about-truth" class="slide level2">
+<h2>Thinking About Truth</h2>
+<div class="r-fit-text">
+<div class="column">
+<p><em>Frequentist thinking</em></p>
+<ul>
+<li class="fragment">How (statistical) scientists are trained to think</li>
+<li class="fragment">There is some true <span class="math inline">\(P(Y)\)</span> or <span class="math inline">\(E(Y)\)</span> in the long run</li>
+<li class="fragment">Based on our hypothesis of that true value, would we expect these data? <em>or</em>:</li>
+<li class="fragment"><span class="math inline">\(P(data|hypothesis)\)</span></li>
+<li class="fragment">Requires frequent sampling</li>
+</ul>
+</div><div class="column">
+<p><em>Bayesian thinking</em></p>
+<ul>
+<li class="fragment">How humans tend to think</li>
+<li class="fragment">We only have our current experience to inform us</li>
+<li class="fragment">Based on what we have seen so far (prior data), what will we see next (posterior data)? <em>or</em>:</li>
+<li class="fragment"><span class="math inline">\(P(hypothesis|data)\)</span></li>
+<li class="fragment">Requires good priors</li>
+</ul>
+</div></div>
+</section>
+<section id="thinking-about-truth-1" class="slide level2">
+<h2>Thinking About Truth</h2>
+<p>The way of thinking is situation-dependent:</p>
+<ul>
+<li class="fragment">A fair die: frequentist approach</li>
+<li class="fragment">An unfair die: Bayesian approach</li>
+</ul>
+<p><br>
+<br>
+</p>
+<div class="fragment">
+<p>Most importantly, reflect on how you think and, on the situation, and choose what is appropriate.</p>
+</div>
+</section>
+<section id="a-look-inside-the-frequentist-toolbox" class="slide level2">
+<h2>A Look Inside the Frequentist Toolbox</h2>
+<div class="r-fit-text">
+<p><strong>P-values</strong><br>
+A p-value is the probability of your observed difference or larger occurring, given that there is not actually a difference (i.e.&nbsp;probability of type 1 error / false positive).<br>
+<br>
+</p>
+<div class="fragment">
+<p>Often dichotomised (p-value &lt; 0.05), leading to loss of information.<br>
+<br>
+</p>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="theoretical_probability_files/figure-revealjs/p-function-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="a-look-inside-the-frequentist-toolbox-1" class="slide level2">
+<h2>A Look Inside the Frequentist Toolbox</h2>
+<div class="smaller">
+<p><strong>Confidence intervals</strong><br>
+The confidence interval contains the true value in 95% of all confidence intervals for the corresponding hypothesis.<br>
+<br>
+</p>
+<div class="fragment">
+<p>This means that the probability of any specific confidence interval containing the truth is either 0% or 100%!<br>
+</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p>The confidence interval relates directly to the p-value. If a 95% confidence interval contains the null-value, the p-value will be &gt; 0.05). Resultingly, confidence intervals are also often interpreted as a dichotomy.</p>
+</div>
+</div>
+</section>
+<section id="a-look-inside-the-frequentist-toolbox-2" class="slide level2">
+<h2>A Look Inside the Frequentist Toolbox</h2>
+<p><strong>Bootstrapping</strong><br>
+Re-performing your analyses on different samples drawn from your sample.<br>
+<br>
+</p>
+<div class="fragment">
+<p>Assumption 1: our data contains (for the majority) all types of observations that may occur.<br>
+Assumption 2: those observations may occur in different frequencies in different samples.<br>
+</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p>We draw random individuals from our data (with replacement!) to create a new sample.</p>
+</div>
+</section>
+<section id="a-look-inside-the-frequentist-toolbox-3" class="slide level2">
+<h2>A Look Inside the Frequentist Toolbox</h2>
+<p><strong>Bootstrapping</strong><br>
+<img data-src="images/bootstrap.png" height="500"></p>
+</section>
+<section id="closing-remarks" class="slide level2">
+<h2>Closing Remarks</h2>
+<p>To work with probability, we need to understand it.<br>
+<br>
+</p>
+<div class="fragment">
+<p>There are many philosophical ideas that describe how we think about statistics <em>and</em><br>
+</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p>There are many statistical ideas that describe how statistics (and its measures, such as probability) can work.<br>
+</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p>A scientist working with statistics is responsible to have at least a working knowledge of these ideas, if they truly want to understand their work.</p>
+</div>
+</section>
+<section id="the-end" class="slide level2">
+<h2>The End</h2>
+<p>Contact me: <a href="mailto:r.j.janse-5@umcutrecht.nl">r.j.janse-5@umcutrecht.nl</a><br>
+<br>
+</p>
+<p>More about me: <a href="https://rjjanse.github.io">rjjanse.github.io</a><br>
+<br>
+</p>
+<p>These slides: <a href="https://rjjanse.github.io/talks/theoretical_probability">rjjanse.github.io/talks/theoretical_probability</a></p>
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -465,6 +923,44 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
