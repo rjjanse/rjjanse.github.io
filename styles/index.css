@@ -906,19 +906,6 @@ select::picker-icon {
     margin-bottom: 0;
 }
 
-/* Expand button for CV */
-.cv-expand {
-    float: right;
-    margin-right: 10px;
-    transition: 0.5s;
-}
-
-/* Upon hovering */
-.cv-expand:hover {
-    color: #C9CBA3;
-    cursor: pointer;
-}
-
 /* CV list with items */
 .cv-items {
     overflow-y: scroll;
@@ -948,32 +935,10 @@ select::picker-icon {
     border-bottom: solid 2px #E26D5C;
 }
 
-/* Buffer at end of CV column to scroll out of fade */
-.cv-item-end {
-    height: 5em;
+/* Hide interests for phone view */
+#personal-content-container-phone {
+    display: none;
 }
-
-/* Style scrollbar for CV */
-/* width */
-.cv-items::-webkit-scrollbar {
-    width: 5px;
-}
-  
-/* Track */
-.cv-items::-webkit-scrollbar-track {
-    background: #472D30;
-}
-  
-/* Handle */
-.cv-items::-webkit-scrollbar-thumb {
-  background: #472D30;
-  transition: background 0.5s;
-}
-
-/* Handle on hover */
-.cv-items::-webkit-scrollbar-thumb:hover {
-  background: #472D30;
-} 
 
 /* Personal content container */
 #personal-content-container {
@@ -1621,45 +1586,20 @@ select::picker-icon {
 }
 
 /*-----------------PERSONAL PROFILE-----------------*/
+/* Hide standard personal profile */
 #personal-content-container {
-    width: 90vw;
-    left: 5vw;
+    display: none;
 }
 
-#personal-leftcolumn {
-    width: calc(70vw - 30px);
+/* Show phone personal profile */
+#personal-content-container-phone {
+    display: block;
 }
 
-#personal-rightcolumn {
-    width: 20vw;
-    font-size: 0.6em;
+.interest {
+    height: 100%;
+    display: block;
+    margin: 20px;
 }
-
-#personal-divider {
-    width: 70vw;
-}
-
-.interest-button, .interest-button-external {
-    width: 20vw;
-}
-
-#interest-placeholder {
-    width: 70vw;
-    margin-right: 30px;
-}
-
-.interest-wrapper {
-    padding: 0;
-}
-
-.image-gallery {
-    width: 70vw;
-}
-
-.image-gallery img {
-    height: auto;
-    width: calc(70vw - 30px);
-}
-
 
 }
