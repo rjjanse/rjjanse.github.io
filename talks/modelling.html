@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.7.32">
 
   <meta name="author" content="Roemer J. Janse">
-  <title>Models and the Pillars of Research with Data</title>
+  <title>Statistical Modelling</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -127,7 +127,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="images/modelling.webp" data-background-opacity="0.25" data-background-size="fill" class="quarto-title-block center">
-  <h1 class="title">Models and the Pillars of Research with Data</h1>
+  <h1 class="title">Statistical Modelling</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -161,10 +161,9 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
 <h2>Agenda</h2>
 <ul>
 <li>Tests are Void in the Presence of Models</li>
+<li>Digression: The Three Pillars of Research with Data</li>
 <li>What Makes a Model?</li>
 <li>Making a Model</li>
-<li>The Pillars of Data Research</li>
-<li>Models and Pillars</li>
 <li>Modelling in Practice</li>
 </ul>
 </section></section>
@@ -245,12 +244,410 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
 </ul>
 </section></section>
 <section>
+<section id="digression-the-three-pillars-of-research-with-data" class="title-slide slide level1 center">
+<h1>Digression: The Three Pillars of Research with Data</h1>
+
+</section>
+<section id="what-is-our-aim" class="slide level2">
+<h2>What is our Aim?</h2>
+<p><em>Descriptive:</em><br>
+Describe some situation, such as the prevalence of a disease, or how two variables relate to each other.<br>
+<br>
+</p>
+<div class="fragment">
+<p><em>Causal/etiological:</em><br>
+Determine whether some factor A causes some event B<br>
+</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p><em>Predictive (diagnostic &amp; prognostic):</em><br>
+Predict the presence/future occurrence of some event or present/future value of some measurement.</p>
+</div>
+</section>
+<section id="what-is-our-aim-1" class="slide level2">
+<h2>What is our Aim?</h2>
+<p>These are often conflated!<br>
+<a href="https://doi.org/10.1007/s10654-021-00794-w">Ramspek CL, <em>et al.</em> Prediction or causality? A scoping review of their conflation within current observational research. Eur J Epidemiol. 2021</a><br>
+<br>
+</p>
+<div class="fragment">
+<p>This is problematic because, these different pillars require:</p>
+<ul>
+<li class="fragment">different use of the same models</li>
+<li class="fragment">different interpretation of the same models</li>
+<li class="fragment">different parts of the same models’ output</li>
+</ul>
+</div>
+</section></section>
+<section>
 <section id="what-makes-a-model" class="title-slide slide level1 center">
 <h1>What Makes a Model?</h1>
 
 </section>
-<section id="parametric-non-parametric-models" class="slide level2">
-<h2>Parametric &amp; Non-parametric models</h2>
+<section id="information-that-represents-the-situation" class="slide level2">
+<h2>Information that Represents the Situation</h2>
+<p>We want our models to accurately represent some situation</p>
+<ul>
+<li class="fragment">Descriptive: occurrence of a factor in the population of interest</li>
+<li class="fragment">Causal: different groups which only differ on intervention status</li>
+<li class="fragment">Predictive: probability of occurrence/expected value in population of interest</li>
+</ul>
+<div class="fragment">
+<p>To achieve this, we need to fill our model with data: covariates &amp; parameters.</p>
+</div>
+</section>
+<section id="covariates" class="slide level2">
+<h2>Covariates</h2>
+<p>Covariates are variables (e.g.&nbsp;age, sex, eGFR) that we add to the model to represent our situation of interest:</p>
+<ul>
+<li class="fragment">Descriptive: none</li>
+<li class="fragment">Causal: intervention status + confounders</li>
+<li class="fragment">Predictive: predictors</li>
+</ul>
+</section>
+<section id="covariates-1" class="slide level2">
+<h2>Covariates</h2>
+<p>The way we select these covariates is important.</p>
+<ul>
+<li class="fragment">Knowledge-based: use (y)our clinical knowledge and causal graphs</li>
+<li class="fragment">Data-driven: automatically select based on the data</li>
+</ul>
+</section>
+<section id="covariates-knowledge-based-selection" class="slide level2">
+<h2>Covariates: knowledge-based selection</h2>
+<p>For causal &amp; prediction research</p>
+<ul>
+<li class="fragment">Predictive: what are likely predictors &amp; what increases face validity</li>
+<li class="fragment">Causal: what are possible confounders?</li>
+</ul>
+</section>
+<section id="covariates-knowledge-based-selection-1" class="slide level2">
+<h2>Covariates: knowledge-based selection</h2>
+<p>For confounder selection: use DAGs<br>
+<br>
+</p>
+<div class="fragment">
+<p><em>Directed acyclic graph (DAG):</em></p>
+<ul>
+<li class="fragment">Shows relation between different variables</li>
+<li class="fragment">Helps select the minimal relevant set of confounders (!)</li>
+<li class="fragment">Helps avoid inducing selection bias</li>
+</ul>
+</div>
+</section>
+<section id="covariates-knowledge-based-selection-2" class="slide level2">
+<h2>Covariates: knowledge-based selection</h2>
+
+<img data-src="images/dag.png" class="r-stretch"></section>
+<section id="covariates-knowledge-based-selection-3" class="slide level2">
+<h2>Covariates: knowledge-based selection</h2>
+<p>Two important lessons that DAGs teach us:</p>
+<ul>
+<li class="fragment">We do not need to adjust for all confounders</li>
+<li class="fragment">Selection is not selection bias <em>per sé</em></li>
+</ul>
+<div class="fragment">
+<p>A proper introduction to DAGs:<br>
+<a href="https://doi.org/10.1136/bmj-2023-078226">Feeney T, <em>et al.</em> How to use directed acyclic graphs: guide for clinical researchers. BMJ. 2025</a> &amp; <a href="https://doi.org/10.1097/01.ede.0000135174.63482.43">Hernán MA, <em>et al.</em> A structural approach to selection bias. Epidemiology. 2004</a></p>
+</div>
+</section>
+<section id="covariates-data-driven-selection" class="slide level2">
+<h2>Covariates: data-driven selection:</h2>
+<p>Only for prediction research<br>
+<br>
+</p>
+<div class="fragment">
+<p>Have the data select the most predictive variables (from a set of candidate predictors) through:<br>
+</p>
+</div>
+<div class="fragment">
+<p><em>From worse to better:</em></p>
+<ul>
+<li>Univariable selection</li>
+<li>Forward selection</li>
+<li>Backward selection</li>
+<li>Penalised likelihood estimation (LASSO / L1 regularisation / elastic net regression)</li>
+</ul>
+</div>
+</section>
+<section id="covariates-data-driven-selection-1" class="slide level2">
+<h2>Covariates: data-driven selection:</h2>
+<p>Core idea: based on some measure, determine which variables aid prediction and which do not</p>
+<div class="r-fit-text">
+<ul>
+<li class="fragment">Univariable selection: p-value (often &lt; 0.05, &lt; 0.10, or &lt; 0.178)</li>
+<li class="fragment">Forward selection: start with one candidate predictor and then, per iteration, add new candidate predictor, keep that variable only if p-value is significant or LRT/AIC/BIC improves</li>
+<li class="fragment">Backward selection: start with all candidate predictors and then per iteration, drop predictor based on worst p-value / test statistic</li>
+<li class="fragment">Penalised likelihood estimation: start with all candidate predictors; the model may drop variables if they add very little value (MLE)</li>
+</ul>
+</div>
+</section>
+<section id="covariates-data-driven-selection-2" class="slide level2">
+<h2>Covariates: data-driven selection</h2>
+<p><strong>Overfitting:</strong> the prediction model has incorporated patterns that are coincidentally present in the development data, but not in the target population<br>
+<br>
+</p>
+<div class="fragment">
+<p><strong>Result:</strong> model performance is worse in reality than observed during development</p>
+</div>
+</section>
+<section id="covariates-data-driven-selection-3" class="slide level2">
+<h2>Covariates: data-driven selection</h2>
+
+<img data-src="modelling_files/figure-revealjs/overfitting-1.png" width="960" class="r-stretch"></section>
+<section id="hyperparameters" class="slide level2">
+<h2>(Hyper)parameters</h2>
+<p>Some models require additional parameters (also called hyperparameters) that need to be decided:</p>
+<ul>
+<li>Generalised linear model: link function</li>
+<li>LASSO/ridge/elastic net regression: <span class="math inline">\(\lambda\)</span></li>
+<li>Random forest: nr. of trees &amp; tree depth</li>
+<li>Neural network: nr. of hidden layers</li>
+</ul>
+<p>Some of these are determined based on knowledge (e.g.&nbsp;link function), some of these are determined through ‘tuning’ (risk of overfitting!)</p>
+</section>
+<section id="hyperparameters-1" class="slide level2">
+<h2>(Hyper)parameters</h2>
+<p>Sometimes, we may also add weights as an additional parameter to models.<br>
+<br>
+</p>
+<div class="fragment">
+<p>Weights result in observations being counted more or less frequently than once.</p>
+<div class="{.incremental{">
+<ul>
+<li>Descriptive: represent the total population based on a skewed sample (e.g.&nbsp;LUMC NEO study)</li>
+<li>Causal: adjust for confounding by creating a pseudopopulation in which it does not exist</li>
+</ul>
+</div>
+</div>
+</section></section>
+<section>
+<section id="making-a-model" class="title-slide slide level1 center">
+<h1>Making a Model</h1>
+
+</section>
+<section id="parametric-vs.-non-parametric-models" class="slide level2">
+<h2>Parametric vs.&nbsp;non-parametric models</h2>
+<p>Most of our models summarise our data to the model output. For instance:</p>
+<ul>
+<li class="fragment">Most models contain an intercept (the uncoonditional probability <span class="math inline">\(P(Y)\)</span> or expected value <span class="math inline">\(E[Y]\)</span>)</li>
+<li class="fragment">Our covariates are given a coefficient (a.k.a. weight) by the model</li>
+</ul>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Giving a weight to a coefficient is also called the model learning the weight for that coefficient (or feature), hence the term machine learning</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="parametric-vs.-non-parametric-models-1" class="slide level2">
+<h2>Parametric vs.&nbsp;non-parametric models</h2>
+<p>Not all models are fully parametric:</p>
+<ul>
+<li>Cox regression model: baseline hazard is not parametricised</li>
+<li>K-nearest neighbour: fully non-parametric model</li>
+</ul>
+<div class="fragment">
+<p>This is relevant because:</p>
+<ul>
+<li>Parametrisation makes assumptions about the data</li>
+<li>No parametrisation requires the model to contain (part of) the underlying data</li>
+</ul>
+</div>
+</section>
+<section id="model-architectures" class="slide level2">
+<h2>Model architectures</h2>
+<ul>
+<li class="fragment">The type of model is mainly dictated by the architecture it uses</li>
+<li class="fragment">The architecture is built-in, but adaptable through (hyper)parameters</li>
+</ul>
+<p><br>
+</p>
+<div class="fragment">
+<p>The simplest architecture: <span class="math inline">\(y = ax + b\)</span> (linear regression)</p>
+</div>
+</section>
+<section id="model-architectures-1" class="slide level2">
+<h2>Model architectures</h2>
+<p>Say that <span class="math inline">\(ax + b = X\beta\)</span></p>
+<div class="fragment">
+<p><em>Generalised linear model:</em></p>
+<ul>
+<li class="fragment"><span class="math inline">\(y = X\beta\)</span> (linear regression)</li>
+<li class="fragment"><span class="math inline">\(y = \frac{1}{1 + e^{-X\beta}}\)</span> (logistic regression)</li>
+<li class="fragment"><span class="math inline">\(y = e^{X\beta}\)</span> (Poisson regression)</li>
+</ul>
+</div>
+<div class="fragment">
+<p><em>Cox regression:</em><br>
+<span class="math inline">\(y(t) = 1 - S_0(t)^{e^{X\beta}}, S_0(t) = e^{-H_0(t)}\)</span></p>
+</div>
+</section>
+<section id="model-architectures-2" class="slide level2">
+<h2>Model architectures</h2>
+<p><em>Random forest:</em> <img data-src="images/random_forest.png"></p>
+</section>
+<section id="model-architectures-3" class="slide level2">
+<h2>Model architectures</h2>
+<p><em>Artificial neural network:</em> <img data-src="images/neural_network.png"></p>
+</section>
+<section id="model-architectures-4" class="slide level2">
+<h2>Model architectures</h2>
+<p>Now relating it to the pillars:</p>
+<ul>
+<li>Descriptive: simple architectures</li>
+<li>Causal: simple architectures</li>
+<li>Predictive: simple or complex architectures</li>
+</ul>
+<div class="fragment">
+<p><img data-src="images/model_spectrum.png"></p>
+</div>
+</section>
+<section id="model-architectures-5" class="slide level2">
+<h2>Model architectures</h2>
+<div class="r-fit-text">
+<p><strong>Bias-variance trade-off</strong><br>
+Bias: how predictions match the truth (i.e.&nbsp;good performance)<br>
+Variance: how performance varies between settings</p>
+<ul>
+<li class="fragment">Complexer model: fits better, but has a higher risk of overfitting -&gt; lower bias, higher variance</li>
+<li class="fragment">Simpler model: fits worse, but has a lower risk of overfitting -&gt; higher bias, lower variance</li>
+</ul>
+</div>
+</section>
+<section id="model-architectures-6" class="slide level2">
+<h2>Model architectures</h2>
+<div class="r-fit-text">
+<p><strong>Machine learning vs.&nbsp;Statistics</strong><br>
+</p>
+<div class="fragment">
+<p>Machine learning = statistics</p>
+</div>
+<div class="fragment">
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Statistics</th>
+<th>Machine learning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Predictor</td>
+<td>Feature</td>
+</tr>
+<tr class="even">
+<td>Outcome</td>
+<td>Label</td>
+</tr>
+<tr class="odd">
+<td>Estimation</td>
+<td>Learning</td>
+</tr>
+<tr class="even">
+<td>Development data</td>
+<td>Training + validation data</td>
+</tr>
+<tr class="odd">
+<td>Validation data</td>
+<td>Test data</td>
+</tr>
+<tr class="even">
+<td>Contingency table</td>
+<td>Confusion matrix</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="fragment">
+<p>More @ <a href="https://doi.org/10.1093/ckj/sfaf059">Janse RJ, <em>et al.</em>. When the whole is greater than the sum of its parts: why machine learning and conventional statistics are complementary for predicting future health outcomes. Clin Kidney J. 2025</a> &amp; <a href="https://doi.org/10.1001/jamapediatrics.2023.0034">Finlayson SG, <em>et al.</em> Machine Learning and Statistics in Clinical Research Articles-Moving Past the False Dichotomy. JAMA Pediatr. 2023 May</a></p>
+</div>
+</div>
+</section></section>
+<section>
+<section id="modelling-in-practice" class="title-slide slide level1 center">
+<h1>Modelling in Practice</h1>
+
+</section>
+<section id="how-to-model" class="slide level2">
+<h2>How to Model</h2>
+<div class="r-fit-text">
+<p>Use a programming language!<br>
+</p>
+<div class="fragment">
+<p><strong>R:</strong> free, built for statistics, easy to program and read, great tools for data visualisation, used in most of medical statistics<br>
+Get started: <a href="https://rjjanse.github.io/rt">my tutorial 😁</a></p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p><strong>Python:</strong> free, built for general purposes, good statistical support, easy to program and read, used in most of computer sciences<br>
+Get started: <a href="https://www.w3schools.com/python/">w3schools</a></p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p><strong>Julia:</strong> free, built for statistics, good statistical support, fast, relatively uncommon in use<br>
+Get started: <a href="https://julialang.org/learning/">JuliaLang</a></p>
+</div>
+</div>
+</section>
+<section id="how-preferably-not-to-model" class="slide level2">
+<h2>How (Preferably) not to Model</h2>
+<p>Do not use a syntax!<br>
+</p>
+<div class="fragment">
+<p><strong>SPSS:</strong> €410.65/year, built for statistics, easy point-and-click, inflexible, poor syntax system, unstable (in my experience).</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p><strong>SAS:</strong> €?/year, built for statistics, not so flexible, syntax-reliant, many companies are reliant on it</p>
+</div>
+<p><br>
+</p>
+<div class="fragment">
+<p><strong>STATA:</strong> €150.32/year, built for statistics, not so flexible, syntax-reliant, many companies are reliant on it</p>
+</div>
+</section>
+<section id="how-to-report-on-your-model" class="slide level2">
+<h2>How to Report on your Model</h2>
+<p>Models are only useful if we report on them.<br>
+</p>
+<div class="fragment">
+<p>For all epidemiological studies: <a href="https://doi.org/10.1016/j.jclinepi.2007.11.008">STROBE</a>.<br>
+</p>
+</div>
+<div class="fragment">
+<p>Also:</p>
+<ul>
+<li><strong>Descriptive:</strong> <a href="https://doi.org/10.1093/aje/kwac115">A Framework for Descriptive Epidemiology</a></li>
+<li><strong>Causal:</strong> <a href="https://doi.org/10.1136/bmj-2024-081123">CONSORT</a> or <a href="https://doi.org/10.1371/journal.pmed.1001885">RECORD</a></li>
+<li><strong>Predictive:</strong> <a href="https://doi.org/10.1136/bmj.h5527">STARD</a> or <a href="https://doi.org/10.1136/bmj-2023-078378">TRIPOD+AI</a></li>
+</ul>
+</div>
+<div class="fragment">
+<p>Make sure to check the <a href="https://www.equator-network.org/">Equator network</a> for more!</p>
+</div>
+</section>
+<section id="closing-remarks" class="slide level2">
+<h2>Closing Remarks</h2>
+<ul>
+<li class="fragment">Always think about whether your study is descriptive, causal, or predictive</li>
+<li class="fragment">Let that choice influence your modelling decisions</li>
+<li class="fragment">Report on your model</li>
+</ul>
 </section>
 <section id="the-end" class="slide level2">
 <h2>The End</h2>
@@ -260,7 +657,7 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
 <p>More about me: <a href="https://rjjanse.github.io">rjjanse.github.io</a><br>
 <br>
 </p>
-<p>These slides: <a href="https://rjjanse.github.io/talks/pet">rjjanse.github.io/talks/modelling</a><br>
+<p>These slides: <a href="https://rjjanse.github.io/talks/modelling">rjjanse.github.io/talks/modelling</a><br>
 <br>
 </p>
 <div style="font-size: 0.5em;">
@@ -485,6 +882,44 @@ Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="quarto-ti
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {
         const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
