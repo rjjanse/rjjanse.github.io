@@ -1,0 +1,918 @@
+---
+title: "Pseudo-observations"
+author:
+    - name: Roemer J. Janse
+      orcid: 0000-0003-0059-872X
+format:
+    revealjs:
+        theme: sky
+        progress: true
+        slide-number: c/t
+        incremental: true
+        scrollable: true
+        echo: true
+        smaller: true
+        footer: "Pseudo-observations"
+        embed-resources: true
+title-slide-attributes:
+    data-background-image: images/skutustathagigar.jpg
+    data-background-size: cover
+    data-background-opacity: "0.5"
+---
+
+# Survival analysis {background-color="#f8f9fa"}
+
+## When do we use survival analysis? {background-color="#f8f9fa"}
+
+- Time to event data
+- Multiple hurdles in data
+    - Censoring
+    - Truncation
+    - Competing events
+    
+## NCCTG Lung Cancer Data {background-color="#f8f9fa"}
+Survival in patients with advanced lung cancer from the North Central Cancer Treatment Group. 
+```{r set-up}
+#| echo: false
+# Load packages
+pacman::p_load("survival",        # Survival analyses 
+               "dplyr",           # Data wrangling
+               "magrittr",        # Better pipelines 
+               "ggplot2",         # Data visualization
+               "broom",           # Tidying survival data
+               "pseudo",          # Pseudo-observations
+               "stringr",         # Working with strings
+               "rms",             # Checking assumptions
+               "splines",         # Splines
+               "cowplot",         # Data viz. add-ons
+               "pammtools",       # Data viz. add-ons
+               "survival",        # Modelling
+               "knitr",           # Markdown implementations
+               "intsurv",         # Package for calculating C-statistic
+               "patchwork"        # Patching plots together
+               )
+
+# Change lung data to tibble
+lung <- as_tibble(lung)
+
+# Clean up data
+lung <- lung %>%
+    # Change time from days to months
+    mutate(months = time / (365.25 / 12)) %>%
+    # Add ID
+    mutate(id = 1:nrow(lung)) %>%
+    # Relocate ID to first column
+    relocate(id, .before = "inst") %>%
+    # Change sex to 0 and 1
+    mutate(sex = sex - 1)
+
+# Theme for KM-curves
+theme_custom <- \(){
+    theme(axis.line = element_line(colour = "black"),
+          panel.grid = element_blank(),
+          panel.grid.major = element_line(colour = "lightgrey"),
+          panel.background = element_rect(fill = "#f8f9fa", colour = NA),
+          plot.background = element_rect(fill = "#f8f9fa", colour = NA),
+          legend.title = element_blank(),
+          legend.position = "bottom",
+          legend.background = element_rect(fill = "#f8f9fa", colour = NA))
+}
+
+# Total number of individuals
+n <- n_distinct(lung[["id"]])
+
+```
+
+```{r data}
+head(lung)
+
+```
+Status: 1 = censored, 2 = dead
+
+## Studying survival {background-color="#f8f9fa"}
+A common method is to use a Kaplan-Meier curve to compare survival in the presence of censoring.
+
+```{r kaplan-meier}
+#| echo: false
+# Fit curve without showing
+km <- lung %>%
+    # Fit survival model
+    survfit(Surv(months, as.numeric(status)) ~ sex, data = .) %>%
+    # Change to data frame
+    tidy() %>%
+    # Plot data
+    ggplot(aes(x = time, y = estimate, ymin = conf.low, ymax = conf.high, colour = strata, fill = strata)) +
+        # Geometries
+        geom_step() +
+        geom_stepribbon(alpha = 0.25, colour = NA) +
+        # Scaling
+        scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                           breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+        scale_y_continuous(limits = c(0, 1), expand = c(0, 0), breaks = seq(0, 1, 0.1),
+                           labels = seq(0, 1, 0.1), name = "Proportion alive") +
+        scale_colour_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+        scale_fill_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+        # Aesthetics
+        theme_custom()
+```
+
+::: {.panel-tabset}
+
+### KM curve
+
+```{r show kaplan-meier}
+#| echo: false
+km
+```
+
+### Code
+
+```{.r}
+# Plot survival
+lung %>%
+    # Fit survival model
+    survfit(Surv(months, status) ~ sex, data = .) %>%
+    # Change to data frame
+    tidy() %>%
+    # Plot data
+    ggplot(aes(x = time, y = estimate, ymin = conf.low, ymax = conf.high, colour = strata, fill = strata)) +
+        # Geometries
+        geom_step() +
+        geom_stepribbon(alpha = 0.25, colour = NA) +
+        # Scaling
+        scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                           breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+        scale_y_continuous(limits = c(0, 1), expand = c(0, 0), 
+                           breaks = seq(0, 1, 0.1), labels = seq(0, 1, 0.1), name = "Proportion alive") +
+        scale_colour_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+        scale_fill_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+        # Aesthetics
+        theme_custom()
+```
+:::
+
+# Pseudo-observations {background-color="#f8f9fa"}
+Andersen PK, Perme MP. Stat Methods Med Res. 2010
+
+## General idea {background-color="#f8f9fa"}
+:::: {.columns}
+::: {.column width="50%"}
+**Mathematical**
+:::
+
+::: {.column width="50%"}
+**Written**
+:::
+::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+Per person, we observe a survival time $T$ for each individual $i$.
+:::
+
+::: {.column width="50%"}
+Every person survives for a certain amount of _time_.
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+If for each individual $T$ is complete, we could apply a linear model to $T$, or apply binary methods by treating it as $I(T \le t)$ for any reasonable $t$.
+:::
+
+::: {.column width="50%"}
+If we know the survival _time_ of each person, we could use that as a continuous outcome or binary outcome after dichotomizing.
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+We could set up models for any function, $f(T)$.
+:::
+
+::: {.column width="50%"}
+We could use _time_ as outcome in any analysis.
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+Then, we could estimate the expected value $E(f(T))$ as $1 / n \sum_i{f(T_i)}$.
+:::
+
+::: {.column width="50%"}
+We could then calculate the expected value of _time_ by taking the mean of each individual's _time_.
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+What if we do not observe $T$ for each individual $i$?
+:::
+
+::: {.column width="50%"}
+What if we do not know the survival _time_ of each person?
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+In that case, we can substitute $f(T)$ with pseudo-observations.
+:::
+
+::: {.column width="50%"}
+In that case, we can use pseudo-observations instead of _time_.
+:::
+::::
+:::::
+
+## Calculating pseudo-observations {background-color="#f8f9fa"}
+:::: {.columns}
+::: {.column width="50%"}
+**Mathematical**
+:::
+
+::: {.column width="50%"}
+**Written**
+:::
+::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+Suppose we do not observe all $T_i$, but we have a well-behaved estimator $\hat{\theta}$ to estimate $E(f(T))$.
+:::
+
+::: {.column width="50%"}
+What if we do not know the survival _time_ of each individual, but we do have some kind of summary measure that could calculate the expected value of _time_.
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+This could be the Kaplan-Meier estimate $S(t) = E(I(T > t))$.
+:::
+
+::: {.column width="50%"}
+The summary measure could simply be the Kaplan-Meier estimate for a certain point in time.
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+We can then estimate $\hat{\theta}^{-i}$ for each individual $i$, $i = 1, ..., n$, where $\hat{\theta}^{-i}$ is the estimator applied to a data set of size $n$ - 1 obtained by excluding the $i^{th}$ individual.
+:::
+
+::: {.column width="50%"}
+We can calculate a specific summary measure for each person, by calculating the summary measure on the whole population minus that person, for each person.
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+Using $\hat{\theta}^{-i}$, we can estimate the pseudo-observation $\hat{\theta_i}$ for each $i$ as $\hat{\theta_i} = n * \hat{\theta} - (n - 1) * \hat{\theta}^{-i}$.
+:::
+
+::: {.column width="50%"}
+Then per person we can calculate their pseudo-observation based on the difference between the total summary measure and the summary measure if they are excluded.
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+We can now replace the incomplete observed $f(T_i)$ by $\hat{\theta_i}$. $\hat{\theta_i}$ can then be used as an outcome variable. The pseudo-osbervation $\hat{\theta_i}$ will always be used for all subjects, even if $f(T_i)$ was observed.
+:::
+
+::: {.column width="50%"}
+Instead of using _time_ as an outcome, we can now use the pseudo-observations as outcome. If we use pseudo-observations, we use them for every individual, regardless whether we observed _time_ for them.
+:::
+::::
+:::::
+
+::::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+Intuitively, the $i^{th}$ pseudo-observation is the contribution of individual $i$ to the estimate of $E(f(T))$.
+:::
+
+::: {.column width="50%"}
+Intuitively, each person's pseudo-observation is how much they contribute to the overall estimate on the population.
+:::
+::::
+:::::
+
+## Characteristics of the pseudo-observation {background-color="#f8f9fa"}
+Now let's calculate some pseudo-observations using the NCCTG Lung Cancer Data for a few individuals.
+```{r calculate pseudo-obs}
+#| echo: false
+# Function to get survival estimates
+surv_est <- function(data, strat_var = 1){
+    # Get estimate for each timepoint
+    return(survfit(as.formula(paste0("Surv(time, status) ~ ", strat_var)), data = data) %>%
+               # Create life table
+               tidy() %>%
+               # Keep only relevant variables
+               select(time, estimate, any_of("strata")))
+}
+
+# Function to join data
+pseudo_join <- function(data_ind, join_by = "time"){
+    # Join data and return
+    return(data_ind %>%
+        # Join overall data based on time
+        left_join(overall, join_by) %>%
+        # Calculate pseudo-observation for each person at each time
+        mutate(po = n * est_overall - (n - 1) * estimate) %>%
+        # Keep only relevant variables
+        select(id, time, po, any_of("strata")) %>%
+        # Change time to months
+        mutate(time = time / (365.25 / 12)))
+}
+
+# Get overall estimate for each timepoint
+overall <- surv_est(lung) %>%
+    # Rename variables
+    rename(est_overall = estimate)
+
+# Get estimate at each timepoint without person 2
+individual <- surv_est(filter(lung, id != 2)) %>%
+    # Create id variable
+    mutate(id = 2)
+
+# Add data together
+dat_pseudo <- pseudo_join(individual)
+
+# Individual survival curve
+single_surv <- tibble(time = c(0, filter(lung, id == 2)[["time"]] / (365.25 / 12), max(dat_pseudo[["time"]])),
+                      estimate = c(1, 0, 0)) %>%
+    # Create plot
+    ggplot(aes(x = time, y = estimate)) +
+        # Geometries
+        geom_step(colour = "darkred") +
+        # Scaling
+        scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                           breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+        scale_y_continuous(limits = c(-0.8, 1.6), expand = c(0, 0), round(seq(-0.8, 1.6, 0.2), 1),
+                           name = "Survival probability") +
+        # Aesthetics
+        theme_custom() 
+
+# Plot individual pseudo curve
+single_pseudo <- ggplot(dat_pseudo, aes(x = time, y = po)) +
+    # Geometries
+    geom_step(colour = "darkred") +
+    # Scaling
+    scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                       breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+    scale_y_continuous(limits = c(-0.8, 1.6), expand = c(0, 0), round(seq(-0.8, 1.6, 0.2), 1),
+                       name = "Pseudo-observation") +
+    # Aesthetics
+    theme_custom() 
+
+# Get estimates for four different people
+individual <- lapply(c(174, 2, 104, 214), \(x) surv_est(filter(lung, id != x)) %>% mutate(id = x)) %>%
+    # Bind data together
+    bind_rows()
+
+# Add data together
+dat_pseudo <- pseudo_join(individual)
+
+# Plot individual pseudo curves
+single_pseudos <- ggplot(dat_pseudo, aes(x = time, y = po, colour = factor(id), fill = factor(id))) +
+    # Geometries
+    geom_step() +
+    # Scaling
+    scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                       breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+    scale_y_continuous(limits = c(-0.8, 1.6), expand = c(0, 0), round(seq(-0.8, 1.6, 0.2), 1),
+                       name = "Pseudo-observation") +
+    scale_colour_manual(values = c("darkred", "darkorange", "darkblue", "darkgreen"),
+                        labels = c("Died", "Died", "Censored", "Censored")) +
+    scale_fill_manual(values = c("darkred", "darkorange", "darkblue", "darkgreen"),
+                      labels = c("Died", "Died", "Censored", "Censored")) +
+    # Aesthetics
+    theme_custom() +
+    theme(legend.position = c(0.1, 0.15),
+          legend.background = element_rect(fill = "transparent", colour = NA),
+          legend.key = element_blank())
+
+```
+
+::: {.panel-tabset}
+
+### Survival
+```{r show survival curve}
+#| echo: false
+single_surv
+
+```
+
+### Pseudo-observation
+
+```{r show pseudocurve}
+#| echo: false
+single_pseudo
+
+```
+
+### Multiple pseudo-observations
+
+```{r show more pseudocurves}
+#| echo: false
+single_pseudos
+
+```
+
+### Code
+
+```{.r}
+# Function to get survival estimates
+surv_est <- function(data, strat_var = 1){
+    # Get estimate for each timepoint
+    return(survfit(as.formula(paste0("Surv(time, status) ~ ", strat_var)), data = data) %>%
+               # Create life table
+               tidy() %>%
+               # Keep only relevant variables
+               select(time, estimate, any_of("strata")))
+}
+
+# Function to join data
+pseudo_join <- function(data_ind, join_by = "time"){
+    # Join data and return
+    return(data_ind %>%
+        # Join overall data based on time
+        left_join(overall, join_by) %>%
+        # Calculate pseudo-observation for each person at each time
+        mutate(po = n * est_overall - (n - 1) * estimate) %>%
+        # Keep only relevant variables
+        select(id, time, po, any_of("strata")) %>%
+        # Change time to months
+        mutate(time = time / (365.25 / 12)))
+}
+
+# Get overall estimate for each timepoint
+overall <- surv_est(lung) %>%
+    # Rename variables
+    rename(est_overall = estimate)
+
+# Get estimate at each timepoint without person 2
+individual <- surv_est(filter(lung, id != 2)) %>%
+    # Create id variable
+    mutate(id = 2)
+
+# Add data together
+dat_pseudo <- pseudo_join(individual)
+
+# Individual survival curve
+single_surv <- tibble(time = c(0, filter(lung, id == 2)[["time"]] / (365.25 / 12), max(dat_pseudo[["time"]])),
+                      estimate = c(1, 0, 0)) %>%
+    # Create plot
+    ggplot(aes(x = time, y = estimate)) +
+        # Geometries
+        geom_step(colour = "darkred") +
+        # Scaling
+        scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                           breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+        scale_y_continuous(limits = c(-0.8, 1.6), expand = c(0, 0), round(seq(-0.8, 1.6, 0.2), 1),
+                           name = expression("Survival estimate " * hat("S(t)"))) +
+        # Aesthetics
+        theme_custom() 
+
+# Plot individual pseudo curve
+single_pseudo <- ggplot(dat_pseudo, aes(x = time, y = po)) +
+    # Geometries
+    geom_step(colour = "darkred") +
+    # Scaling
+    scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                       breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+    scale_y_continuous(limits = c(-0.8, 1.6), expand = c(0, 0), round(seq(-0.8, 1.6, 0.2), 1),
+                       name = expression("Pseudo-value " * hat(theta[i]))) +
+    # Aesthetics
+    theme_custom() 
+
+# Get estimates for four different people
+individual <- lapply(c(174, 2, 104, 214), \(x) surv_est(filter(lung, id != x)) %>% mutate(id = x)) %>%
+    # Bind data together
+    bind_rows()
+
+# Add data together
+dat_pseudo <- pseudo_join(individual)
+
+# Plot individual pseudo curves
+single_pseudos <- ggplot(dat_pseudo, aes(x = time, y = po, colour = factor(id), fill = factor(id))) +
+    # Geometries
+    geom_step() +
+    # Scaling
+    scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                       breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+    scale_y_continuous(limits = c(-0.8, 1.6), expand = c(0, 0), round(seq(-0.8, 1.6, 0.2), 1),
+                       name = expression("Pseudo-value " * hat(theta[i]))) +
+    scale_colour_manual(values = c("darkred", "darkorange", "darkblue", "darkgreen"),
+                        labels = c("Died", "Died", "Censored", "Censored")) +
+    scale_fill_manual(values = c("darkred", "darkorange", "darkblue", "darkgreen"),
+                      labels = c("Died", "Died", "Censored", "Censored")) +
+    # Aesthetics
+    theme_custom() 
+    
+```
+:::
+
+## Relation to Kaplan-Meier {background-color="#f8f9fa"}
+Individual pseudo-observations are difficult to interpret, but if we average them, they are almost exactly the KM-curve.
+```{r km vs. pseudo-obs}
+#| echo: false
+# Normal KM curve stratified by sex
+km <- lung %>%
+    # Fit survival model
+    survfit(Surv(time, status) ~ sex, data = .) %>%
+    # Change to data frame
+    tidy() %>%
+    # Change time to months
+    mutate(time = time / (365.25 / 12)) %>%
+    # Plot data
+    ggplot(aes(x = time, y = estimate, colour = strata, fill = strata)) +
+        # Geometries
+        geom_step() +
+        # Scaling
+        scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                           breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+        scale_y_continuous(limits = c(0, 1), expand = c(0, 0), breaks = seq(0, 1, 0.1),
+                           labels = seq(0, 1, 0.1), name = "Proportion alive") +
+        scale_colour_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+        scale_fill_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+        # Aesthetics
+        theme_custom()
+
+# Overall estimates
+overall <- surv_est(lung, "sex") %>%
+    # Rename variable
+    rename(est_overall = estimate)
+
+# Estimates with individuals eliminated
+individual <- lapply(lung[["id"]], \(x) surv_est(filter(lung, id != x), "sex") %>% mutate(id = x)) %>%
+    # Bind data together
+    bind_rows()
+
+# Add data together
+dat_pseudo <- pseudo_join(individual, c("time", "strata")) %>%
+    # Arrange for grouping
+    arrange(strata, time) %>%
+    # Group per time in each stratum
+    group_by(strata, time) %>%
+    # Get mean estimate
+    summarise(po = mean(po), .groups = "drop") 
+
+# Plot data
+pseudo_km <- ggplot(dat_pseudo, aes(x = time, y = po, colour = strata, fill = strata)) +
+    # Geometries
+    geom_step() +
+    # Scaling
+    scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                       breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+    scale_y_continuous(limits = c(0, 1), expand = c(0, 0), breaks = seq(0, 1, 0.1),
+                       labels = seq(0, 1, 0.1), name = "Proportion alive") +
+    scale_colour_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+    scale_fill_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+    # Aesthetics
+    theme_custom()
+
+```
+
+:::::: {.panel-tabset}
+
+### Comparison
+
+::::: {.columns}
+:::: {.column width=50%}
+::: {.fragment}
+```{r show original kaplan-meier}
+#| echo: false
+km
+
+```
+:::
+::::
+
+:::: {.column width=50%}
+::: {.fragment}
+```{r show pseudo-obs kaplan-meier}
+#| echo: false
+pseudo_km
+
+```
+:::
+::::
+:::::
+
+### Code
+
+```{.r}
+# Normal KM curve stratified by sex
+lung %>%
+    # Fit survival model
+    survfit(Surv(time, status) ~ sex, data = .) %>%
+    # Change to data frame
+    tidy() %>%
+    # Change time to months
+    mutate(time = time / (365.25 / 12)) %>%
+    # Plot data
+    ggplot(aes(x = time, y = estimate, colour = strata, fill = strata)) +
+        # Geometries
+        geom_step() +
+        # Scaling
+        scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                           breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+        scale_y_continuous(limits = c(0, 1), expand = c(0, 0), breaks = seq(0, 1, 0.1),
+                           labels = seq(0, 1, 0.1), name = "Proportion alive") +
+        scale_colour_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+        scale_fill_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+        # Aesthetics
+        theme_custom()
+
+# Overall estimates
+overall <- surv_est(lung, "sex") %>%
+    # Rename variable
+    rename(est_overall = estimate)
+
+# Estimates with individuals eliminated
+individual <- lapply(lung[["id"]], \(x) surv_est(filter(lung, id != x), "sex") %>% mutate(id = x)) %>%
+    # Bind data together
+    bind_rows()
+
+# Add data together
+dat_pseudo <- pseudo_join(individual, c("time", "strata")) %>%
+    # Arrange for grouping
+    arrange(strata, time) %>%
+    # Group per time in each stratum
+    group_by(strata, time) %>%
+    # Get mean estimate
+    summarise(po = mean(po), .groups = "drop") 
+
+# Plot data
+ggplot(dat_pseudo, aes(x = time, y = po, colour = strata, fill = strata)) +
+    # Geometries
+    geom_step() +
+    # Scaling
+    scale_x_continuous(limits = c(0, 36), expand = expansion(add = 0.1), 
+                       breaks = seq(0, 36, 3), labels = seq(0, 36, 3), name = "Time (months)") +
+    scale_y_continuous(limits = c(0, 1), expand = c(0, 0), breaks = seq(0, 1, 0.1),
+                       labels = seq(0, 1, 0.1), name = "Proportion alive") +
+    scale_colour_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+    scale_fill_manual(values = c("darkred", "darkorange"), labels = c("Men", "Women")) +
+    # Aesthetics
+    theme_custom()
+
+```
+::::::
+
+# Practical applications {background-color="#f8f9fa"}
+Pohar Perme M. Simplifying survival analysis with pseudo-observations. Presented at: Advanced Survival Analysis Course; September 4, Leiden.
+
+## Survival at time $t$ {background-color="#f8f9fa"}
+```{r calculate survival}
+#| echo: false
+## Prepare pseudo data
+# Overall estimates
+overall <- surv_est(lung) %>%
+    # Rename variable
+    rename(est_overall = estimate)
+
+# Estimates with individuals eliminated
+individual <- lapply(lung[["id"]], \(x) surv_est(filter(lung, id != x)) %>% mutate(id = x)) %>%
+    # Bind data together
+    bind_rows()
+
+# Add data together
+dat_pseudo <- pseudo_join(individual) %>%
+    # Rename variables
+    rename(pseudo_observation = po, month = time) %>%
+    # Add information on sex
+    left_join(lung %>% select(id, sex), "id")
+
+```
+
+We can use pseudo-observations to determine survival at a certain moment in time $t$ using simple linear regression.
+
+:::: {.columns}
+::: {.column width=40%}
+```{r calculate survival with pseudo-obs}
+# Get data at 12 months
+dat_12m <- filter(dat_pseudo, month <= 12) %>%
+    # Arrange for grouping
+    arrange(id, month) %>%
+    # Group per person
+    group_by(id) %>%
+    # Keep only last observation
+    slice_tail() %>%
+    # Ungroup again
+    ungroup()
+
+# Fit linear model at t = 12
+lm(pseudo_observation ~ sex, data = dat_12m) %>%
+    # Get model summary
+    summary()
+
+```
+:::
+
+:::{.column width=60%}
+```{r check with kaplan-meier}
+#| echo: false
+km + geom_vline(xintercept = 12, linetype = "dashed")
+
+```
+:::
+::::
+
+## Survival at time $t$ {background-color="#f8f9fa"}
+
+We can use pseudo-observations to determine survival at a certain moment in time $t$ using simple linear regression.
+
+:::: {.columns}
+::: {.column width=40%}
+```{r another example}
+# Get data at 18 months
+dat_18m <- filter(dat_pseudo, month <= 18) %>%
+    # Arrange for grouping
+    arrange(id, month) %>%
+    # Group per person
+    group_by(id) %>%
+    # Keep only last observation
+    slice_tail() %>%
+    # Ungroup again
+    ungroup()
+
+# Fit linear model at t = 18
+lm(pseudo_observation ~ sex, data = dat_18m) %>%
+    # Get model summary
+    summary()
+
+```
+:::
+
+:::{.column width=60%}
+```{r show example again}
+#| echo: false
+km + geom_vline(xintercept = 18, linetype = "dashed")
+
+```
+:::
+::::
+
+## Generalized estimating equations {background-color="#f8f9fa"}
+Using generalized estimating equations (GEEs), we can use pseudo-observations as an outcome with different link functions for different modelling approaches:
+
+- Linear model: $y$
+- Logistic model: $log(\frac{y}{1 - y})$
+- Cox model: $log(-log(S(t)))$
+- Restricted mean survival time: $E(T \wedge \tau | Z)$ or $log(E(T \wedge \tau | Z))$
+- Fine-Gray model: $log(-log(1 - C_1(t)))$
+
+:::::: {.columns}
+::::: {.column width=50%}
+::: {.fragment}
+Normally, we could run a Cox model:
+
+```{r cox model}
+# Fit Cox model for hazard ratio
+coxph(Surv(time, status) ~ sex, data = lung) %>%
+    # Get model summary
+    summary()
+
+```
+:::
+:::::
+
+::::: {.column width=50%}
+:::: {.fragment}
+::: {.panel-tabset}
+
+### Code + hazard ratio
+
+We could also use the pseudo-observations with GEEs:
+
+```{r pseudo-obs with GEE}
+# Fit GEE with pseudo-observations for hazard ratio
+fit <- geese(1 - pseudo_observation ~ sex + as.factor(round(month)), 
+              data = dat_pseudo, mean.link = "cloglog", id = id, 
+              jack = TRUE, scale.fix = TRUE)
+
+# Transform estimate to hazard ratio
+exp(-exp(fit[["beta"]][["sex"]]))
+
+```
+
+### GEE summary
+
+```{r show model fit}
+#| echo: false
+fit
+
+```
+:::
+::::
+:::::
+::::::
+
+::: {.fragment}
+The variance $\hat{var}(\hat{\beta})$ can be estimated using a sandwich estimator or bootstrapping.
+:::
+
+::: {.fragment}
+**But do not forget: the real practical value lies in the cases where no other standard methods apply.**
+:::
+
+## Visualizing with pseudo-observations {background-color="#f8f9fa"}
+```{r visualise with pseudo-obs}
+#| echo: false
+# Vector of random probabilities equal to size of lung data
+set.seed(1); probs <- runif(n, 0, 1)
+
+# Add competing event indicator in data (random) and fill some missing values
+lung_cr <- mutate(lung, 
+                  # Add .imp for grouping in functions
+                  .imp = 1,
+                  # If random probability >=80%, then competing risk
+                  status_cr = ifelse(status == 2 & probs >= 0.65, 3, status),
+                  # Change to factor
+                  status_cr = factor(status_cr - 1, labels = c("Censoring", "Death", "Immortality potion")),
+                  # Mean impute variables
+                  across(ph.ecog:wt.loss, \(x) x = ifelse(is.na(x), mean(x, na.rm = TRUE), x))) %>%
+    # Rename id to studynr
+    rename(studynr = id)
+
+# Load validation function
+source("https://raw.githubusercontent.com/rjjanse/janse-2025-kme/refs/heads/main/3x-functions-20231129.R")
+
+```
+
+
+
+Pseudo-observations can also be used to visualize model assumptions. More in Andersen PK, Perme MP. Stat Methods Med Res. 2010.
+
+:::: {.fragment}
+We can also use it to create a calibration plot in prediction modelling:
+
+::: {.panel-tabset}
+
+### Calibration plot
+```{r calibration plot with pseudo-obs}
+#| echo: false
+# Create small Fine-Gray prediction model
+model_vars <- dev(lung_cr, "Surv(time, status_cr) ~ age + sex + ph.ecog + ph.karno + meal.cal + wt.loss", "fine-gray")
+
+# Validate model
+pred(lung_cr, "fine-gray", status_cr, time, lpsamp = lpsamp(lung_cr)) %>%
+    # Validate
+    validate(observed, pred, lp, "fine-gray", time, histogram_label = 0.1, deciles = FALSE)
+
+```
+
+### Code
+```{.r}
+# Create small Fine-Gray prediction model
+model_vars <- dev(lung_cr, "Surv(time, status_cr) ~ age + sex + ph.ecog + ph.karno + meal.cal + wt.loss", "fine-gray")
+
+# Validate model
+pred(lung_cr, "fine-gray", status_cr, time, lpsamp = lpsamp(lung_cr)) %>%
+    # Validate
+    validate(observed, pred, lp, "fine-gray", time, histogram_label = 0.1, deciles = FALSE)
+
+```
+
+:::
+::::
+
+## Further reading {background-color="#f8f9fa"}
+- Andersen P.K., Pohar Perme M. _Pseudo observations in survival analysis_. Stat Methods Med Res 2010.
+- Pavlic K., Pohar Perme M. _Using pseudo-observations for estimation in relative survival_. Biostatistics 2018.
+- Pohar Perme M., Andersen P.K. _Checking hazard regression models using pseudo-observations_. Stat Med 2008.
+- Parner E.T., Andersen P.K., Overgaard M. _Regression models for censored time-to-event data using infinitesimal jack-knife pseudo-observations, with applications to left-truncation_. Lifetime Data Anal 2023.
+- Ambrogi F., Iacobelli S., Andersen P.K. _Analyzing differences between restricted mean survival time curves using pseudo-values_. BMC Med Res Methodol 2022.
+- Andersen P.K., Syriopoulou E., Parner E.T. _Causal inference in survival analysis using pseudo-observations_ Stat Med 2017.
+- Andersen P.K. _Decomposition of number of life years lost according to cause of death_ Stat Med 2023.
+- Andersen P.K., Klein J.P., Rosthøj S. _Generalized linear models for correlated pseudo-observations, with applications to multi-state models._ Biometrika 2003.
+- Graw F., Gerds T.A., Schumacher M. _On pseudo-values for regression analysis in multi-state models._
+- Sabathé C., Andersen P.K., Helmer, C. _et al._ _Regression analysis in an illness-death model with interval-censored data: A pseudo-value approach_. Stat Methods Med Res 2020.
+- Tanaka S., Brookhart M.A., Fine J.P. _G-estimation of structural nested mean models for competing risks data using pseudo-observations_ Biostatistics 2020.
+
+
