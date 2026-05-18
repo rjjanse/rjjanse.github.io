@@ -11,12 +11,16 @@ function drawChart() {
     ["2022", 4],
     ["2023", 6],
     ["2024", 11],
-    ["2025", 35],
+    ["2025", 35], // Total at 56
     ["2026", 17]
   ]);
 
   // Chart options
   var options = {
+    title: 'Total = 73',
+    titleTextStyle: {
+        color: "#FFE1A8"
+      },
     legend: {
       position: 'none'
     },
