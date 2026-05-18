@@ -11,11 +11,13 @@ format:
 
 ::: {layout-ncol=3}
 
-[![Models and the Pillars of Research with Data](images/modelling.webp)](https://rjjanse.github.io/talks/modelling){target="_blank"}
+[![Statistical Modelling](images/modelling.webp){width=253px height=189.85px}](https://rjjanse.github.io/talks/modelling){target="_blank"}
 
-[![P(robabilities), E[xpectations], and the Truth](images/probability.png)](https://rjjanse.github.io/talks/pet){target="_blank"}
+[![P(robabilities), E[xpectations], and the Truth](images/probability.png){width=253px height=189.85px}](https://rjjanse.github.io/talks/pet){target="_blank"}
 
-[![Figuring It Out](images/cholera-map.jpg)](https://rjjanse.github.io/talks/figures){target="_blank"}
+[![Figuring It Out](images/cholera-map.jpg){width=253px height=189.85px}](https://rjjanse.github.io/talks/figures){target="_blank"}
+
+[![Pseudo-observations](images/skutustathagigar.jpg){width=253px height=189.85px}](https://rjjanse.github.io/talks/pseudo-observations){target="_blank"}
 
 :::
 
