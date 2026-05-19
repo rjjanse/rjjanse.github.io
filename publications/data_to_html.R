@@ -69,7 +69,7 @@ pub_lst <- function(study){
 }
 
 # Vector of possible headings
-headings <- c("Background", "Introduction", "Aim", "Aims", "Objective", "Objectives", "Methods", "Results", "Methods and results", "Discussion", "Conclusion", "Conclusions",
+headings <- c("Background and Aims", "Background", "Introduction", "Aim", "Aims", "Objective", "Objectives", "Methods", "Results", "Methods and results", "Discussion", "Conclusion", "Conclusions",
               "Study design and setting", "Study design", "Setting & participants", "Selection criteria for studies", "Analytical approach", "Limitations",
               "Rationale & objective", "Rationale")
 
@@ -91,7 +91,7 @@ pub_int <- function(study){
     abstract <- str_replace_all(abstract, "<", "&lt;")
 
     # Set headings to bold and add breaks
-    for(i in headings) abstract <- str_replace_all(abstract, paste0("(?<!<b>)", i, ":"), paste0("<br><b>", i, ":</b>"))
+    for(i in headings) abstract <- str_replace_all(abstract, paste0("(?<!<b>)", i, ":(?!</b>)"), paste0("<br><b>", i, ":</b>"))
     
     # If the heading is the first, the break is not needed, so we remove it again
     abstract <- str_replace_all(abstract, "^<br>", "")
