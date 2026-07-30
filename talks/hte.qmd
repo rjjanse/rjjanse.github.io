@@ -1,0 +1,381 @@
+---
+title: "Moving beyond the mythical average individual"
+subtitle: "Epidemiology as driver of personalised care"
+title-slide-attributes:
+    data-background-image: images/bears.jpg
+    data-background-size: fill
+    data-background-opacity: "0.2"
+author:
+    - name: Dr. Roemer J. Janse
+      orcid: 0000-0003-0059-872X
+      email: R.J.Janse-5@umcutrecht.nl
+      affiliations:
+        - name: UMC Utrecht
+format: 
+    revealjs:
+        theme: simple
+        mermaid: 
+          theme: forest
+                
+css: hte.css
+---
+
+```{r set-up}
+#| message: false
+#| warning: false
+#| include: false
+
+# Load packages
+pacman::p_load("dplyr",          # Data wrangling
+               "magrittr",       # Better pipelines
+               "tidyr",          # Data pivoting
+               "ggplot2",        # Data visualisation
+               "patchwork",      # Patch plots together
+               "conflicted"      # Package conflicts
+)
+
+# Resolve conflicts
+conflicts_prefer(dplyr::filter)   # Between stats and dplyr
+
+```
+
+# Prelude
+
+## The "Average Man"?
+![](images/flying_personnel.png){fig-align="center"}
+
+## The "Average Man"?
+![](images/anthropometry_survey.png){fig-align="center"}
+
+## The "Average Man"?
+![](images/daniels.png){fig-align="center"}
+
+## The "Average Man"?
+![](images/mythical_average.png){fig-align="center"}
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+:::{.fragment}
+```{mermaid RCT-0}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial")
+```
+:::
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-1}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-2}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-3}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-4}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-5}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-6}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-7}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-8}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-9}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-10}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    ite --> ind("Individual people")
+    
+```
+
+## Estimands: ATE{.smaller}
+
+**Average treatment effect:** 
+$$\mathbb{E}[Y^{a=1}] - \mathbb{E}[Y^{a=0}]$$
+
+:::{.fragment}
+Useful for:
+
+- Policy makers
+:::
+
+:::{.fragment}
+RCTs are powered to estimate the ATE.
+:::
+
+## Estimands: CATE{.smaller}
+
+**Conditional average treatment effect:** 
+$$\mathbb{E}[Y^{a=1}|X] - \mathbb{E}[Y^{a=0}|X]$$
+
+
+:::{.fragment}
+Useful for:
+
+- Policy makers
+- Healthcare providers
+:::
+
+:::{.fragment}
+RCTs are rarely powered to estimate a CATE.
+:::
+
+## Estimands: CATE{.smaller}
+![](images/isis.png)
+
+## Estimands: CATE{.smaller}
+![](images/isis_subgroup.png)
+
+## Estimands: ITE{.smaller}
+
+**Individualised treatment effect:**\
+[(*really just a CATE*)]{font-size=0.75em}
+$$\mathbb{E}[Y^{a=1}|X_1,X_2...X_p] - \mathbb{E}[Y^{a=0}|X_1,X_2...X_p]$$
+
+:::{.fragment}
+Useful for:
+
+- Healthcare providers
+:::
+
+:::{.fragment}
+RCTs are not powered to estimate an ITE
+:::
+
+## Estimands{.smaller}
+
+```{mermaid estimands-1}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial <br> (RCT)") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    ite --> ind("Individual people")
+    
+```
+
+## Estimands{.smaller}
+
+```{mermaid estimands-2}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial <br> (RCT)") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    ite --> ind("Individual people")
+    
+%% Custom style for node CATE and ITE
+style cate fill:#F9A03F,stroke:#C36F09
+style ite fill:#E79E9C,stroke:#6F1D1B
+    
+```
+
+## Estimands{.smaller}
+
+```{mermaid estimands-3}
+%%| fig-align: center
+
+flowchart TB
+    rct("Pooled RCTs/ <br> Observational study") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    ite --> ind("Individual people")
+    
+```
+
+## Treatment effect heterogeneity{.smaller}
+:::{.incremental}
+- The CATE/ITE can differ for specific subgroups/individuals
+- This is of interest if they differ in *magnitude* or *direction*
+- The presence of such differences is called **treatment effect heterogeneity / heterogeneity in treatment effects (HTE)**
+:::
+
+## Treatment effect heterogeneity{.smaller}
+
+
+
+
+## Treatment effect heterogeneity{.smaller}
+:::{.incremental}
+- One way to investigate and estimate HTE is through prediction modelling 
+- Corresponding methodology is summarised in the Predictive Approaches to Treatment effect Heterogeneity (PATH) statement 
+:::
+
+:::{.fragment}
+![](images/path.png){height=400px fig-align="center"}
+:::
+
+
+# The PATH statement
+[(and more)]{font-size=0.75em}
+
+## 
