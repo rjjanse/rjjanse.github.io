@@ -1401,6 +1401,7 @@ wrap_plots(p_true, p_group, p_match, p_match_zoom,
 ## Calibration{.smaller}
 Our S-learner
 ```{r calibration real data}
+#| fig-height: 3
 # Group-based calibration
 # Calculate deciles
 dat_group <- dat %>% 
@@ -1660,6 +1661,13 @@ wrap_plots(p_group, p_match, p_match_zoom,
 - Observational data may suffice, but larger data sources often lose granularity
 - Sample size calculations rarely factor in all sources of variation and formal sample size calculations are not available for these methods
 - Prediction intervals are your (computationally intensive) best friend!
+:::
+
+## Validation
+:::{.callout-warning}
+- Your data source might not fully represent your target population
+- Validate for both internal and external validity of estimates
+- Target your validation: "external validation" means nothing without context
 :::
 
 ## Clinical implementation
