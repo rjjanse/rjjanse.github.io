@@ -592,15 +592,15 @@ In case exchangeability holds:
 ::::
 
 ## Effect modelling{.smaller}
-Several techniques for effect modelling exist:
+Several techniques for effect modelling,exist:
 
 :::{.incremental}
 - S-learner
 - T-learner
 - X-learner
-- DR-learner
-- R-learner
-- Causal forest
+- *DR-learner: double-robust estimator (treatment + outcome model)* 
+- *R-learner: model residuals after removing variance through covariates* 
+- *Causal forest: random data splits to maximise treatment effect differences*
 :::
 
 ## S-learners{.smaller}
@@ -610,13 +610,13 @@ S-learners are the simplest method, as they rely on only a single model:
 - We aim to estimate the ARD, as estimand for individual benefit
 - We express this as $ARD = AR_{A=1} - AR_{A=0}$, where $AR_{A=1} = \mathbb{E}[Y=1|A=1,\textbf{X}]$ and $AR_{A=0} = \mathbb{E}[Y=1|A=0,\textbf{X}]$
 - An S-learner means that we fit a single (S) model for both $AR_{A=1}$ and $AR_{A=0}$
-- Thus, we fit the model $Y = \textit{f}(a + \beta_A * A + \textbf{X}\beta)$
-- We then calculate benefit as $ARD = \textit{f}(a + \beta_A + \textbf{X}\beta) - \textit{f}(a + \textbf{X}\beta)$
+- Thus, we fit the model $\hat{\mu}(x)$ as $M(Y \sim A + \textbf{X})$
+- We then calculate benefit as $ARD = \hat{\mu}(x,A = 1) - \hat{\mu}(x,A = 0)$
 :::
 
 ::::{.fragment}
 :::{.callout-note}
-$\textit{f}$ can be any model architecture we desire
+$M$ can be any model architecture we desire
 :::
 ::::
 
@@ -682,7 +682,7 @@ ggplot(tibble(vec_ard),
                    colour = "#13540c",
                    fill = "#cde498") +
     # Scalings
-    scale_x_continuous(name = "Absolute risk difference",
+    scale_x_continuous(name = "Absolute risk reduction",
                        breaks = seq(-0.15, 0, 0.05),
                        labels = paste0(seq(-15, 0, 5), "%-point")) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
@@ -699,14 +699,14 @@ T-learners instead use a single model per treatment arm. In our example, that wo
 :::{.incremental}
 - A T-learner means that we fit separate models for $AR_{A=1}$ and $AR_{A=0}$
 - Thus, we fit the models <br> 
-$Y_{A=1} = \textit{f}(a + \textbf{X}\beta)$; <br>
-$Y_{A=0} = \textit{f}(a + \textbf{X}\beta)$
-- We then calculate benefit as $ARD = Y_{A=1}(\textbf{X}) - Y_{A=0}(\textbf{X})$
+$\hat{\mu}_1(x)$ as $M(Y^1 \sim \textbf{X}^1)$; <br>
+$\hat{\mu}_0(x)$ as $M(Y^0 \sim \textbf{X}^0)$
+- We then calculate benefit as $ARD = \hat{\mu}_1(x) - \hat{\mu}_0(x)$
 :::
 
 ## T-learners{.smaller auto-animate=true}
 
-```{r slearner-1}
+```{r tlearner-1}
 #| echo: true
 # Subset data
 dat_a1 <- filter(dat, trt == 1)   # Treated population
@@ -716,25 +716,25 @@ dat_a0 <- filter(dat, trt == 0)   # Untreated population
 
 ## T-learners{.smaller auto-animate=true}
 
-```{r slearner-1}
+```{r tlearner-2}
 #| echo: true
 # Subset data
 dat_a1 <- filter(dat, trt == 1)   # Treated population
 dat_a0 <- filter(dat, trt == 0)   # Untreated population
 
 # Fit treated model
-fit_tlearner_a1 <- coxph(Surv(time, death) ~ trt + age + female + obstruct + perfor + adhere + nodes + differ,
+fit_tlearner_a1 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
                          data = dat_a1)
 
 # Fit untreated model
-fit_tlearner_a0 <- coxph(Surv(time, death) ~ trt + age + female + obstruct + perfor + adhere + nodes + differ,
+fit_tlearner_a0 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
                          data = dat_a0)
 
 ```
 
 ## T-learners{.smaller auto-animate=true}
 
-```{r slearner-2}
+```{r tlearner-3}
 #| echo: true
 # Subset data
 dat_a1 <- filter(dat, trt == 1)   # Treated population
@@ -753,8 +753,8 @@ vec_ard <- ar(dat, NULL, fit_tlearner_a1) - ar(dat, NULL, fit_tlearner_a0)
 
 ```
 
-:::{.fragment}
-```{r slearner-hist}
+## T-learners{.smaller}
+```{r tlearner-hist}
 # Visualise ARD
 ggplot(tibble(vec_ard),
        aes(x = vec_ard)) +
@@ -763,7 +763,7 @@ ggplot(tibble(vec_ard),
                    colour = "#13540c",
                    fill = "#cde498") +
     # Scalings
-    scale_x_continuous(name = "Absolute risk difference",
+    scale_x_continuous(name = "Absolute risk reduction",
                        breaks = seq(-0.8, 0.2, 0.2),
                        labels = paste0(seq(-80, 20, 20), "%-point")) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
@@ -771,16 +771,306 @@ ggplot(tibble(vec_ard),
     theme_manual_hist()
 
 ```
+
+# X-learners{.smaller}
+An X-learner similarly fits two models, like the T-learner, but uses them in a cross-over manner (hence X):
+
+:::{.incremental}
+- We again fit separate models for $AR_{A=1}$ and $AR_{A=0}$: <br>
+$\hat{\mu}_1(x)$ as $M(Y^1 \sim \textbf{X}^1)$; <br>
+$\hat{\mu}_0(x)$ as $M(Y^0 \sim \textbf{X}^0)$
+- We then use the treated model to counterfactually predict what the control group would have experienced under treatment and vice versa: <br>
+$\hat{\mu}_1(\textbf{X}^0)$; <br>
+$\hat{\mu}_0(\textbf{X}^1)$
+- These counterfactual predictions allow us to impute the treatment effects by subtracting them from observed outcomes: <br>
+$D^1 = Y^1 - \hat{\mu}_1(\textbf{X}^0)$; <br>
+$D^0 = \hat{\mu}_0(\textbf{X}^1) - Y^0$
 :::
 
-# X-learner
+## X-learners{.smaller}
+:::{.incremental}
+- We now fit two new models for the imputed treatment effects: <br>
+$\hat{\tau_1}(x)$ as $M(D^1 \sim \textbf{X}^1)$; <br>
+$\hat{\tau_0}(x)$ as $M(D^0 \sim \textbf{X}^0)$
+- Last, we can combine the estimates from these models: <br>
+$ARD = g(x) * \hat{\tau_0}(x) + (1 - g(x)) * \hat{\tau_1}(x))$
+- Here, $g(x)$ is a weighting factor, which generally equals the propensity score $\mathbb{E}[A|\textbf{X}]$, estimated as $M(A \sim \textbf{X})$
+:::
+
+## X-learners{.smaller auto-animate=true}
+
+```{r xlearner-1}
+#| echo: true
+# Subset data
+dat_a1 <- filter(dat, trt == 1)   # Treated population
+dat_a0 <- filter(dat, trt == 0)   # Untreated population
+
+```
+
+## X-learners{.smaller auto-animate=true}
+
+```{r xlearner-2}
+#| echo: true
+# Subset data
+dat_a1 <- filter(dat, trt == 1)   # Treated population
+dat_a0 <- filter(dat, trt == 0)   # Untreated population
+
+# Fit treated model
+fit_xlearner_a1 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a1)
+
+# Fit untreated model
+fit_xlearner_a0 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a0)
+
+```
+
+## X-learners{.smaller auto-animate=true}
+
+```{r xlearner-3}
+#| echo: true
+# Subset data
+dat_a1 <- filter(dat, trt == 1)   # Treated population
+dat_a0 <- filter(dat, trt == 0)   # Untreated population
+
+# Fit treated model
+fit_xlearner_a1 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a1)
+
+# Fit untreated model
+fit_xlearner_a0 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a0)
+
+# Get counterfactual predictions
+vec_cf_pred_a1 <- ar(dat_a1, NULL, fit_xlearner_a0)  # Treated population
+vec_cf_pred_a0 <- ar(dat_a0, NULL, fit_xlearner_a1)  # Untreated population
+
+```
+
+## X-learners{.smaller auto-animate=true}
+
+```{r xlearner-4}
+#| echo: true
+# Subset data
+dat_a1 <- filter(dat, trt == 1)   # Treated population
+dat_a0 <- filter(dat, trt == 0)   # Untreated population
+
+# Fit treated model
+fit_xlearner_a1 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a1)
+
+# Fit untreated model
+fit_xlearner_a0 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a0)
+
+# Get counterfactual predictions
+vec_cf_pred_a1 <- ar(dat_a1, NULL, fit_xlearner_a0)  # Treated population
+vec_cf_pred_a0 <- ar(dat_a0, NULL, fit_xlearner_a1)  # Untreated population
+
+# Impute treatment effects
+dat_a1[["d"]] <- dat_a1[["death"]] - vec_cf_pred_a1
+dat_a0[["d"]] <- vec_cf_pred_a0 - dat_a0[["death"]]
+
+```
+
+## X-learners{.smaller auto-animate=true}
+
+```{r xlearner-5}
+#| echo: true
+# Subset data
+dat_a1 <- filter(dat, trt == 1)   # Treated population
+dat_a0 <- filter(dat, trt == 0)   # Untreated population
+
+# Fit treated model
+fit_xlearner_a1 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a1)
+
+# Fit untreated model
+fit_xlearner_a0 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a0)
+
+# Get counterfactual predictions
+vec_cf_pred_a1 <- ar(dat_a1, NULL, fit_xlearner_a0)  # Treated population
+vec_cf_pred_a0 <- ar(dat_a0, NULL, fit_xlearner_a1)  # Untreated population
+
+# Impute treatment effects
+dat_a1[["d"]] <- dat_a1[["death"]] - vec_cf_pred_a1
+dat_a0[["d"]] <- vec_cf_pred_a0 - dat_a0[["death"]]
+
+# Fit treated model on imputed treatment effect
+fit_xlearner_d_a1 <- lm(d ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                        data = dat_a1)
+                        
+# Fit untreated model on imputed treatment effect
+fit_xlearner_d_a0 <- lm(d ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                        data = dat_a0)
+ 
+```
+
+## X-learners{.smaller auto-animate=true}
+
+```{r xlearner-6}
+#| echo: true
+# Subset data
+dat_a1 <- filter(dat, trt == 1)   # Treated population
+dat_a0 <- filter(dat, trt == 0)   # Untreated population
+
+# Fit treated model
+fit_xlearner_a1 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a1)
+
+# Fit untreated model
+fit_xlearner_a0 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a0)
+
+# Get counterfactual predictions
+vec_cf_pred_a1 <- ar(dat_a1, NULL, fit_xlearner_a0)  # Treated population
+vec_cf_pred_a0 <- ar(dat_a0, NULL, fit_xlearner_a1)  # Untreated population
+
+# Impute treatment effects
+dat_a1[["d"]] <- dat_a1[["death"]] - vec_cf_pred_a1
+dat_a0[["d"]] <- vec_cf_pred_a0 - dat_a0[["death"]]
+
+# Fit treated model on imputed treatment effect
+fit_xlearner_d_a1 <- lm(d ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                        data = dat_a1)
+                        
+# Fit untreated model on imputed treatment effect
+fit_xlearner_d_a0 <- lm(d ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                        data = dat_a0)
+                        
+# Estimate propensity score
+dat[["ps"]] <- predict(
+    # Propensity score model
+    glm(trt ~ age + female + obstruct + perfor + adhere + nodes + differ,
+        data = dat,
+        family = binomial),
+    # Return PS
+    type = "response")
+
+```
+
+## X-learners{.smaller auto-animate=true}
+
+```{r xlearner-7}
+#| echo: true
+# Subset data
+dat_a1 <- filter(dat, trt == 1)   # Treated population
+dat_a0 <- filter(dat, trt == 0)   # Untreated population
+
+# Fit treated model
+fit_xlearner_a1 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a1)
+
+# Fit untreated model
+fit_xlearner_a0 <- coxph(Surv(time, death) ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                         data = dat_a0)
+
+# Get counterfactual predictions
+vec_cf_pred_a1 <- ar(dat_a1, NULL, fit_xlearner_a0)  # Treated population
+vec_cf_pred_a0 <- ar(dat_a0, NULL, fit_xlearner_a1)  # Untreated population
+
+# Impute treatment effects
+dat_a1[["d"]] <- dat_a1[["death"]] - vec_cf_pred_a1
+dat_a0[["d"]] <- vec_cf_pred_a0 - dat_a0[["death"]]
+
+# Fit treated model on imputed treatment effect
+fit_xlearner_d_a1 <- lm(d ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                        data = dat_a1)
+                        
+# Fit untreated model on imputed treatment effect
+fit_xlearner_d_a0 <- lm(d ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                        data = dat_a0)
+                        
+# Estimate propensity score
+dat[["ps"]] <- predict(
+    # Propensity score model
+    glm(trt ~ age + female + obstruct + perfor + adhere + nodes + differ,
+        data = dat,
+        family = binomial),
+    # Return PS
+    type = "response")
+
+# Final estimate
+vec_ard <- dat[["ps"]] * predict(fit_xlearner_d_a0, newdata = dat) + (1 - dat[["ps"]]) * predict(fit_xlearner_d_a1, newdata = dat)
+
+```
+
+## X-learners{.smaller}
+```{r xlearner-hist}
+# Visualise ARD
+ggplot(tibble(vec_ard),
+       aes(x = vec_ard)) +
+    # Geometries
+    geom_histogram(binwidth = 0.01,
+                   colour = "#13540c",
+                   fill = "#cde498") +
+    # Scalings
+    scale_x_continuous(name = "Absolute risk reduction",
+                       breaks = seq(-0.8, 0.2, 0.2),
+                       labels = paste0(seq(-80, 20, 20), "%-point")) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
+    # Aesthethics
+    theme_manual_hist()
+
+```
+
+# Performance
+
+## Why we're not yet done{.smaller}
+
+:::{.incremental}
+- Our models for ITE estimates are in fact prediction models
+- As such, we need to validate them, at least on: <br>
+Discrimination: *how well can the model distinguish those with low and with high benefit?* <br>
+Calibration: *how well does the predicted benefit correspond with the true benefit?*
+- One problem: validation is difficult because we do not know the true benefit (as we can never observe the counterfactual)
+- Thus we rely on suboptimal measures that approach the true benefit for validation
+:::
+
+::::{.fragment}
+:::{.callout-note}
+Despite all our best efforts to individualise estimates, model performance metrics generally reflect the average population or a coarse subgroup: a model that performs adequate on average does not reflect individual adequacy of the model
+:::
+::::
+
+## Discrimination{.smaller}
 
 
 
 
+## Calibration{.smaller}
 
 
 
 
+# Cautionary notes
 
+## Exchangeability
+:::{.callout-warning}
+- All these techniques assume exchangeability, but do not make groups exchangeable themselves.
+- Randomised controlled trials are a common data source for these analyses, but rarely represent the target population
+- Observational data can be used if the underlying design gives (conditional) exchangeability <br>
+*(e.g. T-learner in a cloning-censoring-weighting design)*
+:::
 
+## Sample size
+:::{.callout-warning}
+- Randomised controlled trials are almost always powered only for their ATE, not for any specification of the ATE like a CATE or ITE
+- Pooled randomised controlled trials may suffice, but this is not a guarantee
+- Observational data may suffice, but larger data sources often lose granularity
+- Sample size calculations rarely factor in all sources of variation and formal sample size calculations are not available for these methods
+- Prediction intervals are your (computationally intensive) best friend!
+:::
+
+## Clinical implementation
+:::{.callout-warning}
+*"A prediction model that is not used has as much clinical impact as a prediction model that was never developed"* - Roemer J. Janse, 2026
+
+We can put as much effort, data, and complex statistics into our model as we want, but if it is not used, it did not matter. After development, there is a long road to walk from validation to market approval to implementation. Do not walk that road alone: involve your stakeholders.
+:::
+
+# Thank you!
+- Web: [rjjanse.github.io](https://rjjanse.github.io)
+- Slides: [rjjanse.github.io/talks](https://rjjanse.github.io/talks/hte.html)
+- Contact: [r.j.janse-5@umcutrecht.nl](mailto:r.j.janse-5@umcutrecht.nl)
