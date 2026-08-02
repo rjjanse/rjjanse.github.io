@@ -1049,7 +1049,7 @@ Despite all our best efforts to individualise estimates, model performance metri
 :::
 
 ## Calibration{.smaller}
-**Approach 2:** Matching
+**Approach 2:** Matching (calibration-for-benefit)
 
 :::{.incremental}
 - Match treated and untreated individuals, either on predicted benefit or underlying individual characteristics
@@ -1620,9 +1620,28 @@ wrap_plots(p_group, p_match, p_match_zoom,
 ```
 
 ## Discrimination{.smaller}
+**Approach 1:** C-for-benefit
 
+:::{.incremental}
+- As with calibration-for-benefit: match first
+- Then, calculate pairwise benefit (observed and predicted)
+- Calculate C-statistic as usual
+- Still sensitive to matching procedure
+- Pairwise benefit does not equal individual benefit
+- C-for-benefit is improper!
+:::
 
+## Discrimination{.smaller}
+**Approach 2:** concentration of benefit ($C_b$)
 
+:::{.incremental}
+- Efficiency of a prediction model in assigning treatment, compared to random treatment
+- Uses random sampling of benefit
+- Strong assumption: benefit is correctly calibrated; <br> 
+*$C_b$ does not incorporate outcome in its calculation*
+- Thus, we cannot interpret it with poor calibration
+- Ideally 100%, or 50% if all predicted benefits have a single direction
+:::
 
 # Cautionary notes
 

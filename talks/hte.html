@@ -1167,7 +1167,7 @@ style ite fill:#E79E9C,stroke:#6F1D1B
 </section>
 <section id="calibration-1" class="slide level2 smaller">
 <h2>Calibration</h2>
-<p><strong>Approach 2:</strong> Matching</p>
+<p><strong>Approach 2:</strong> Matching (calibration-for-benefit)</p>
 <ul>
 <li class="fragment">Match treated and untreated individuals, either on predicted benefit or underlying individual characteristics</li>
 <li class="fragment">Calculate pairwise observed benefit: <br> 0 (both died or both survived); 1 (treated died, untreated survived); -1 (treated survived, untreated died)</li>
@@ -1189,6 +1189,26 @@ style ite fill:#E79E9C,stroke:#6F1D1B
 <img data-src="hte_files/figure-revealjs/calibration%20real%20data-1.png" width="960" class="r-stretch"></section>
 <section id="discrimination" class="slide level2 smaller">
 <h2>Discrimination</h2>
+<p><strong>Approach 1:</strong> C-for-benefit</p>
+<ul>
+<li class="fragment">As with calibration-for-benefit: match first</li>
+<li class="fragment">Then, calculate pairwise benefit (observed and predicted)</li>
+<li class="fragment">Calculate C-statistic as usual</li>
+<li class="fragment">Still sensitive to matching procedure</li>
+<li class="fragment">Pairwise benefit does not equal individual benefit</li>
+<li class="fragment">C-for-benefit is improper!</li>
+</ul>
+</section>
+<section id="discrimination-1" class="slide level2 smaller">
+<h2>Discrimination</h2>
+<p><strong>Approach 2:</strong> concentration of benefit (<span class="math inline">\(C_b\)</span>)</p>
+<ul>
+<li class="fragment">Efficiency of a prediction model in assigning treatment, compared to random treatment</li>
+<li class="fragment">Uses random sampling of benefit</li>
+<li class="fragment">Strong assumption: benefit is correctly calibrated; <br> <em><span class="math inline">\(C_b\)</span> does not incorporate outcome in its calculation</em></li>
+<li class="fragment">Thus, we cannot interpret it with poor calibration</li>
+<li class="fragment">Ideally 100%, or 50% if all predicted benefits have a single direction</li>
+</ul>
 </section></section>
 <section>
 <section id="cautionary-notes" class="title-slide slide level1 center">
