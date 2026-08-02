@@ -32,6 +32,7 @@ pacman::p_load("dplyr",          # Data wrangling
                "tidyr",          # Data pivoting
                "purrr",          # Functional programming
                "survival",       # Survival data and functions
+               "MatchIt",        # Matching procedures
                "ggplot2",        # Data visualisation
                "patchwork",      # Patch plots together
                "conflicted"      # Package conflicts
@@ -155,6 +156,7 @@ flowchart TB
 flowchart TB
     rct("Randomised controlled trial") --> ma["Main analysis"]
     ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
 ```
 
 ## Academia’s mythical average individual{.smaller}
@@ -170,6 +172,7 @@ flowchart TB
     rct("Randomised controlled trial") --> ma["Main analysis"]
     ma --> ate(["Average treatment effect (ATE)"])
     ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
 ```
 
 ## Academia’s mythical average individual{.smaller}
@@ -186,6 +189,8 @@ flowchart TB
     ma --> ate(["Average treatment effect (ATE)"])
     ate --> pop("Population")
     rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    
 ```
 
 ## Academia’s mythical average individual{.smaller}
@@ -203,6 +208,7 @@ flowchart TB
     ate --> pop("Population")
     rct --> sa["Subgroup analysis"]
     sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
     
 ```
 
@@ -222,25 +228,6 @@ flowchart TB
     rct --> sa["Subgroup analysis"]
     sa --> cate(["Conditional average <br> treatment effect (CATE)"])
     cate --> subpop("Subgroups in population")
-    
-```
-
-## Academia’s mythical average individual{.smaller}
-
-*Causal aim:*
-
-- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
-
-```{mermaid RCT-8}
-%%| fig-align: center
-
-flowchart TB
-    rct("Randomised controlled trial") --> ma["Main analysis"]
-    ma --> ate(["Average treatment effect (ATE)"])
-    ate --> pop("Population")
-    rct --> sa["Subgroup analysis"]
-    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
-    cate --> subpop("Subgroups in population")
     rct --> path["Risk/effect modelling"]
     
 ```
@@ -251,7 +238,7 @@ flowchart TB
 
 - What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
 
-```{mermaid RCT-9}
+```{mermaid RCT-8}
 %%| fig-align: center
 
 flowchart TB
@@ -672,6 +659,16 @@ vec_ard <- ar(dat, 1, fit_slearner) - ar(dat, 0, fit_slearner)
 
 ```
 
+```{r baseline risk}
+# Also add to data
+dat[["pr_a1"]] <- ar(dat, 1, fit_slearner) 
+dat[["pr_a0"]] <- ar(dat, 0, fit_slearner)
+
+# Calculate difference
+dat %<>% mutate(arr = pr_a1 - pr_a0)
+
+```
+
 :::{.fragment}
 ```{r slearner-hist}
 # Visualise ARD
@@ -683,8 +680,9 @@ ggplot(tibble(vec_ard),
                    fill = "#cde498") +
     # Scalings
     scale_x_continuous(name = "Absolute risk reduction",
-                       breaks = seq(-0.15, 0, 0.05),
-                       labels = paste0(seq(-15, 0, 5), "%-point")) +
+                       limits = c(-0.8, 0.2),
+                       breaks = seq(-0.8, 0.2, 0.2),
+                       labels = paste0(seq(-80, 20, 20), "%-point")) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
     # Aesthethics
     theme_manual_hist()
@@ -764,6 +762,7 @@ ggplot(tibble(vec_ard),
                    fill = "#cde498") +
     # Scalings
     scale_x_continuous(name = "Absolute risk reduction",
+                       limits = c(-0.8, 0.2),
                        breaks = seq(-0.8, 0.2, 0.2),
                        labels = paste0(seq(-80, 20, 20), "%-point")) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
@@ -772,7 +771,7 @@ ggplot(tibble(vec_ard),
 
 ```
 
-# X-learners{.smaller}
+## X-learners{.smaller}
 An X-learner similarly fits two models, like the T-learner, but uses them in a cross-over manner (hence X):
 
 :::{.incremental}
@@ -992,7 +991,11 @@ dat[["ps"]] <- predict(
     type = "response")
 
 # Final estimate
-vec_ard <- dat[["ps"]] * predict(fit_xlearner_d_a0, newdata = dat) + (1 - dat[["ps"]]) * predict(fit_xlearner_d_a1, newdata = dat)
+vec_ard <- 
+    # No treatment
+    dat[["ps"]] * predict(fit_xlearner_d_a0, newdata = dat) + 
+    # Treatment
+    (1 - dat[["ps"]]) * predict(fit_xlearner_d_a1, newdata = dat)
 
 ```
 
@@ -1007,6 +1010,7 @@ ggplot(tibble(vec_ard),
                    fill = "#cde498") +
     # Scalings
     scale_x_continuous(name = "Absolute risk reduction",
+                       limits = c(-0.8, 0.2),
                        breaks = seq(-0.8, 0.2, 0.2),
                        labels = paste0(seq(-80, 20, 20), "%-point")) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
@@ -1022,8 +1026,8 @@ ggplot(tibble(vec_ard),
 :::{.incremental}
 - Our models for ITE estimates are in fact prediction models
 - As such, we need to validate them, at least on: <br>
-Discrimination: *how well can the model distinguish those with low and with high benefit?* <br>
-Calibration: *how well does the predicted benefit correspond with the true benefit?*
+Calibration: *how well does the predicted benefit correspond with the true benefit?* <br>
+Discrimination: *how well can the model distinguish those with low and with high benefit?* 
 - One problem: validation is difficult because we do not know the true benefit (as we can never observe the counterfactual)
 - Thus we rely on suboptimal measures that approach the true benefit for validation
 :::
@@ -1034,12 +1038,588 @@ Despite all our best efforts to individualise estimates, model performance metri
 :::
 ::::
 
-## Discrimination{.smaller}
+## Calibration{.smaller}
+**Approach 1:** Grouping
 
-
-
+:::{.incremental}
+- Divide population into quantiles and compare the average predicted benefit against the average observed benefit
+- For the absolute risk difference, this can be differences in the KM-estimator (or CIF) between treated and untreated
+- This approach assumes exchangeability holds in the created quantiles (otherwise, the observed ARR is not valid)
+- Instead of using all available information, data is reduced to quantiles
+:::
 
 ## Calibration{.smaller}
+**Approach 2:** Matching
+
+:::{.incremental}
+- Match treated and untreated individuals, either on predicted benefit or underlying individual characteristics
+- Calculate pairwise observed benefit: <br>
+0 (both died or both survived); 1 (treated died, untreated survived); -1 (treated survived, untreated died)
+- Calculate parwise predicted benefit: <br>
+Difference in *factual* predictions (i.e. according to actual treatment)
+- Draw a calibration curve (and calculate metrics) with a smoother on predicted pairwise and observed pairwise benefit
+- This approach assumes pairwise benefit is a good alternative to individual benefit estimates
+- The matching procedure used has considerable influence on the results
+:::
+
+## Calibration{.smaller}
+Simulated data (so that we know true benefit)
+```{r calibration example}
+# Bottom for inset plots
+ib <- 0
+
+# Tag levels for inset plots
+it <- FALSE
+
+# Set beta's
+b_age <- 0.015
+b_sex <- -1.2
+b_cvd <- 0.5
+b_dm <- 0.4
+b_hb <- -0.04
+b_trt <- -0.3 # Treatment indicator
+
+# Number of observations
+n <- 1e5
+
+# Set seed for random process
+set.seed(1)
+
+# Get data with covariates
+# For simplicity, I treat death as a binary variable and forego adding time
+dat_sim <- 
+    # Tibble class data frame
+    tibble(# Identifier
+           id = 1:n,
+           # Age
+           age = rnorm(n, 67, 5),
+           # Female sex
+           female = rbinom(n, 1, 0.4),
+           # Cardiovascular disease
+           cvd = rbinom(n, 1, 0.6),
+           # Diabetes mellitus
+           dm = rbinom(n, 1, 0.7),
+           # Haemoglobin
+           hb = rnorm(n, 8, 2),
+           # trt
+           trt = rbinom(n, 1, 0.5)) %>%
+    # Get outcomes
+    mutate(# Factual linear predictor
+           lp_fact = b_age * age + b_sex * female + b_cvd * cvd + b_dm * dm + b_hb * hb + b_trt * trt,
+           # Counterfactual linear predictor
+           lp_cfact = b_age * age + b_sex * female + b_cvd * cvd + b_dm * dm + b_hb * hb + b_trt * (1 - trt),
+           # Factual outcome probability
+           pr_fact = exp(lp_fact) / (1 + exp(lp_fact)),
+           # Counterfactual outcome probability
+           pr_cfact = exp(lp_cfact) / (1 + exp(lp_cfact)),
+           # Factual outcome
+           y_fact = rbinom(n, 1, pr_fact),
+           # Counterfactual outcome
+           y_cfact = rbinom(n, 1, pr_cfact),
+           # Observed benefit
+           b_obs = if_else(trt == 1, 
+                           y_fact - y_cfact,
+                           y_cfact - y_fact),
+           # Predicted benefit
+           b_prd = if_else(trt == 1,
+                           pr_fact - pr_cfact,
+                           pr_cfact - pr_fact))
+
+# True calibration ----
+# Draw calibration plot
+p_true <- 
+    ggplot(dat_sim,
+           aes(x = b_prd,
+               y = b_obs)) +
+    # Geometries
+    geom_abline(colour = "black",
+                alpha = 0.3) +
+    geom_smooth(colour = "#13540c",
+                fill = "#13540c",
+                alpha = 0.3,
+                method = "gam") +
+    # Scales
+    scale_x_continuous(breaks = seq(-0.1, 0, 0.025),
+                       labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
+                       name = "Predicted ARR") +
+    scale_y_continuous(breaks = seq(-0.1, 0, 0.025),
+                       labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
+                       name = "Observed ARR") +
+    # Transformations
+    coord_cartesian(xlim = c(-0.1, 0),
+                    ylim = c(-0.1, 0)) +
+    # Aesthetics
+    theme_manual()
+
+# Draw marginal
+p_true_marg <-
+    ggplot(dat_sim,
+           aes(x = b_prd)) +
+    # Geometries
+    geom_density(alpha = 0.3,
+                 fill = "#13540c",
+                 colour = "transparent") +
+    # Scales
+    scale_x_continuous(limits = c(-0.1, 0)) +
+    scale_y_continuous(expand = c(0, 0)) +
+    # Aesthetics
+    theme(plot.background = element_rect(fill = "transparent",
+                                         colour = "transparent"),
+          plot.margin = unit(c(0, 0, 0, 0), "cm"),
+          panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.title = element_blank(),
+          axis.text = element_blank(),
+          axis.ticks = element_blank())
+
+# Add marginal plot to main plot
+p_true <- p_true +
+    # Add marginals
+    inset_element(p_true_marg,
+                  0, ib, 1, 0.25,
+                  ignore_tag = it)
+
+# Group-based calibration
+# Calculate deciles
+dat_sim_group <- dat_sim %>% 
+    # Create decile indicator
+    mutate(dec = cut(b_prd, 
+                     quantile(b_prd,
+                              probs = seq(0, 1, 0.1)),
+                     labels = FALSE,
+                     include.lowest = TRUE)) %>%
+    # Arrange for grouping
+    arrange(dec) %>%
+    # Group per decile
+    group_by(dec) %>%
+    # Calculate mean predicted benefit and observed benefit
+    mutate(# Mean predicted benefit
+           mean_b_prd = mean(b_prd),
+           # Column with missings if not on trt
+           y_trt = if_else(trt == 1, y_fact, NA),
+           # Column with missings if not on HD
+           y_hd = if_else(trt == 0, y_fact, NA),
+           # Mean outcome on trt
+           mean_y_trt = mean(y_trt, na.rm = TRUE),
+           # Mean outcome on HD
+           mean_y_hd = mean(y_hd, na.rm = TRUE),
+           # Mean observed benefit
+           mean_b_obs = mean_y_trt - mean_y_hd) %>%
+    # Keep one row per group
+    slice(1L) %>%
+    # Remove grouping structure
+    ungroup()
+
+# Draw calibration plot
+p_group <- 
+    ggplot(dat_sim_group,
+           aes(x = mean_b_prd,
+               y = mean_b_obs)) +
+    # Geometries
+    geom_abline(colour = "black",
+                alpha = 0.3) +
+    geom_point(colour = "#13540c") +
+    geom_line(colour = "#13540c") +
+    # Scales
+    scale_x_continuous(breaks = seq(-0.1, 0, 0.025),
+                       labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
+                       name = "Predicted ARR") +
+    scale_y_continuous(breaks = seq(-0.1, 0, 0.025),
+                       labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
+                       name = "Observed ARR") +
+    # Transformations
+    coord_cartesian(xlim = c(-0.1, 0),
+                    ylim = c(-0.1, 0)) +
+    # Aesthetics
+    theme_manual()
+
+# Add marginal plot to main plot (we reuse the previous marginal plot)
+p_group <- p_group +
+    # Add marginals
+    inset_element(p_true_marg,
+                  0, ib, 1, 0.25,
+                  ignore_tag = it)
+
+# Matching-based calibration
+# Take random subset of data, as current size is computationally too large for matching
+dat_sim_subset <- slice_sample(dat_sim, prop = 0.25)
+
+# Create matching set 
+dat_sim_match <- matchit(trt ~ age + female + cvd + dm + hb,
+                         data = dat_sim_subset,
+                         method = "nearest",
+                         distance = "mahalanobis") %>%
+    # No warnings
+    suppressWarnings()
+
+# Get matched data
+dat_sim_matched <- match_data(dat_sim_match) %>%
+    # Set relevant outcomes to new columnms
+    mutate(# Predicted outcome probability on trt
+           pr_trt = if_else(trt == 1, pr_fact, NA),
+           # Predicted outcome probability on HD
+           pr_hd = if_else(trt == 0, pr_fact, NA),
+           # Observed outcome on trt
+           y_trt = if_else(trt == 1, y_fact, NA),
+           # Observed outcome on HD
+           y_hd = if_else(trt == 0, y_fact, NA)) %>%
+    # Arrange for grouping
+    arrange(subclass) %>%
+    # Group per subclass
+    group_by(subclass) %>%
+    # Fill data to first row in all groups
+    fill(pr_trt, pr_hd, y_trt, y_hd, .direction = "updown") %>%
+    # Keep one row per group
+    slice(1L) %>%
+    # Remove grouping structure
+    ungroup() %>%
+    # Calculate benefit
+    mutate(# Matched predicted benefit
+           match_b_prd = pr_trt - pr_hd,
+           # Matched observed benefit
+           match_b_obs = y_trt - y_hd)
+
+# Draw calibration plot
+p_match <- 
+    ggplot(dat_sim_matched,
+           aes(x = match_b_prd,
+               y = match_b_obs)) +
+    # Geometries
+    geom_abline(colour = "black",
+                alpha = 0.3) +
+    geom_smooth(colour = "#13540c",
+                fill = "#13540c",
+                alpha = 0.3,
+                method = "gam") +
+    # Scales
+    scale_x_continuous(breaks = seq(-0.6, 0.6, 0.3),
+                       labels = paste0(format(seq(-0.6, 0.6, 0.3) * 100, nsmall = 1), "%"),
+                       name = "Predicted pairwise ARR") +
+    scale_y_continuous(breaks = seq(-0.6, 0.6, 0.3),
+                       labels = paste0(format(seq(-0.6, 0.6, 0.3) * 100, nsmall = 1), "%"),
+                       name = "Observed pairwise ARR") +
+    # Transformations
+    coord_cartesian(xlim = c(-0.6, 0.6),
+                    ylim = c(-0.6, 0.6)) +
+    # Aesthetics
+    theme_manual()
+
+# Draw marginal
+p_match_marg <-
+    ggplot(dat_sim_matched,
+           aes(x = match_b_prd)) +
+    # Geometries
+    geom_density(alpha = 0.3,
+                 fill = "#13540c",
+                 colour = "transparent") +
+    # Scales
+    scale_x_continuous(limits = c(-0.6, 0.6)) +
+    scale_y_continuous(expand = c(0, 0)) +
+    # Aesthetics
+    theme(plot.background = element_rect(fill = "transparent",
+                                         colour = "transparent"),
+          plot.margin = unit(c(0, 0, 0, 0), "cm"),
+          panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.title = element_blank(),
+          axis.text = element_blank(),
+          axis.ticks = element_blank())
+
+# Add marginal plot to main plot
+p_match <- p_match +
+    # Add marginals
+    inset_element(p_match_marg,
+                  0, ib, 1, 0.25,
+                  ignore_tag = it)
+
+# Determine bounds that contain inner 95% of predictions
+match_bounds <- dat_sim_matched %$% quantile(match_b_prd,
+                                             probs = c(0.01, 0.99))
+
+# Zoom in plots
+p_match_zoom <- 
+    ggplot(dat_sim_matched,
+           aes(x = match_b_prd,
+               y = match_b_obs)) +
+    # Geometries
+    geom_abline(colour = "black",
+                alpha = 0.3) +
+    geom_smooth(colour = "#13540c",
+                fill = "#13540c",
+                alpha = 0.3,
+                method = "gam") +
+    # Scales
+    scale_x_continuous(breaks = seq(-0.1, 0, 0.025),
+                       labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
+                       name = "Predicted pairwise ARR") +
+    scale_y_continuous(breaks = seq(-0.1, 0, 0.025),
+                       labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
+                       name = "Observed pairwise ARR") +
+    # Transformations
+    coord_cartesian(xlim = match_bounds,
+                    ylim = match_bounds) +
+    # Aesthetics
+    theme_manual()
+
+# Draw zoomed marginal
+p_match_marg_zoom <-
+    ggplot(dat_sim_matched,
+           aes(x = match_b_prd)) +
+    # Geometries
+    geom_density(alpha = 0.3,
+                 fill = "#13540c",
+                 colour = "transparent") +
+    # Scales
+    scale_y_continuous(expand = c(0, 0)) +
+    # Transformatoins
+    coord_cartesian(xlim = match_bounds) +
+    # Aesthetics
+    theme(plot.background = element_rect(fill = "transparent",
+                                         colour = "transparent"),
+          plot.margin = unit(c(0, 0, 0, 0), "cm"),
+          panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.title = element_blank(),
+          axis.text = element_blank(),
+          axis.ticks = element_blank())
+
+# Add marginal plot to main plot, zoomed version
+p_match_zoom <- p_match_zoom +
+    # Add marginals
+    inset_element(p_match_marg_zoom,
+                  0, ib, 1, 0.25,
+                  ignore_tag = it)
+
+# Combine calibration plots
+wrap_plots(p_true, p_group, p_match, p_match_zoom,
+        ncol = 2,
+        byrow = TRUE) +
+    plot_annotation(tag_levels = list(c("A", "", "B", "", "C", "", "D", "")))
+
+```
+
+## Calibration{.smaller}
+Our S-learner
+```{r calibration real data}
+# Group-based calibration
+# Calculate deciles
+dat_group <- dat %>% 
+    # Create decile indicator
+    mutate(dec = cut(arr, 
+                     quantile(arr,
+                              probs = seq(0, 1, 0.1)),
+                     labels = FALSE,
+                     include.lowest = TRUE)) %>%
+    # Arrange for grouping
+    arrange(dec) %>%
+    # Group per decile
+    group_by(dec) %>%
+    # Calculate mean predicted benefit and observed benefit
+    mutate(# Mean predicted benefit
+           mean_b_prd = mean(arr),
+           # Column with missings if not on trt
+           y_a1 = if_else(trt == 1, pr_a1, NA),
+           # Column with missings if not on trt
+           y_a0 = if_else(trt == 0, pr_a0, NA),
+           # Mean outcome on trt
+           mean_y_a1 = mean(y_a1, na.rm = TRUE),
+           # Mean outcome on no trt
+           mean_y_a0 = mean(y_a0, na.rm = TRUE),
+           # Mean observed benefit
+           mean_b_obs = mean_y_a1 - mean_y_a0) %>%
+    # Keep one row per group
+    slice(1L) %>%
+    # Remove grouping structure
+    ungroup()
+
+# Draw calibration plot
+p_group <- 
+    ggplot(dat_group,
+           aes(x = mean_b_prd,
+               y = mean_b_obs)) +
+    # Geometries
+    geom_abline(colour = "black",
+                alpha = 0.3) +
+    geom_point(colour = "#13540c") +
+    geom_line(colour = "#13540c") +
+    # Scales
+    scale_x_continuous(breaks = seq(-0.20, 0, 0.05),
+                       labels = paste0(format(seq(-0.20, 0, 0.05) * 100, nsmall = 1), "%"),
+                       name = "Predicted ARR") +
+    scale_y_continuous(breaks = seq(-0.20, 0, 0.05),
+                       labels = paste0(format(seq(-0.20, 0, 0.05) * 100, nsmall = 1), "%"),
+                       name = "Observed ARR") +
+    # Transformations
+    coord_cartesian(xlim = c(-0.20, 0),
+                    ylim = c(-0.20, 0)) +
+    # Aesthetics
+    theme_manual()
+
+# Add marginal plot to main plot (we reuse the previous marginal plot)
+p_group <- p_group +
+    # Add marginals
+    inset_element(p_true_marg,
+                  0, ib, 1, 0.25,
+                  ignore_tag = it)
+
+# Matching-based calibration
+# Create matching set 
+dat_match <- matchit(trt ~ age + female + obstruct + perfor + adhere + nodes + differ,
+                     data = dat,
+                     method = "nearest",
+                     distance = "mahalanobis") %>%
+    # No warnings
+    suppressWarnings()
+
+# Get matched data
+dat_matched <- match_data(dat_match) %>%
+    # Set relevant outcomes to new columnms
+    mutate(# Predicted outcome probability on trt
+           pr_a1 = if_else(trt == 1, pr_a1, NA),
+           # Predicted outcome probability not on trt
+           pr_a0 = if_else(trt == 0, pr_a0, NA),
+           # Observed outcome on trt
+           y_a1 = if_else(trt == 1, death, NA),
+           # Observed outcome not on trt
+           y_a0 = if_else(trt == 0, death, NA)) %>%
+    # Arrange for grouping
+    arrange(subclass) %>%
+    # Group per subclass
+    group_by(subclass) %>%
+    # Fill data to first row in all groups
+    fill(pr_a1, pr_a0, y_a1, y_a0, .direction = "updown") %>%
+    # Keep one row per group
+    slice(1L) %>%
+    # Remove grouping structure
+    ungroup() %>%
+    # Calculate benefit
+    mutate(# Matched predicted benefit
+           match_b_prd = pr_a1 - pr_a0,
+           # Matched observed benefit
+           match_b_obs = y_a1 - y_a0)
+
+# Draw calibration plot
+p_match <- 
+    ggplot(dat_matched,
+           aes(x = match_b_prd,
+               y = match_b_obs)) +
+    # Geometries
+    geom_abline(colour = "black",
+                alpha = 0.3) +
+    geom_smooth(colour = "#13540c",
+                fill = "#13540c",
+                alpha = 0.3,
+                method = "loess",
+                formula = "y ~ x",
+                span = 0.9) +
+    # Scales
+    scale_x_continuous(breaks = seq(-0.6, 0.3, 0.3),
+                       labels = paste0(format(seq(-0.6, 0.3, 0.3) * 100, nsmall = 1), "%"),
+                       name = "Predicted pairwise ARR") +
+    scale_y_continuous(breaks = seq(-0.6, 0.3, 0.3),
+                       labels = paste0(format(seq(-0.6, 0.3, 0.3) * 100, nsmall = 1), "%"),
+                       name = "Observed pairwise ARR") +
+    # Transformations
+    coord_cartesian(xlim = c(-0.6, 0.3),
+                    ylim = c(-0.6, 0.3)) +
+    # Aesthetics
+    theme_manual()
+
+# Draw marginal
+p_match_marg <-
+    ggplot(dat_matched,
+           aes(x = match_b_prd)) +
+    # Geometries
+    geom_density(alpha = 0.3,
+                 fill = "#13540c",
+                 colour = "transparent") +
+    # Scales
+    scale_x_continuous(limits = c(-0.6, 0.6)) +
+    scale_y_continuous(expand = c(0, 0)) +
+    # Aesthetics
+    theme(plot.background = element_rect(fill = "transparent",
+                                         colour = "transparent"),
+          plot.margin = unit(c(0, 0, 0, 0), "cm"),
+          panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.title = element_blank(),
+          axis.text = element_blank(),
+          axis.ticks = element_blank())
+
+# Add marginal plot to main plot
+p_match <- p_match +
+    # Add marginals
+    inset_element(p_match_marg,
+                  0, ib, 1, 0.25,
+                  ignore_tag = it)
+
+# Determine bounds that contain inner 95% of predictions
+match_bounds <- dat_matched %$% quantile(match_b_prd,
+                                         probs = c(0.01, 0.99))
+
+# Zoom in plots
+p_match_zoom <- 
+    ggplot(dat_matched,
+           aes(x = match_b_prd,
+               y = match_b_obs)) +
+    # Geometries
+    geom_abline(colour = "black",
+                alpha = 0.3) +
+    geom_smooth(colour = "#13540c",
+                fill = "#13540c",
+                alpha = 0.3,
+                method = "loess",
+                formula = "y ~ x") +
+    # Scales
+    scale_x_continuous(breaks = seq(-0.4, 0.1, 0.1),
+                       labels = paste0(format(seq(-0.4, 0.1, 0.1) * 100, nsmall = 1), "%"),
+                       name = "Predicted pairwise ARR") +
+    scale_y_continuous(breaks = seq(-0.4, 0.1, 0.1),
+                       labels = paste0(format(seq(-0.4, 0.1, 0.1) * 100, nsmall = 1), "%"),
+                       name = "Observed pairwise ARR") +
+    # Transformations
+    coord_cartesian(xlim = match_bounds,
+                    ylim = match_bounds) +
+    # Aesthetics
+    theme_manual()
+
+# Draw zoomed marginal
+p_match_marg_zoom <-
+    ggplot(dat_matched,
+           aes(x = match_b_prd)) +
+    # Geometries
+    geom_density(alpha = 0.3,
+                 fill = "#13540c",
+                 colour = "transparent") +
+    # Scales
+    scale_y_continuous(expand = c(0, 0)) +
+    # Transformatoins
+    coord_cartesian(xlim = match_bounds) +
+    # Aesthetics
+    theme(plot.background = element_rect(fill = "transparent",
+                                         colour = "transparent"),
+          plot.margin = unit(c(0, 0, 0, 0), "cm"),
+          panel.background = element_blank(),
+          panel.grid = element_blank(),
+          axis.title = element_blank(),
+          axis.text = element_blank(),
+          axis.ticks = element_blank())
+
+# Add marginal plot to main plot, zoomed version
+p_match_zoom <- p_match_zoom +
+    # Add marginals
+    inset_element(p_match_marg_zoom,
+                  0, ib, 1, 0.25,
+                  ignore_tag = it)
+
+# Combine calibration plots
+wrap_plots(p_group, p_match, p_match_zoom,
+        ncol = 3,
+        byrow = TRUE) +
+    plot_annotation(tag_levels = list(c("A", "", "B", "", "C", "")))
+```
+
+## Discrimination{.smaller}
 
 
 

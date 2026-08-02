@@ -320,6 +320,7 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 <pre class="mermaid mermaid-js">flowchart TB
     rct("Randomised controlled trial") --&gt; ma["Main analysis"]
     ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -342,6 +343,7 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     rct("Randomised controlled trial") --&gt; ma["Main analysis"]
     ma --&gt; ate(["Average treatment effect (ATE)"])
     ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -365,6 +367,8 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     ma --&gt; ate(["Average treatment effect (ATE)"])
     ate --&gt; pop("Population")
     rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -389,6 +393,7 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     ate --&gt; pop("Population")
     rct --&gt; sa["Subgroup analysis"]
     sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
     
 </pre>
 </div>
@@ -415,6 +420,7 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     rct --&gt; sa["Subgroup analysis"]
     sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
     cate --&gt; subpop("Subgroups in population")
+    rct --&gt; path["Risk/effect modelling"]
     
 </pre>
 </div>
@@ -442,33 +448,6 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
     cate --&gt; subpop("Subgroups in population")
     rct --&gt; path["Risk/effect modelling"]
-    
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="academias-mythical-average-individual-9" class="slide level2 smaller">
-<h2>Academia’s mythical average individual</h2>
-<p><em>Causal aim:</em></p>
-<ul>
-<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
-</ul>
-<div class="cell" data-reveal="true" data-layout-align="center">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
-    ma --&gt; ate(["Average treatment effect (ATE)"])
-    ate --&gt; pop("Population")
-    rct --&gt; sa["Subgroup analysis"]
-    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
-    cate --&gt; subpop("Subgroups in population")
-    rct --&gt; path["Risk/effect modelling"]
     path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
     
 </pre>
@@ -478,7 +457,7 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 </div>
 </div>
 </section>
-<section id="academias-mythical-average-individual-10" class="slide level2 smaller">
+<section id="academias-mythical-average-individual-9" class="slide level2 smaller">
 <h2>Academia’s mythical average individual</h2>
 <p><em>Causal aim:</em></p>
 <ul>
@@ -936,10 +915,9 @@ style ite fill:#E79E9C,stroke:#6F1D1B
 <section id="t-learners-4" class="slide level2 smaller">
 <h2>T-learners</h2>
 
-<img data-src="hte_files/figure-revealjs/tlearner-hist-1.png" width="960" class="r-stretch"></section></section>
-<section>
-<section id="x-learners" class="title-slide slide level1 smaller center">
-<h1>X-learners</h1>
+<img data-src="hte_files/figure-revealjs/tlearner-hist-1.png" width="960" class="r-stretch"></section>
+<section id="x-learners" class="slide level2 smaller">
+<h2>X-learners</h2>
 <p>An X-learner similarly fits two models, like the T-learner, but uses them in a cross-over manner (hence X):</p>
 <ul>
 <li class="fragment">We again fit separate models for <span class="math inline">\(AR_{A=1}\)</span> and <span class="math inline">\(AR_{A=0}\)</span>: <br> <span class="math inline">\(\hat{\mu}_1(x)\)</span> as <span class="math inline">\(M(Y^1 \sim \textbf{X}^1)\)</span>; <br> <span class="math inline">\(\hat{\mu}_0(x)\)</span> as <span class="math inline">\(M(Y^0 \sim \textbf{X}^0)\)</span></li>
@@ -1137,7 +1115,11 @@ style ite fill:#E79E9C,stroke:#6F1D1B
 <span id="cb14-36" class="hljs-ln-code"><a href="" aria-label="36"></a>    <span class="at">type =</span> <span class="st">"response"</span>)</span>
 <span id="cb14-37" class="hljs-ln-code"><a href="" aria-label="37"></a></span>
 <span id="cb14-38" class="hljs-ln-code"><a href="" aria-label="38"></a><span class="co"># Final estimate</span></span>
-<span id="cb14-39" class="hljs-ln-code"><a href="" aria-label="39"></a>vec_ard <span class="ot">&lt;-</span> dat[[<span class="st">"ps"</span>]] <span class="sc">*</span> <span class="fu">predict</span>(fit_xlearner_d_a0, <span class="at">newdata =</span> dat) <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">-</span> dat[[<span class="st">"ps"</span>]]) <span class="sc">*</span> <span class="fu">predict</span>(fit_xlearner_d_a1, <span class="at">newdata =</span> dat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-39" class="hljs-ln-code"><a href="" aria-label="39"></a>vec_ard <span class="ot">&lt;-</span> </span>
+<span id="cb14-40" class="hljs-ln-code"><a href="" aria-label="40"></a>    <span class="co"># No treatment</span></span>
+<span id="cb14-41" class="hljs-ln-code"><a href="" aria-label="41"></a>    dat[[<span class="st">"ps"</span>]] <span class="sc">*</span> <span class="fu">predict</span>(fit_xlearner_d_a0, <span class="at">newdata =</span> dat) <span class="sc">+</span> </span>
+<span id="cb14-42" class="hljs-ln-code"><a href="" aria-label="42"></a>    <span class="co"># Treatment</span></span>
+<span id="cb14-43" class="hljs-ln-code"><a href="" aria-label="43"></a>    (<span class="dv">1</span> <span class="sc">-</span> dat[[<span class="st">"ps"</span>]]) <span class="sc">*</span> <span class="fu">predict</span>(fit_xlearner_d_a1, <span class="at">newdata =</span> dat)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="x-learners-9" class="slide level2 smaller">
@@ -1153,7 +1135,7 @@ style ite fill:#E79E9C,stroke:#6F1D1B
 <h2>Why we’re not yet done</h2>
 <ul>
 <li class="fragment">Our models for ITE estimates are in fact prediction models</li>
-<li class="fragment">As such, we need to validate them, at least on: <br> Discrimination: <em>how well can the model distinguish those with low and with high benefit?</em> <br> Calibration: <em>how well does the predicted benefit correspond with the true benefit?</em></li>
+<li class="fragment">As such, we need to validate them, at least on: <br> Calibration: <em>how well does the predicted benefit correspond with the true benefit?</em> <br> Discrimination: <em>how well can the model distinguish those with low and with high benefit?</em></li>
 <li class="fragment">One problem: validation is difficult because we do not know the true benefit (as we can never observe the counterfactual)</li>
 <li class="fragment">Thus we rely on suboptimal measures that approach the true benefit for validation</li>
 </ul>
@@ -1173,6 +1155,38 @@ style ite fill:#E79E9C,stroke:#6F1D1B
 </div>
 </div>
 </section>
+<section id="calibration" class="slide level2 smaller">
+<h2>Calibration</h2>
+<p><strong>Approach 1:</strong> Grouping</p>
+<ul>
+<li class="fragment">Divide population into quantiles and compare the average predicted benefit against the average observed benefit</li>
+<li class="fragment">For the absolute risk difference, this can be differences in the KM-estimator (or CIF) between treated and untreated</li>
+<li class="fragment">This approach assumes exchangeability holds in the created quantiles (otherwise, the observed ARR is not valid)</li>
+<li class="fragment">Instead of using all available information, data is reduced to quantiles</li>
+</ul>
+</section>
+<section id="calibration-1" class="slide level2 smaller">
+<h2>Calibration</h2>
+<p><strong>Approach 2:</strong> Matching</p>
+<ul>
+<li class="fragment">Match treated and untreated individuals, either on predicted benefit or underlying individual characteristics</li>
+<li class="fragment">Calculate pairwise observed benefit: <br> 0 (both died or both survived); 1 (treated died, untreated survived); -1 (treated survived, untreated died)</li>
+<li class="fragment">Calculate parwise predicted benefit: <br> Difference in <em>factual</em> predictions (i.e.&nbsp;according to actual treatment)</li>
+<li class="fragment">Draw a calibration curve (and calculate metrics) with a smoother on predicted pairwise and observed pairwise benefit</li>
+<li class="fragment">This approach assumes pairwise benefit is a good alternative to individual benefit estimates</li>
+<li class="fragment">The matching procedure used has considerable influence on the results</li>
+</ul>
+</section>
+<section id="calibration-2" class="slide level2 smaller">
+<h2>Calibration</h2>
+<p>Simulated data (so that we know true benefit)</p>
+
+<img data-src="hte_files/figure-revealjs/calibration%20example-1.png" width="960" class="r-stretch"></section>
+<section id="calibration-3" class="slide level2 smaller">
+<h2>Calibration</h2>
+<p>Our S-learner</p>
+
+<img data-src="hte_files/figure-revealjs/calibration%20real%20data-1.png" width="960" class="r-stretch"></section>
 <section id="discrimination" class="slide level2 smaller">
 <h2>Discrimination</h2>
 </section></section>
