@@ -9,15 +9,15 @@ function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ['Year', 'Number'],
     ["2022", 4],
-    ["2023", 6],
-    ["2024", 11],
+    ["2023", 6],  // Total at 10
+    ["2024", 11], // Total at 21
     ["2025", 35], // Total at 56
-    ["2026", 25]
+    ["2026", 26]
   ]);
 
   // Chart options
   var options = {
-    title: 'Total = 73',
+    title: 'Total = 82',
     titleTextStyle: {
         color: "#FFE1A8"
       },
