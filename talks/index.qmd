@@ -11,7 +11,7 @@ format:
 
 ::: {layout-ncol=3}
 
-[![Moving beyond the mythical average individual](images/bears.jpg){width=253px height=189.85px}](https://rjjanse.github.io/talks/hte){target="_blank"}
+[![Moving beyond the mythical average individual: *Epidemiology as driver of personalised care*](images/bears.jpg){width=253px height=189.85px}](https://rjjanse.github.io/talks/hte){target="_blank"}
 
 [![Statistical Modelling](images/modelling.webp){width=253px height=189.85px}](https://rjjanse.github.io/talks/modelling){target="_blank"}
 

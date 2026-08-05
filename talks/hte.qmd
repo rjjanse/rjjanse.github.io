@@ -16,6 +16,8 @@ format:
         theme: simple
         mermaid: 
           theme: forest
+execute:
+    warning: false
                 
 css: hte.css
 ---
@@ -33,6 +35,8 @@ pacman::p_load("dplyr",          # Data wrangling
                "purrr",          # Functional programming
                "survival",       # Survival data and functions
                "MatchIt",        # Matching procedures
+               "txBenefit",      # Cb
+               "grf",            # Causal forests (Qini curve example)
                "ggplot2",        # Data visualisation
                "patchwork",      # Patch plots together
                "conflicted"      # Package conflicts
@@ -478,7 +482,7 @@ ggplot(dat_arr,
   scale_x_continuous(name = "Baseline risk",
                      breaks = seq(0, 1, 0.2),
                      labels = paste0(seq(0, 100, 20), "%")) +
-  scale_y_continuous(name = "Absolute risk reduction",
+  scale_y_continuous(name = "Absolute risk increase",
                      breaks = seq(0, 0.5, 0.1),
                      labels = paste0(seq(0, 50, 10), "%"),
                      expand = c(0, 0)) +
@@ -608,7 +612,7 @@ $M$ can be any model architecture we desire
 ::::
 
 ## S-learners{.smaller}
-An example using data from one of the first succesful trials of adjuvant chemotherapy in colon cancer (Levamisole + 5-FU vs. placebo) ^[Laurie *et al.* 1989 J Clinical Oncology]
+An example using data from one of the first succesful trials of adjuvant chemotherapy in colon cancer (Levamisole + 5-FU vs. placebo) ^[Moertel *et al.* 1995 Ann Intern Med; doi: [10.7326/0003-4819-122-5-199503010-00001](https://doi.org/10.7326/0003-4819-122-5-199503010-00001)]
 
 ```{r example_data}
 dat
@@ -665,7 +669,8 @@ dat[["pr_a1"]] <- ar(dat, 1, fit_slearner)
 dat[["pr_a0"]] <- ar(dat, 0, fit_slearner)
 
 # Calculate difference
-dat %<>% mutate(arr = pr_a1 - pr_a0)
+dat %<>% mutate(ari = pr_a1 - pr_a0,
+                arr = pr_a0 - pr_a1)
 
 ```
 
@@ -679,7 +684,7 @@ ggplot(tibble(vec_ard),
                    colour = "#13540c",
                    fill = "#cde498") +
     # Scalings
-    scale_x_continuous(name = "Absolute risk reduction",
+    scale_x_continuous(name = "Absolute risk increase",
                        limits = c(-0.8, 0.2),
                        breaks = seq(-0.8, 0.2, 0.2),
                        labels = paste0(seq(-80, 20, 20), "%-point")) +
@@ -761,7 +766,7 @@ ggplot(tibble(vec_ard),
                    colour = "#13540c",
                    fill = "#cde498") +
     # Scalings
-    scale_x_continuous(name = "Absolute risk reduction",
+    scale_x_continuous(name = "Absolute risk increase",
                        limits = c(-0.8, 0.2),
                        breaks = seq(-0.8, 0.2, 0.2),
                        labels = paste0(seq(-80, 20, 20), "%-point")) +
@@ -793,7 +798,7 @@ $\hat{\tau_1}(x)$ as $M(D^1 \sim \textbf{X}^1)$; <br>
 $\hat{\tau_0}(x)$ as $M(D^0 \sim \textbf{X}^0)$
 - Last, we can combine the estimates from these models: <br>
 $ARD = g(x) * \hat{\tau_0}(x) + (1 - g(x)) * \hat{\tau_1}(x))$
-- Here, $g(x)$ is a weighting factor, which generally equals the propensity score $\mathbb{E}[A|\textbf{X}]$, estimated as $M(A \sim \textbf{X})$
+- Here, $g(x)$ is a weighting factor, which generally equals the propensity score $PS = \mathbb{E}[A|\textbf{X}]$, estimated as $M(A \sim \textbf{X})$
 :::
 
 ## X-learners{.smaller auto-animate=true}
@@ -1009,13 +1014,13 @@ ggplot(tibble(vec_ard),
                    colour = "#13540c",
                    fill = "#cde498") +
     # Scalings
-    scale_x_continuous(name = "Absolute risk reduction",
+    scale_x_continuous(name = "Absolute risk increase",
                        limits = c(-0.8, 0.2),
                        breaks = seq(-0.8, 0.2, 0.2),
                        labels = paste0(seq(-80, 20, 20), "%-point")) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.05))) +
     # Aesthethics
-    theme_manual_hist()
+    theme_manual_hist() 
 
 ```
 
@@ -1044,6 +1049,7 @@ Despite all our best efforts to individualise estimates, model performance metri
 :::{.incremental}
 - Divide population into quantiles and compare the average predicted benefit against the average observed benefit
 - For the absolute risk difference, this can be differences in the KM-estimator (or CIF) between treated and untreated
+- We can also calculate calibration-in-the-large using this method
 - This approach assumes exchangeability holds in the created quantiles (otherwise, the observed ARR is not valid)
 - Instead of using all available information, data is reduced to quantiles
 :::
@@ -1065,6 +1071,8 @@ Difference in *factual* predictions (i.e. according to actual treatment)
 ## Calibration{.smaller}
 Simulated data (so that we know true benefit)
 ```{r calibration example}
+#| fig-width: 6
+#| fig-align: center
 # Bottom for inset plots
 ib <- 0
 
@@ -1141,10 +1149,10 @@ p_true <-
     # Scales
     scale_x_continuous(breaks = seq(-0.1, 0, 0.025),
                        labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
-                       name = "Predicted ARR") +
+                       name = "Predicted ARI") +
     scale_y_continuous(breaks = seq(-0.1, 0, 0.025),
                        labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
-                       name = "Observed ARR") +
+                       name = "Observed ARI") +
     # Transformations
     coord_cartesian(xlim = c(-0.1, 0),
                     ylim = c(-0.1, 0)) +
@@ -1223,10 +1231,10 @@ p_group <-
     # Scales
     scale_x_continuous(breaks = seq(-0.1, 0, 0.025),
                        labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
-                       name = "Predicted ARR") +
+                       name = "Predicted ARI") +
     scale_y_continuous(breaks = seq(-0.1, 0, 0.025),
                        labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
-                       name = "Observed ARR") +
+                       name = "Observed ARI") +
     # Transformations
     coord_cartesian(xlim = c(-0.1, 0),
                     ylim = c(-0.1, 0)) +
@@ -1294,10 +1302,10 @@ p_match <-
     # Scales
     scale_x_continuous(breaks = seq(-0.6, 0.6, 0.3),
                        labels = paste0(format(seq(-0.6, 0.6, 0.3) * 100, nsmall = 1), "%"),
-                       name = "Predicted pairwise ARR") +
+                       name = "Predicted pairwise ARI") +
     scale_y_continuous(breaks = seq(-0.6, 0.6, 0.3),
                        labels = paste0(format(seq(-0.6, 0.6, 0.3) * 100, nsmall = 1), "%"),
-                       name = "Observed pairwise ARR") +
+                       name = "Observed pairwise ARI") +
     # Transformations
     coord_cartesian(xlim = c(-0.6, 0.6),
                     ylim = c(-0.6, 0.6)) +
@@ -1351,10 +1359,10 @@ p_match_zoom <-
     # Scales
     scale_x_continuous(breaks = seq(-0.1, 0, 0.025),
                        labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
-                       name = "Predicted pairwise ARR") +
+                       name = "Predicted pairwise ARI") +
     scale_y_continuous(breaks = seq(-0.1, 0, 0.025),
                        labels = paste0(format(seq(-0.1, 0, 0.025) * 100, nsmall = 1), "%"),
-                       name = "Observed pairwise ARR") +
+                       name = "Observed pairwise ARI") +
     # Transformations
     coord_cartesian(xlim = match_bounds,
                     ylim = match_bounds) +
@@ -1406,8 +1414,8 @@ Our S-learner
 # Calculate deciles
 dat_group <- dat %>% 
     # Create decile indicator
-    mutate(dec = cut(arr, 
-                     quantile(arr,
+    mutate(dec = cut(ari, 
+                     quantile(ari,
                               probs = seq(0, 1, 0.1)),
                      labels = FALSE,
                      include.lowest = TRUE)) %>%
@@ -1417,7 +1425,7 @@ dat_group <- dat %>%
     group_by(dec) %>%
     # Calculate mean predicted benefit and observed benefit
     mutate(# Mean predicted benefit
-           mean_b_prd = mean(arr),
+           mean_b_prd = mean(ari),
            # Column with missings if not on trt
            y_a1 = if_else(trt == 1, pr_a1, NA),
            # Column with missings if not on trt
@@ -1446,10 +1454,10 @@ p_group <-
     # Scales
     scale_x_continuous(breaks = seq(-0.20, 0, 0.05),
                        labels = paste0(format(seq(-0.20, 0, 0.05) * 100, nsmall = 1), "%"),
-                       name = "Predicted ARR") +
+                       name = "Predicted ARI") +
     scale_y_continuous(breaks = seq(-0.20, 0, 0.05),
                        labels = paste0(format(seq(-0.20, 0, 0.05) * 100, nsmall = 1), "%"),
-                       name = "Observed ARR") +
+                       name = "Observed ARI") +
     # Transformations
     coord_cartesian(xlim = c(-0.20, 0),
                     ylim = c(-0.20, 0)) +
@@ -1516,10 +1524,10 @@ p_match <-
     # Scales
     scale_x_continuous(breaks = seq(-0.6, 0.3, 0.3),
                        labels = paste0(format(seq(-0.6, 0.3, 0.3) * 100, nsmall = 1), "%"),
-                       name = "Predicted pairwise ARR") +
+                       name = "Predicted pairwise ARI") +
     scale_y_continuous(breaks = seq(-0.6, 0.3, 0.3),
                        labels = paste0(format(seq(-0.6, 0.3, 0.3) * 100, nsmall = 1), "%"),
-                       name = "Observed pairwise ARR") +
+                       name = "Observed pairwise ARI") +
     # Transformations
     coord_cartesian(xlim = c(-0.6, 0.3),
                     ylim = c(-0.6, 0.3)) +
@@ -1570,14 +1578,15 @@ p_match_zoom <-
                 fill = "#13540c",
                 alpha = 0.3,
                 method = "loess",
-                formula = "y ~ x") +
+                formula = "y ~ x",
+                span = 0.9) +
     # Scales
     scale_x_continuous(breaks = seq(-0.4, 0.1, 0.1),
                        labels = paste0(format(seq(-0.4, 0.1, 0.1) * 100, nsmall = 1), "%"),
-                       name = "Predicted pairwise ARR") +
+                       name = "Predicted pairwise ARI") +
     scale_y_continuous(breaks = seq(-0.4, 0.1, 0.1),
                        labels = paste0(format(seq(-0.4, 0.1, 0.1) * 100, nsmall = 1), "%"),
-                       name = "Observed pairwise ARR") +
+                       name = "Observed pairwise ARI") +
     # Transformations
     coord_cartesian(xlim = match_bounds,
                     ylim = match_bounds) +
@@ -1633,7 +1642,7 @@ wrap_plots(p_group, p_match, p_match_zoom,
 :::
 
 ## Discrimination{.smaller}
-**Approach 2:** concentration of benefit ($C_b$)
+**Approach 2:** Concentration of benefit ($C_b$)
 
 :::{.incremental}
 - Efficiency of a prediction model in assigning treatment, compared to random treatment
@@ -1643,6 +1652,218 @@ wrap_plots(p_group, p_match, p_match_zoom,
 - Thus, we cannot interpret it with poor calibration
 - Ideally 100%, or 50% if all predicted benefits have a single direction
 :::
+
+## Discrimination{.smaller}
+For $C_b$, we thus only need the estimated benefit:
+```{r benefit}
+#| echo: true
+# Calculate Cb
+txBenefit::Cb.simple(dat[["ari"]])
+    
+```
+
+## Discrimination{.smaller}
+**Approach 3:** Qini curves
+
+:::{.incremental}
+- Weight your outcome ($Y$) by the propensity score ($PS$): <br>
+$Y^* = \frac{Y(A - PS)}{PS(1 - PS)}$ <br>
+*Upweight individuals who received treatment/no treatment contrary to what we expected based on the propensity score*
+- Rank your population (of size $n$) from highest to lowest benefit ($ARD$)
+- Create a decision rule $\pi$ to treat the top $\phi$ percent: <br>
+$\pi_\phi = \begin{cases}1, & if \hspace{0.1cm} ARD \ge top \hspace{0.11cm} \phi\%\\0, & otherwise\end{cases}$
+- Calculate the gain corresponding to the proportion treated $g(\phi)$: <br>
+$g(\phi) = \frac{1}{n}\displaystyle\sum^n_i\pi_{\phi}Y^*$
+- Iterate over all relevant proportions
+:::
+
+## Discrimination{.smaller}
+**Approach 3:** Qini curves
+
+We can also incorporate individual costs:
+
+:::{.incremental}
+- Adjust individual benefit $ARD_i$ with individual cost $C_i$: <br>
+$ARD^* = \frac{ARD_i}{C_i}$
+- Rank your population from highest to lowest cost-adjusted benefit ($ARD^*$)
+- Create a decision rule $\pi$ to treat the top $\phi$ percent and calculate the gain $g(\phi)$
+- Calculate the cost corresponding to the proportion treated $c(\phi)$: <br>
+$c(\phi) = \frac{1}{N_\phi}\displaystyle\sum^{N_\phi}_iC_i$
+- Adjust treated proportion to account for incurred costs: <br>
+$\phi^* = g(\phi) * c(\phi)$
+- Iterate over all relevant proportions and report $g(\phi)$ for $\phi^*$
+:::
+
+## Discrimination{.smaller}
+First we define a function for the Qini curve
+```{r qini function}
+#| echo: true
+# Function to calculate gain per spend for Qini curve
+qini <- function(benefit,                      # CATE/ITE, assuming higher = more benefit
+                 trt,                          # 1 = treated, 0 = not treated (according to factual assignment)
+                 outcome,                      # 1 = outcome, 0 = no outcome
+                 ps,                           # Propensity score
+                 cost = 1,                     # Incurred costs per individual
+                 phi_low = 0,                  # Lowest proportion assessed
+                 phi_high = 1,                 # Highest proportion assessed
+                 output = c("curve", "table")  # Should curve be drawn or table be given
+){
+    # Match output
+    output <- match.arg(output)
+    
+    # Create tibble for computations
+    dat_qini <- tibble(id = 1:length(benefit),
+                       benefit,
+                       trt,
+                       outcome,
+                       ps,
+                       cost)
+    
+    # Calculate gain for each proportion
+    dat_qini_final <- bind_rows(lapply(seq(phi_low, phi_high, length.out = nrow(dat_qini)), \(x){
+        # Rank data
+        dat_tmp <- dat_qini %>%
+            # Scale benefit by cost
+            mutate(benefit = benefit / cost) %>%
+            # Rank on benefit
+            arrange(desc(benefit))
+        
+        # Determine treated individuals according to pi
+        vec_treat_ids <- dat_tmp[1:round(quantile(1:nrow(dat_tmp), prob = x)), ][["id"]]
+        
+        # Compute weighted outcome and gain
+        dat_tmp %<>%
+            # Computations
+            mutate(# Treatment assignment
+                   treat = if_else(id %in% vec_treat_ids, 1, 0),
+                   # Random treatment assignment (ATE approach)
+                   treat_ate = rbinom(nrow(dat_tmp), 1, x),
+                   # Weighted outcome
+                   y_star = outcome * (trt - ps) / (ps * (1 - ps)),
+                   # Costs are only incurred by treated individuals
+                   cost = if_else(treat == 1, cost, NA),
+                   # Costs for ATE approach
+                   cost_ate = if_else(treat_ate == 1, cost, NA),
+                   # Calculate gain
+                   gain = treat * y_star,
+                   # Calculate ATE gain
+                   gain_ate = treat_ate * y_star)
+        
+        ## CATE approach
+        # Calculate mean gain
+        mean_gain <- mean(dat_tmp[["gain"]])
+        
+        # Calculate mean cost
+        mean_cost <- mean(dat_tmp[["cost"]], na.rm = TRUE)
+        
+        # Adjust spend for cost if it differed per individual
+        if(n_distinct(cost) > 1) spend <- x * mean_cost else spend <- x
+        
+        # Qini table for CATE
+        dat_cate <- tibble(type = "cate",
+                           spend = spend,
+                           gain = mean_gain)
+        
+        ## ATE approach
+        # Calculate mean gain
+        mean_gain_ate <- mean(dat_tmp[["gain_ate"]])
+        
+        # Calculate mean cost
+        mean_cost_ate <- mean(dat_tmp[["cost_ate"]], na.rm = TRUE)
+        
+        # Adjust spend for cost if it differed per individual
+        if(n_distinct(cost) > 1) spend_ate <- x * mean_cost_ate else spend_ate <- x
+
+         # Qini table for ATE
+        dat_ate <- tibble(type = "ate",
+                          spend = spend_ate,
+                          gain = mean_gain_ate)
+        
+        # Combine tables
+        dat_tab <- bind_rows(dat_cate, dat_ate)
+        
+        
+        # Return table
+        return(dat_tab)
+    }))
+    
+    # Check if table is final output
+    if(output == "table") return(dat_qini_final)
+    
+    # Otherwise, output plot
+    else {
+        # Draw plot
+        p <- ggplot(filter(dat_qini_final, type == "cate"),
+                    aes(x = spend,
+                        y = gain)) +
+            # Geometries
+            geom_line(colour = "#13540c") +
+            geom_smooth(mapping = 
+                            aes(x = filter(dat_qini_final, type == "ate")[["spend"]],
+                                y = filter(dat_qini_final, type == "ate")[["gain"]]),
+                        method = "lm",
+                        formula = "y ~ x",
+                        se = FALSE,
+                        colour = "black",
+                        linetype = "dashed",
+                        linewidth = 0.5) +
+            # Scaling
+            scale_x_continuous(name = "Portion of population treated",
+                               breaks = seq(0, 1, 0.2),
+                               labels = paste0(seq(0, 100, 20), "%")) +
+            scale_y_continuous(name = "Gain") +
+            # Aesthetics
+            theme_manual()
+        
+        # Return plot
+        return(p)
+    }
+}
+     
+```
+
+
+## Discrimination{.smaller}
+On simulated data:
+```{r qini example}
+# Set seed for RNG
+set.seed(1)
+
+# Example from https://grf-labs.github.io/grf/articles/maq.html 
+n <- 2000
+p <- 5
+X <- matrix(rnorm(n * p), n, p)
+W <- rbinom(n, 1, 0.5)
+Y <- pmax(X[, 1], 0) * W + X[, 2] + pmin(X[, 3], 0) + rnorm(n)
+
+# 1) Train a CATE function on training set.
+train <- sample(n/2)
+c.forest <- causal_forest(X[train, ], Y[train], W[train])
+
+# 2) Predict CATEs on test set.
+test <- -train
+tau.hat <- predict(c.forest, X[test, ])$predictions
+
+# 3) Estimate a Qini curve using inverse-propensity weighted test set outcomes.
+IPW.scores <- ifelse(W[test] == 1, Y[test]/0.5, -Y[test]/0.5)
+
+# Generate plot
+qini(tau.hat, W[test], Y[test], 0.5)
+
+```
+
+::: aside
+Simulated data from [Qini curves: Automatic cost-benefit analysis](https://grf-labs.github.io/grf/articles/maq.html)
+:::
+
+## Discrimination{.smaller}
+Our S-learner:
+```{r}
+#| echo: true
+# Generate plot
+qini(dat[["arr"]], dat[["trt"]], dat[["death"]], dat[["ps"]])
+
+```
 
 # Cautionary notes
 
@@ -1677,7 +1898,8 @@ wrap_plots(p_group, p_match, p_match_zoom,
 We can put as much effort, data, and complex statistics into our model as we want, but if it is not used, it did not matter. After development, there is a long road to walk from validation to market approval to implementation. Do not walk that road alone: involve your stakeholders.
 :::
 
-# Thank you!
+# Thank you!{background-image=images/polar_bear.jpeg background-opacity="0.3"}
 - Web: [rjjanse.github.io](https://rjjanse.github.io)
-- Slides: [rjjanse.github.io/talks](https://rjjanse.github.io/talks/hte.html)
 - Contact: [r.j.janse-5@umcutrecht.nl](mailto:r.j.janse-5@umcutrecht.nl)
+- Slides: [rjjanse.github.io/talks](https://rjjanse.github.io/talks/hte.html)
+- Code: [github.com/rjjanse](https://github.com/rjjanse/rjjanse.github.io/blob/main/talks/hte.qmd)
