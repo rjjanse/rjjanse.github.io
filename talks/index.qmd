@@ -11,7 +11,7 @@ format:
 
 ::: {layout-ncol=3}
 
-[![Epidemiology as driver of personalised transplantation care](images/mushroom.jpg){width=253px height=189.85px}](https://rjjanse.github.io/talks/personalised-ktx)
+[![Epidemiology as driver of personalised transplantation care](images/mushroom.jpg){width=253px height=189.85px}](https://rjjanse.github.io/talks/personalised-ktx){target="_blank"}
 
 [![Moving beyond the mythical average individual: *Epidemiology as driver of personalised care*](images/bears.jpg){width=253px height=189.85px}](https://rjjanse.github.io/talks/hte){target="_blank"}
 
