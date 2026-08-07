@@ -1,0 +1,317 @@
+---
+title: "Epidemiology as driver of personalised transplantation care"
+title-slide-attributes:
+    data-background-image: images/mushroom.jpg
+    data-background-size: fill
+    data-background-opacity: "0.3"
+author:
+    - name: Dr. Roemer J. Janse
+      orcid: 0000-0003-0059-872X
+      email: R.J.Janse-5@umcutrecht.nl
+      affiliations:
+        - name: UMC Utrecht
+format: 
+    revealjs:
+        theme: simple
+        mermaid: 
+          theme: default
+execute:
+    warning: false
+                
+css: personalised-ktx.css
+---
+
+# Kidney transplantation and cardiovascular disease
+
+## Post-KTx risks {.smaller} 
+::::{.columns}
+
+:::{.column width="50%"}
+![](images/ktx.png)
+:::
+
+:::{.column width="50%"}
+![](images/heart.png)
+:::
+::::
+
+## Post-KTx risks {.smaller} 
+::::{.columns}
+
+:::{.column width="50%"}
+![](images/ktx-virus.png)
+:::
+
+:::{.column width="50%"}
+![](images/heart.png)
+:::
+::::
+
+## Post-KTx risks {.smaller} 
+::::{.columns}
+
+:::{.column width="50%"}
+![](images/ktx-virus.png)
+:::
+
+:::{.column width="50%"}
+![](images/mace.png)
+:::
+::::
+
+## Post-KTx risks {.smaller} 
+:::::{.columns}
+::::{.column width="43%"}
+![](images/ktx-cv_mortality.jpg)
+
+:::aside
+Jardine *et al.*, 2011 Lancet; DOI: [10.1016/s0140-6736(11)61334-2](https://doi.org/10.1016/s0140-6736(11)61334-2)
+:::
+::::
+
+::::{.column width="57%"}
+::::
+:::::
+
+## Post-KTx risks {.smaller} 
+:::::{.columns}
+::::{.column width="43%"}
+![](images/ktx-cv_mortality.jpg)
+
+:::aside
+Jardine *et al.*, 2011 Lancet; DOI: [10.1016/s0140-6736(11)61334-2](https://doi.org/10.1016/s0140-6736(11)61334-2)
+:::
+::::
+
+::::{.column width="57%"}
+![](images/ktx-cod.jpg)
+
+:::aside
+Ying *et al.*, 2020 J Am Soc Nephrol; DOI: [10.1681/ASN.2020050566](https://doi.org/10.1681/ASN.2020050566)
+:::
+::::
+:::::
+
+## Post-KTx risks {.smaller} 
+![](images/ktx-cv_hospitalisation.png)
+
+:::aside
+Johansen *et al.*, 2026, Am J Kidney Dis; DOI: [10.1053/j.ajkd.2026.02.635](https://doi.org/10.1053/j.ajkd.2026.02.635) 
+:::
+
+## Cardiovascular prevention{.smaller}
+
+|Risk factor|
+|-|
+|Hypertension^a,b^|
+|Diabetes mellitus^a,b^|
+|Smoking|
+|Dyslipidaemia^a,b^|
+|Obesity^a^|
+
+:::aside
+^a^ Exacerbated by steroids <br>
+^b^ Exacerbated by calcineurin inhibitors
+:::
+
+## Cardiovascular prevention{.smaller}
+
+|Risk factor|Pharmaceutical treatment|
+|-|--|
+|Hypertension^a,b^|ACEis, ARBs, CCBs|
+|Diabetes mellitus^a,b^|Metformin, SU derivates, SGLT2is, GLP1-RAs, Insulin|
+|Smoking||
+|Dyslipidaemia^a,b^|Statins|
+|Obesity^a^|Metformin, GLP1-RAs|
+
+:::aside
+^a^ Exacerbated by steroids <br>
+^b^ Exacerbated by calcineurin inhibitors
+:::
+
+## Underlying evidence{.smaller}
+
+![](images/drug_evidence.png){height=500}
+
+
+:::aside
+Colombijn *et al.*, 2024 JAMA Netw Open; DOI: [10.1001/jamanetworkopen.2024.0427](https://doi.org/10.1001/jamanetworkopen.2024.0427)
+:::
+
+## RCT-based evidence
+```{mermaid RCT-1}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") 
+```
+
+## RCT-based evidence
+```{mermaid RCT-2}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    
+```
+
+## RCT-based evidence
+```{mermaid RCT-3}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    
+```
+
+## Average treatment effect{.smaller}
+The *Average treatment effect (ATE)* is the average effect in the total population
+
+:::{.incremental}
+- The main analysis of our RCT on drug A vs. placebo yields a risk reduction of 20% for cardiovascular events
+- If we prescribe drug A to this population, the **population** will experience 20% less cardiovascular events
+- An **individual** may have a different risk reduction: 10%, 30%, -5%
+- But the average of all those individuals will be 20%
+- This is useful for people who treat populations (*policy makers*)
+- This is less useful for people who treat individuals (*clinicians*)
+:::
+
+## RCT-based evidence
+```{mermaid RCT-4}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    
+```
+
+## RCT-based evidence
+```{mermaid RCT-5}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    
+```
+
+## RCT-based evidence
+```{mermaid RCT-6}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    
+```
+
+## Conditional average treatment effect{.smaller}
+The *conditional average treatment effect (CATE)* is the average treatment effect in a **subgroup** of the population
+
+:::{.incremental}
+- We perform a subgroup analysis on biological sex, which yields a risk reduction of 30% for women and 12% for men
+- If we prescribe drug A to this population, the **population** will experience 20% less cardiovascular events
+- But the **population of women** will experience 30% less cardiovascular events
+- And the **population of men** will experience 12% less cardiovascular events
+- An **individual woman** or an **individual man** may still have a different risk reduction: 10%, 30%, -5%
+- This is slightly useful for people who treat populations (*policy makers*)
+- This is slightly useful for people who treat individuals (*clinicians*)
+:::
+
+## Conditional average treatment effect{.smaller}
+![](images/isis.png)
+
+## Conditional average treatment effect{.smaller}
+![](images/isis_subgroup.png)
+
+## Conditional average treatment effect{.smaller}
+![](images/subgroups.png)
+
+## Conditional average treatment effect{.smaller}
+![](images/subgroup_problems.png)
+
+## RCT-based evidence
+```{mermaid RCT-7}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+
+```
+
+## RCT-based evidence
+```{mermaid RCT-8}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+
+```
+
+## RCT-based evidence
+```{mermaid RCT-9}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+
+```
+
+## Individualised treatment effect
+
+
+
+
+
+
+
+##
+
+```{mermaid RCT-10}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    ite --> ind("Individual people")
+```
+
+
+
+# Thank you!{background-image=images/coprinellus.jpeg background-opacity="0.3"}
+- Web: [rjjanse.github.io](https://rjjanse.github.io)
+- Contact: [r.j.janse-5@umcutrecht.nl](mailto:r.j.janse-5@umcutrecht.nl)
+- Slides: [rjjanse.github.io/talks](https://rjjanse.github.io/talks/personalised-ktx.html)
+- Code: [github.com/rjjanse](https://github.com/rjjanse/rjjanse.github.io/blob/main/talks/personalised-ktx.qmd)

@@ -1,0 +1,9 @@
+/* Make title smaller */
+.title {
+  font-size: 1.5em !important;
+}
+
+/* Change colour of progress bar and options */
+div.progress {
+    color: #13540c !important;
+}
