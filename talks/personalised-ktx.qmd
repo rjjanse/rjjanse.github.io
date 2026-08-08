@@ -138,6 +138,8 @@ Johansen *et al.*, 2026, Am J Kidney Dis; DOI: [10.1053/j.ajkd.2026.02.635](http
 Colombijn *et al.*, 2024 JAMA Netw Open; DOI: [10.1001/jamanetworkopen.2024.0427](https://doi.org/10.1001/jamanetworkopen.2024.0427)
 :::
 
+# RCTs for evidence-based medicine
+
 ## RCT-based evidence
 ```{mermaid RCT-1}
 %%| fig-align: center
@@ -248,7 +250,6 @@ flowchart TB
     ate --> pop("Population")
     rct --> sa["Subgroup analysis"]
     sa --> cate(["Conditional average <br> treatment effect (CATE)"])
-    cate --> subpop("Subgroups in population")
 
 ```
 
@@ -263,9 +264,10 @@ flowchart TB
     rct --> sa["Subgroup analysis"]
     sa --> cate(["Conditional average <br> treatment effect (CATE)"])
     cate --> subpop("Subgroups in population")
-    rct --> path["Risk/effect modelling"]
 
 ```
+
+# Individualised treatment effects
 
 ## RCT-based evidence
 ```{mermaid RCT-9}
@@ -278,22 +280,170 @@ flowchart TB
     rct --> sa["Subgroup analysis"]
     sa --> cate(["Conditional average <br> treatment effect (CATE)"])
     cate --> subpop("Subgroups in population")
-    rct --> path["Risk/effect modelling"]
-    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    rct --> magic["?"]
 
 ```
 
-## Individualised treatment effect
-
-
-
-
-
-
-
-##
-
+## RCT-based evidence
 ```{mermaid RCT-10}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> magic["?"]
+    magic --> ite(["Individual treatment effect"])
+
+```
+
+## Individual treatment effect{.smaller}
+The *individual treatment effect* is the treatment effect for an individual
+
+:::{.incremental}
+- We assign drug A to an individual
+- We open an alternative universe where everything is exactly the same, but we do not assign drug A to that individual
+- The difference in their outcomes is the individual treatment effect
+:::
+
+## Individualised treatment effect{.smaller}
+The *individualised treatment effect (ITE)* is a highly specific conditional treatment effect
+
+:::{.incremental}
+- We calculate the effect (CATE) based on many variables at once
+- The CATE becomes so specific, that we consider it **individualised**
+- For instance, drug A will give a 53-year old woman with diabetes, no cardiovascular history, a kidney function of 55 mL/min/1.73m^2^, with an increased lymphocyte count and who is using tacrolimus, mycophenolate, and basiliximab, as well as a renin-angiotensin-system inhibitor, a risk-reduction of 35%
+- This is useful for people who treat individuals (*clinicians*)
+:::
+
+## Individualised treatment effect{.smaller}
+To calculate the ITE, we can use two methods:
+
+:::{fragment}
+**Risk modelling:** <br>
+- Using a (valid) existing prediction model, we perform a subgroup analysis by predicted outcome risk <br>
+*Because we rarely make many subgroups, I would not consider this an ITE*
+:::
+
+:::{.fragment}
+![](images/kidney_models.png)
+:::
+
+## Individualised treatment effect{.smaller}
+To calculate the ITE, we can use two methods:
+
+::::{fragment}
+**Effect modelling:** 
+
+:::{.incremental}
+- Directly predict the outcome if an individual was treated 
+- Directly predict the outcome if an individual was not treated
+- Subtracting these predictions gives the ITE
+:::
+::::
+
+## Individualised treatment effect{.smaller}
+::::{.callout-important}
+:::{.fragment}
+Both methods assume that there is no confounding left between the groups
+:::
+
+:::{.fragment}
+If there is no confounding, we can use untreated individuals to predict what would have happened to the treated individuals, and vice versa
+:::
+
+:::{.fragment}
+Using sophisticated study designs/statistical techniques, we can remove confounding in our study population
+:::
+::::
+
+## Individualised treatment effect{.smaller}
+::::{.callout-important}
+:::{.fragment}
+The ITE is a prediction: it is what we expect, but we do not know for sure if it is true (and never will)
+:::
+
+:::{.fragment}
+We thus need to validate the prediction, using special methods that take into account our limited knowledge
+:::
+::::
+
+## RCT-based evidence
+```{mermaid RCT-11}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> magic["?"]
+    magic --> more_magic(["Individual treatment effect"])
+
+```
+
+## RCT-based evidence
+```{mermaid RCT-12}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> magic["?"]
+    magic --> more_magic(["Individual treatment effect"])
+    more_magic --> ind("Individual people")
+
+```
+
+## RCT-based evidence
+```{mermaid RCT-13}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    rct --> magic["?"]
+    magic --> more_magic(["Individual treatment effect"])
+    more_magic --> ind("Individual people")
+
+```
+
+
+## RCT-based evidence
+```{mermaid RCT-14}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    rct --> magic["?"]
+    magic --> more_magic(["Individual treatment effect"])
+    more_magic --> ind("Individual people")
+
+```
+
+## RCT-based evidence
+```{mermaid RCT-15}
 %%| fig-align: center
 
 flowchart TB
@@ -306,12 +456,59 @@ flowchart TB
     rct --> path["Risk/effect modelling"]
     path --> ite(["Individualised treatment <br> effect (ITE)"])
     ite --> ind("Individual people")
+    rct --> magic["?"]
+    magic --> more_magic(["Individual treatment effect"])
+    more_magic --> ind
+
 ```
 
+# A final note
 
+## Sample size struggles
+```{mermaid RCT-15}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    ite --> ind("Individual people")
+    rct --> magic["?"]
+    magic --> more_magic(["Individual treatment effect"])
+    more_magic --> ind
+    
+%% Custom style for node CATE and ITE
+style cate fill:#F9A03F,stroke:#C36F09
+style ite fill:#E79E9C,stroke:#6F1D1B
+
+```
+
+## Sample size struggles
+```{mermaid RCT-15}
+%%| fig-align: center
+
+flowchart TB
+    rct("Pooled RCTs/<br>observational data") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    ite --> ind("Individual people")
+    rct --> magic["?"]
+    magic --> more_magic(["Individual treatment effect"])
+    more_magic --> ind
+
+```
 
 # Thank you!{background-image=images/coprinellus.jpeg background-opacity="0.3"}
 - Web: [rjjanse.github.io](https://rjjanse.github.io)
 - Contact: [r.j.janse-5@umcutrecht.nl](mailto:r.j.janse-5@umcutrecht.nl)
 - Slides: [rjjanse.github.io/talks](https://rjjanse.github.io/talks/personalised-ktx.html)
-- Code: [github.com/rjjanse](https://github.com/rjjanse/rjjanse.github.io/blob/main/talks/personalised-ktx.qmd)

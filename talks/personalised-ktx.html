@@ -297,7 +297,12 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 
 <aside><div>
 <p>Colombijn <em>et al.</em>, 2024 JAMA Netw Open; DOI: <a href="https://doi.org/10.1001/jamanetworkopen.2024.0427">10.1001/jamanetworkopen.2024.0427</a></p>
-</div></aside></section>
+</div></aside></section></section>
+<section>
+<section id="rcts-for-evidence-based-medicine" class="title-slide slide level1 center">
+<h1>RCTs for evidence-based medicine</h1>
+
+</section>
 <section id="rct-based-evidence" class="slide level2">
 <h2>RCT-based evidence</h2>
 <div class="cell" data-reveal="true" data-layout-align="center">
@@ -463,7 +468,6 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     ate --&gt; pop("Population")
     rct --&gt; sa["Subgroup analysis"]
     sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
-    cate --&gt; subpop("Subgroups in population")
 
 </pre>
 </div>
@@ -486,7 +490,6 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     rct --&gt; sa["Subgroup analysis"]
     sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
     cate --&gt; subpop("Subgroups in population")
-    rct --&gt; path["Risk/effect modelling"]
 
 </pre>
 </div>
@@ -494,6 +497,11 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 </div>
 </div>
 </div>
+</section></section>
+<section>
+<section id="individualised-treatment-effects" class="title-slide slide level1 center">
+<h1>Individualised treatment effects</h1>
+
 </section>
 <section id="rct-based-evidence-8" class="slide level2">
 <h2>RCT-based evidence</h2>
@@ -509,8 +517,7 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     rct --&gt; sa["Subgroup analysis"]
     sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
     cate --&gt; subpop("Subgroups in population")
-    rct --&gt; path["Risk/effect modelling"]
-    path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
+    rct --&gt; magic["?"]
 
 </pre>
 </div>
@@ -519,11 +526,220 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 </div>
 </div>
 </section>
-<section id="individualised-treatment-effect" class="slide level2">
-<h2>Individualised treatment effect</h2>
+<section id="rct-based-evidence-9" class="slide level2">
+<h2>RCT-based evidence</h2>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; magic["?"]
+    magic --&gt; ite(["Individual treatment effect"])
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
-<section id="section" class="slide level2">
-<h2></h2>
+<section id="individual-treatment-effect" class="slide level2 smaller">
+<h2>Individual treatment effect</h2>
+<p>The <em>individual treatment effect</em> is the treatment effect for an individual</p>
+<ul>
+<li class="fragment">We assign drug A to an individual</li>
+<li class="fragment">We open an alternative universe where everything is exactly the same, but we do not assign drug A to that individual</li>
+<li class="fragment">The difference in their outcomes is the individual treatment effect</li>
+</ul>
+</section>
+<section id="individualised-treatment-effect" class="slide level2 smaller">
+<h2>Individualised treatment effect</h2>
+<p>The <em>individualised treatment effect (ITE)</em> is a highly specific conditional treatment effect</p>
+<ul>
+<li class="fragment">We calculate the effect (CATE) based on many variables at once</li>
+<li class="fragment">The CATE becomes so specific, that we consider it <strong>individualised</strong></li>
+<li class="fragment">For instance, drug A will give a 53-year old woman with diabetes, no cardiovascular history, a kidney function of 55 mL/min/1.73m<sup>2</sup>, with an increased lymphocyte count and who is using tacrolimus, mycophenolate, and basiliximab, as well as a renin-angiotensin-system inhibitor, a risk-reduction of 35%</li>
+<li class="fragment">This is useful for people who treat individuals (<em>clinicians</em>)</li>
+</ul>
+</section>
+<section id="individualised-treatment-effect-1" class="slide level2 smaller">
+<h2>Individualised treatment effect</h2>
+<p>To calculate the ITE, we can use two methods:</p>
+<div class="{fragment}">
+<p><strong>Risk modelling:</strong> <br> - Using a (valid) existing prediction model, we perform a subgroup analysis by predicted outcome risk <br> <em>Because we rarely make many subgroups, I would not consider this an ITE</em></p>
+</div>
+<div class="fragment">
+<p><img data-src="images/kidney_models.png"></p>
+</div>
+</section>
+<section id="individualised-treatment-effect-2" class="slide level2 smaller">
+<h2>Individualised treatment effect</h2>
+<p>To calculate the ITE, we can use two methods:</p>
+<div class="{fragment}">
+<p><strong>Effect modelling:</strong></p>
+<ul>
+<li class="fragment">Directly predict the outcome if an individual was treated</li>
+<li class="fragment">Directly predict the outcome if an individual was not treated</li>
+<li class="fragment">Subtracting these predictions gives the ITE</li>
+</ul>
+</div>
+</section>
+<section id="individualised-treatment-effect-3" class="slide level2 smaller">
+<h2>Individualised treatment effect</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<div class="fragment">
+<p>Both methods assume that there is no confounding left between the groups</p>
+</div>
+<div class="fragment">
+<p>If there is no confounding, we can use untreated individuals to predict what would have happened to the treated individuals, and vice versa</p>
+</div>
+<div class="fragment">
+<p>Using sophisticated study designs/statistical techniques, we can remove confounding in our study population</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="individualised-treatment-effect-4" class="slide level2 smaller">
+<h2>Individualised treatment effect</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<div class="fragment">
+<p>The ITE is a prediction: it is what we expect, but we do not know for sure if it is true (and never will)</p>
+</div>
+<div class="fragment">
+<p>We thus need to validate the prediction, using special methods that take into account our limited knowledge</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="rct-based-evidence-10" class="slide level2">
+<h2>RCT-based evidence</h2>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; magic["?"]
+    magic --&gt; more_magic(["Individual treatment effect"])
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="rct-based-evidence-11" class="slide level2">
+<h2>RCT-based evidence</h2>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; magic["?"]
+    magic --&gt; more_magic(["Individual treatment effect"])
+    more_magic --&gt; ind("Individual people")
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="rct-based-evidence-12" class="slide level2">
+<h2>RCT-based evidence</h2>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; path["Risk/effect modelling"]
+    rct --&gt; magic["?"]
+    magic --&gt; more_magic(["Individual treatment effect"])
+    more_magic --&gt; ind("Individual people")
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="rct-based-evidence-13" class="slide level2">
+<h2>RCT-based evidence</h2>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; path["Risk/effect modelling"]
+    path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
+    rct --&gt; magic["?"]
+    magic --&gt; more_magic(["Individual treatment effect"])
+    more_magic --&gt; ind("Individual people")
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="rct-based-evidence-14" class="slide level2">
+<h2>RCT-based evidence</h2>
 <div class="cell" data-reveal="true" data-layout-align="center">
 <div class="cell-output-display">
 <div>
@@ -539,6 +755,75 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     rct --&gt; path["Risk/effect modelling"]
     path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
     ite --&gt; ind("Individual people")
+    rct --&gt; magic["?"]
+    magic --&gt; more_magic(["Individual treatment effect"])
+    more_magic --&gt; ind
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="a-final-note" class="title-slide slide level1 center">
+<h1>A final note</h1>
+
+</section>
+<section id="sample-size-struggles" class="slide level2">
+<h2>Sample size struggles</h2>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; path["Risk/effect modelling"]
+    path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
+    ite --&gt; ind("Individual people")
+    rct --&gt; magic["?"]
+    magic --&gt; more_magic(["Individual treatment effect"])
+    more_magic --&gt; ind
+    
+%% Custom style for node CATE and ITE
+style cate fill:#F9A03F,stroke:#C36F09
+style ite fill:#E79E9C,stroke:#6F1D1B
+
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="sample-size-struggles-1" class="slide level2">
+<h2>Sample size struggles</h2>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Pooled RCTs/&lt;br&gt;observational data") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; path["Risk/effect modelling"]
+    path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
+    ite --&gt; ind("Individual people")
+    rct --&gt; magic["?"]
+    magic --&gt; more_magic(["Individual treatment effect"])
+    more_magic --&gt; ind
+
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -552,7 +837,6 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 <li>Web: <a href="https://rjjanse.github.io">rjjanse.github.io</a></li>
 <li>Contact: <a href="mailto:r.j.janse-5@umcutrecht.nl">r.j.janse-5@umcutrecht.nl</a></li>
 <li>Slides: <a href="https://rjjanse.github.io/talks/personalised-ktx.html">rjjanse.github.io/talks</a></li>
-<li>Code: <a href="https://github.com/rjjanse/rjjanse.github.io/blob/main/talks/personalised-ktx.qmd">github.com/rjjanse</a></li>
 </ul>
 
 </section>
