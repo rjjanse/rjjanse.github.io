@@ -2,7 +2,8 @@
 title: "Talks"
 format:
     html:
-        theme: sketchy
+        theme: simple
+css: talks.css
 ---
 
 [Go back](https://rjjanse.github.io#oo)
