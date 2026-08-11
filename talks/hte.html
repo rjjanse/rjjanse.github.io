@@ -306,6 +306,19 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 </div>
 </div>
 </section>
+<section id="estimands-ate" class="slide level2 smaller">
+<h2>Estimands: ATE</h2>
+<p><strong>Average treatment effect:</strong> <span class="math display">\[\mathbb{E}[Y^{a=1}] - \mathbb{E}[Y^{a=0}]\]</span></p>
+<div class="fragment">
+<p>Useful for:</p>
+<ul>
+<li>Policy makers</li>
+</ul>
+</div>
+<div class="fragment">
+<p>RCTs are powered to estimate the ATE.</p>
+</div>
+</section>
 <section id="academias-mythical-average-individual-3" class="slide level2 smaller">
 <h2>Academia’s mythical average individual</h2>
 <p><em>Causal aim:</em></p>
@@ -320,7 +333,6 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 <pre class="mermaid mermaid-js">flowchart TB
     rct("Randomised controlled trial") --&gt; ma["Main analysis"]
     ma --&gt; ate(["Average treatment effect (ATE)"])
-    ate --&gt; pop("Population")
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -343,7 +355,6 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     rct("Randomised controlled trial") --&gt; ma["Main analysis"]
     ma --&gt; ate(["Average treatment effect (ATE)"])
     ate --&gt; pop("Population")
-    rct --&gt; sa["Subgroup analysis"]
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -367,8 +378,6 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     ma --&gt; ate(["Average treatment effect (ATE)"])
     ate --&gt; pop("Population")
     rct --&gt; sa["Subgroup analysis"]
-    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
-    
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -393,110 +402,12 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
     ate --&gt; pop("Population")
     rct --&gt; sa["Subgroup analysis"]
     sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
-    cate --&gt; subpop("Subgroups in population")
     
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
-</div>
-</section>
-<section id="academias-mythical-average-individual-7" class="slide level2 smaller">
-<h2>Academia’s mythical average individual</h2>
-<p><em>Causal aim:</em></p>
-<ul>
-<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
-</ul>
-<div class="cell" data-reveal="true" data-layout-align="center">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
-    ma --&gt; ate(["Average treatment effect (ATE)"])
-    ate --&gt; pop("Population")
-    rct --&gt; sa["Subgroup analysis"]
-    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
-    cate --&gt; subpop("Subgroups in population")
-    rct --&gt; path["Risk/effect modelling"]
-    
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="academias-mythical-average-individual-8" class="slide level2 smaller">
-<h2>Academia’s mythical average individual</h2>
-<p><em>Causal aim:</em></p>
-<ul>
-<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
-</ul>
-<div class="cell" data-reveal="true" data-layout-align="center">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
-    ma --&gt; ate(["Average treatment effect (ATE)"])
-    ate --&gt; pop("Population")
-    rct --&gt; sa["Subgroup analysis"]
-    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
-    cate --&gt; subpop("Subgroups in population")
-    rct --&gt; path["Risk/effect modelling"]
-    path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
-    
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="academias-mythical-average-individual-9" class="slide level2 smaller">
-<h2>Academia’s mythical average individual</h2>
-<p><em>Causal aim:</em></p>
-<ul>
-<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
-</ul>
-<div class="cell" data-reveal="true" data-layout-align="center">
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
-    ma --&gt; ate(["Average treatment effect (ATE)"])
-    ate --&gt; pop("Population")
-    rct --&gt; sa["Subgroup analysis"]
-    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
-    cate --&gt; subpop("Subgroups in population")
-    rct --&gt; path["Risk/effect modelling"]
-    path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
-    ite --&gt; ind("Individual people")
-    
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="estimands-ate" class="slide level2 smaller">
-<h2>Estimands: ATE</h2>
-<p><strong>Average treatment effect:</strong> <span class="math display">\[\mathbb{E}[Y^{a=1}] - \mathbb{E}[Y^{a=0}]\]</span></p>
-<div class="fragment">
-<p>Useful for:</p>
-<ul>
-<li>Policy makers</li>
-</ul>
-</div>
-<div class="fragment">
-<p>RCTs are powered to estimate the ATE.</p>
 </div>
 </section>
 <section id="estimands-cate" class="slide level2 smaller">
@@ -529,6 +440,112 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 <h2>Estimands: CATE</h2>
 
 <img data-src="images/subgroup_problems.png" class="r-stretch"></section>
+<section id="academias-mythical-average-individual-7" class="slide level2 smaller">
+<h2>Academia’s mythical average individual</h2>
+<p><em>Causal aim:</em></p>
+<ul>
+<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
+</ul>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="academias-mythical-average-individual-8" class="slide level2 smaller">
+<h2>Academia’s mythical average individual</h2>
+<p><em>Causal aim:</em></p>
+<ul>
+<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
+</ul>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="academias-mythical-average-individual-9" class="slide level2 smaller">
+<h2>Academia’s mythical average individual</h2>
+<p><em>Causal aim:</em></p>
+<ul>
+<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
+</ul>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; path["Risk/effect modelling"]
+    
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="academias-mythical-average-individual-10" class="slide level2 smaller">
+<h2>Academia’s mythical average individual</h2>
+<p><em>Causal aim:</em></p>
+<ul>
+<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
+</ul>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; path["Risk/effect modelling"]
+    path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
+    
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
 <section id="estimands-ite" class="slide level2 smaller">
 <h2>Estimands: ITE</h2>
 <p><strong>Individualised treatment effect:</strong><br>
@@ -543,8 +560,40 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 <p>RCTs are not powered to estimate an ITE</p>
 </div>
 </section>
-<section id="estimands" class="slide level2 smaller">
-<h2>Estimands</h2>
+<section id="academias-mythical-average-individual-11" class="slide level2 smaller">
+<h2>Academia’s mythical average individual</h2>
+<p><em>Causal aim:</em></p>
+<ul>
+<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
+</ul>
+<div class="cell" data-reveal="true" data-layout-align="center">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    rct("Randomised controlled trial &lt;br&gt; (RCT)") --&gt; ma["Main analysis"]
+    ma --&gt; ate(["Average treatment effect (ATE)"])
+    ate --&gt; pop("Population")
+    rct --&gt; sa["Subgroup analysis"]
+    sa --&gt; cate(["Conditional average &lt;br&gt; treatment effect (CATE)"])
+    cate --&gt; subpop("Subgroups in population")
+    rct --&gt; path["Risk/effect modelling"]
+    path --&gt; ite(["Individualised treatment &lt;br&gt; effect (ITE)"])
+    
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="academias-mythical-average-individual-12" class="slide level2 smaller">
+<h2>Academia’s mythical average individual</h2>
+<p><em>Causal aim:</em></p>
+<ul>
+<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
+</ul>
 <div class="cell" data-reveal="true" data-layout-align="center">
 <div class="cell-output-display">
 <div>
@@ -568,8 +617,12 @@ Dr.&nbsp;Roemer J. Janse <a href="https://orcid.org/0000-0003-0059-872X" class="
 </div>
 </div>
 </section>
-<section id="estimands-1" class="slide level2 smaller">
-<h2>Estimands</h2>
+<section id="academias-mythical-average-individual-13" class="slide level2 smaller">
+<h2>Academia’s mythical average individual</h2>
+<p><em>Causal aim:</em></p>
+<ul>
+<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
+</ul>
 <div class="cell" data-reveal="true" data-layout-align="center">
 <div class="cell-output-display">
 <div>
@@ -597,8 +650,12 @@ style ite fill:#E79E9C,stroke:#6F1D1B
 </div>
 </div>
 </section>
-<section id="estimands-2" class="slide level2 smaller">
-<h2>Estimands</h2>
+<section id="academias-mythical-average-individual-14" class="slide level2 smaller">
+<h2>Academia’s mythical average individual</h2>
+<p><em>Causal aim:</em></p>
+<ul>
+<li>What is the effect of intervention <span class="math inline">\(A=1\)</span> compared to intervention <span class="math inline">\(A=0\)</span> on outcome <span class="math inline">\(Y^a\)</span>?</li>
+</ul>
 <div class="cell" data-reveal="true" data-layout-align="center">
 <div class="cell-output-display">
 <div>
@@ -765,7 +822,7 @@ style ite fill:#E79E9C,stroke:#6F1D1B
 <h2>S-learners</h2>
 <p>S-learners are the simplest method, as they rely on only a single model:</p>
 <ul>
-<li class="fragment">We aim to estimate the ARD, as estimand for individual benefit</li>
+<li class="fragment">We aim to estimate the <span class="math inline">\(ARD\)</span>, as estimand for individual benefit</li>
 <li class="fragment">We express this as <span class="math inline">\(ARD = AR_{A=1} - AR_{A=0}\)</span>, where <span class="math inline">\(AR_{A=1} = \mathbb{E}[Y=1|A=1,\textbf{X}]\)</span> and <span class="math inline">\(AR_{A=0} = \mathbb{E}[Y=1|A=0,\textbf{X}]\)</span></li>
 <li class="fragment">An S-learner means that we fit a single (S) model for both <span class="math inline">\(AR_{A=1}\)</span> and <span class="math inline">\(AR_{A=0}\)</span></li>
 <li class="fragment">Thus, we fit the model <span class="math inline">\(\hat{\mu}(x)\)</span> as <span class="math inline">\(M(Y \sim A + \textbf{X})\)</span></li>
@@ -1204,7 +1261,7 @@ style ite fill:#E79E9C,stroke:#6F1D1B
 <h2>Discrimination</h2>
 <p><strong>Approach 2:</strong> Concentration of benefit (<span class="math inline">\(C_b\)</span>)</p>
 <ul>
-<li class="fragment">Efficiency of a prediction model in assigning treatment, compared to random treatment</li>
+<li class="fragment">Efficiency of a prediction model in assigning treatment, compared to random treatment assignment</li>
 <li class="fragment">Uses random sampling of benefit</li>
 <li class="fragment">Strong assumption: benefit is correctly calibrated; <br> <em><span class="math inline">\(C_b\)</span> does not incorporate outcome in its calculation</em></li>
 <li class="fragment">Thus, we cannot interpret it with poor calibration</li>

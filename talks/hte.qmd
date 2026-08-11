@@ -148,6 +148,21 @@ flowchart TB
     ma --> ate(["Average treatment effect (ATE)"])
 ```
 
+## Estimands: ATE{.smaller}
+
+**Average treatment effect:** 
+$$\mathbb{E}[Y^{a=1}] - \mathbb{E}[Y^{a=0}]$$
+
+:::{.fragment}
+Useful for:
+
+- Policy makers
+:::
+
+:::{.fragment}
+RCTs are powered to estimate the ATE.
+:::
+
 ## Academia’s mythical average individual{.smaller}
 
 *Causal aim:*
@@ -160,7 +175,6 @@ flowchart TB
 flowchart TB
     rct("Randomised controlled trial") --> ma["Main analysis"]
     ma --> ate(["Average treatment effect (ATE)"])
-    ate --> pop("Population")
 ```
 
 ## Academia’s mythical average individual{.smaller}
@@ -176,7 +190,6 @@ flowchart TB
     rct("Randomised controlled trial") --> ma["Main analysis"]
     ma --> ate(["Average treatment effect (ATE)"])
     ate --> pop("Population")
-    rct --> sa["Subgroup analysis"]
 ```
 
 ## Academia’s mythical average individual{.smaller}
@@ -193,8 +206,6 @@ flowchart TB
     ma --> ate(["Average treatment effect (ATE)"])
     ate --> pop("Population")
     rct --> sa["Subgroup analysis"]
-    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
-    
 ```
 
 ## Academia’s mythical average individual{.smaller}
@@ -212,87 +223,8 @@ flowchart TB
     ate --> pop("Population")
     rct --> sa["Subgroup analysis"]
     sa --> cate(["Conditional average <br> treatment effect (CATE)"])
-    cate --> subpop("Subgroups in population")
     
 ```
-
-## Academia’s mythical average individual{.smaller}
-
-*Causal aim:*
-
-- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
-
-```{mermaid RCT-7}
-%%| fig-align: center
-
-flowchart TB
-    rct("Randomised controlled trial") --> ma["Main analysis"]
-    ma --> ate(["Average treatment effect (ATE)"])
-    ate --> pop("Population")
-    rct --> sa["Subgroup analysis"]
-    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
-    cate --> subpop("Subgroups in population")
-    rct --> path["Risk/effect modelling"]
-    
-```
-
-## Academia’s mythical average individual{.smaller}
-
-*Causal aim:*
-
-- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
-
-```{mermaid RCT-8}
-%%| fig-align: center
-
-flowchart TB
-    rct("Randomised controlled trial") --> ma["Main analysis"]
-    ma --> ate(["Average treatment effect (ATE)"])
-    ate --> pop("Population")
-    rct --> sa["Subgroup analysis"]
-    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
-    cate --> subpop("Subgroups in population")
-    rct --> path["Risk/effect modelling"]
-    path --> ite(["Individualised treatment <br> effect (ITE)"])
-    
-```
-
-## Academia’s mythical average individual{.smaller}
-
-*Causal aim:*
-
-- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
-
-```{mermaid RCT-10}
-%%| fig-align: center
-
-flowchart TB
-    rct("Randomised controlled trial") --> ma["Main analysis"]
-    ma --> ate(["Average treatment effect (ATE)"])
-    ate --> pop("Population")
-    rct --> sa["Subgroup analysis"]
-    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
-    cate --> subpop("Subgroups in population")
-    rct --> path["Risk/effect modelling"]
-    path --> ite(["Individualised treatment <br> effect (ITE)"])
-    ite --> ind("Individual people")
-    
-```
-
-## Estimands: ATE{.smaller}
-
-**Average treatment effect:** 
-$$\mathbb{E}[Y^{a=1}] - \mathbb{E}[Y^{a=0}]$$
-
-:::{.fragment}
-Useful for:
-
-- Policy makers
-:::
-
-:::{.fragment}
-RCTs are powered to estimate the ATE.
-:::
 
 ## Estimands: CATE{.smaller}
 
@@ -323,6 +255,84 @@ RCTs are rarely powered to estimate a CATE.
 ## Estimands: CATE{.smaller}
 ![](images/subgroup_problems.png)
 
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-7}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-8}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-9}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-10}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    
+```
+
 ## Estimands: ITE{.smaller}
 
 **Individualised treatment effect:**\
@@ -339,9 +349,34 @@ Useful for:
 RCTs are not powered to estimate an ITE
 :::
 
-## Estimands{.smaller}
+## Academia’s mythical average individual{.smaller}
 
-```{mermaid estimands-1}
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-11}
+%%| fig-align: center
+
+flowchart TB
+    rct("Randomised controlled trial <br> (RCT)") --> ma["Main analysis"]
+    ma --> ate(["Average treatment effect (ATE)"])
+    ate --> pop("Population")
+    rct --> sa["Subgroup analysis"]
+    sa --> cate(["Conditional average <br> treatment effect (CATE)"])
+    cate --> subpop("Subgroups in population")
+    rct --> path["Risk/effect modelling"]
+    path --> ite(["Individualised treatment <br> effect (ITE)"])
+    
+```
+
+## Academia’s mythical average individual{.smaller}
+
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-12}
 %%| fig-align: center
 
 flowchart TB
@@ -357,9 +392,13 @@ flowchart TB
     
 ```
 
-## Estimands{.smaller}
+## Academia’s mythical average individual{.smaller}
 
-```{mermaid estimands-2}
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-13}
 %%| fig-align: center
 
 flowchart TB
@@ -379,9 +418,13 @@ style ite fill:#E79E9C,stroke:#6F1D1B
     
 ```
 
-## Estimands{.smaller}
+## Academia’s mythical average individual{.smaller}
 
-```{mermaid estimands-3}
+*Causal aim:*
+
+- What is the effect of intervention $A=1$ compared to intervention $A=0$ on outcome $Y^a$?
+
+```{mermaid RCT-14}
 %%| fig-align: center
 
 flowchart TB
@@ -598,7 +641,7 @@ Several techniques for effect modelling,exist:
 S-learners are the simplest method, as they rely on only a single model:
 
 :::{.incremental}
-- We aim to estimate the ARD, as estimand for individual benefit
+- We aim to estimate the $ARD$, as estimand for individual benefit
 - We express this as $ARD = AR_{A=1} - AR_{A=0}$, where $AR_{A=1} = \mathbb{E}[Y=1|A=1,\textbf{X}]$ and $AR_{A=0} = \mathbb{E}[Y=1|A=0,\textbf{X}]$
 - An S-learner means that we fit a single (S) model for both $AR_{A=1}$ and $AR_{A=0}$
 - Thus, we fit the model $\hat{\mu}(x)$ as $M(Y \sim A + \textbf{X})$
@@ -1645,7 +1688,7 @@ wrap_plots(p_group, p_match, p_match_zoom,
 **Approach 2:** Concentration of benefit ($C_b$)
 
 :::{.incremental}
-- Efficiency of a prediction model in assigning treatment, compared to random treatment
+- Efficiency of a prediction model in assigning treatment, compared to random treatment assignment
 - Uses random sampling of benefit
 - Strong assumption: benefit is correctly calibrated; <br> 
 *$C_b$ does not incorporate outcome in its calculation*
