@@ -18,7 +18,7 @@ format:
 execute:
     warning: false
                 
-css: personalised-ktx.css
+css: css/personalised-ktx.css
 ---
 
 # Kidney transplantation and cardiovascular disease

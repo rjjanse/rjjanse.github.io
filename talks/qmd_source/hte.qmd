@@ -19,7 +19,7 @@ format:
 execute:
     warning: false
                 
-css: hte.css
+css: css/hte.css
 ---
 
 ```{r set-up}
@@ -1945,4 +1945,4 @@ We can put as much effort, data, and complex statistics into our model as we wan
 - Web: [rjjanse.github.io](https://rjjanse.github.io)
 - Contact: [r.j.janse-5@umcutrecht.nl](mailto:r.j.janse-5@umcutrecht.nl)
 - Slides: [rjjanse.github.io/talks](https://rjjanse.github.io/talks/hte.html)
-- Code: [github.com/rjjanse](https://github.com/rjjanse/rjjanse.github.io/blob/main/talks/hte.qmd)
+- Code: [github.com/rjjanse](https://github.com/rjjanse/rjjanse.github.io/blob/main/talks/qmd_source/hte.qmd)

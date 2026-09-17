@@ -1,0 +1,464 @@
+---
+title: "On observational causality"
+subtitle: "Extending the evidence through target trial emulation"
+title-slide-attributes:
+    data-background-image: images/sign.jpg
+    data-background-size: fill
+    data-background-opacity: "0.4"
+author:
+    - name: Dr. Roemer J. Janse
+      orcid: 0000-0003-0059-872X
+      email: R.J.Janse-5@umcutrecht.nl
+      affiliations:
+        - name: UMC Utrecht
+format: 
+    revealjs:
+        theme: simple
+        mermaid: 
+          theme: forest
+execute:
+    warning: false
+                
+css: css/tte.css
+---
+
+```{r set-up}
+#| message: false
+#| warning: false
+#| include: false
+
+# Load packages
+pacman::p_load("dplyr",          # Data wrangling
+               "tibble",         # Better data frames
+               "magrittr",       # Better pipelines
+               "conflicted"      # Package conflicts
+)
+
+# Resolve conflicts
+conflicts_prefer(dplyr::filter)   # Between stats and dplyr
+
+# Theme for plots
+theme_manual <- function(){
+    theme(panel.border = element_rect(fill = "transparent",
+                                      colour = "black"),
+          panel.grid = element_blank(),
+          panel.background = element_rect(fill = "white"),
+          plot.background = element_rect(fill = "white",
+                                         colour = "white"))
+}
+```
+
+# Prelude
+
+## Causal Questions
+
+To optimally understand haemodiafiltration (HDF), we want to ask *causal questions*: <br> <br>
+
+:::{.fragment}
+Does an intervention on the exposure **lead to/cause/change** the outcome?
+:::
+
+<br>
+
+::::{.fragment}
+:::{.callout-important}
+We assume that any change in the outcome is **only** due to our intervention
+:::
+::::
+
+# The Holy Grail of Causality
+
+## The Holy Grail: Randomisation
+Ideally, we answer our causal questions using *randomised controlled trials* (RCTs)
+
+:::{.incremental}
+- We randomise to whom (and to whom not) we give the intervention
+- Because we do this randomly, we expect both groups to be practically the same ^[[Law of Large Numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers)]
+:::
+
+## The Holy Grail: Alignment
+Additionally, RCTs force us to,
+
+:::{.incremental}
+1. Include a participant when they are eligible
+2. Give our intervention at inclusion
+3. Start follow-up when we give our intervention
+:::
+
+::::{.fragment}
+:::{.callout-note}
+This may seem straightforward, but that is only because an RCT forces us to align these moments.
+:::
+::::
+
+## The Expensive Holy Grail
+**Limitation 1:** Trials are expensive
+
+::::::{.smaller}
+:::::{.columns}
+::::{.column width="30%"}
+:::{.fragment}
+[![](images/convince_costs.png)](https://cordis.europa.eu/project/id/754803)
+:::
+::::
+
+::::{.column width="70%"}
+:::{.incremental}
+- CONVINCE cost ~6.5 million EUR~2017~ <br> (~10 million EUR~2026~ or ~11.5 million USD~2026~)
+- Trials are as cost-efficient as possible
+- This leads to a highly selected study population
+- *Thus, results are valid but difficult to generalise*
+:::
+::::
+:::::
+::::::
+
+## The Highly Specific Holy Grail
+**Limitation 2:** Trials only answer a few causal questions <br>
+
+:::{.fragment style="font-size:0.75em"}
+For CONVINCE: *Effect of high-dose HDF as compared to conventional guideline based HD (i.e. current standard of care) in terms of morbidity, mortality and HRQoL.*
+::: 
+
+<br>
+
+::::{.fragment}
+But what about:
+
+:::{.incremental}
+- Different strategies of initiating HDF?
+- HDF compared to other dialysis modalities?
+- The underlying mechanisms?
+- *etc.*
+:::
+::::
+
+# Observational Enrichment
+
+## Observational data
+
+::::{.fragment}
+**Limitations:**
+
+:::{.incremental}
+- For most interventions, there is confounding
+- There is almost never a single clear baseline (no easy alignment)
+:::
+::::
+
+::::{.fragment}
+**Strengths:**
+
+:::{.incremental}
+- It is easier(/cheaper) to study a large population
+- Data often represents routine clinical practice
+- Results are better generalisable
+:::
+::::
+
+## Confounding
+
+![](images/simple_hdf_dag.png)
+
+## Confounding
+
+![](images/complex_hdf_dag.png)
+
+## Alignment
+
+Three key pillars:
+
+:::{.incremental}
+- Eligibility
+- Assignment of intervention (strategy)
+- Start of follow-up
+:::
+
+## Misalignment {.smaller}
+
+What if follow-up starts after assignment of the intervention (strategy)?
+
+![](images/pub1.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts after assignment of the intervention (strategy)?
+
+![](images/pub2.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts after assignment of the intervention (strategy)?
+
+![](images/pub3.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts after assignment of the intervention (strategy)?
+
+![](images/pub4.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts after assignment of the intervention (strategy)?
+
+![](images/pub5.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts after assignment of the intervention (strategy)?
+
+![](images/pub6.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts after assignment of the intervention (strategy)?
+
+![](images/pub7.png)
+
+## Misalignment
+
+If follow-up starts after intervention assignment, you get: <br> <br>
+
+:::{.fragment}
+**Prevalent user bias**
+:::
+
+:::{.incremental}
+- A protective intervention helps individuals make it until inclusion
+- A non-protective/harmful intervention loses those individuals
+- This is called '*depletion of susceptibles*'
+- As a result, the effect is underestimated
+:::
+
+## Misalignment {.smaller}
+
+What if follow-up starts before assignment of the intervention (strategy)?
+
+![](images/itb1.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts before assignment of the intervention (strategy)?
+
+![](images/itb2.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts before assignment of the intervention (strategy)?
+
+![](images/itb3.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts before assignment of the intervention (strategy)?
+
+![](images/itb4.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts before assignment of the intervention (strategy)?
+
+![](images/itb5.png)
+
+## Misalignment {.smaller}
+
+What if follow-up starts before assignment of the intervention (strategy)?
+
+![](images/itb6.png)
+
+## Misalignment 
+
+If follow-up starts before intervention assignment, you get: <br> <br>
+
+:::{.fragment}
+**Immortal time bias**
+:::
+
+:::{.incremental}
+- This occurs when you use future information
+- You are immortal until you receive the intervention if you are part of the intervention arm (i.e. artificial survival advantage)
+- Pre-intervention deaths are added to the control arm
+- As a result, the effect is overestimated
+:::
+
+# Getting it Right
+
+## Target Trials
+
+:::{.incremental}
+- To get it right, we think about trials
+- We do not need to (be able to) perform this trial
+- Instead, we borrow it's design strengths
+- These strengths are incorporated in our observational study
+:::
+
+## The Target Trial Emulation Framework
+
+This approach is formalised in the *target trial emulation (TTE)* framework
+
+:::{.incremental}
+- The TTE framework helps us design our target trial
+- The TTE framework helps us emulate that trial using observational data
+- The TTE framework forces to be explicit about these steps
+:::
+
+## Target Trial Emulation {.smaller}
+
+|Target Trial Item|Elaboration|
+|-|--|
+
+## Target Trial Emulation {.smaller}
+
+|Target Trial Item|Elaboration|
+|-|--|
+|Eligibility criteria|*Who gets to participate?*|
+
+## Target Trial Emulation {.smaller}
+
+|Target Trial Item|Elaboration|
+|-|--|
+|Eligibility criteria|*Who gets to participate?*|
+|Treatment strategies|*What interventions are you studying?*|
+
+## Target Trial Emulation {.smaller}
+
+|Target Trial Item|Elaboration|
+|-|--|
+|Eligibility criteria|*Who gets to participate?*|
+|Treatment strategies|*What interventions are you studying?*|
+|Treatment assignment|*How do you decide who is assigned to which intervention?*|
+
+## Target Trial Emulation {.smaller}
+
+|Target Trial Item|Elaboration|
+|-|--|
+|Eligibility criteria|*Who gets to participate?*|
+|Treatment strategies|*What interventions are you studying?*|
+|Treatment assignment|*How do you decide who is assigned to which intervention?*|
+|Outcome|*What outcomes are you studying?*|
+
+## Target Trial Emulation {.smaller}
+
+|Target Trial Item|Elaboration|
+|-|--|
+|Eligibility criteria|*Who gets to participate?*|
+|Treatment strategies|*What interventions are you studying?*|
+|Treatment assignment|*How do you decide who is assigned to which intervention?*|
+|Outcome|*What outcomes are you studying?*|
+|Causal estimand|*What, for who, with which measure, exactly, are you estimating?*|
+
+## Target Trial Emulation {.smaller}
+
+|Target Trial Item|Elaboration|
+|-|--|
+|Eligibility criteria|*Who gets to participate?*|
+|Treatment strategies|*What interventions are you studying?*|
+|Treatment assignment|*How do you decide who is assigned to which intervention?*|
+|Outcome|*What outcomes are you studying?*|
+|Causal estimand|*What, for who, with which measure, exactly, are you estimating?*|
+|Start and end of follow-up|*When do you start and when do you stop counting outcomes?*|
+
+## Target Trial Emulation {.smaller}
+
+|Target Trial Item|Elaboration|
+|-|--|
+|Eligibility criteria|*Who gets to participate?*|
+|Treatment strategies|*What interventions are you studying?*|
+|Treatment assignment|*How do you decide who is assigned to which intervention?*|
+|Outcome|*What outcomes are you studying?*|
+|Causal estimand|*What, for who, with which measure, exactly, are you estimating?*|
+|Start and end of follow-up|*When do you start and when do you stop counting outcomes?*|
+|Statistical analysis|*What methodology is required for the first six items?*|
+
+## Getting it Right: Confounding
+
+:::{.incremental}
+- The item *Treatment assignment* helps us think about confounding
+- The item *Statistical analysis* allows us to specify how we deal with confounding
+- Methods to deal with confounding are **not** specific to target trial emulation
+:::
+
+## Getting it Right: Confounding
+
+::::{.columns style="font-size:0.85em;"}
+:::{.column width="50%"}
+- [Restriction](https://doi.org/10.1038/sj.ki.5002650)
+- [Stratification](https://doi.org/10.1038/sj.ki.5002650)
+- [Covariate adjustment](https://doi.org/10.1093/aje/kws412)
+- [Covariate matching](https://doi.org/10.1038/sj.ki.5002650)
+- [Propensity score adjustment](https://doi.org/10.1093/ndt/gfy283)
+- [Propensity score matching](https://doi.org/10.1093/ndt/gfy283)
+:::
+
+:::{.column width="50%"}
+- [Inverse probability of treatment weighting](https://doi.org/10.1136/bmj.l5657)
+- [Overlap weighting](https://doi.org/10.1136/bmj.l5657)
+- [Fine stratification weighting](https://doi.org/10.1136/bmj.l5657)
+- [Standardised mortality ratio weighting](https://doi.org/10.1136/bmj.l5657)
+- [Matching weighting](https://doi.org/10.1136/bmj.l5657)
+:::
+::::
+
+## Getting it Right: (Mis)alignment
+
+:::{.incremental}
+- The item *Start and end of follow-up* help us think about (mis)alignment of eligibility, intervention assignment, and start of follow-up
+- This is captured in the study design we use, the components of which appear throughout the target trial emulation table
+- Designs to ensure alignment are **not** specific to target trial emulation
+:::
+
+## Getting it Right: (Mis)alignment
+
+:::{style="font-size:0.85em;"}
+- [Traditional no-use design](https://doi.org/10.1097/ede.0000000000001521)
+- [No-use episodes design](https://doi.org/10.1097/ede.0000000000001521)
+- [Prevalent new-user design](https://doi.org/10.1097/ede.0000000000001521)
+- [Generalised prevalent new-user design](https://doi.org/10.1097/ede.0000000000001521)
+- [Hierarchical prevalent new-user design](https://doi.org/10.1097/ede.0000000000001521)
+- [Active comparator new-user design](https://doi.org/10.1007/s40471-015-0053-5)
+- [Cloning-censoring-weighting design](https://doi.org/10.1136/bmj-2025-084909)
+- [Self-controlled designs](https://doi.org/10.1111/joim.12186)
+- [Time-varying designs](https://doi.org/10.1136/bmj-2025-084909)
+:::
+
+## A Worked Out Example {.smaller}
+
+::::{.columns}
+:::{.column width="80%"}
+![](images/champion_protocol.png)
+:::
+
+:::{.column width="20%"}
+![](images/champion_protocol_qr.png)
+:::
+::::
+    
+[10.1186/s12882-026-05315-z](https://doi.org/10.1186/s12882-026-05315-z)
+    
+# Final Thoughts
+
+# 
+:::{.r-stack}
+Target trial emulation is not a method, but a framework
+:::
+    
+# 
+:::{.r-stack}
+As a framework, target trial emulation primarily helps you structure your thoughts
+:::    
+    
+# 
+:::{.r-stack}
+A study using the target trial emulation framework can be supercomplex, but als supersimple
+:::       
+
+# 
+:::{.r-stack}
+Simple methods give copmlex answers; complex methods give simple answers
+:::      
+
+# Thank you!{background-image=images/house.jpg background-opacity="0.4"}
+- Web: [rjjanse.github.io](https://rjjanse.github.io)
+- Contact: [r.j.janse-5@umcutrecht.nl](mailto:r.j.janse-5@umcutrecht.nl)
+- Slides: [rjjanse.github.io/talks](https://rjjanse.github.io/talks/tte.html)
