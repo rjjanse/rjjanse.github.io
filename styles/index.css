@@ -302,41 +302,25 @@ body::-webkit-scrollbar{
     background-color: #C9CBA3;
 }
 
-#appointments {
+#publication-highlight {
     position: relative;
-    height: calc(100vh - 250px);
-    width: calc(60vw - 150px);
-    padding: 75px;
+    height: auto;
+    width: calc(60vw - 50px);
+    padding: 50px 25px 25px 25px;
     z-index: 20;
 }
 
-#appointments-title {
+#highlights-title {
     font-size: 2em;
     font-weight: bolder;
     color: #472D30;
+    z-index: 25;
 }
 
-.appointment {
-    display: flex;
-    font-size: 1.5em;
-    color: #472D30;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.appointment-text {
-    margin: 0;
-    padding: calc(7.5vh - 3.5em);
-}
-
-.appointment-img {
-    height: 7.5vh;
-    margin-right: 20px;
-    border: #472D30 3px solid;
-}
-
-.appointment-institution {
-    font-style: italic;
+#highlight img {
+    margin-top: 20px;
+    height: calc(75vh - 100px);
+    border: solid 1px #723D46;
 }
 
 /*----------------------------------------------------*/
@@ -435,11 +419,6 @@ body::-webkit-scrollbar{
     z-index: 10;
 }
 
-
-
-
-
-
 /* Landing right column */
 #landing-right {
     background-color: #472D30;
@@ -457,6 +436,7 @@ body::-webkit-scrollbar{
 #navigation-buttons {
     display: block;
     margin-top: 100px;
+    padding: -25px;
 }
 
 .nav-button {
@@ -850,15 +830,35 @@ select::picker-icon {
     margin-top: 0;
 }
 
+#chart_div {
+    width: 300px;
+}
+
 /* Remove margins from right column titles */
 #oo-rightcolumn h3 {
     margin-top: 0;
     margin-bottom: 0;
 }
 
-#acknowledge-list {
+#oo-editor {
+    margin-right: 20px;
     text-align: left;
 }
+
+#oo-editor li {
+    margin-bottom: 20px;
+}
+
+.oo-year {
+    border-bottom: solid 2px #E26D5C;
+    font-size: 0.9em;
+}
+
+.oo-editorial-function {
+    font-size: 0.8em;
+}
+
+
 
 /* Other otput right column title */
 #oo-rightcolumn-title {
@@ -1118,6 +1118,10 @@ select::picker-icon {
     color: #C9CBA3;
     font-weight: bolder;
     cursor: pointer;
+}
+
+.interest h4 {
+    margin: 0;
 }
 
 /* Quote styling */
@@ -1454,43 +1458,6 @@ select::picker-icon {
     height: auto;
     width: 100vw;
     background-color: #C9CBA3;
-}
-
-#appointments {
-    position: relative;
-    height: auto;
-    width: calc(100vw - 50px);
-    padding: 50px 25px 25px 25px;
-    z-index: 20;
-}
-
-#appointments-title {
-    font-size: 2em;
-    font-weight: bolder;
-    color: #472D30;
-}
-
-.appointment {
-    display: flex;
-    font-size: 1em;
-    color: #472D30;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.appointment-text {
-    margin: 0;
-    padding: calc(3.5vh - 3.5em);
-}
-
-.appointment-img {
-    height: 3.5vh;
-    margin: 10px 20px 0px 0px;
-    border: #472D30 1px solid;
-}
-
-.appointment-institution {
-    font-style: italic;
 }
 
 /*------------LANDING RIGHT COLUMN ----------------*/
