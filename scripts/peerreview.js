@@ -42,7 +42,8 @@ function drawChart() {
       },
       gridlines: {
         color: "#FFE1A8"
-      }
+      },
+      maxValue: 50
     },
     vAxis: {
       title: "",
