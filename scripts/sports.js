@@ -1,5 +1,6 @@
 // Get img
 var img = document.getElementById("sports-image");
+console.log(img);
 
 // Array of possible images
 var images = ["boulder.png", "cycling.jpg", "toprope.gif", "crossfit.gif"];
@@ -27,6 +28,7 @@ left.addEventListener("click", (e) => {
 
     // Set src of img to new image
     img.setAttribute("src", "images/interests/sports/" + new_image)
+    console.log(img);
 })
 
 // Listen for right button click
@@ -40,7 +42,7 @@ right.addEventListener("click", (e) => {
 
     // Get new image
     var new_image = images[index]
-
+    
     // Set src of img to new image
     img.setAttribute("src", "images/interests/sports/" + new_image)
 })
