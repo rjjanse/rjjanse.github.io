@@ -305,8 +305,8 @@ body::-webkit-scrollbar{
 #publication-highlight {
     position: relative;
     height: auto;
+    padding: 25px;
     width: calc(60vw - 50px);
-    padding: 50px 25px 25px 25px;
     z-index: 20;
 }
 
@@ -436,7 +436,6 @@ body::-webkit-scrollbar{
 #navigation-buttons {
     display: block;
     margin-top: 100px;
-    padding: -25px;
 }
 
 .nav-button {
@@ -444,7 +443,7 @@ body::-webkit-scrollbar{
     font-size: 1.25em;
     font-family: "Titillium Web", Helvetica, sans-serif;
     color: #FFE1A8;
-    margin: 2vh 8vw;
+    margin: 2vh 7vw;
     width: 26vw;
     text-align: center;
     display: inline-block;
