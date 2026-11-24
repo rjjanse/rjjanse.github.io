@@ -69,7 +69,7 @@ pub_lst <- function(study){
 }
 
 # Vector of possible headings
-headings <- c("Background and Aims", "Background", "Introduction", "Aim", "Aims", "Objective", "Objectives", "Methods", "Results", "Methods and results", "Discussion", "Conclusion", "Conclusions",
+headings <- c("Background", "Introduction", "Aim", "Aims", "Objective", "Objectives", "Methods", "Results", "Methods and results", "Discussion", "Conclusion", "Conclusions",
               "Study design and setting", "Study design", "Setting & participants", "Selection criteria for studies", "Analytical approach", "Limitations",
               "Rationale & objective", "Rationale")
 
@@ -91,7 +91,7 @@ pub_int <- function(study){
     abstract <- str_replace_all(abstract, "<", "&lt;")
 
     # Set headings to bold and add breaks
-    for(i in headings) abstract <- str_replace_all(abstract, paste0("(?<!<b>)", i, ":(?!</b>)"), paste0("<br><b>", i, ":</b>"))
+    for(i in headings) abstract <- str_replace_all(abstract, paste0("(?<!<b>)", i, ":"), paste0("<br><b>", i, ":</b>"))
     
     # If the heading is the first, the break is not needed, so we remove it again
     abstract <- str_replace_all(abstract, "^<br>", "")
@@ -141,7 +141,7 @@ vec_pub_lst <- paste0(sapply(1:nrow(dat), \(index) pub_lst(dat[["id"]][[index]])
 vec_pub_int <- paste0(sapply(1:nrow(dat), \(index) pub_int(dat[["id"]][[index]])), collapse = "")
 
 ## Combine to final output
-final_html <- paste0("<div id = 'publications'><div id = 'publication-list-wrapper' class = 'fade'><div id = 'publication-list'>", vec_pub_lst,
+final_html <- paste0("<div id = 'publications'><div id = 'publication-list-wrapper'><div id = 'publication-list'>", vec_pub_lst,
                      "</div></div><div id = 'publication-information'>", vec_pub_int,
                      "</div></div>")
 
